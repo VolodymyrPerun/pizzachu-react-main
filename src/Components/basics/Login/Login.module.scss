@@ -1,0 +1,89 @@
+.login {
+  grid-template-columns: 1fr 1fr;
+  display: grid;
+  border: 4px solid chocolate;
+  border-radius: 15px;
+  text-align: center;
+
+  img {
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: cover;
+    align-self: center;
+    max-height: 750px;
+    grid-column: 1;
+    grid-row: 1;
+  }
+
+  .forms {
+    min-width: 150px;
+    max-width: 300px;
+    align-content: center;
+    align-items: center;
+    align-self: center;
+    grid-column: 2;
+    grid-row: 1;
+    padding: 15px;
+    border-radius: 15px;
+    background: black;
+    color: tomato;
+    font: 20px "Matura MT Script Capitals", -apple-system, "Segoe UI", "Roboto", "Oxygen", "Ubuntu", "Cantarell", "Fira Sans", "Droid Sans", "Helvetica Neue", sans-serif;
+    opacity: 0.8;
+
+    .title {
+      font-size: 35px;
+    }
+
+    .inputContainer {
+      display: flex;
+      flex-direction: row;
+      justify-content: center;
+      align-items: center;
+
+      .input {
+        outline: hidden;
+        font: 15px "Matura MT Script Capitals", -apple-system, "Segoe UI", "Roboto", "Oxygen", "Ubuntu", "Cantarell", "Fira Sans", "Droid Sans", "Helvetica Neue", sans-serif;
+        max-width: 150px;
+        color: tomato;
+
+        &:last-child {
+          margin-bottom: 5px;
+        }
+      }
+    }
+
+    .formsSummaryError {
+      font: 15px raleway-grid, sans-serif;
+      font-weight: bold;
+      margin: 5px auto;
+      display: flex;
+      color: #c21500;
+      max-width: 70%;
+      justify-content: center;
+      align-self: center;
+      align-content: center;
+      align-items: center;
+      text-align: center;
+    }
+  }
+}
+
+@media only screen and (max-width: 572px) {
+  .login {
+    grid-template-columns: 1fr;
+
+    img {
+      grid-column: 1;
+      grid-row: 2;
+      width: auto;
+      z-index: 2;
+    }
+
+    .forms {
+      grid-column: 1;
+      grid-row: 2;
+      max-width: 100%;
+      z-index: 3;
+    }
+  }
+}

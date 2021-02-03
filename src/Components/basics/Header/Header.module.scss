@@ -1,0 +1,121 @@
+.header {
+  display: grid;
+  //grid-template-columns: 1fr;
+  grid-area: header;
+//  background: #c21500; /* fallback for old browsers */
+ // background: -webkit-linear-gradient(to right, #ffc500, #c21500); /* Chrome 10-25, Safari 5.1-6 */
+ // background: linear-gradient(to right, #ffc500, #c21500); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
+  z-index: 1;
+
+  //.logo {
+  //  grid-column: 1;
+  //  width: 92px;
+  //  padding-right: 10px;
+  //}
+  //
+  //.logoText {
+  //  grid-column: 2;
+  //  margin-top: -11.5px;
+  //
+  //  p {
+  //    font-family: Broadway, sans-serif;
+  //    font-size: 20px;
+  //    font-weight: bold;
+  //    text-transform: uppercase;
+  //    width: 80%;
+  //    color: whitesmoke;
+  //    border-radius: 10px;
+  //    text-align: center;
+  //    padding: 10px;
+  //    background: black;
+  //    opacity: 0.8;
+  //
+  //    span {
+  //      color: goldenrod
+  //    }
+  //  }
+  //}
+  //
+  //.loginBlock {
+  //  grid-column: 3;
+  //  text-align: center;
+  //  align-self: center;
+  //
+  //  font-size: 13px;
+  //  font-family: raleway-grid, sans-serif;
+  //  font-weight: 400;
+  //
+  //  .itemLink {
+  //    font-size: 13px;
+  //    font-family: raleway-grid, sans-serif;
+  //    font-weight: 400;
+  //    position: relative;
+  //    top: -10px;
+  //    color: #dfd087;
+  //    margin-right: 15px;
+  //    transition: 0.5s;
+  //
+  //    &:hover, &:focus, &:active, .active {
+  //      color: #fdf497;
+  //      font-size: 14px;
+  //    }
+  //
+  //    button {
+  //      color: #dfd087;
+  //      padding: 0;
+  //      width: 50px;
+  //      font-size: 10px;
+  //      font-weight: 400;
+  //      margin-top: 2px;
+  //      background-color: #2B1100;
+  //      opacity: 0.9;
+  //
+  //      &:hover, &:focus, &:active, .active {
+  //        color: #fdf497;
+  //        padding: 1px;
+  //        width: 51px;
+  //      }
+  //    }
+  //  }
+  //}
+}
+
+@media only screen and (max-width: 992px) {
+  .itemLink {
+    font-size: 11px !important;
+    //margin-right: 5px !important;
+
+    &:hover, &:focus, &:active, .active {
+      font-size: 11px !important;
+    }
+  }
+}
+
+@media only screen and (max-width: 550px) {
+  //.header {
+  //  grid-template-columns: 1fr 1fr 2fr;
+  //
+  //  .logoText {
+  //    margin-top: 5.5px !important;
+  //
+  //    p {
+  //      width: 80% !important;
+  //      font-size: 13px !important;
+  //      padding: 5px !important;
+  //    }
+  //  }
+  //
+  //  .itemLink {
+  //    padding: 0 !important;
+  //    left: -10px !important;
+  //    font-size: 10px !important;
+  //    margin-right: 4px !important;
+  //
+  //    &:hover, &:focus, &:active, .active {
+  //      font-size: 10px !important;
+  //    }
+  //  }
+  //}
+}
+
+

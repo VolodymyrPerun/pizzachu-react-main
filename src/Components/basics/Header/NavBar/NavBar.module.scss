@@ -1,0 +1,156 @@
+.navbar {
+  background: linear-gradient(90deg, rgb(28, 27, 27) 0%, rgb(26, 23, 23) 100%);
+  height: 80px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 1.2rem;
+
+  .logo {
+    color: #fff;
+    justify-self: start;
+    margin-left: 20px;
+    cursor: pointer;
+    text-decoration: none;
+    font-size: 2rem;
+  }
+
+  .menuIcon {
+    display: none;
+
+    .faBars {
+      color: #fff;
+    }
+
+    .faTimes {
+      color: #fff;
+      font-size: 2rem;
+    }
+  }
+
+  .navMenu {
+    display: grid;
+    grid-template-columns: repeat(5, auto);
+    grid-gap: 10px;
+    list-style: none;
+    text-align: center;
+    width: 70vw;
+    justify-content: end;
+    margin-right: 2rem;
+
+    .faCaretDown {
+      display: block;
+    }
+
+    .navItem {
+      display: flex;
+      align-items: center;
+      height: 80px;
+
+      .navLinks {
+        display: flex;
+        color: white;
+        text-decoration: none;
+        padding: 0.5rem 1rem;
+        flex-direction: row;
+
+        &:hover {
+          background-color: #1888ff;
+          border-radius: 4px;
+          transition: all 0.2s ease-out;
+        }
+      }
+    }
+
+    .navLinksMobile {
+      display: none;
+    }
+  }
+}
+
+
+@media screen and (max-width: 960px) {
+  .NavbarItems {
+    position: relative;
+  }
+
+  .navbar {
+    //width: 94vw;
+
+    .navMenu {
+      display: flex;
+      flex-direction: column;
+      //width: 94vw;
+      height: 90vh;
+      position: absolute;
+      top: 56px;
+      left: -100%;
+      opacity: 1;
+      transition: all 0.5s ease;
+
+      .faCaretDown {
+        display: none;
+      }
+
+      .navLinks {
+        text-align: center;
+        padding: 2rem;
+        width: 100%;
+        display: table;
+
+        &:hover {
+          background-color: #1888ff;
+          border-radius: 0;
+        }
+      }
+
+      .navLinksMobile {
+        display: block;
+        text-align: center;
+        padding: 1.5rem;
+        margin: 2rem auto;
+        border-radius: 4px;
+        width: 80%;
+        background: #1888ff;
+        text-decoration: none;
+        color: #fff;
+        font-size: 1.5rem;
+
+        &:hover {
+          background: #fff;
+          color: #1888ff;
+          transition: 250ms;
+        }
+      }
+    }
+
+    .active {
+      background: #242222;
+      left: 0;
+      opacity: 1;
+      transition: all 0.5s ease;
+      z-index: 1;
+    }
+
+    .logo {
+      position: absolute;
+      top: 0;
+      left: 0;
+      transform: translate(25%, 50%);
+    }
+
+    .menuIcon {
+      display: block;
+      position: absolute;
+      top: 0;
+      right: 0;
+      transform: translate(-100%, 60%);
+      font-size: 1.8rem;
+      cursor: pointer;
+    }
+
+    button {
+      display: none;
+    }
+  }
+}
