@@ -1,14 +1,11 @@
 import React from 'react';
 import style from './Home.module.scss';
-import newsPagePhoto from '../../../assets/images/newsPagePhoto.png'
+import Products from "../../../containers/Products/Products";
 
 const Home = () => {
     return (
         <div>
-            <img className={style.news}
-                 alt='img'
-                 src={newsPagePhoto}/>
-            News
+           <Products/>
         </div>
     )
 };

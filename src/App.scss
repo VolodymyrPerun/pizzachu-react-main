@@ -14,9 +14,10 @@ body {
     display: grid;
     width: 100%;
     margin: 0 auto;
-    background: #FFEFBA; /* fallback for old browsers */
-    background: -webkit-linear-gradient(to right, #FFFFFF, #FFEFBA); /* Chrome 10-25, Safari 5.1-6 */
-    background: linear-gradient(to right, #FFFFFF, #FFEFBA); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
+    background: whitesmoke;
+    //background: #FFEFBA; /* fallback for old browsers */
+    //background: -webkit-linear-gradient(to right, #FFFFFF, #FFEFBA); /* Chrome 10-25, Safari 5.1-6 */
+    //background: linear-gradient(to right, #FFFFFF, #FFEFBA); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
 
     grid-template-areas: "header"
                          "content"
@@ -32,9 +33,10 @@ body {
     grid-area: content;
     justify-content: center;
     justify-self: center;
-    background: #FFEFBA; /* fallback for old browsers */
-    background: -webkit-linear-gradient(to right, #FFFFFF, #FFEFBA); /* Chrome 10-25, Safari 5.1-6 */
-    background: linear-gradient(to right, #FFFFFF, #FFEFBA); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
+    background: whitesmoke;
+    //background: #FFEFBA; /* fallback for old browsers */
+    //background: -webkit-linear-gradient(to right, #FFFFFF, #FFEFBA); /* Chrome 10-25, Safari 5.1-6 */
+    //background: linear-gradient(to right, #FFFFFF, #FFEFBA); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
 }
 
 .app-wrapper-content img {
@@ -45,6 +47,7 @@ body {
 @media only screen and (max-width: 992px) {
     .app-wrapper, body {
         width: 100%;
+        max-height: 100vh;
         margin: 0;
         padding: 0;
         background: #FFFFFF;

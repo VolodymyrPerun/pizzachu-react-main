@@ -5,6 +5,8 @@ import styles from './NavBar.module.scss'
 import Dropdown from './Dropdown/Dropdown';
 import {faBars, faTimes, faCaretDown} from "@fortawesome/free-solid-svg-icons";
 import {FontAwesomeIcon} from "@fortawesome/react-fontawesome";
+import logo from '../../../../assets/images/mail_bg.png'
+import SingUpIcon from "../../../commons/CustomIcons/SingUp";
 
 const NavBar = () => {
     const [click, setClick] = useState(false);
@@ -33,7 +35,8 @@ const NavBar = () => {
         <>
             <nav className={styles.navbar}>
                 <Link to='/' className={styles.logo} onClick={closeMobileMenu}>
-                    EPIC
+                    <p>P<span>i</span>zz<span>ac</span>hu</p> <img src={logo} alt={'logo'}/>
+                    <span className={styles.label}> i cheese you!🍕 </span>
                 </Link>
                 <div className={styles.menuIcon} onClick={handleClick}>
                     {click
@@ -47,7 +50,7 @@ const NavBar = () => {
                 <ul className={click ?  `${styles.navMenu} ${styles.active}` : `${styles.navMenu}`}>
                     <li className={styles.navItem}>
                         <Link to='/' className={styles.navLinks} onClick={closeMobileMenu}>
-                            Home
+                            Головна
                         </Link>
                     </li>
                     <li
@@ -60,7 +63,7 @@ const NavBar = () => {
                             className={styles.navLinks}
                             onClick={closeMobileMenu}
                         >
-                            Services <FontAwesomeIcon
+                            Сервіс <FontAwesomeIcon
                             className={styles.faCaretDown}
                             icon={faCaretDown}/>
                         </Link>
@@ -68,20 +71,20 @@ const NavBar = () => {
                     </li>
                     <li className={styles.navItem}>
                         <Link
-                            to='/products'
+                            to='/about'
                             className={styles.navLinks}
                             onClick={closeMobileMenu}
                         >
-                            Products
+                            Про нас
                         </Link>
                     </li>
                     <li className={styles.navItem}>
                         <Link
-                            to='/contact-us'
+                            to='/contact'
                             className={styles.navLinks}
                             onClick={closeMobileMenu}
                         >
-                            Contact Us
+                           Контакти
                         </Link>
                     </li>
                     <li>
@@ -90,7 +93,7 @@ const NavBar = () => {
                             className={styles.navLinksMobile}
                             onClick={closeMobileMenu}
                         >
-                            Sign Up
+                            Sign Up<SingUpIcon/>
                         </Link>
                     </li>
                 </ul>

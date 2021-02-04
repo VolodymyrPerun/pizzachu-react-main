@@ -7,7 +7,6 @@ import Home from "./Components/pages/Home/Home";
 import Promotions from './Components/pages/Promotions/Promotions';
 import {BrowserRouter, Redirect, Route, Switch, withRouter} from "react-router-dom";
 import HeaderContainer from "./Components/basics/Header/HeaderContainer";
-import Login from "./Components/basics/Login/Login";
 import {connect, Provider} from "react-redux";
 import {compose} from "redux";
 import {catchGlobalError, initializeApp} from "./redux/reducers/appReducer/thunks";
@@ -29,7 +28,7 @@ class App extends Component {
     };
 
     componentDidMount() {
-      //  this.props.initializeApp();
+      this.props.initializeApp();
         window.addEventListener("unhandledrejection", this.catchAllUnhandledErrors);
     };
 
@@ -40,31 +39,29 @@ class App extends Component {
 
     render() {
 
-        if (!this.props.initialized) {
-            return <Preloader/>
-        }
+        // if (!this.props.initialized) {
+        //     return <Preloader/>
+        // }
 
-        if (this.props.globalError) {
-            return <ErrorMessages globalError={this.props.globalError} history={this.props.history}/>
-        }
+        // if (this.props.globalError) {
+        //     return <ErrorMessages globalError={this.props.globalError} history={this.props.history}/>
+        // }
 
         return (
 
             <div className='app-wrapper'>
                 <HeaderContainer/>
-                {/*<Sidebar/>*/}
                 <div className='app-wrapper-content'>
                     <Switch>
                         <Route exact path='/'
                                render={() => <Redirect from={"/"} to={"/home"}/>}/>
                         <Route path='/dialogs'
                                render={() => <DialogsContainer/>}/>
-                        <Route path='/aboutUs' render={() => <AboutUs/>}/>
-                        <Route path='/contacts' render={() => <Contacts/>}/>
+                        <Route path='/about' render={() => <AboutUs/>}/>
+                        <Route path='/contact' render={() => <Contacts/>}/>
                         <Route path='/feedbacks' render={() => <Feedbacks/>}/>
                         <Route path='/home' render={() => <Home/>}/>
                         <Route path='/promotions' render={() => <Promotions/>}/>
-                        <Route path='/login' render={() => <Login/>}/>
                         <Route path='/error' render={() =>
                             <ErrorMessages globalError={this.props.globalError} history={this.props.history}/>}/>
                         <Route path='*' render={() => <Page404 history={this.props.history}/>}/>}/>
