@@ -4,8 +4,6 @@ import styles from './ProductsCard.module.scss';
 
 const ProductsCard = ({name, description, product_photo, price, weight, addToCart, addedCount, ...rest}) => {
 
-    // console.log(products['ProductSize.size']);
-
 
     // console.log('_________________3');
     // console.log(['ProductSize.size']);

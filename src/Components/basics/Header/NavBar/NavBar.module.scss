@@ -1,3 +1,5 @@
+@import url('https://fonts.googleapis.com/css2?family=Caveat:wght@400;500&display=swap');
+
 .navbar {
   background: #DEE8C1;
   height: 80px;
@@ -5,6 +7,8 @@
   justify-content: center;
   align-items: center;
   font-size: 1.2rem;
+  font-weight: 400;
+  font-family: 'Caveat', cursive;
 
   .logo {
     display: flex;
@@ -22,6 +26,7 @@
     p {
       color: #008E46;
       font-size: 21px;
+      font-family: 'Balsamiq Sans', Arial, cursive, sans-serif;
 
       & > span {
         font-size: 20px;
@@ -79,6 +84,7 @@
         text-decoration: none;
         padding: 0.5rem 1rem;
         flex-direction: row;
+        font-weight: 600;
 
         &:hover {
           background-color: #EE7179;

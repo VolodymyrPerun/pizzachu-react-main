@@ -12,7 +12,7 @@ import {
 let initialState = {
     products: [],
     pageSize: 10,
-    totalProductsCount: 0,
+    total: 0,
     currentPage: 1,
     isFetching: true,
 };
@@ -42,7 +42,7 @@ const productsReducer = (state = initialState, action) => {
         case SET_TOTAL_PRODUCTS_COUNT:
             return {
                 ...state,
-                totalProductsCount: action.payload
+                total: action.payload
             }
         case SET_PAGE_SIZE:
             return {

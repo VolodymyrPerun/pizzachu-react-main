@@ -9,6 +9,49 @@
   padding: 30px 50px;
 }
 
+.pagination {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  flex-wrap: nowrap;
+  position: relative;
+  left: -17.5px;
+
+  li {
+    color: #c21500;
+    display: flex;
+    justify-items: center;
+    padding: 0;
+    max-height: 35px;
+    margin-right: 10px;
+
+    a, button {
+      outline: none;
+      cursor: pointer;
+      font-size: 15px;
+      font-weight: bold;
+      padding: 5px;
+      color: black;
+      background-color: #dfd087;
+      opacity: 0.8;
+      -ms-user-select: none;
+      -moz-user-select: none;
+      -webkit-user-select: none;
+      user-select: none;
+
+      &:active, &:focus, &:hover {
+        color: #dfd087;
+        background-color: black;
+        border: none;
+      }
+    }
+
+    &:last-child {
+      margin-right: 0;
+    }
+  }
+}
+
 @media only screen and (max-width: 1140px) {
 
   .cardContainer {

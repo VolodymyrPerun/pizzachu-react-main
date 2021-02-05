@@ -9,13 +9,10 @@ import {
 } from './constants';
 
 
-export const setProducts = products => ({type: SET_PRODUCTS, payload: products});
-export const setProductsType = type => ({type: SET_PRODUCTS_TYPE, payload: type});
-export const setProductsSection = section => ({type: SET_PRODUCTS_SECTION, payload: section});
-export const setPageSize = pageSize => ({type: SET_PAGE_SIZE, payload: pageSize});
-export const setCurrentPage = currentPage => ({type: SET_CURRENT_PAGE, payload: currentPage});
-export const setTotalProductsCount = totalProductsCount => ({
-    type: SET_TOTAL_PRODUCTS_COUNT,
-    payload: totalProductsCount
-});
+export const setProducts = payload => ({type: SET_PRODUCTS, payload});
+export const setProductsType = payload => ({type: SET_PRODUCTS_TYPE, payload});
+export const setProductsSection = payload => ({type: SET_PRODUCTS_SECTION, payload});
+export const setPageSize = payload => ({type: SET_PAGE_SIZE, payload});
+export const setCurrentPage = payload => ({type: SET_CURRENT_PAGE, payload});
+export const setTotalProductsCount = payload => ({type: SET_TOTAL_PRODUCTS_COUNT, payload});
 export const setIsFetching = isFetching => ({type: TOGGLE_IS_FETCHING, payload: isFetching});
