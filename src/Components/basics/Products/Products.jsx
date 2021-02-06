@@ -3,22 +3,24 @@ import ProductCard from "../../basics/Products/ProductsCard/ProductsCard";
 import styles from './Products.module.scss'
 import {Pagination} from 'antd';
 import {FastBackwardFilled, FastForwardFilled} from '@ant-design/icons';
+import Filter from "../Filter/Filter";
 
-export const Products = ({products, pageSize, total, type, section, getAllProducts, setCurrentPage}) => {
+export const Products = ({products, pageSize, currentPage, total, type, section, getAllProducts, setCurrentPage, setProductsType}) => {
 
 
-    console.log(products, total);
-
-    useEffect((currentPage, pageSize, type, section) => {
-        debugger
-        getAllProducts(type, section, pageSize, currentPage);
+    useEffect((currentPage, pageSize, type) => {
+        getAllProducts(type, pageSize, currentPage);
     }, []);
 
 
     const onPageChange = currentPage => {
-        debugger
         setCurrentPage(currentPage);
-        getAllProducts(type, section, pageSize, currentPage);
+        getAllProducts(type, pageSize, currentPage);
+    };
+
+    const onPageChangeProductsType = key => (type, pageSize, currentPage) => {
+        setProductsType(key);
+        getAllProducts(key, pageSize, currentPage);
     };
 
     let pagesCount = Math.floor(Math.ceil(total / pageSize) * 10);
@@ -35,6 +37,8 @@ export const Products = ({products, pageSize, total, type, section, getAllProduc
 
     return <>
 
+        <Filter onPageChangeProductsType={onPageChangeProductsType}/>
+
         <div className={styles.cardContainer}>
             {/*{!isReady ?*/}
             {/*    <Segment>*/}
@@ -45,6 +49,7 @@ export const Products = ({products, pageSize, total, type, section, getAllProduc
             {/*            src='https://github.com/VolodymyrPerun/react-it-booking-shop-master/blob/master/assets/loading.gif?raw=true'/>*/}
             {/*    </Segment>*/}
             {/*    :*/}
+
             {products.map((products, i) => (
                 <ProductCard key={i} {...products}/>
             ))}
@@ -58,9 +63,6 @@ export const Products = ({products, pageSize, total, type, section, getAllProduc
             showLessItems={true}
             showSizeChanger={false}
             onChange={(p) => {
-                onPageChange(p)
-            }}
-            onClick={(p) => {
                 onPageChange(p)
             }}
         />

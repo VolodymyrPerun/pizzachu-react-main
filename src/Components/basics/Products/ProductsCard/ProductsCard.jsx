@@ -11,7 +11,7 @@ const ProductsCard = ({name, description, product_photo, price, weight, addToCar
 
     return (
         <div className={styles.card}>
-            <img className={styles.image} src={`http://localhost:5000/${product_photo}`} alt={'avatar'}/>
+            <img className={styles.image} src={`http://localhost:5000/${product_photo}`} alt={'product'}/>
             <p className={styles.weight}>Вага: <span>{weight}</span> гр.</p>
             {rest['ProductSize.size']
                 ?

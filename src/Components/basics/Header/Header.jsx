@@ -6,7 +6,7 @@ const Header = ({isAuth, login, logout}) => {
 
     return (
         <header className={style.header}>
-            <NavBar />
+            <NavBar/>
         </header>
     )
 };

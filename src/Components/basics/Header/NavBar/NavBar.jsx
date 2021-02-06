@@ -36,7 +36,7 @@ const NavBar = () => {
             <nav className={styles.navbar}>
                 <Link to='/' className={styles.logo} onClick={closeMobileMenu}>
                     <p>P<span>i</span>zz<span>ac</span>hu</p> <img src={logo} alt={'logo'}/>
-                    <span className={styles.label}> i cheese you!🍕 </span>
+                    <span className={styles.label}> i cheese you! 🍕</span>
                 </Link>
                 <div className={styles.menuIcon} onClick={handleClick}>
                     {click
@@ -47,7 +47,7 @@ const NavBar = () => {
                             className={styles.faBars}
                             icon={faBars}/>}
                 </div>
-                <ul className={click ?  `${styles.navMenu} ${styles.active}` : `${styles.navMenu}`}>
+                <ul className={click ? `${styles.navMenu} ${styles.active}` : `${styles.navMenu}`}>
                     <li className={styles.navItem}>
                         <Link to='/' className={styles.navLinks} onClick={closeMobileMenu}>
                             Головна
@@ -84,7 +84,7 @@ const NavBar = () => {
                             className={styles.navLinks}
                             onClick={closeMobileMenu}
                         >
-                           Контакти
+                            Контакти
                         </Link>
                     </li>
                     <li>

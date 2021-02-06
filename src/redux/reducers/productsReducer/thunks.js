@@ -14,7 +14,7 @@ export const getAllProducts = (type, section, currentPage, pageSize) => async di
     dispatch(setProductsType(type));
     dispatch(setProductsSection(section));
     dispatch(setCurrentPage(currentPage));
-    let response = await productsAPI.getProducts(type, section, currentPage, pageSize);
+    let response = await productsAPI.getProductsByType(type, section, currentPage, pageSize);
     dispatch(setIsFetching(false));
     dispatch(setProducts(response.data.products));
     dispatch(setTotalProductsCount(response.data.total));
