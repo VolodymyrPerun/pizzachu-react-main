@@ -4,21 +4,24 @@ import styles from './Products.module.scss'
 import {Pagination} from 'antd';
 import {FastBackwardFilled, FastForwardFilled} from '@ant-design/icons';
 
-export const Products = ({products, pageSize, total, currentPage, getAllProducts, setCurrentPage, setPageSize}) => {
+export const Products = ({products, pageSize, total, type, section, getAllProducts, setCurrentPage}) => {
 
-    useEffect((currentPage, pageSize) => {
-        getAllProducts(currentPage, pageSize);
+
+    console.log(products, total);
+
+    useEffect((currentPage, pageSize, type, section) => {
+        debugger
+        getAllProducts(type, section, pageSize, currentPage);
     }, []);
 
 
     const onPageChange = currentPage => {
         debugger
         setCurrentPage(currentPage);
-        debugger
-        getAllProducts(currentPage, pageSize);
+        getAllProducts(type, section, pageSize, currentPage);
     };
 
-    let pagesCount = Math.ceil(Math.floor(total / pageSize) * 10);
+    let pagesCount = Math.floor(Math.ceil(total / pageSize) * 10);
 
     function itemRender(current, type, originalElement) {
         if (type === 'prev') {

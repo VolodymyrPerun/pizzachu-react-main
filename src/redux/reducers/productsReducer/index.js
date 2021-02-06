@@ -11,7 +11,9 @@ import {
 
 let initialState = {
     products: [],
-    pageSize: 10,
+    type: null,
+    section: null,
+    pageSize: 12,
     total: 0,
     currentPage: 1,
     isFetching: true,

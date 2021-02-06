@@ -32,7 +32,7 @@
       font-weight: bold;
       padding: 5px;
       color: black;
-      background-color: #dfd087;
+      background-color: #DEE8C1;
       opacity: 0.8;
       -ms-user-select: none;
       -moz-user-select: none;
@@ -40,8 +40,8 @@
       user-select: none;
 
       &:active, &:focus, &:hover {
-        color: #dfd087;
-        background-color: black;
+        color: whitesmoke;
+        background-color: #008E46;
         border: none;
       }
     }
