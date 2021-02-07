@@ -5,22 +5,37 @@ import {Pagination} from 'antd';
 import {FastBackwardFilled, FastForwardFilled} from '@ant-design/icons';
 import Filter from "../Filter/Filter";
 
-export const Products = ({products, pageSize, currentPage, total, type, section, getAllProducts, setCurrentPage, setProductsType}) => {
+export const Products = ({
+                             products,
+                             pageSize,
+                             currentPage,
+                             total,
+                             type,
+                             section,
+                             getAllProducts,
+                             setCurrentPage,
+                             setProductsType,
+                             setProductsSection
+                         }) => {
 
-
-    useEffect((currentPage, pageSize, type) => {
-        getAllProducts(type, pageSize, currentPage);
+    useEffect((type, section, pageSize, currentPage) => {
+        getAllProducts(type, section, pageSize, currentPage);
     }, []);
 
 
     const onPageChange = currentPage => {
         setCurrentPage(currentPage);
-        getAllProducts(type, pageSize, currentPage);
+        getAllProducts(type, section, pageSize, currentPage);
     };
 
     const onPageChangeProductsType = key => (type, pageSize, currentPage) => {
         setProductsType(key);
         getAllProducts(key, pageSize, currentPage);
+    };
+
+    const onPageChangeProductsSection = (keyType, keySection) => (type, section, pageSize, currentPage) => {
+        setProductsSection(keySection);
+        getAllProducts(keyType, keySection, pageSize, currentPage);
     };
 
     let pagesCount = Math.floor(Math.ceil(total / pageSize) * 10);
@@ -37,7 +52,11 @@ export const Products = ({products, pageSize, currentPage, total, type, section,
 
     return <>
 
-        <Filter onPageChangeProductsType={onPageChangeProductsType}/>
+        <Filter
+            type={type}
+            onPageChangeProductsType={onPageChangeProductsType}
+            onPageChangeProductsSection={onPageChangeProductsSection}
+        />
 
         <div className={styles.cardContainer}>
             {/*{!isReady ?*/}
