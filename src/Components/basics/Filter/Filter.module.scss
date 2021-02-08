@@ -1,5 +1,5 @@
 .container {
-  width: 85%;
+  width: 90%;
   height: 20vh;
   display: flex;
   justify-self: center;
@@ -8,3 +8,23 @@
   align-content: center;
   align-self: center;
 }
+
+.inputContainer {
+  display: flex;
+  justify-self: right;
+
+  input {
+    display: flex;
+    justify-self: right;
+  }
+}
+
+@media only screen and (max-width: 992px) {
+  .container {
+    width: 75%;
+    height: auto;
+    flex-direction: column;
+    margin: 20px 10px;
+  }
+}
+

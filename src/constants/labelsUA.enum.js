@@ -1,0 +1,20 @@
+module.exports = {
+    ALL: 'Всі',
+    Pizza: 'Піца',
+    SushiAndRoles: 'Суші та Роли',
+    SoupsAndSalads: 'Супи та салати',
+    DessertsAndDrinks: 'Десерти та напої',
+    Supplements: 'Додатки',
+    Vegetarian: 'Вегетаріанські',
+    Hot: 'Гострі',
+    Philadelphia: 'Філадельфія',
+    Cheese: 'Сирні',
+    Half: 'Половинки',
+    HotRoles: 'Гарячі роли',
+    Sushi: 'Суші',
+    Chains: 'Сети',
+    MisoSoups: 'Місо супи',
+    Salads: 'Салати',
+    Desserts: 'Десерти',
+    Drinks: 'Напої'
+};

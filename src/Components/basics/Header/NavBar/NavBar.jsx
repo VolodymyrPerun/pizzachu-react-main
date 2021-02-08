@@ -59,7 +59,7 @@ const NavBar = () => {
                         onMouseLeave={onMouseLeave}
                     >
                         <Link
-                            to='/services'
+                            to='#'
                             className={styles.navLinks}
                             onClick={closeMobileMenu}
                         >
