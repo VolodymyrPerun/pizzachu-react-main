@@ -30,7 +30,33 @@ button {
   color: #008E46;
   border-radius: 16px 16px 0 0;
 
-  &:focus {
+  &:active, &:focus {
+    border-bottom: 3px solid olivedrab;
+    color: olivedrab;
+  }
+}
+
+.tabActiveType {
+  font-size: 18px;
+  border-radius: 15px;
+  background-color: #DEE8C1;
+  color: olivedrab;
+
+  &:focus, &:hover {
+    background-color: #DEE8C1;
+    color: olivedrab;
+  }
+}
+
+.tabActiveSection {
+  background-color: #DEE8C1;
+  font-size: 20px;
+  text-transform: capitalize;
+  color: #008E46;
+  border-radius: 16px 16px 0 0 !important;
+  border-bottom: 3px solid olivedrab;
+
+  &:active, &:focus {
     border-bottom: 3px solid olivedrab;
     color: olivedrab;
   }

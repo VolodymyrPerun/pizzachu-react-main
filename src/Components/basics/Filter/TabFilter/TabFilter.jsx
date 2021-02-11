@@ -1,14 +1,14 @@
 import Tab from "../../../commons/Buttons/Tab/Tab";
-import React from "react";
+import React, {useState} from "react";
 import './TabFilter.scss';
 
-const TabFilter = ({FilterItems, onPageChangeProductsType, onPageChangeProductsSection}) => {
+const TabFilter = ({FilterItems, onPageChangeProductsType, onPageChangeProductsSection, activeTab}) => {
 
     return <>
         {FilterItems &&
         FilterItems.map((item, index) => (
             <Tab
-                className={item.cN}
+                className={activeTab === index ? item.active : item.cN}
                 key={index}
                 label={item.label}
                 handleClick={!item.section
