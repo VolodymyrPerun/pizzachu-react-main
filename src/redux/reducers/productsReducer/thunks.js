@@ -5,7 +5,9 @@ import {
     setIsFetching,
     setTotalProductsCount,
     setProductsType,
-    setProductsSection
+    setProductsSection,
+    setProductsByPriceDesc,
+    setPageSize
 } from "./actions";
 
 
@@ -32,15 +34,16 @@ export const getAllProducts = (type, section, pageSize, currentPage) => async di
 //     dispatch(setProductsType(type));
 //     dispatch(setProductsSection(section));
 //     dispatch(setCurrentPage(currentPage));
+//     dispatch(setPageSize(pageSize));
 //     if (section) {
 //         let response = await productsAPI.getProductsByTypeAndSection(type, section, pageSize, currentPage);
 //         dispatch(setIsFetching(false));
-//         dispatch(setProducts(response.data.products));
+//         dispatch(setProductsByPriceDesc(response.data.products));
 //         dispatch(setTotalProductsCount(response.data.total));
 //     } else if (!section) {
 //         let response = await productsAPI.getProductsByType(type, pageSize, currentPage);
 //         dispatch(setIsFetching(false));
-//         dispatch(setProducts(response.data.products));
+//         dispatch(setProductsByPriceDesc(response.data.products));
 //         dispatch(setTotalProductsCount(response.data.total));
 //     }
 // };

@@ -1,4 +1,4 @@
-import React, {useEffect} from 'react';
+import React from 'react';
 import styles from "./Filter.module.scss";
 import {PRODUCT_TYPE} from '../../../constants/';
 import {
@@ -10,33 +10,16 @@ import {
     SoupsAndSaladsSectionsFilterItems
 } from "./FilterItems/FilterItems";
 import TabFilter from "./TabFilter/TabFilter";
-import SortBy from "../SortBy/SortBy";
 
 
 export const Filter = ({
-                           products,
                            type,
                            activeTab,
                            onPageChangeProductsType,
-                           onPageChangeProductsSection,
-                           setFilter,
-                           filterBy,
-                           searchQuery,
-                           setSearchQuery
+                           onPageChangeProductsSection
                        }) => {
 
-    console.log(products);
-
     return <>
-
-        <div className={styles.inputContainer}>
-            <SortBy
-                onPageChangeProductsType={onPageChangeProductsType}
-                filterBy={filterBy}
-                searchQuery={searchQuery}
-                setFilter={setFilter}
-                setSearchQuery={setSearchQuery}/>
-        </div>
 
         <div className={styles.container}>
             <TabFilter FilterItems={TypesFilterItems}

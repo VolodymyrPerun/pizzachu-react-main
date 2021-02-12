@@ -1,51 +1,52 @@
 import React from 'react';
-import {Input, Menu} from 'semantic-ui-react';
-import Tab from "../../commons/Buttons/Tab/Tab";
+import styles from "./SortBy.module.scss";
+import {faCaretDown, faCaretUp, faFileSignature} from "@fortawesome/free-solid-svg-icons";
+import {FontAwesomeIcon} from "@fortawesome/react-fontawesome";
+import {Input} from "antd";
 
-const SortBy = ({setFilter, filterBy, searchQuery, setSearchQuery}) => {
 
-  console.log(setFilter, filterBy, searchQuery, setSearchQuery);
+const SortBy = ({setFilter, filterBy, searchQuery, setSearchQuery, activeTab, setActiveTab}) => {
+
+    const onHandle = key => () => {
+        setFilter(key);
+    };
 
     return <>
-        <div>
-            {/*{FilterItems &&*/}
-            {/*FilterItems.map((item, index) => (*/}
-            {/*    <Tab*/}
-            {/*        className={activeTab === index ? item.active : item.cN}*/}
-            {/*        key={index}*/}
-            {/*        label={item.label}*/}
-            {/*        handleClick={!item.section*/}
-            {/*            ? onPageChangeProductsType(item.type)*/}
-            {/*            : onPageChangeProductsSection(item.type, item.section)}/>*/}
-            {/*))}*/}
-
+        <div className={styles.container}>
             <button
-               // active={filterBy === 'all'}
-                onClick={setFilter.bind(this, 'all')}>
-                Всі
+                className={activeTab ? styles.active : styles.tab}
+                disabled={true}>
+                Сортувати по:
             </button>
             <button
-                //active={filterBy === 'price_high'}
-                onClick={() => setFilter('price_high')}>
-                Ціна (дорогі)
+                className={activeTab ? styles.active : styles.tab}
+                onClick={onHandle('price_high')}>
+                <FontAwesomeIcon
+                    icon={faCaretUp}/> Ціна
             </button>
             <button
-                //active={filterBy === 'price_low'}
-                onClick={setFilter.bind(this, 'price_low')}>
-                Ціна (дешеві)
+                className={activeTab ? styles.active : styles.tab}
+                onClick={onHandle('price_low')}>
+                <FontAwesomeIcon
+                    icon={faCaretDown}/> Ціна
             </button>
             <button
-                //active={filterBy === 'name'}
-                onClick={setFilter.bind(this, 'name')}>
-                Назва
+                className={`${activeTab ? styles.active : styles.tab} ${styles.weight}`}
+                onClick={onHandle('weight_high')}>
+                <FontAwesomeIcon
+                    icon={faCaretUp}/> Вага
             </button>
-            <div>
-                <Input
-                    onChange={e => setSearchQuery(e.target.value)}
-                    value={searchQuery}
-                    placeholder="Введите запрос..."
-                />
-            </div>
+            <button
+                className={activeTab ? styles.active : styles.tab}
+                onClick={onHandle('weight_low')}>
+                <FontAwesomeIcon
+                    icon={faCaretDown}/> Вага
+            </button>
+            <Input
+                onChange={e => setSearchQuery(e.target.value)}
+                value={searchQuery}
+                placeholder={'Пошук...'}
+            />
         </div>
     </>
 };

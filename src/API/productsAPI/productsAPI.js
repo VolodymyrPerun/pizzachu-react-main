@@ -7,7 +7,7 @@ export const productsAPI = {
         type = PRODUCT_TYPE.PIZZA,
         pageSize = PAGE_DEFAULT.PAGE_SIZE,
         currentPage = PAGE_DEFAULT.CURRENT_PAGE) {
-        return instance.get(`products?type=${type}&limit=${pageSize}&page=${currentPage}`);
+        return instance.get((`products?type=${type}&limit=${pageSize}&page=${currentPage}`));
     },
     getProductsByTypeAndSection(
         type = PRODUCT_TYPE.PIZZA,
