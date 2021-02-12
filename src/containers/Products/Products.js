@@ -3,19 +3,50 @@ import {Products} from '../../Components/basics/Products/Products';
 import {getAllProducts} from "../../redux/reducers/productsReducer/thunks";
 import {
     setCurrentPage,
-    setPageSize,
+    setPageSize, setProductSize,
     setProductsSection,
     setProductsType
 } from "../../redux/reducers/productsReducer/actions";
+import {setFilter, setSearchQuery} from "../../redux/reducers/filterReducer/actions";
+import orderBy from "lodash/orderBy";
 
 
-const mapStateToProps = state => ({
-    products: state.productsPage.products,
-    type: state.productsPage.type,
-    section: state.productsPage.section,
-    pageSize: state.productsPage.pageSize,
-    total: state.productsPage.total,
-    currentPage: state.productsPage.currentPage
+const sortBy = (products, filterBy) => {
+    switch (filterBy) {
+        case 'price_high':
+            return orderBy(products, 'price', 'desc');
+        case 'price_low':
+            return orderBy(products, 'price', 'asc');
+        case 'weight_high':
+            return orderBy(products, 'weight', 'asc');
+        case 'weight_low':
+            return orderBy(products, 'weight', 'desc');
+        default:
+            return products;
+    }
+};
+
+const filterProducts = (products, searchQuery) =>
+    products.filter(
+        o =>
+            o.name.toLowerCase().indexOf(searchQuery.toLowerCase()) >= 0
+        //||
+        // o.description.toLowerCase().indexOf(searchQuery.toLowerCase()) >= 0,
+    );
+
+const searchProducts = (products, filterBy, searchQuery) => {
+    return sortBy(filterProducts(products, searchQuery), filterBy);
+};
+
+
+const mapStateToProps = ({productsPage, filter}) => ({
+    products: productsPage.products && searchProducts(productsPage.products, filter.filterBy, filter.searchQuery),
+    type: productsPage.type,
+    size_id: productsPage.size_id,
+    section: productsPage.section,
+    pageSize: productsPage.pageSize,
+    total: productsPage.total,
+    currentPage: productsPage.currentPage
 });
 
 
@@ -24,5 +55,8 @@ export default connect(mapStateToProps, {
     setCurrentPage,
     setPageSize,
     setProductsSection,
-    setProductsType
+    setProductsType,
+    setProductSize,
+    setFilter,
+    setSearchQuery
 })(Products);

@@ -5,14 +5,17 @@ import {
     SET_TOTAL_PRODUCTS_COUNT,
     SET_CURRENT_PAGE,
     SET_PRODUCTS_TYPE,
-    SET_PRODUCTS_SECTION
+    SET_PRODUCTS_SECTION, SET_PRODUCT_SIZE, SET_PRODUCTS_BY_PRICE_DESC
 } from './constants';
+import {setProducts} from "./actions";
+import {orderBy} from "lodash";
 
 
 let initialState = {
     products: [],
     type: null,
     section: null,
+    size: null,
     pageSize: 12,
     total: 0,
     currentPage: 1,
@@ -21,10 +24,17 @@ let initialState = {
 
 const productsReducer = (state = initialState, action) => {
     switch (action.type) {
+        case SET_PRODUCTS_BY_PRICE_DESC:
+            return {
+                ...state,
+                products: orderBy((action.payload), 'price', 'desc'),
+
+            }
         case SET_PRODUCTS:
             return {
                 ...state,
-                products: action.payload
+                products: action.payload,
+
             }
         case SET_PRODUCTS_TYPE:
             return {
@@ -35,6 +45,11 @@ const productsReducer = (state = initialState, action) => {
             return {
                 ...state,
                 section: action.payload
+            }
+        case SET_PRODUCT_SIZE:
+            return {
+                ...state,
+                size_id: action.payload
             }
         case SET_CURRENT_PAGE:
             return {

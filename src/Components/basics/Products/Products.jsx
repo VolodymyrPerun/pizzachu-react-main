@@ -1,9 +1,10 @@
-import React, {useEffect} from 'react';
+import React, {useEffect, useState} from 'react';
 import ProductCard from "../../basics/Products/ProductsCard/ProductsCard";
 import styles from './Products.module.scss'
 import {Pagination} from 'antd';
 import {FastBackwardFilled, FastForwardFilled} from '@ant-design/icons';
-import Filter from "../Filter/Filter";
+import {Filter} from "../Filter/Filter";
+import SortBy from "../SortBy/SortBy";
 
 export const Products = ({
                              products,
@@ -15,12 +16,19 @@ export const Products = ({
                              getAllProducts,
                              setCurrentPage,
                              setProductsType,
-                             setProductsSection
+                             setProductsSection,
+                             filterBy,
+                             searchQuery,
+                             setSearchQuery,
+                             setFilter
                          }) => {
+
 
     useEffect((type, section, pageSize, currentPage) => {
         getAllProducts(type, section, pageSize, currentPage);
     }, []);
+
+    const [activeTab, setActiveTab] = useState(0);
 
 
     const onPageChange = currentPage => {
@@ -31,6 +39,7 @@ export const Products = ({
     const onPageChangeProductsType = key => (type, pageSize, currentPage) => {
         setProductsType(key);
         getAllProducts(key, pageSize, currentPage);
+        setActiveTab(type);
     };
 
     const onPageChangeProductsSection = (keyType, keySection) => (type, section, pageSize, currentPage) => {
@@ -52,10 +61,25 @@ export const Products = ({
 
     return <>
 
+        <SortBy
+            filterBy={filterBy}
+            searchQuery={searchQuery}
+            setFilter={setFilter}
+            setSearchQuery={setSearchQuery}
+            activeTab={activeTab}
+            setActiveTab={setActiveTab}
+        />
+
+
         <Filter
             type={type}
+            section={section}
+            pageSize={pageSize}
+            currentPage={currentPage}
             onPageChangeProductsType={onPageChangeProductsType}
             onPageChangeProductsSection={onPageChangeProductsSection}
+            activeTab={activeTab}
+            getAllProducts={getAllProducts}
         />
 
         <div className={styles.cardContainer}>
@@ -69,10 +93,11 @@ export const Products = ({
             {/*    </Segment>*/}
             {/*    :*/}
 
-            {products.map((products, i) => (
+            {products &&
+            products.map((products, i) => (
                 <ProductCard key={i} {...products}/>
             ))}
-            {/*}*/}
+
         </div>
 
         <Pagination
@@ -86,5 +111,5 @@ export const Products = ({
             }}
         />
     </>
-}
+};
 

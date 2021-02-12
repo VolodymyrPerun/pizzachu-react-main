@@ -7,6 +7,7 @@
   font-size: 1.2rem;
   font-weight: 400;
   font-family: 'Caveat', cursive;
+  box-shadow: 0 5px 5px -5px rgba(0,0,0,.5);
 
   .logo {
     display: flex;
@@ -35,7 +36,7 @@
 
     .label {
       color: darkorange;
-      font-size: 15px;
+      font-size: 17px;
       text-transform: lowercase;
     }
 
