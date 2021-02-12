@@ -1,5 +1,5 @@
 import Tab from "../../../commons/Buttons/Tab/Tab";
-import React, {useState} from "react";
+import React from "react";
 import './TabFilter.scss';
 
 const TabFilter = ({FilterItems, onPageChangeProductsType, onPageChangeProductsSection, activeTab}) => {

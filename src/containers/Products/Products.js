@@ -29,9 +29,8 @@ const sortBy = (products, filterBy) => {
 const filterProducts = (products, searchQuery) =>
     products.filter(
         o =>
-            o.name.toLowerCase().indexOf(searchQuery.toLowerCase()) >= 0
-        //||
-        // o.description.toLowerCase().indexOf(searchQuery.toLowerCase()) >= 0,
+            o.name.toLowerCase().indexOf(searchQuery.toLowerCase()) >= 0 ||
+        o.description.toLowerCase().indexOf(searchQuery.toLowerCase()) >= 0
     );
 
 const searchProducts = (products, filterBy, searchQuery) => {
@@ -46,7 +45,8 @@ const mapStateToProps = ({productsPage, filter}) => ({
     section: productsPage.section,
     pageSize: productsPage.pageSize,
     total: productsPage.total,
-    currentPage: productsPage.currentPage
+    currentPage: productsPage.currentPage,
+    isFetching: productsPage.isFetching
 });
 
 

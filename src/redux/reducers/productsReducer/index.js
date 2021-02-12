@@ -19,17 +19,11 @@ let initialState = {
     pageSize: 12,
     total: 0,
     currentPage: 1,
-    isFetching: true,
+    isFetching: true
 };
 
 const productsReducer = (state = initialState, action) => {
     switch (action.type) {
-        case SET_PRODUCTS_BY_PRICE_DESC:
-            return {
-                ...state,
-                products: orderBy((action.payload), 'price', 'desc'),
-
-            }
         case SET_PRODUCTS:
             return {
                 ...state,

@@ -5,6 +5,7 @@ import {Pagination} from 'antd';
 import {FastBackwardFilled, FastForwardFilled} from '@ant-design/icons';
 import {Filter} from "../Filter/Filter";
 import SortBy from "../SortBy/SortBy";
+import Preloader from "../../commons/Preloader/Preloader";
 
 export const Products = ({
                              products,
@@ -20,9 +21,9 @@ export const Products = ({
                              filterBy,
                              searchQuery,
                              setSearchQuery,
-                             setFilter
+                             setFilter,
+                             isFetching
                          }) => {
-
 
     useEffect((type, section, pageSize, currentPage) => {
         getAllProducts(type, section, pageSize, currentPage);
@@ -70,7 +71,6 @@ export const Products = ({
             setActiveTab={setActiveTab}
         />
 
-
         <Filter
             type={type}
             section={section}
@@ -83,21 +83,11 @@ export const Products = ({
         />
 
         <div className={styles.cardContainer}>
-            {/*{!isReady ?*/}
-            {/*    <Segment>*/}
-            {/*        <Dimmer active>*/}
-            {/*            <Loader size='large'>Завантаження...</Loader>*/}
-            {/*        </Dimmer>*/}
-            {/*        <Image*/}
-            {/*            src='https://github.com/VolodymyrPerun/react-it-booking-shop-master/blob/master/assets/loading.gif?raw=true'/>*/}
-            {/*    </Segment>*/}
-            {/*    :*/}
-
-            {products &&
-            products.map((products, i) => (
-                <ProductCard key={i} {...products}/>
-            ))}
-
+            {isFetching
+                ? <Preloader/>
+                : products.map((products, i) => (
+                    <ProductCard key={i} {...products}/>
+                ))}
         </div>
 
         <Pagination

@@ -2,7 +2,7 @@ import {SET_FILTER, SET_QUERY} from "./constants";
 
 const initialState = {
     searchQuery: '',
-    filterBy: 'all',
+    filterBy: 'price',
 };
 
 const filterReducer = (state = initialState, action) => {

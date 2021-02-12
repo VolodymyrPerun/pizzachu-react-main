@@ -1,6 +1,5 @@
 module.exports = {
     SET_PRODUCTS: 'pizzachu-react-main/products/SET_PRODUCTS',
-    SET_PRODUCTS_BY_PRICE_DESC: 'pizzachu-react-main/products/_BY_PRICE_DESC',
     SET_PRODUCTS_TYPE: 'pizzachu-react-main/products/SET_PRODUCTS_TYPE',
     SET_PRODUCTS_SECTION: 'pizzachu-react-main/products/SET_PRODUCTS_SECTION',
     SET_PAGE_SIZE: 'pizzachu-react-main/products/SET_PAGE_SIZE',

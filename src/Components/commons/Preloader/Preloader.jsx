@@ -9,7 +9,7 @@ const Preloader = () => {
     return (
         <div className={style.preloader}>
             <Spin className={style.tip}
-                  tip="Loading..."
+                  tip="Зачекайте будь ласка..."
                   indicator={<LoadingOutlined
                       className={`${style.spinner} ${style.spinnerBig}`}
                       spin/>}
