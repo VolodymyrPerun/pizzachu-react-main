@@ -14,6 +14,7 @@ const AboutUs = () => {
                 </p>
                 <img alt='img' src={aboutPagePhoto}/>
             </div>
+            <div className={styles.line}/>
             <div className={styles.description}>
                 <div className={styles.descriptionBlock}>
                     <h3 className={styles.title}>Чому ми найкращі?</h3>

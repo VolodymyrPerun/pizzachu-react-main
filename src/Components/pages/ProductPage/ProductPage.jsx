@@ -4,17 +4,22 @@ import Preloader from "../../commons/Preloader/Preloader";
 import noPhoto from "../../../assets/images/no-aveliable-image.png";
 import size from '../../../assets/images/diameter-icon.png'
 import {PRODUCT_SECTION} from "../../../constants";
-import {CloseCircleOutlined, ExclamationCircleOutlined} from '@ant-design/icons';
+import {CloseCircleOutlined} from '@ant-design/icons';
 import {NavLink} from "react-router-dom";
-import {faBalanceScaleLeft, faMoneyBillWave, faPrescriptionBottle, faTruck} from "@fortawesome/free-solid-svg-icons";
+import {
+    faBalanceScaleLeft,
+    faInfoCircle,
+    faMoneyBillWave,
+    faPrescriptionBottle,
+    faTruck
+} from "@fortawesome/free-solid-svg-icons";
 import {FontAwesomeIcon} from "@fortawesome/react-fontawesome";
 
 export const ProductPage = ({product, match, getProductById, isFetching, products}) => {
 
     useEffect(() => {
-        let productId = match.params.productId
-        getProductById(productId);
-    }, []);
+        getProductById(match.params.productId);
+    }, [getProductById]);
 
     return <>
         {isFetching
@@ -32,13 +37,9 @@ export const ProductPage = ({product, match, getProductById, isFetching, product
                     <p className={styles.title}>{product.name}</p>
                     {product.description
                         ? <p className={styles.description}>
-                            <ExclamationCircleOutlined
-                                style={{
-                                    marginRight: '7px',
-                                    color: '#EE7178',
-                                    width: '17px',
-                                    height: '17px'
-                                }}/>
+                            <FontAwesomeIcon
+                                style={{marginRight: '7px', fontSize: '18px', color: '#EE7178'}}
+                                icon={faInfoCircle}/>
                             {product.description}
                         </p>
                         : <p className={styles.description} style={{color: 'transparent', visibility: 'hidden'}}>.</p>}

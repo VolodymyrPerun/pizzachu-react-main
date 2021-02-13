@@ -6,7 +6,7 @@
   justify-items: center;
   align-content: space-around;
   align-self: center;
-  grid-template-columns: 40% 60%;
+  grid-template-columns: 40% 5% 55%;
   grid-template-rows: 1fr 1fr;
   margin: 0 auto;
   font-family: 'Caveat', cursive;
@@ -50,6 +50,16 @@
   .description {
     width: 80%;
   }
+
+  .line {
+    height: 85%;
+    border-right: 3px solid #aaaaaa;
+    justify-self: center;
+    justify-content: center;
+    justify-items: center;
+    align-content: space-around;
+    align-self: center;
+  }
 }
 
 @media only screen and (max-width: 985px) {
@@ -61,6 +71,10 @@
 
     .aside {
       width: 80%;
+    }
+
+    .line {
+      display: none;
     }
   }
 }
