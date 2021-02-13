@@ -5,10 +5,9 @@ import {
     SET_TOTAL_PRODUCTS_COUNT,
     SET_CURRENT_PAGE,
     SET_PRODUCTS_TYPE,
-    SET_PRODUCTS_SECTION, SET_PRODUCT_SIZE, SET_PRODUCTS_BY_PRICE_DESC
+    SET_PRODUCTS_SECTION,
+    SET_PRODUCT_SIZE
 } from './constants';
-import {setProducts} from "./actions";
-import {orderBy} from "lodash";
 
 
 let initialState = {

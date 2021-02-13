@@ -27,7 +27,7 @@ export const Products = ({
 
     useEffect((type, section, pageSize, currentPage) => {
         getAllProducts(type, section, pageSize, currentPage);
-    }, []);
+    }, [getAllProducts]);
 
     const [activeTab, setActiveTab] = useState(0);
 
@@ -86,7 +86,7 @@ export const Products = ({
             {isFetching
                 ? <Preloader/>
                 : products.map((products, i) => (
-                    <ProductCard key={i} {...products}/>
+                    <ProductCard key={i} {...products} isFetching={isFetching}/>
                 ))}
         </div>
 

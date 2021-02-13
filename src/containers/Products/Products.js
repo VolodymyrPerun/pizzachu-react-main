@@ -14,13 +14,15 @@ import orderBy from "lodash/orderBy";
 const sortBy = (products, filterBy) => {
     switch (filterBy) {
         case 'price_high':
-            return orderBy(products, 'price', 'desc');
-        case 'price_low':
             return orderBy(products, 'price', 'asc');
+        case 'price_low':
+            return orderBy(products, 'price', 'desc');
         case 'weight_high':
             return orderBy(products, 'weight', 'asc');
         case 'weight_low':
             return orderBy(products, 'weight', 'desc');
+        case 'name':
+            return orderBy(products, 'name', 'asc');
         default:
             return products;
     }
@@ -30,7 +32,7 @@ const filterProducts = (products, searchQuery) =>
     products.filter(
         o =>
             o.name.toLowerCase().indexOf(searchQuery.toLowerCase()) >= 0 ||
-        o.description.toLowerCase().indexOf(searchQuery.toLowerCase()) >= 0
+            o.description.toLowerCase().indexOf(searchQuery.toLowerCase()) >= 0
     );
 
 const searchProducts = (products, filterBy, searchQuery) => {
