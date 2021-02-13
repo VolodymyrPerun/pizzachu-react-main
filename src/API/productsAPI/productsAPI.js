@@ -15,6 +15,9 @@ export const productsAPI = {
         pageSize = PAGE_DEFAULT.PAGE_SIZE,
         currentPage = PAGE_DEFAULT.CURRENT_PAGE) {
         return instance.get(`products?type=${type}&section=${section}&limit=${pageSize}&page=${currentPage}`);
+    },
+    getProductById(productId) {
+        return instance.get(`products/${productId}`);
     }
 };
 

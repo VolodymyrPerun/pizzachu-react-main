@@ -16,6 +16,8 @@
   background: #fff;
   border: 1px solid #f0f0f0;
   box-shadow: 0 14px 28px rgba(0, 0, 0, 0.25), 0 10px 10px rgba(0, 0, 0, 0.22);
+  font-family: 'Caveat', cursive;
+  font-weight: 800;
 
 
   &:hover {
@@ -42,7 +44,7 @@
 
   .title {
     color: black;
-    font-size: 20px;
+    font-size: 22px;
     margin: 10px 0;
     font-weight: bold;
   }
@@ -50,12 +52,13 @@
   .weight {
     position: relative;
     color: gray;
-    font-size: 17px;
+    font-size: 19px;
     text-align: left;
     right: -50px;
     border: 1px solid #f0f0f0;
     border-radius: 15px;
     padding: 0 5px;
+    margin:  10px;
 
     &:nth-child(2) {
       right: 50px;
@@ -68,15 +71,15 @@
   }
 
   .description {
-    font-weight: 400;
-    font-size: 15px;
+    font-weight: 600;
+    font-size: 19px;
     color: olivedrab;
   }
 
   .price {
     position: relative;
     color: gray;
-    font-size: 17px;
+    font-size: 20px;
     text-align: right;
     left: -30px;
     margin-bottom: 40px;
@@ -87,14 +90,6 @@
     span {
       color: black;
       font-weight: 600;
-    }
-  }
-
-  .ratingTitle {
-    color: goldenrod !important;
-
-    span {
-      color: lightseagreen !important;
     }
   }
 }
