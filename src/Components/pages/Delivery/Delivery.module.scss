@@ -1,25 +1,18 @@
 .container {
   width: 80%;
-  height: auto;
-  min-height: 80vh;
   display: grid;
   justify-self: center;
   justify-content: center;
   justify-items: center;
   align-content: space-around;
   align-self: center;
-  grid-template-columns: 45% 5% 45%;
+  text-align: center;
+  padding: 0 5px;
+  grid-template-columns: 1fr;
   grid-template-rows: 1fr;
-  margin: 0 auto 50px auto;
+  margin: 0 auto;
   font-family: 'Caveat', cursive;
   vertical-align: baseline;
-  border: 2px solid #aaaaaa;
-  border-radius: 15px;
-  box-shadow: 0 14px 28px rgba(0, 0, 0, 0.25), 0 10px 10px rgba(0, 0, 0, 0.22);
-
-  &:nth-child(2n+2) {
-    direction: rtl;
-  }
 
   span {
     color: black;
@@ -28,6 +21,8 @@
 
   img {
     border-radius: 2px;
+    height: 60vh;
+    width: auto;
   }
 
   .logo {
@@ -48,36 +43,24 @@
   .title {
     font-size: 35px;
     font-weight: 800;
+    margin: 5px 0;
+  }
+
+   h3 {
+    font-size: 25px !important;
   }
 
   .subtitle {
     font-size: 25px;
     font-weight: 400;
+    line-height: 35px;
     color: gray;
+    margin: 5px 0;
   }
 
-  .aside {
-    display: grid;
-    justify-self: center;
-    justify-content: center;
-    justify-items: center;
-    align-content: space-around;
-    align-self: center;
-  }
-
-  .description {
+  .contacts {
     width: 80%;
     display: grid;
-    justify-self: center;
-    justify-content: center;
-    justify-items: center;
-    align-content: space-around;
-    align-self: center;
-  }
-
-  .line {
-    height: 50%;
-    border-right: 3px solid #008E46;
     justify-self: center;
     justify-content: center;
     justify-items: center;
@@ -88,21 +71,43 @@
 
 @media only screen and (max-width: 985px) {
   .container {
-    width: 85%;
+    width: 90%;
     padding: 0 5px;
     grid-template-columns: 1fr;
     grid-template-rows: 1fr;
 
-    &:nth-child(1) {
-      margin-top: 50px;
+    img {
+      height: 33vh;
+      width: 52.5%;
     }
 
-    .aside, .description {
-      width: 80%;
+    .contacts {
+      width: 100%;
+      display: grid;
+      justify-self: center;
+      justify-content: center;
+      justify-items: center;
+      align-content: space-around;
+      align-self: center;
+    }
+  }
+}
+
+@media only screen and (max-width: 585px) {
+  .container {
+    margin-top: 50px;
+
+    img {
+      height: 25vh;
+      width: 80.5%;
     }
 
-    .line {
-      display: none;
+    .title {
+      font-size: 25px;
+    }
+
+    h3 {
+      font-size: 20px;
     }
   }
 }

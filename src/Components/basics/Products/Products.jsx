@@ -31,7 +31,6 @@ export const Products = ({
     const onPageChange = currentPage => {
        setCurrentPage(currentPage);
         getAllProducts(type, section, pageSize, currentPage);
-        setActiveTab(currentPage)
     };
 
     const onPageChangeProducts = (keyType, keySection) => (type, section) => {

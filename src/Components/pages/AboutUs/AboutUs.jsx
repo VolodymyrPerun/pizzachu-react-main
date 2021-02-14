@@ -1,5 +1,5 @@
 import React from 'react';
-import styles from './AboutAs.module.scss';
+import styles from './AboutUs.module.scss';
 import aboutPagePhoto from "../../../assets/images/about.png";
 
 const AboutUs = () => {

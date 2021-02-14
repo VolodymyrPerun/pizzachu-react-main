@@ -1,3 +1,4 @@
+import {PAGE_DEFAULT} from '../../../constants';
 import {
     TOGGLE_IS_FETCHING,
     SET_PRODUCTS,
@@ -15,9 +16,9 @@ let initialState = {
     type: null,
     section: null,
     size: null,
-    pageSize: 12,
+    pageSize: PAGE_DEFAULT.PAGE_SIZE,
     total: 0,
-    currentPage: 1,
+    currentPage: PAGE_DEFAULT.CURRENT_PAGE,
     isFetching: true
 };
 

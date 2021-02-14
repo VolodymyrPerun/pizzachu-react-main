@@ -16,6 +16,7 @@ import DialogsContainer from "./Components/pages/Feedbacks/FeedbacksContainer";
 import {Page404} from "./Components/pages/Page404/Page404";
 import ErrorMessages from "./Components/commons/ErrorMessages/ErrorMessages";
 import ProductPage from "./containers/ProductPage/ProductPage";
+import Delivery from "./Components/pages/Delivery/Delivery";
 
 
 class App extends Component {
@@ -63,6 +64,7 @@ class App extends Component {
                         <Route path='/feedbacks' render={() => <Feedbacks/>}/>
                         <Route path='/home' render={() => <Home/>}/>
                         <Route path='/promotions' render={() => <Promotions/>}/>
+                        <Route path='/delivery' render={() => <Delivery/>}/>
                         <Route path='/productPage/:productId?' render={() => <ProductPage/>}/>
                         <Route path='/error' render={() =>
                             <ErrorMessages globalError={this.props.globalError} history={this.props.history}/>}/>

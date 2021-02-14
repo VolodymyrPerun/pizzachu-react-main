@@ -1,4 +1,4 @@
 module.exports = {
-    PAGE_SIZE: 12,
+    PAGE_SIZE: 8,
     CURRENT_PAGE: 1
 };
