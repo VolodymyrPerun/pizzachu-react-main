@@ -1,4 +1,4 @@
-import React, {useEffect, useMemo, useRef} from 'react';
+import React, {useEffect} from 'react';
 import styles from './ProductPage.module.scss'
 import Preloader from "../../commons/Preloader/Preloader";
 import noPhoto from "../../../assets/images/no-aveliable-image.png";
@@ -16,10 +16,10 @@ import {
 import {FontAwesomeIcon} from "@fortawesome/react-fontawesome";
 
 export const ProductPage = ({product, match, getProductById, isFetching, products}) => {
-
+    
     useEffect(() => {
         getProductById(match.params.productId);
-    }, [getProductById]);
+    }, [match.params.productId]);
 
 
     return <>
@@ -88,7 +88,7 @@ export const ProductPage = ({product, match, getProductById, isFetching, product
                                     // products.section_id === 14 &&
                                     // !products.size_id &&
                                     i <= 1) {
-                                    return <NavLink className={styles.promoCard}
+                                    return <NavLink key={i} className={styles.promoCard}
                                                     to={'/productPage/' + products.productId}>
                                         {products.product_photo
                                             ? <img className={styles.image}
