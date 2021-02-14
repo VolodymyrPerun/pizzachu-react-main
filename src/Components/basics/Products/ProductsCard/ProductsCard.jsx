@@ -14,8 +14,6 @@ const ProductsCard = ({
                           product_photo,
                           price,
                           weight,
-                          addToCart,
-                          addedCount,
                           section_id,
                           isFetching,
                           ...rest

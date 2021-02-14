@@ -6,7 +6,7 @@ import {FontAwesomeIcon} from "@fortawesome/react-fontawesome";
 
 const SortBy = ({setFilter, searchQuery, setSearchQuery, activeTab}) => {
 
-    const onHandle = key => () => {
+    const filterOptions = key => () => {
         setFilter(key);
     };
 
@@ -19,25 +19,25 @@ const SortBy = ({setFilter, searchQuery, setSearchQuery, activeTab}) => {
             </button>
             <button
                 className={activeTab ? styles.activeTab : styles.tab}
-                onClick={onHandle('price_high')}>
+                onClick={filterOptions('price_high')}>
                 <FontAwesomeIcon
                     icon={faCaretUp}/> Ціна
             </button>
             <button
                 className={activeTab ? styles.activeTab : styles.tab}
-                onClick={onHandle('price_low')}>
+                onClick={filterOptions('price_low')}>
                 <FontAwesomeIcon
                     icon={faCaretDown}/> Ціна
             </button>
             <button
                 className={activeTab ? styles.activeTab : styles.tab}
-                onClick={onHandle('weight_high')}>
+                onClick={filterOptions('weight_high')}>
                 <FontAwesomeIcon
                     icon={faCaretUp}/> Вага
             </button>
             <button
                 className={activeTab ? styles.activeTab : styles.tab}
-                onClick={onHandle('weight_low')}>
+                onClick={filterOptions('weight_low')}>
                 <FontAwesomeIcon
                     icon={faCaretDown}/> Вага
             </button>

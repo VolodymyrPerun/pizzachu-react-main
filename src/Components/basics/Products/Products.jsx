@@ -29,16 +29,12 @@ export const Products = ({
 
 
     const onPageChange = currentPage => {
-        setCurrentPage(currentPage);
+       setCurrentPage(currentPage);
         getAllProducts(type, section, pageSize, currentPage);
+        setActiveTab(currentPage)
     };
 
-    const onPageChangeProductsType = key => (type) => {
-        getAllProducts(key);
-        setActiveTab(type);
-    };
-
-    const onPageChangeProductsSection = (keyType, keySection) => (type, section) => {
+    const onPageChangeProducts = (keyType, keySection) => (type, section) => {
         getAllProducts(keyType, keySection);
        !section ? setActiveTab(type) : setActiveTab(section);
     };
@@ -68,16 +64,15 @@ export const Products = ({
         <Filter
             type={type}
             section={section}
-            onPageChangeProductsType={onPageChangeProductsType}
-            onPageChangeProductsSection={onPageChangeProductsSection}
+            onPageChangeProducts={onPageChangeProducts}
             activeTab={activeTab}
         />
 
         <div className={styles.cardContainer}>
             {isFetching
                 ? <Preloader/>
-                : products.map((products, i) => (
-                    <ProductCard key={i} {...products} isFetching={isFetching}/>
+                : products.map((product, i) => (
+                    <ProductCard key={i} {...product} isFetching={isFetching}/>
                 ))}
         </div>
 

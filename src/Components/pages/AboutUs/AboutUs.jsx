@@ -3,6 +3,7 @@ import styles from './AboutAs.module.scss';
 import aboutPagePhoto from "../../../assets/images/about.png";
 
 const AboutUs = () => {
+
     return (
         <div className={styles.container}>
             <div className={styles.aside}>

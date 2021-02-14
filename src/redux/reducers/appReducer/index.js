@@ -1,9 +1,14 @@
-import {GLOBAL_ERROR, INITIALIZED_SUCCESS} from './constants';
+import {
+    TOGGLE_IS_FETCHING,
+    GLOBAL_ERROR,
+    INITIALIZED_SUCCESS
+} from './constants';
 
 
 let initialState = {
     initialized: true,//false!!!
-    globalError: null
+    globalError: null,
+    isFetching: true
 };
 
 const appReducer = (state = initialState, action) => {
@@ -16,8 +21,13 @@ const appReducer = (state = initialState, action) => {
         case GLOBAL_ERROR:
             return {
                 ...state,
-                globalError: action.globalError
+                globalError: action.payload
             };
+        case TOGGLE_IS_FETCHING:
+            return {
+                ...state,
+                isFetching: action.payload
+            }
         default:
             return state;
     }

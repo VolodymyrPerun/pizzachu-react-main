@@ -15,8 +15,7 @@ import TabFilter from "./TabFilter/TabFilter";
 export const Filter = ({
                            type,
                            activeTab,
-                           onPageChangeProductsType,
-                           onPageChangeProductsSection
+                           onPageChangeProducts
                        }) => {
 
     return <>
@@ -24,40 +23,34 @@ export const Filter = ({
         <div className={styles.container}>
             <TabFilter FilterItems={TypesFilterItems}
                        activeTab={activeTab}
-                       onPageChangeProductsType={onPageChangeProductsType}
-                       onPageChangeProductsSection={onPageChangeProductsSection}/>
+                       onPageChangeProducts={onPageChangeProducts}/>
         </div>
 
 
         {(type === PRODUCT_TYPE.PIZZA) && <div>
             <TabFilter FilterItems={PizzaSectionsFilterItems}
                        activeTab={activeTab}
-                       onPageChangeProductsType={onPageChangeProductsType}
-                       onPageChangeProductsSection={onPageChangeProductsSection}/>
+                       onPageChangeProducts={onPageChangeProducts}/>
         </div>}
         {(type === PRODUCT_TYPE.SUSHI_AND_ROLES) && <div>
             <TabFilter FilterItems={SushiAndRolesSectionsFilterItems}
                        activeTab={activeTab}
-                       onPageChangeProductsType={onPageChangeProductsType}
-                       onPageChangeProductsSection={onPageChangeProductsSection}/>
+                       onPageChangeProducts={onPageChangeProducts}/>
         </div>}
         {(type === PRODUCT_TYPE.SOUPS_AND_SALADS) && <div>
             <TabFilter FilterItems={SoupsAndSaladsSectionsFilterItems}
                        activeTab={activeTab}
-                       onPageChangeProductsType={onPageChangeProductsType}
-                       onPageChangeProductsSection={onPageChangeProductsSection}/>
+                       onPageChangeProducts={onPageChangeProducts}/>
         </div>}
         {(type === PRODUCT_TYPE.DESSERTS_AND_DRINKS) && <div>
             <TabFilter FilterItems={DessertsAndDrinksSectionsFilterItems}
                        activeTab={activeTab}
-                       onPageChangeProductsType={onPageChangeProductsType}
-                       onPageChangeProductsSection={onPageChangeProductsSection}/>
+                       onPageChangeProducts={onPageChangeProducts}/>
         </div>}
         {(type === PRODUCT_TYPE.SUPPLEMENTS) && <div>
             <TabFilter FilterItems={SupplementsSectionsFilterItems}
                        activeTab={activeTab}
-                       onPageChangeProductsType={onPageChangeProductsType}
-                       onPageChangeProductsSection={onPageChangeProductsSection}/>
+                       onPageChangeProducts={onPageChangeProducts}/>
         </div>}
     </>
 };

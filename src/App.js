@@ -74,10 +74,11 @@ class App extends Component {
     }
 }
 
-let mapStateToProps = state => {
+let mapStateToProps = ({app}) => {
     return {
-        globalError: state.app.globalError,
-        initialized: state.app.initialized
+        globalError: app.globalError,
+        initialized: app.initialized,
+        isFetching: app.isFetching
     }
 };
 
