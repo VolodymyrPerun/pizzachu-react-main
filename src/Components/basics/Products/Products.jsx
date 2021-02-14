@@ -10,15 +10,11 @@ import Preloader from "../../commons/Preloader/Preloader";
 export const Products = ({
                              products,
                              pageSize,
-                             currentPage,
                              total,
                              type,
                              section,
                              getAllProducts,
                              setCurrentPage,
-                             setProductsType,
-                             setProductsSection,
-                             filterBy,
                              searchQuery,
                              setSearchQuery,
                              setFilter,
@@ -37,15 +33,14 @@ export const Products = ({
         getAllProducts(type, section, pageSize, currentPage);
     };
 
-    const onPageChangeProductsType = key => (type, pageSize, currentPage) => {
-        setProductsType(key);
-        getAllProducts(key, pageSize, currentPage);
+    const onPageChangeProductsType = key => (type) => {
+        getAllProducts(key);
         setActiveTab(type);
     };
 
-    const onPageChangeProductsSection = (keyType, keySection) => (type, section, pageSize, currentPage) => {
-        setProductsSection(keySection);
-        getAllProducts(keyType, keySection, pageSize, currentPage);
+    const onPageChangeProductsSection = (keyType, keySection) => (type, section) => {
+        getAllProducts(keyType, keySection);
+       !section ? setActiveTab(type) : setActiveTab(section);
     };
 
     let pagesCount = Math.floor(Math.ceil(total / pageSize) * 10);
@@ -63,7 +58,6 @@ export const Products = ({
     return <>
 
         <SortBy
-            filterBy={filterBy}
             searchQuery={searchQuery}
             setFilter={setFilter}
             setSearchQuery={setSearchQuery}
@@ -74,12 +68,9 @@ export const Products = ({
         <Filter
             type={type}
             section={section}
-            pageSize={pageSize}
-            currentPage={currentPage}
             onPageChangeProductsType={onPageChangeProductsType}
             onPageChangeProductsSection={onPageChangeProductsSection}
             activeTab={activeTab}
-            getAllProducts={getAllProducts}
         />
 
         <div className={styles.cardContainer}>

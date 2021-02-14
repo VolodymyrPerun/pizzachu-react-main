@@ -42,6 +42,24 @@
     }
   }
 
+  .activeTab {
+    font-size: 19px;
+    background-color: white;
+    color: gray;
+
+    &:nth-child(1) {
+      background-color: white;
+      color: gray;
+      border-radius: 15px 0 0 15px;
+      min-width: 130px;
+    }
+
+    &:focus, &:hover {
+      background-color: white;
+      color: gray;
+    }
+  }
+
   input {
     font: 17px 'Caveat', cursive;
     font-weight: 600;

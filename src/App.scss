@@ -30,12 +30,12 @@ body {
                          "footer";
 
     grid-auto-rows: 2fr 30fr 2fr;
-    grid-template-columns: 100%;
+    grid-template-columns: 1fr;
     grid-gap: 10px;
 }
 
 .app-wrapper-content {
-    width: 100vw;
+    width: 100%;
     grid-area: content;
     justify-content: center;
     justify-self: center;

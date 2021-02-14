@@ -4,7 +4,7 @@ import {faCaretDown, faCaretUp} from "@fortawesome/free-solid-svg-icons";
 import {FontAwesomeIcon} from "@fortawesome/react-fontawesome";
 
 
-const SortBy = ({setFilter, searchQuery, setSearchQuery}) => {
+const SortBy = ({setFilter, searchQuery, setSearchQuery, activeTab}) => {
 
     const onHandle = key => () => {
         setFilter(key);
@@ -18,25 +18,25 @@ const SortBy = ({setFilter, searchQuery, setSearchQuery}) => {
                 Сортувати по:
             </button>
             <button
-                className={styles.tab}
+                className={activeTab ? styles.activeTab : styles.tab}
                 onClick={onHandle('price_high')}>
                 <FontAwesomeIcon
                     icon={faCaretUp}/> Ціна
             </button>
             <button
-                className={styles.tab}
+                className={activeTab ? styles.activeTab : styles.tab}
                 onClick={onHandle('price_low')}>
                 <FontAwesomeIcon
                     icon={faCaretDown}/> Ціна
             </button>
             <button
-                className={styles.tab}
+                className={activeTab ? styles.activeTab : styles.tab}
                 onClick={onHandle('weight_high')}>
                 <FontAwesomeIcon
                     icon={faCaretUp}/> Вага
             </button>
             <button
-                className={styles.tab}
+                className={activeTab ? styles.activeTab : styles.tab}
                 onClick={onHandle('weight_low')}>
                 <FontAwesomeIcon
                     icon={faCaretDown}/> Вага

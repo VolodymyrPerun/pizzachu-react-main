@@ -3,7 +3,8 @@ import {Products} from '../../Components/basics/Products/Products';
 import {getAllProducts} from "../../redux/reducers/productsReducer/thunks";
 import {
     setCurrentPage,
-    setPageSize, setProductSize,
+    setPageSize,
+    setProductSize,
     setProductsSection,
     setProductsType
 } from "../../redux/reducers/productsReducer/actions";

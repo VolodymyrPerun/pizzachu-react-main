@@ -1,4 +1,4 @@
-import React, {useEffect} from 'react';
+import React, {useEffect, useMemo, useRef} from 'react';
 import styles from './ProductPage.module.scss'
 import Preloader from "../../commons/Preloader/Preloader";
 import noPhoto from "../../../assets/images/no-aveliable-image.png";
@@ -8,7 +8,7 @@ import {CloseCircleOutlined} from '@ant-design/icons';
 import {NavLink} from "react-router-dom";
 import {
     faBalanceScaleLeft,
-    faInfoCircle,
+    faInfo,
     faMoneyBillWave,
     faPrescriptionBottle,
     faTruck
@@ -20,6 +20,7 @@ export const ProductPage = ({product, match, getProductById, isFetching, product
     useEffect(() => {
         getProductById(match.params.productId);
     }, [getProductById]);
+
 
     return <>
         {isFetching
@@ -39,7 +40,7 @@ export const ProductPage = ({product, match, getProductById, isFetching, product
                         ? <p className={styles.description}>
                             <FontAwesomeIcon
                                 style={{marginRight: '7px', fontSize: '18px', color: '#EE7178'}}
-                                icon={faInfoCircle}/>
+                                icon={faInfo}/>
                             {product.description}
                         </p>
                         : <p className={styles.description} style={{color: 'transparent', visibility: 'hidden'}}>.</p>}

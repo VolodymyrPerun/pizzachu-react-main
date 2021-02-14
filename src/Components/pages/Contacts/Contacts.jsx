@@ -14,7 +14,6 @@ const Contacts = () => {
                 наші контакти
             </p>
             <img alt='img' src={contactsPagePhoto}/>
-            <div className={styles.line}/>
             <div className={styles.contacts}>
                 <h3 className={styles.title}>Співпраця та партнерство:</h3>
                 <a href="tel:+380985845196" className={styles.subtitle} rel="noopener noreferrer">
@@ -37,7 +36,7 @@ const Contacts = () => {
                     <FontAwesomeIcon
                         style={{marginRight: '7px', color: '#EE7178'}}
                         icon={faAt}/>
-                        volodimirperun007@gmail.com
+                    volodimirperun007@gmail.com
                 </a>
             </div>
         </div>
