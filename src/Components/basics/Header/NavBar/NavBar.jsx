@@ -54,7 +54,7 @@ const NavBar = () => {
                         </Link>
                     </li>
                     <li
-                        className={styles.navItem}
+                        className={`${styles.navItem} ${styles.navBlockItem}`}
                         onMouseEnter={onMouseEnter}
                         onMouseLeave={onMouseLeave}
                     >
@@ -67,7 +67,34 @@ const NavBar = () => {
                             className={styles.faCaretDown}
                             icon={faCaretDown}/>
                         </Link>
-                        {dropdown && <Dropdown/>}
+                        {dropdown && <Dropdown className={styles.navBlockItem}/>}
+                    </li>
+                    <li className={`${styles.navItem} ${styles.navMobileItem}`}>
+                        <Link
+                            to='/promotions'
+                            className={styles.navLinks}
+                            onClick={closeMobileMenu}
+                        >
+                            Акції
+                        </Link>
+                    </li>
+                    <li className={`${styles.navItem} ${styles.navMobileItem}`}>
+                        <Link
+                            to='/delivery'
+                            className={styles.navLinks}
+                            onClick={closeMobileMenu}
+                        >
+                            Доставка
+                        </Link>
+                    </li>
+                    <li className={`${styles.navItem} ${styles.navMobileItem}`}>
+                        <Link
+                            to='/feedbacks'
+                            className={styles.navLinks}
+                            onClick={closeMobileMenu}
+                        >
+                            Відгуки
+                        </Link>
                     </li>
                     <li className={styles.navItem}>
                         <Link

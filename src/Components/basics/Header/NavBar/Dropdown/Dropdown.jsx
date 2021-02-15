@@ -2,6 +2,7 @@ import React, {useState} from 'react';
 import {MenuItems} from '../MenuItems/MenuItems';
 import styles from './Dropdown.module.scss';
 import {Link} from 'react-router-dom';
+import zIndex from "@material-ui/core/styles/zIndex";
 
 
 const Dropdown = () => {

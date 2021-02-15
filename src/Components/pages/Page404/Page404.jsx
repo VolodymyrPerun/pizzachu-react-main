@@ -1,8 +1,7 @@
 import React, {useEffect} from 'react';
 import style from "./Page404.module.scss";
 import error from "../../../assets/images/not_found_bg.png";
-import bg from "../../../assets/images/file_item_bg_white.png";
-import PagePhoto from "../../../assets/images/panda_404.gif";
+import PagePhoto from "../../../assets/images/404.gif";
 
 
 export const Page404 = ({history}) => {
@@ -12,13 +11,7 @@ export const Page404 = ({history}) => {
     }, [history]);
 
     return (
-        <div className={style.page}
-             style={{
-                 backgroundImage: `url(${bg})`,
-                 backgroundPosition: 'center',
-                 backgroundSize: 'cover',
-                 backgroundRepeat: 'no-repeat'
-             }}>
+        <div className={style.page}>
             <img
                 alt='img'
                 src={PagePhoto}/>
@@ -27,7 +20,8 @@ export const Page404 = ({history}) => {
                      backgroundImage: `url(${error})`,
                      backgroundPosition: 'center',
                      backgroundSize: 'cover',
-                     backgroundRepeat: 'no-repeat'
+                     backgroundRepeat: 'no-repeat',
+                     alignContent: 'center'
                  }}
             >
             </div>

@@ -16,7 +16,7 @@ import {
 import {FontAwesomeIcon} from "@fortawesome/react-fontawesome";
 
 export const ProductPage = ({product, match, getProductById, isFetching, products}) => {
-    
+
     useEffect(() => {
         getProductById(match.params.productId);
     }, [match.params.productId]);

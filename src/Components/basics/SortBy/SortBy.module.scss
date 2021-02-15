@@ -1,81 +1,35 @@
 .container {
   display: grid;
-  grid-template-columns: repeat(5, 0.1fr) 1fr;
+  grid-template-columns: repeat(6, 1fr);
+  grid-template-rows: 1fr;
   justify-items: center;
-  justify-self: end;
+  justify-self: center;
   align-self: center;
-  align-content: end;
-  justify-content: right;
+  align-content: space-between;
+  justify-content: space-around;
+  z-index: 3;
 
-  button {
-    display: flex;
-    justify-items: center;
-    justify-self: center;
-    align-self: center;
-    align-content: center;
-    justify-content: space-around;
-    font-weight: 600;
-    font-family: 'Caveat', cursive;
-    text-transform: lowercase;
-    padding: 2px 15px;
-    margin: 0;
-
-    &:focus, &:hover {
-      background-color: #DEE8C1;
-      color: olivedrab;
-    }
-  }
-
-  .tab {
-    font-size: 19px;
-
-    &:nth-child(1) {
-      background-color: white;
-      color: gray;
-      border-radius: 15px 0 0 15px;
-      min-width: 130px;
-    }
-
-    &:focus, &:hover {
-      background-color: white;
-      color: gray;
-    }
-  }
-
-  .activeTab {
-    font-size: 19px;
-    background-color: white;
-    color: gray;
-
-    &:nth-child(1) {
-      background-color: white;
-      color: gray;
-      border-radius: 15px 0 0 15px;
-      min-width: 130px;
-    }
-
-    &:focus, &:hover {
-      background-color: white;
-      color: gray;
-    }
+  .sortPopup {
+    grid-column: 4 / 6;
   }
 
   input {
+    grid-column: 2 / 3;
     font: 17px 'Caveat', cursive;
     font-weight: 600;
+    height: 30px;
+    border-radius: 5px;
     color: gray;
     background-color: #EFEFEF;
     border: 1px solid #fff;
-    border-radius: 0 15px 15px 0;
     -webkit-box-shadow: 0 7px 21px rgba(0, 0, 0, 0.25), 0 10px 10px rgba(0, 0, 0, 0.22);
     box-shadow: 0 7px 21px rgba(0, 0, 0, 0.25), 0 10px 10px rgba(0, 0, 0, 0.22);
+    z-index: 1;
   }
 }
 
 @media only screen and (max-width: 985px) {
   .container {
-    grid-template-rows: 1fr 3fr 1fr;
-    grid-template-columns: 1fr 1fr;
     margin-top: 30px;
     margin-bottom: 15px;
     justify-self: center;
@@ -92,7 +46,6 @@
     input {
       font-size: 15px;
       margin: 1px auto;
-      border-radius: 15px;
       max-width: 130px;
     }
   }

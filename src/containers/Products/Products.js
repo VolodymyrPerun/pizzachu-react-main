@@ -15,13 +15,13 @@ import orderBy from "lodash/orderBy";
 const sortBy = (products, filterBy) => {
     switch (filterBy) {
         case 'price_high':
-            return orderBy(products, 'price', 'asc');
-        case 'price_low':
             return orderBy(products, 'price', 'desc');
+        case 'price_low':
+            return orderBy(products, 'price', 'asc');
         case 'weight_high':
-            return orderBy(products, 'weight', 'asc');
-        case 'weight_low':
             return orderBy(products, 'weight', 'desc');
+        case 'weight_low':
+            return orderBy(products, 'weight', 'asc');
         case 'name':
             return orderBy(products, 'name', 'asc');
         default:

@@ -56,8 +56,6 @@ export const Products = ({
             searchQuery={searchQuery}
             setFilter={setFilter}
             setSearchQuery={setSearchQuery}
-            activeTab={activeTab}
-            setActiveTab={setActiveTab}
         />
 
         <Filter
