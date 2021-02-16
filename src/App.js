@@ -1,4 +1,4 @@
-import React, {Component} from 'react';
+import React, {Component, StrictMode} from 'react';
 import './App.scss';
 import AboutUs from "./Components/pages/AboutUs/AboutUs";
 import Contacts from "./Components/pages/Contacts/Contacts";
@@ -41,9 +41,9 @@ class App extends Component {
 
     render() {
 
-        // if (!this.props.initialized) {
-        //     return <Preloader/>
-        // }
+        if (!this.props.initialized) {
+            return <Preloader/>
+        }
 
         // if (this.props.globalError) {
         //     return <ErrorMessages globalError={this.props.globalError} history={this.props.history}/>
@@ -62,7 +62,7 @@ class App extends Component {
                         <Route path='/about' render={() => <AboutUs/>}/>
                         <Route path='/contact' render={() => <Contacts/>}/>
                         <Route path='/feedbacks' render={() => <Feedbacks/>}/>
-                        <Route path='/home' render={() => <Home/>}/>
+                        <Route path='/home' render={() => <Home/>} exact/>
                         <Route path='/promotions' render={() => <Promotions/>}/>
                         <Route path='/delivery' render={() => <Delivery/>}/>
                         <Route path='/productPage/:productId?' render={() => <ProductPage/>}/>
@@ -89,11 +89,13 @@ let AppContainer = compose(
     connect(mapStateToProps, {catchGlobalError, initializeApp}))(App);
 
 let SocialApp = props => {
-    return <BrowserRouter basename={process.env.PUBLIC_URL}>
-        <Provider store={store}>
-            <AppContainer/>
-        </Provider>
-    </BrowserRouter>
+    return <StrictMode>
+        <BrowserRouter basename={process.env.PUBLIC_URL}>
+            <Provider store={store}>
+                <AppContainer/>
+            </Provider>
+        </BrowserRouter>
+    </StrictMode>
 };
 
 export default SocialApp;
