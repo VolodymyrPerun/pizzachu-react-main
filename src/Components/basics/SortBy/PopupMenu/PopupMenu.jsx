@@ -3,8 +3,8 @@ import styles from './PopupMenu.module.scss';
 import {FontAwesomeIcon} from "@fortawesome/react-fontawesome";
 import {faCaretDown} from "@fortawesome/free-solid-svg-icons";
 
-const PopupMenu = ({items, onClick}) => {
-
+let label = "оберіть метод сортування";
+const PopupMenu = ({sortItems, onClick}) => {
 
     const [visiblePopup, setVisiblePopup] = React.useState(false);
     const [activeItem, setActiveItem] = React.useState(0);
@@ -25,29 +25,44 @@ const PopupMenu = ({items, onClick}) => {
         }
         setActiveItem(item);
         setVisiblePopup(false);
+
+        switch (item) {
+            case ('price_low'):
+                return label = sortItems[0].label;
+            case ('price_high'):
+                return label = sortItems[1].label;
+            case ('weight_low'):
+                return label = sortItems[2].label;
+            case ('weight_high'):
+                return label = sortItems[3].label
+            default:
+                return label = "оберіть метод сортування";
+        }
     };
 
     React.useEffect(() => {
-        document.querySelector('body').addEventListener('onClick', clickOutsideCallback);
-        return () => document.querySelector('body').removeEventListener('onClick', clickOutsideCallback);
+        document.querySelector('body').addEventListener('click', clickOutsideCallback);
+        return () => document.querySelector('body').removeEventListener('click', clickOutsideCallback);
     }, [clickOutsideCallback]);
 
 
     return (
         <>
-            <div className={styles.container} onClick={toggleVisiblePopup}>
+            <div ref={blockRef} className={styles.container} onClick={toggleVisiblePopup}>
 
-                <div style={{maxWidth: '180px', maxHeight: '50px', fontSize: '17px'}} className="sort__label">
+                <div style={{width: '180px', maxHeight: '50px', fontSize: '17px'}} className="sort__label">
                     <FontAwesomeIcon
                         className={visiblePopup ? styles.rotated : ''}
                         icon={faCaretDown}
-                    /><b>Сортувати по: </b>
+                    />
+                    <b>Сортувати по: </b><br/>
+                    <span className={styles.label}>{label}</span>
                 </div>
             </div>
             {visiblePopup && (
-                <div ref={blockRef} className={styles.popupMenu}>
+                <div className={styles.popupMenu}>
                     <ul>
-                        {items.map((item, index) => (
+                        {sortItems.map((item, index) => (
                             <li
                                 className={item.value === activeItem ? styles.active : ''}
                                 onClick={(() => handleClick(item.value))}

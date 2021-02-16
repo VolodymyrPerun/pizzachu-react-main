@@ -18,7 +18,8 @@ export const Products = ({
                              searchQuery,
                              setSearchQuery,
                              setFilter,
-                             isFetching
+                             isFetching,
+    filterBy
                          }) => {
 
     useEffect((type, section, pageSize, currentPage) => {
@@ -68,8 +69,8 @@ export const Products = ({
         <div className={styles.cardContainer}>
             {isFetching
                 ? <Preloader/>
-                : products.map((product, i) => (
-                    <ProductCard key={i} {...product} isFetching={isFetching}/>
+                : products.map((product) => (
+                    <ProductCard key={product.productId} {...product} isFetching={isFetching}/>
                 ))}
         </div>
 
