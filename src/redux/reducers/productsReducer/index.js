@@ -1,4 +1,4 @@
-import {PAGE_DEFAULT} from '../../../constants';
+import {PAGE_DEFAULT, PRODUCT_TYPE} from '../../../constants';
 import {
     TOGGLE_IS_FETCHING,
     SET_PRODUCTS,
@@ -13,9 +13,9 @@ import {
 
 let initialState = {
     products: [],
-    type: null,
+    type: PRODUCT_TYPE.PIZZA,
     section: null,
-    size: null,
+    size: PAGE_DEFAULT.PAGE_SIZE,
     pageSize: PAGE_DEFAULT.PAGE_SIZE,
     total: 0,
     currentPage: PAGE_DEFAULT.CURRENT_PAGE,

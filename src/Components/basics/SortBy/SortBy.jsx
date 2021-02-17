@@ -1,6 +1,8 @@
 import React from 'react';
 import styles from "./SortBy.module.scss";
 import SortPopup from "./SortPopup/SortPopup";
+import PropTypes from "prop-types";
+import {PAGE_DEFAULT, PRODUCT_TYPE} from "../../../constants";
 
 
 const SortBy = ({setFilter, searchQuery, setSearchQuery}) => {
@@ -18,6 +20,16 @@ const SortBy = ({setFilter, searchQuery, setSearchQuery}) => {
             </div>
         </div>
     </>
+};
+
+SortBy.propTypes = {
+    searchQuery: PropTypes.string,
+    setFilter:PropTypes.func,
+    setSearchQuery: PropTypes.func
+};
+
+SortBy.defaultProps = {
+    setFilter: 'name'
 };
 
 export default SortBy;

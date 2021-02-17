@@ -1,4 +1,5 @@
 import React, {useEffect, useState} from 'react';
+import PropTypes from 'prop-types';
 import ProductCard from "../../basics/Products/ProductsCard/ProductsCard";
 import styles from './Products.module.scss'
 import {Pagination} from 'antd';
@@ -6,6 +7,7 @@ import {FastBackwardFilled, FastForwardFilled} from '@ant-design/icons';
 import {Filter} from "../Filter/Filter";
 import SortBy from "../SortBy/SortBy";
 import Preloader from "../../commons/Preloader/Preloader";
+import {PAGE_DEFAULT,PRODUCT_TYPE} from "../../../constants";
 
 export const Products = ({
                              products,
@@ -15,12 +17,12 @@ export const Products = ({
                              section,
                              getAllProducts,
                              setCurrentPage,
-                             searchQuery,
-                             setSearchQuery,
                              setFilter,
+                             searchQuery,
                              isFetching,
-    filterBy
+                             setSearchQuery
                          }) => {
+
 
     useEffect((type, section, pageSize, currentPage) => {
         getAllProducts(type, section, pageSize, currentPage);
@@ -87,3 +89,28 @@ export const Products = ({
     </>
 };
 
+Products.propTypes = {
+    products: PropTypes.array,
+    // types: PropTypes.arrayOf(PropTypes.number),
+    // sizes: PropTypes.arrayOf(PropTypes.oneOf([26, 30, 40])),
+    pageSize: PropTypes.number,
+    total: PropTypes.number,
+    type: PropTypes.number,
+    section: PropTypes.number,
+    searchQuery: PropTypes.string,
+    getAllProducts:PropTypes.func,
+    setCurrentPage:PropTypes.func,
+    setFilter:PropTypes.func,
+    setSearchQuery: PropTypes.func,
+    isFetching: PropTypes.bool
+};
+
+Products.defaultProps = {
+    pageSize: PAGE_DEFAULT.PAGE_SIZE,
+    type: PRODUCT_TYPE.PIZZA,
+    section: null,
+    total: 0,
+    products: [],
+    setFilter: 'name',
+    isFetching: true
+};

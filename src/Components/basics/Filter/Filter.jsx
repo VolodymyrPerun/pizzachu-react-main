@@ -10,6 +10,7 @@ import {
     SoupsAndSaladsSectionsFilterItems
 } from "./FilterItems/FilterItems";
 import TabFilter from "./TabFilter/TabFilter";
+import PropTypes from "prop-types";
 
 
 export const Filter = ({
@@ -53,4 +54,14 @@ export const Filter = ({
                        onPageChangeProducts={onPageChangeProducts}/>
         </div>}
     </>
+};
+
+Filter.propTypes = {
+    type: PropTypes.number,
+    activeTab: PropTypes.number,
+    onPageChangeProducts: PropTypes.func
+};
+
+Filter.defaultProps = {
+    type: PRODUCT_TYPE.PIZZA,
 };

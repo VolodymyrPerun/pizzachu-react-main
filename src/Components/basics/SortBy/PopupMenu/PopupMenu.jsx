@@ -2,9 +2,11 @@ import React from 'react';
 import styles from './PopupMenu.module.scss';
 import {FontAwesomeIcon} from "@fortawesome/react-fontawesome";
 import {faCaretDown} from "@fortawesome/free-solid-svg-icons";
+import PropTypes from "prop-types";
+import {PRODUCT_TYPE} from "../../../../constants";
 
 let label = "оберіть метод сортування";
-const PopupMenu = ({sortItems, onClick}) => {
+const PopupMenu = ({sortItems, setFilter}) => {
 
     const [visiblePopup, setVisiblePopup] = React.useState(false);
     const [activeItem, setActiveItem] = React.useState(0);
@@ -20,8 +22,8 @@ const PopupMenu = ({sortItems, onClick}) => {
     }
 
     const handleClick = item => {
-        if (onClick) {
-            onClick(item);
+        if (setFilter) {
+            setFilter(item);
         }
         setActiveItem(item);
         setVisiblePopup(false);
@@ -36,7 +38,7 @@ const PopupMenu = ({sortItems, onClick}) => {
             case ('weight_high'):
                 return label = sortItems[3].label
             default:
-                return label = "оберіть метод сортування";
+                return label = sortItems[0].label;
         }
     };
 
@@ -76,6 +78,16 @@ const PopupMenu = ({sortItems, onClick}) => {
             )}
         </>
     );
+};
+
+PopupMenu.propTypes = {
+    sortItems: PropTypes.arrayOf(PropTypes.object),
+    setFilter: PropTypes.func
+};
+
+PopupMenu.defaultProps = {
+    type: PRODUCT_TYPE.PIZZA,
+    setFilter: 'name'
 };
 
 export default PopupMenu;

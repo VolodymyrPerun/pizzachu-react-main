@@ -1,8 +1,8 @@
-import React, {useEffect} from 'react';
+import React, {useEffect, useState} from 'react';
 import styles from './ProductPage.module.scss'
 import Preloader from "../../commons/Preloader/Preloader";
 import noPhoto from "../../../assets/images/no-aveliable-image.png";
-import size from '../../../assets/images/diameter-icon.png'
+import sizeIcon from '../../../assets/images/diameter-icon.png'
 import {PRODUCT_SECTION} from "../../../constants";
 import {CloseCircleOutlined} from '@ant-design/icons';
 import {NavLink} from "react-router-dom";
@@ -14,12 +14,31 @@ import {
     faTruck
 } from "@fortawesome/free-solid-svg-icons";
 import {FontAwesomeIcon} from "@fortawesome/react-fontawesome";
+import classNames from 'classnames';
 
-export const ProductPage = ({product, match, getProductById, isFetching, products}) => {
+export const ProductPage = ({product, setFilter,  match, getProductById, isFetching, products}) => {
+
+
+    const availableSizes = [
+        {size: '22', name: 'name'},
+        {size: '30', name: 'name'},
+        {size: '40', name: 'name'}
+    ];
+
+    const [size, setSize] = useState(0);
+
+    const onSelectSize = item => {
+        if (setFilter) {
+            setFilter(item);
+        }
+        setSize(item);
+    }
+
 
     useEffect(() => {
         getProductById(match.params.productId);
     }, [match.params.productId]);
+
 
 
     return <>
@@ -65,9 +84,29 @@ export const ProductPage = ({product, match, getProductById, isFetching, product
                                     width: '20px',
                                     height: '20px'
                                 }}
-                                     className={styles.image} src={size} alt={'icon'}/>
+                                     className={styles.image} src={sizeIcon} alt={'icon'}/>
                                 Розмір: <span>{product['ProductSize.size']}</span> см</p>
                             : <p className={styles.weight} style={{color: 'transparent', visibility: 'hidden'}}>.</p>}
+
+
+
+                        {/*<div>*/}
+                        {/*    {availableSizes.map((curSize, curIndex) => (*/}
+                        {/*        <button*/}
+                        {/*            key={curIndex}*/}
+                        {/*            onClick={() => onSelectSize(curSize.size, curSize.name)}*/}
+                        {/*            className={classNames({*/}
+                        {/*                active: curSize === curIndex,*/}
+                        {/*                 //disabled: !match.params.size_id.includes(curSize),*/}
+                        {/*            })}*/}
+                        {/*        >*/}
+                        {/*            {curSize.size} см.*/}
+                        {/*            {curSize.name} см.*/}
+                        {/*        </button>*/}
+                        {/*    ))}*/}
+                        {/*</div>*/}
+
+
                     </div>
                     <p className={styles.delivery}>
                         <FontAwesomeIcon

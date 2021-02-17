@@ -14,6 +14,8 @@ import orderBy from "lodash/orderBy";
 
 const sortBy = (products, filterBy) => {
     switch (filterBy) {
+        case 'name':
+            return orderBy(products, 'name', 'asc');
         case 'price_high':
             return orderBy(products, 'price', 'desc');
         case 'price_low':
@@ -22,8 +24,8 @@ const sortBy = (products, filterBy) => {
             return orderBy(products, 'weight', 'desc');
         case 'weight_low':
             return orderBy(products, 'weight', 'asc');
-        case 'name':
-            return orderBy(products, 'name', 'asc');
+        case 'size':
+            return orderBy(products, 'size', 'asc');
         default:
             return products;
     }
@@ -48,7 +50,6 @@ const mapStateToProps = ({productsPage, filter}) => ({
     section: productsPage.section,
     pageSize: productsPage.pageSize,
     total: productsPage.total,
-    currentPage: productsPage.currentPage,
     isFetching: productsPage.isFetching
 });
 
