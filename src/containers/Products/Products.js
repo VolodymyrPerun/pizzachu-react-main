@@ -27,15 +27,15 @@ const sortBy = (products, filterBy) => {
         case 'weight_low':
             return orderBy(products, 'weight', 'asc');
         case L:
-            return products[0].size_id ?
+            return products.filter(product => product.size_id !== null) ?
                 filter(products, {'size_id': L}) :
                 orderBy(products, 'name', 'asc');
         case M:
-            return products[0].size_id ?
+            return products.filter(product => product.size_id !== null) ?
                 filter(products, {'size_id': M}) :
                 orderBy(products, 'name', 'asc');
         case XL:
-            return products[0].size_id ?
+            return products.filter(product => product.size_id !== null) ?
                 filter(products, {'size_id': XL}) :
                 orderBy(products, 'name', 'asc');
         default:
