@@ -9,23 +9,24 @@ import SortBy from "../SortBy/SortBy";
 import Preloader from "../../commons/Preloader/Preloader";
 import {PAGE_DEFAULT, PRODUCT_TYPE} from "../../../constants";
 
- const Products = memo(({
-                             products,
-                             pageSize,
-                             total,
-                             type,
-                             section,
-                             getAllProducts,
-                             setCurrentPage,
-                             setFilter,
-                             searchQuery,
-                             isFetching,
-                             setSearchQuery
-                         }) => {
+const Products = memo(({
+                           products,
+                           pageSize,
+                           total,
+                           type,
+                           section,
+                           size_id,
+                           getAllProducts,
+                           setCurrentPage,
+                           setFilter,
+                           searchQuery,
+                           isFetching,
+                           setSearchQuery
+                       }) => {
 
 
-    useEffect((type, section, pageSize, currentPage) => {
-        getAllProducts(type, section, pageSize, currentPage);
+    useEffect((type, section, size_id, pageSize, currentPage) => {
+        getAllProducts(type, section, size_id, pageSize, currentPage);
     }, [getAllProducts]);
 
     const [activeTab, setActiveTab] = useState(0);
@@ -33,12 +34,11 @@ import {PAGE_DEFAULT, PRODUCT_TYPE} from "../../../constants";
 
     const onPageChange = currentPage => {
         setCurrentPage(currentPage);
-        getAllProducts(type, section, pageSize, currentPage);
-
+        getAllProducts(type, section, size_id, pageSize, currentPage);
     };
 
-    const onPageChangeProducts = (keyType, keySection) => (type, section) => {
-        getAllProducts(keyType, keySection);
+    const onPageChangeProducts = (keyType, keySection, keySize) => (type, section) => {
+        getAllProducts(keyType, keySection, keySize);
        !section ? setActiveTab(type) : setActiveTab(section);
     };
 
@@ -65,9 +65,7 @@ import {PAGE_DEFAULT, PRODUCT_TYPE} from "../../../constants";
 
         <Filter
             type={type}
-            section={section}
             onPageChangeProducts={onPageChangeProducts}
-            setFilter={setFilter}
             activeTab={activeTab}
         />
 
@@ -114,6 +112,7 @@ Products.defaultProps = {
     section: null,
     total: 0,
     products: [],
+    size_id: null,
     setFilter: 'name',
     isFetching: true
 };

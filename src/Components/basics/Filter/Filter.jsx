@@ -4,21 +4,18 @@ import {PRODUCT_TYPE} from '../../../constants/';
 import {
     DessertsAndDrinksSectionsFilterItems,
     PizzaSectionsFilterItems,
-    PizzasSectionsSizeFilterItems,
     SoupsAndSaladsSectionsFilterItems,
     SushiAndRolesSectionsFilterItems,
     TypesFilterItems
 } from "./FilterItems/FilterItems";
 import TabFilter from "./TabFilter/TabFilter";
 import PropTypes from "prop-types";
-import TabSort from "./TabSort/TabSort";
 
 
 export const Filter = ({
                            type,
                            activeTab,
-                           onPageChangeProducts,
-                           setFilter
+                           onPageChangeProducts
                        }) => {
 
 
@@ -35,10 +32,6 @@ export const Filter = ({
             <TabFilter FilterItems={PizzaSectionsFilterItems}
                        activeTab={activeTab}
                        onPageChangeProducts={onPageChangeProducts}/>
-            <TabSort FilterItems={PizzasSectionsSizeFilterItems}
-                     activeTab={activeTab}
-                     setFilter={setFilter}
-            />
         </div>}
         {(type === PRODUCT_TYPE.SUSHI_AND_ROLES) && <div>
             <TabFilter FilterItems={SushiAndRolesSectionsFilterItems}

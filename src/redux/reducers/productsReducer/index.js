@@ -15,7 +15,7 @@ let initialState = {
     products: [],
     type: PRODUCT_TYPE.PIZZA,
     section: null,
-    size: PAGE_DEFAULT.PAGE_SIZE,
+    size_id: null,
     pageSize: PAGE_DEFAULT.PAGE_SIZE,
     total: 0,
     currentPage: PAGE_DEFAULT.CURRENT_PAGE,

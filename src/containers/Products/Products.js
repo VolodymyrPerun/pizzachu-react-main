@@ -9,8 +9,7 @@ import {
     setProductsType
 } from "../../redux/reducers/productsReducer/actions";
 import {setFilter, setSearchQuery} from "../../redux/reducers/filterReducer/actions";
-import {filter, orderBy} from "lodash";
-import {L, M, XL} from "../../constants/sizesDefault.enum";
+import {orderBy} from "lodash";
 
 
 const sortBy = (products, filterBy) => {
@@ -26,18 +25,6 @@ const sortBy = (products, filterBy) => {
             return orderBy(products, 'weight', 'desc');
         case 'weight_low':
             return orderBy(products, 'weight', 'asc');
-        case L:
-            return products.filter(product => product.size_id !== null) ?
-                filter(products, {'size_id': L}) :
-                orderBy(products, 'name', 'asc');
-        case M:
-            return products.filter(product => product.size_id !== null) ?
-                filter(products, {'size_id': M}) :
-                orderBy(products, 'name', 'asc');
-        case XL:
-            return products.filter(product => product.size_id !== null) ?
-                filter(products, {'size_id': XL}) :
-                orderBy(products, 'name', 'asc');
         default:
             return products;
     }

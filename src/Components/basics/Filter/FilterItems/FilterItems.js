@@ -6,6 +6,7 @@ export const TypesFilterItems = [
         label: LABELS_UA.Pizza,
         type: PRODUCT_TYPE.PIZZA,
         section: null,
+        size_id: L,
         cN: 'tabType',
         active: 'tabActiveType'
     },
@@ -67,6 +68,30 @@ export const PizzaSectionsFilterItems = [
         section: PRODUCT_SECTION.PROMOTIONAL,
         cN: 'tabPromoSection',
         active: 'tabActiveSection'
+    },
+    {
+        label: LABELS_UA.L,
+        type: PRODUCT_TYPE.PIZZA,
+        section: null,
+        size_id: L,
+        cN: 'tabSize',
+        active: 'tabActiveSize'
+    },
+    {
+        label: LABELS_UA.M,
+        type: PRODUCT_TYPE.PIZZA,
+        section: null,
+        size_id: M,
+        cN: 'tabSize',
+        active: 'tabActiveSize'
+    },
+    {
+        label: LABELS_UA.XL,
+        type: PRODUCT_TYPE.PIZZA,
+        section: null,
+        size_id: XL,
+        cN: 'tabSize',
+        active: 'tabActiveSize'
     }
 ];
 
@@ -167,26 +192,5 @@ export const DessertsAndDrinksSectionsFilterItems = [
         section: PRODUCT_SECTION.DRINKS,
         cN: 'tabSection',
         active: 'tabActiveSection'
-    }
-];
-
-export const PizzasSectionsSizeFilterItems = [
-    {
-        label: LABELS_UA.L,
-        size: L,
-        cN: 'tabSize',
-        active: 'tabActiveSize'
-    },
-    {
-        label: LABELS_UA.M,
-        size: M,
-        cN: 'tabSize',
-        active: 'tabActiveSize'
-    },
-    {
-        label: LABELS_UA.XL,
-        size: XL,
-        cN: 'tabSize',
-        active: 'tabActiveSize'
     }
 ];
