@@ -8,8 +8,8 @@ const TabFilter = ({FilterItems, onPageChangeProducts, activeTab}) => {
         {FilterItems &&
         FilterItems.map((item, index) => (
             <Tab
-                className={activeTab === index ? item.active : item.cN}
                 key={index}
+                className={activeTab === index ? item.active : item.cN}
                 label={item.label}
                 handleClick={onPageChangeProducts(item.type, item.section)}/>
         ))}

@@ -1,4 +1,5 @@
-import {PRODUCT_SECTION, PRODUCT_TYPE, LABELS_UA} from '../../../../constants';
+import {LABELS_UA, PRODUCT_SECTION, PRODUCT_TYPE} from '../../../../constants';
+import {L, M, XL} from "../../../../constants/sizesDefault.enum";
 
 export const TypesFilterItems = [
     {
@@ -59,6 +60,13 @@ export const PizzaSectionsFilterItems = [
         section: PRODUCT_SECTION.HOT,
         cN: 'tabSection',
         active: 'tabActiveSection'
+    },
+    {
+        label: LABELS_UA.Promotion,
+        type: PRODUCT_TYPE.PIZZA,
+        section: PRODUCT_SECTION.PROMOTIONAL,
+        cN: 'tabPromoSection',
+        active: 'tabActiveSection'
     }
 ];
 
@@ -118,6 +126,13 @@ export const SushiAndRolesSectionsFilterItems = [
         section: PRODUCT_SECTION.CHAINS,
         cN: 'tabSection',
         active: 'tabActiveSection'
+    },
+    {
+        label: LABELS_UA.Promotion,
+        type: PRODUCT_TYPE.SUSHI_AND_ROLES,
+        section: PRODUCT_SECTION.PROMOTIONAL,
+        cN: 'tabPromoSection',
+        active: 'tabActiveSection'
     }
 ];
 
@@ -155,12 +170,23 @@ export const DessertsAndDrinksSectionsFilterItems = [
     }
 ];
 
-export const SupplementsSectionsFilterItems = [
+export const PizzasSectionsSizeFilterItems = [
     {
-        label: LABELS_UA.Supplements,
-        type: PRODUCT_TYPE.SUPPLEMENTS,
-        section: null,
-        cN: 'tabSection',
-        active: 'tabActiveSection'
+        label: LABELS_UA.L,
+        size: L,
+        cN: 'tabSize',
+        active: 'tabActiveSize'
+    },
+    {
+        label: LABELS_UA.M,
+        size: M,
+        cN: 'tabSize',
+        active: 'tabActiveSize'
+    },
+    {
+        label: LABELS_UA.XL,
+        size: XL,
+        cN: 'tabSize',
+        active: 'tabActiveSize'
     }
 ];

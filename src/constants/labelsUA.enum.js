@@ -16,5 +16,9 @@ module.exports = {
     MisoSoups: 'Місо супи',
     Salads: 'Салати',
     Desserts: 'Десерти',
-    Drinks: 'Напої'
+    Drinks: 'Напої',
+    Promotion: 'Акційні',
+    M: 'M',
+    L: 'L',
+    XL: 'XL'
 };

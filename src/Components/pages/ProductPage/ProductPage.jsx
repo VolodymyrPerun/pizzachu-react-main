@@ -1,4 +1,4 @@
-import React, {useEffect, useState} from 'react';
+import React, {useEffect} from 'react';
 import styles from './ProductPage.module.scss'
 import Preloader from "../../commons/Preloader/Preloader";
 import noPhoto from "../../../assets/images/no-aveliable-image.png";
@@ -14,38 +14,19 @@ import {
     faTruck
 } from "@fortawesome/free-solid-svg-icons";
 import {FontAwesomeIcon} from "@fortawesome/react-fontawesome";
-import classNames from 'classnames';
+import {shuffle} from 'lodash';
 
-export const ProductPage = ({product, setFilter,  match, getProductById, isFetching, products}) => {
-
-
-    const availableSizes = [
-        {size: '22', name: 'name'},
-        {size: '30', name: 'name'},
-        {size: '40', name: 'name'}
-    ];
-
-    const [size, setSize] = useState(0);
-
-    const onSelectSize = item => {
-        if (setFilter) {
-            setFilter(item);
-        }
-        setSize(item);
-    }
-
+export const ProductPage = ({product, match, getProductById, isFetching, products}) => {
 
     useEffect(() => {
         getProductById(match.params.productId);
     }, [match.params.productId]);
 
 
-
     return <>
         {isFetching
             ? <Preloader/>
-            :
-            <div className={styles.container}>
+            : <div className={styles.container}>
                 <div className={styles.card}>
                     <NavLink className={styles.closeBtn} to={'/home'}>
                         <CloseCircleOutlined className={styles.icon}/>
@@ -89,24 +70,6 @@ export const ProductPage = ({product, setFilter,  match, getProductById, isFetch
                             : <p className={styles.weight} style={{color: 'transparent', visibility: 'hidden'}}>.</p>}
 
 
-
-                        {/*<div>*/}
-                        {/*    {availableSizes.map((curSize, curIndex) => (*/}
-                        {/*        <button*/}
-                        {/*            key={curIndex}*/}
-                        {/*            onClick={() => onSelectSize(curSize.size, curSize.name)}*/}
-                        {/*            className={classNames({*/}
-                        {/*                active: curSize === curIndex,*/}
-                        {/*                 //disabled: !match.params.size_id.includes(curSize),*/}
-                        {/*            })}*/}
-                        {/*        >*/}
-                        {/*            {curSize.size} см.*/}
-                        {/*            {curSize.name} см.*/}
-                        {/*        </button>*/}
-                        {/*    ))}*/}
-                        {/*</div>*/}
-
-
                     </div>
                     <p className={styles.delivery}>
                         <FontAwesomeIcon
@@ -120,33 +83,32 @@ export const ProductPage = ({product, setFilter,  match, getProductById, isFetch
                     <>
                         <p className={styles.moreProductsTitle}>Пропонуємо також: </p>
                         <div className={styles.promoContainer}>
-                            {products.map((product, i) => {
-                                if (product &&
-                                    // products.section_id === 14 &&
-                                    // !products.size_id &&
-                                    i <= 1) {
-                                    return <NavLink key={product.productId} className={styles.promoCard}
-                                                    to={'/productPage/' + product.productId}>
-                                        {product.product_photo
+                            {shuffle(products).map((prod, i) => {
+                                if (prod
+                                     && i <= 3
+                                ) {
+                                    return <NavLink key={prod.productId} className={styles.promoCard}
+                                                    to={'/productPage/' + prod.productId}>
+                                        {prod.product_photo
                                             ? <img className={styles.image}
-                                                   src={`http://localhost:5000/${product.product_photo}`}
+                                                   src={`http://localhost:5000/${prod.product_photo}`}
                                                    alt={'product'}/>
                                             : <img className={styles.image} src={noPhoto} alt={'product'}/>}
-                                        {product.section_id !== PRODUCT_SECTION.DRINKS
-                                            ? <p className={styles.weight}>Вага: <span>{product.weight}</span> гр</p>
-                                            : <p className={styles.weight}>Об'єм: <span>{product.weight}</span> л</p>}
-                                        {product['ProductSize.size']
+                                        {prod.section_id !== PRODUCT_SECTION.DRINKS
+                                            ? <p className={styles.weight}>Вага: <span>{prod.weight}</span> гр</p>
+                                            : <p className={styles.weight}>Об'єм: <span>{prod.weight}</span> л</p>}
+                                        {prod['ProductSize.size']
                                             ?
-                                            <p className={styles.weight}>Розмір: <span>{product['ProductSize.size']}</span> см
+                                            <p className={styles.weight}>Розмір: <span>{prod['ProductSize.size']}</span> см
                                             </p>
                                             : <p className={styles.weight}
                                                  style={{color: 'transparent', visibility: 'hidden'}}>.</p>}
-                                        <p className={styles.title}>{product.name}</p>
-                                        {product.description
-                                            ? <p className={styles.description}>{product.description}</p>
+                                        <p className={styles.title}>{prod.name}</p>
+                                        {prod.description
+                                            ? <p className={styles.description}>{prod.description}</p>
                                             : <p className={styles.description}
                                                  style={{color: 'transparent', visibility: 'hidden'}}>.</p>}
-                                        <p className={styles.price}>Ціна: <span>{product.price}</span> грн.</p>
+                                        <p className={styles.price}>Ціна: <span>{prod.price}</span> грн.</p>
                                     </NavLink>
                                 } else {
                                     return null

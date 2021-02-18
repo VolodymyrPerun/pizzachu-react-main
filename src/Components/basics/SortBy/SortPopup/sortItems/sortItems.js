@@ -14,4 +14,4 @@ export const sortItems = [
     {
         value: SORT_POPUP_LABELS.WeightHighValue, label: SORT_POPUP_LABELS.WeightHighLabel, icon: faCaretDown
     }
-];
+]

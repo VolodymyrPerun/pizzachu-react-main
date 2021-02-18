@@ -1,4 +1,4 @@
-import React, {useEffect, useState} from 'react';
+import React, {memo, useEffect, useState} from 'react';
 import PropTypes from 'prop-types';
 import ProductCard from "../../basics/Products/ProductsCard/ProductsCard";
 import styles from './Products.module.scss'
@@ -7,9 +7,9 @@ import {FastBackwardFilled, FastForwardFilled} from '@ant-design/icons';
 import {Filter} from "../Filter/Filter";
 import SortBy from "../SortBy/SortBy";
 import Preloader from "../../commons/Preloader/Preloader";
-import {PAGE_DEFAULT,PRODUCT_TYPE} from "../../../constants";
+import {PAGE_DEFAULT, PRODUCT_TYPE} from "../../../constants";
 
-export const Products = ({
+ const Products = memo(({
                              products,
                              pageSize,
                              total,
@@ -32,8 +32,9 @@ export const Products = ({
 
 
     const onPageChange = currentPage => {
-       setCurrentPage(currentPage);
+        setCurrentPage(currentPage);
         getAllProducts(type, section, pageSize, currentPage);
+
     };
 
     const onPageChangeProducts = (keyType, keySection) => (type, section) => {
@@ -53,6 +54,7 @@ export const Products = ({
         return originalElement;
     }
 
+
     return <>
 
         <SortBy
@@ -65,15 +67,16 @@ export const Products = ({
             type={type}
             section={section}
             onPageChangeProducts={onPageChangeProducts}
+            setFilter={setFilter}
             activeTab={activeTab}
         />
 
         <div className={styles.cardContainer}>
             {isFetching
                 ? <Preloader/>
-                : products.map((product) => (
+                : products.map(product =>
                     <ProductCard key={product.productId} {...product} isFetching={isFetching}/>
-                ))}
+                )}
         </div>
 
         <Pagination
@@ -87,7 +90,7 @@ export const Products = ({
             }}
         />
     </>
-};
+});
 
 Products.propTypes = {
     products: PropTypes.array,
@@ -114,3 +117,5 @@ Products.defaultProps = {
     setFilter: 'name',
     isFetching: true
 };
+
+export default Products;

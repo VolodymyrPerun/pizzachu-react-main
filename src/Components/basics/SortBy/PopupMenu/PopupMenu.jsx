@@ -1,4 +1,4 @@
-import React from 'react';
+import React, {useEffect} from 'react';
 import styles from './PopupMenu.module.scss';
 import {FontAwesomeIcon} from "@fortawesome/react-fontawesome";
 import {faCaretDown} from "@fortawesome/free-solid-svg-icons";
@@ -42,7 +42,7 @@ const PopupMenu = ({sortItems, setFilter}) => {
         }
     };
 
-    React.useEffect(() => {
+    useEffect(() => {
         document.querySelector('body').addEventListener('click', clickOutsideCallback);
         return () => document.querySelector('body').removeEventListener('click', clickOutsideCallback);
     }, [clickOutsideCallback]);

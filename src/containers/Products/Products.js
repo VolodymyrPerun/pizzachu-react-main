@@ -1,5 +1,5 @@
 import {connect} from 'react-redux';
-import {Products} from '../../Components/basics/Products/Products';
+import Products from '../../Components/basics/Products/Products';
 import {getAllProducts} from "../../redux/reducers/productsReducer/thunks";
 import {
     setCurrentPage,
@@ -9,10 +9,12 @@ import {
     setProductsType
 } from "../../redux/reducers/productsReducer/actions";
 import {setFilter, setSearchQuery} from "../../redux/reducers/filterReducer/actions";
-import orderBy from "lodash/orderBy";
+import {filter, orderBy} from "lodash";
+import {L, M, XL} from "../../constants/sizesDefault.enum";
 
 
 const sortBy = (products, filterBy) => {
+    console.log(products);
     switch (filterBy) {
         case 'name':
             return orderBy(products, 'name', 'asc');
@@ -24,8 +26,18 @@ const sortBy = (products, filterBy) => {
             return orderBy(products, 'weight', 'desc');
         case 'weight_low':
             return orderBy(products, 'weight', 'asc');
-        case 'size':
-            return orderBy(products, 'size', 'asc');
+        case L:
+            return products[0].size_id ?
+                filter(products, {'size_id': L}) :
+                orderBy(products, 'name', 'asc');
+        case M:
+            return products[0].size_id ?
+                filter(products, {'size_id': M}) :
+                orderBy(products, 'name', 'asc');
+        case XL:
+            return products[0].size_id ?
+                filter(products, {'size_id': XL}) :
+                orderBy(products, 'name', 'asc');
         default:
             return products;
     }
@@ -44,7 +56,9 @@ const searchProducts = (products, filterBy, searchQuery) => {
 
 
 const mapStateToProps = ({productsPage, filter}) => ({
-    products: productsPage.products && searchProducts(productsPage.products, filter.filterBy, filter.searchQuery),
+    products: productsPage.products && searchProducts(
+        productsPage.products &&
+        sortBy(productsPage.products, 'name'), filter.filterBy, filter.searchQuery),
     type: productsPage.type,
     size_id: productsPage.size_id,
     section: productsPage.section,

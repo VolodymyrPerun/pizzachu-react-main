@@ -2,22 +2,25 @@ import React from 'react';
 import styles from "./Filter.module.scss";
 import {PRODUCT_TYPE} from '../../../constants/';
 import {
-    TypesFilterItems,
-    PizzaSectionsFilterItems,
-    SushiAndRolesSectionsFilterItems,
     DessertsAndDrinksSectionsFilterItems,
-    SupplementsSectionsFilterItems,
-    SoupsAndSaladsSectionsFilterItems
+    PizzaSectionsFilterItems,
+    PizzasSectionsSizeFilterItems,
+    SoupsAndSaladsSectionsFilterItems,
+    SushiAndRolesSectionsFilterItems,
+    TypesFilterItems
 } from "./FilterItems/FilterItems";
 import TabFilter from "./TabFilter/TabFilter";
 import PropTypes from "prop-types";
+import TabSort from "./TabSort/TabSort";
 
 
 export const Filter = ({
                            type,
                            activeTab,
-                           onPageChangeProducts
+                           onPageChangeProducts,
+                           setFilter
                        }) => {
+
 
     return <>
 
@@ -32,6 +35,10 @@ export const Filter = ({
             <TabFilter FilterItems={PizzaSectionsFilterItems}
                        activeTab={activeTab}
                        onPageChangeProducts={onPageChangeProducts}/>
+            <TabSort FilterItems={PizzasSectionsSizeFilterItems}
+                     activeTab={activeTab}
+                     setFilter={setFilter}
+            />
         </div>}
         {(type === PRODUCT_TYPE.SUSHI_AND_ROLES) && <div>
             <TabFilter FilterItems={SushiAndRolesSectionsFilterItems}
@@ -48,17 +55,15 @@ export const Filter = ({
                        activeTab={activeTab}
                        onPageChangeProducts={onPageChangeProducts}/>
         </div>}
-        {(type === PRODUCT_TYPE.SUPPLEMENTS) && <div>
-            <TabFilter FilterItems={SupplementsSectionsFilterItems}
-                       activeTab={activeTab}
-                       onPageChangeProducts={onPageChangeProducts}/>
-        </div>}
     </>
 };
 
 Filter.propTypes = {
     type: PropTypes.number,
-    activeTab: PropTypes.number,
+    activeTab: PropTypes.oneOfType([
+        PropTypes.any,
+        PropTypes.number
+    ]),
     onPageChangeProducts: PropTypes.func
 };
 

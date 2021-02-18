@@ -36,47 +36,6 @@ button {
   }
 }
 
-.tabPromoSection {
-  font-size: 20px;
-  text-transform: capitalize;
-  color: indianred;
-  border-radius: 16px 16px 0 0;
-
-  &:hover, &:active, &:focus {
-    background-color: #F2B3B3;
-    opacity: 0.8;
-    border-bottom: 3px solid #EE7178;
-    color: snow;
-  }
-}
-
-.tabSize {
-  font-size: 20px;
-  text-transform: capitalize;
-  color: black;
-  background-color: #D0D0D0;
-  border-radius: 50%;
-
-  &:hover, &:active, &:focus {
-    background-color: #515151;
-    opacity: 0.8;
-    color: snow;
-  }
-}
-
-.tabActiveSize {
-  font-size: 20px;
-  text-transform: capitalize;
-  color: snow;
-  background-color: #515151;
-  opacity: 0.8;
-  border-radius: 50%;
-
-  &:hover, &:active, &:focus {
-    background-color: #515151;
-  }
-}
-
 .tabActiveType {
   font-size: 18px;
   border-radius: 15px;
