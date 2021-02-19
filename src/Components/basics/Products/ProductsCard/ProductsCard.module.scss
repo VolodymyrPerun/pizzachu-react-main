@@ -4,12 +4,12 @@
 
 .card {
   display: grid;
-  grid-template-rows: 2fr 1fr 1fr 1fr 2fr 1fr;
+  grid-template-rows: 2fr 1fr 1fr 2fr 1fr;
   border-radius: 15px;
   margin: 5px;
   padding: 10px;
   max-width: 250px;
-  max-height: 500px;
+  max-height: 380px;
   justify-content: center;
   justify-items: center;
   text-align: center;
@@ -38,30 +38,33 @@
   }
 
   .image {
-    width: 240px;
-    height: 170px;
+    grid-row: 1;
+    width: 210px;
+    height: 150px;
   }
 
   .title {
+    grid-row: 3;
+    max-height: 15px;
     color: black;
     font-size: 22px;
-    margin: 10px 0;
+    margin: 0;
     font-weight: bold;
   }
 
   .weight {
-    position: relative;
-    color: gray;
-    font-size: 19px;
-    text-align: left;
-    right: -50px;
-    border: 1px solid #f0f0f0;
-    border-radius: 15px;
-    padding: 0 5px;
-    margin:  10px;
+    grid-row: 2;
+    display: flex;
+    justify-content: space-around;
 
-    &:nth-child(2) {
-      right: 50px;
+    & > p {
+      max-height: 25px;
+      color: gray;
+      font-size: 19px;
+      text-align: left;
+      border: 1px solid #f0f0f0;
+      border-radius: 15px;
+      padding: 0 5px;
     }
 
     span {
@@ -71,18 +74,21 @@
   }
 
   .description {
+    grid-row: 4;
+    max-height: 50px;
     font-weight: 600;
     font-size: 19px;
     color: olivedrab;
   }
 
   .price {
+    grid-row: 5;
+    max-height: 25px;
     position: relative;
     color: gray;
     font-size: 20px;
     text-align: right;
     left: -30px;
-    margin-bottom: 40px;
     border: 1px solid #f0f0f0;
     border-radius: 15px;
     padding: 0 5px;

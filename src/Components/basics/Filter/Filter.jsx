@@ -18,7 +18,6 @@ export const Filter = ({
                            onPageChangeProducts
                        }) => {
 
-
     return <>
 
         <div className={styles.container}>

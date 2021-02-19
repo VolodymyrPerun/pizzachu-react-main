@@ -1,15 +1,15 @@
 import React from 'react';
 import styles from './ProductsCard.module.scss';
 import noPhoto from '../../../../assets/images/no-aveliable-image.png';
-import {PRODUCT_SECTION} from '../../../../constants/';
+import {PRODUCT_SECTION, PRODUCT_TYPE} from '../../../../constants/';
 import {NavLink} from "react-router-dom";
 import PropTypes from "prop-types";
 
 
 const ProductsCard = ({
                           productId,
-                          size_id,
                           name,
+                          type_id,
                           setProductSize,
                           description,
                           product_photo,
@@ -20,6 +20,7 @@ const ProductsCard = ({
                           ...rest
                       }) => {
 
+
     return (
         <>
             {isFetching
@@ -28,12 +29,14 @@ const ProductsCard = ({
                     {product_photo
                         ? <img className={styles.image} src={`http://localhost:5000/${product_photo}`} alt={'product'}/>
                         : <img className={styles.image} src={noPhoto} alt={'product'}/>}
-                    {section_id !== PRODUCT_SECTION.DRINKS
-                        ? <p className={styles.weight}>Вага: <span>{weight}</span> гр</p>
-                        : <p className={styles.weight}>Об'єм: <span>{weight}</span> л</p>}
-                    {rest['ProductSize.size']
-                        ? <p className={styles.weight}>Розмір: <span>{rest['ProductSize.size']}</span> см</p>
-                        : <p className={styles.weight} style={{color: 'transparent', visibility: 'hidden'}}>.</p>}
+                    <div className={styles.weight}>
+                        {section_id !== PRODUCT_SECTION.DRINKS
+                            ? <p>Вага: <span>{weight}</span> гр</p>
+                            : <p>Об'єм: <span>{weight}</span> л</p>}
+                        {type_id === PRODUCT_TYPE.PIZZA
+                            ? <p>Розмір: <span>{rest['ProductSize.size']}</span> см</p>
+                            : <p style={{color: 'transparent', visibility: 'hidden'}}>.</p>}
+                    </div>
                     <p className={styles.title}>{name}</p>
                     {description
                         ? <p className={styles.description}>{description}</p>

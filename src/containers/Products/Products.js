@@ -1,19 +1,12 @@
 import {connect} from 'react-redux';
 import Products from '../../Components/basics/Products/Products';
 import {getAllProducts} from "../../redux/reducers/productsReducer/thunks";
-import {
-    setCurrentPage,
-    setPageSize,
-    setProductSize,
-    setProductsSection,
-    setProductsType
-} from "../../redux/reducers/productsReducer/actions";
+import {setCurrentPage} from "../../redux/reducers/productsReducer/actions";
 import {setFilter, setSearchQuery} from "../../redux/reducers/filterReducer/actions";
 import {orderBy} from "lodash";
 
 
 const sortBy = (products, filterBy) => {
-    console.log(products);
     switch (filterBy) {
         case 'name':
             return orderBy(products, 'name', 'asc');
@@ -58,10 +51,6 @@ const mapStateToProps = ({productsPage, filter}) => ({
 export default connect(mapStateToProps, {
     getAllProducts,
     setCurrentPage,
-    setPageSize,
-    setProductsSection,
-    setProductsType,
-    setProductSize,
     setFilter,
     setSearchQuery
 })(Products);

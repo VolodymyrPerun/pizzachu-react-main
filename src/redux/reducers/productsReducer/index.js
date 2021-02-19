@@ -15,7 +15,7 @@ let initialState = {
     products: [],
     type: PRODUCT_TYPE.PIZZA,
     section: null,
-    size_id: null,
+    size_id: PAGE_DEFAULT.PRODUCT_SIZE,
     pageSize: PAGE_DEFAULT.PAGE_SIZE,
     total: 0,
     currentPage: PAGE_DEFAULT.CURRENT_PAGE,
@@ -28,7 +28,6 @@ const productsReducer = (state = initialState, action) => {
             return {
                 ...state,
                 products: action.payload,
-
             }
         case SET_PRODUCTS_TYPE:
             return {

@@ -17,6 +17,7 @@ import {Page404} from "./Components/pages/Page404/Page404";
 import ErrorMessages from "./Components/commons/ErrorMessages/ErrorMessages";
 import ProductPage from "./containers/ProductPage/ProductPage";
 import Delivery from "./Components/pages/Delivery/Delivery";
+import Footer from "./Components/basics/Footer/Footer";
 
 
 class App extends Component {
@@ -53,6 +54,7 @@ class App extends Component {
 
             <div className='app-wrapper'>
                 <HeaderContainer/>
+                <Footer/>
                 <div className='app-wrapper-content'>
                     <Switch>
                         <Route exact path='/'

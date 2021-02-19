@@ -3,7 +3,7 @@ import styles from './ProductPage.module.scss'
 import Preloader from "../../commons/Preloader/Preloader";
 import noPhoto from "../../../assets/images/no-aveliable-image.png";
 import sizeIcon from '../../../assets/images/diameter-icon.png'
-import {PRODUCT_SECTION} from "../../../constants";
+import {PRODUCT_SECTION, PRODUCT_TYPE} from "../../../constants";
 import {CloseCircleOutlined} from '@ant-design/icons';
 import {NavLink} from "react-router-dom";
 import {
@@ -55,7 +55,7 @@ export const ProductPage = ({product, match, getProductById, isFetching, product
                             : <p className={styles.weight}><FontAwesomeIcon
                                 style={{marginRight: '7px', color: '#EE7178'}}
                                 icon={faPrescriptionBottle}/>Об'єм: <span>{product.weight}</span> л</p>}
-                        {product['ProductSize.size']
+                        {product.type_id === PRODUCT_TYPE.PIZZA
                             ? <p className={styles.weight}>
                                 <img style={{
                                     position: 'relative',
@@ -97,7 +97,7 @@ export const ProductPage = ({product, match, getProductById, isFetching, product
                                         {prod.section_id !== PRODUCT_SECTION.DRINKS
                                             ? <p className={styles.weight}>Вага: <span>{prod.weight}</span> гр</p>
                                             : <p className={styles.weight}>Об'єм: <span>{prod.weight}</span> л</p>}
-                                        {prod['ProductSize.size']
+                                        {prod.type_id === PRODUCT_TYPE.PIZZA
                                             ?
                                             <p className={styles.weight}>Розмір: <span>{prod['ProductSize.size']}</span> см
                                             </p>

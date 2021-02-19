@@ -26,8 +26,19 @@ const Products = memo(({
 
 
     useEffect((type, section, size_id, pageSize, currentPage) => {
-        getAllProducts(type, section, size_id, pageSize, currentPage);
-    }, [getAllProducts]);
+        let cleanupFunction = false;
+        try {
+            (!cleanupFunction) &&
+            getAllProducts(type, section, size_id, pageSize, currentPage);
+        } catch (e) {
+            console.error(e);
+        }
+        return (() => {
+                cleanupFunction = true
+                getAllProducts(type, section, size_id, pageSize, currentPage);
+            }
+        );
+    }, []);
 
     const [activeTab, setActiveTab] = useState(0);
 
@@ -56,6 +67,8 @@ const Products = memo(({
 
 
     return <>
+
+        {/*<PromoBlock isFetching={isFetching} products={products} onPageChangeProducts={onPageChangeProducts}/>*/}
 
         <SortBy
             searchQuery={searchQuery}
