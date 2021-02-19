@@ -83,9 +83,10 @@ const Products = memo(({
         />
 
         <div className={styles.cardContainer}>
-            {isFetching
-                ? <Preloader/>
-                : products.map(product =>
+            {
+                // isFetching
+                // ? <Preloader/> :
+                    products.map(product =>
                     <ProductCard key={product.productId} {...product} isFetching={isFetching}/>
                 )}
         </div>

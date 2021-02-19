@@ -23,11 +23,11 @@ const ProductsCard = ({
 
     return (
         <>
-            {isFetching
-                ? <img className={styles.image} src={noPhoto} alt={'product'}/>
-                : <NavLink className={styles.card} to={'/productPage/' + productId}>
+            {<NavLink className={styles.card} to={'/productPage/' + productId}>
                     {product_photo
-                        ? <img className={styles.image} src={`http://localhost:5000/${product_photo}`} alt={'product'}/>
+                        ? //isFetching ? <img className={styles.image} src={noPhoto} alt={'product'}/> :
+                            <img className={styles.image} src={`http://localhost:5000/${product_photo}`}
+                                 alt={'product'}/>
                         : <img className={styles.image} src={noPhoto} alt={'product'}/>}
                     <div className={styles.weight}>
                         {section_id !== PRODUCT_SECTION.DRINKS

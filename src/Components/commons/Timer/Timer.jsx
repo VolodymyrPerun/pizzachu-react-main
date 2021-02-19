@@ -25,20 +25,23 @@ const Timer = () => {
     const [timeLeft, setTimeLeft] = useState(calculateTimeLeft());
 
     useEffect(() => {
-        setTimeout(() => {
             let cleanupFunction = false;
             try {
-                (!cleanupFunction) &&
-                setTimeLeft(calculateTimeLeft());
+                if (!cleanupFunction) {
+                    setTimeout(() => {
+                    setTimeLeft(calculateTimeLeft());
+                    }, 1000);
+                }
             } catch (e) {
                 console.error(e);
             }
             return (() => {
                     cleanupFunction = true;
-                    setTimeLeft(calculateTimeLeft());
+                    setTimeout(() => {
+                        setTimeLeft(calculateTimeLeft());
+                    }, 1000);
                 }
             );
-        }, 1000);
     });
 
     Object.keys(timeLeft).forEach((interval, i) => {

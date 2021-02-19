@@ -20,7 +20,7 @@ export const ProductPage = ({product, match, getProductById, isFetching, product
 
     useEffect(() => {
         getProductById(match.params.productId);
-    }, [match.params.productId]);
+    }, [match.params.productId, getProductById]);
 
 
     return <>

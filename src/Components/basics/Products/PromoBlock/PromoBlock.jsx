@@ -13,19 +13,23 @@ export const PromoBlock = ({isFetching, products, getAllPromoProducts}) => {
 
     let [type, setType] = useState(PRODUCT_TYPE.PIZZA);
 
+    setTimeout(() => {
+        setType(type = PRODUCT_TYPE.PIZZA);
+    }, 15000);
+
+    setTimeout(() => {
+        setType(type = PRODUCT_TYPE.SUSHI_AND_ROLES);
+    }, 10000);
+
     useEffect(() => {
-        setTimeout(() => {
-            setType(PRODUCT_TYPE.SUSHI_AND_ROLES)
-        }, 35000)
-        setTimeout(() => {
-            setType(PRODUCT_TYPE.PIZZA)
-        }, 75000)
         getAllPromoProducts(type, PRODUCT_SECTION.PROMOTIONAL, SIZES_DEFAULT.XL);
     }, [type]);
 
 
     return <>
-        {isFetching ? <Preloader/> :
+        {
+            //isFetching ? <Preloader/> :
+
             <div className={styles.container}>
 
                 <div>
