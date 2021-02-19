@@ -1,4 +1,4 @@
-import {authMe} from "../authReducer/thunks";
+//import {authMe} from "../authReducer/thunks";
 import {initializedSuccess, setGlobalError} from "./actions";
 
 

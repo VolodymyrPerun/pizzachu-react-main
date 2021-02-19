@@ -1,7 +1,7 @@
-import {authAPI} from "../../../API/authAPI/authAPI";
-import {secureAPI} from "../../../API/secureAPI/secureAPI"
-import {stopSubmit} from "redux-form";
-import {getCaptchaUrlSuccess, setAuthUserData} from "./actions";
+//import {authAPI} from "../../../API/authAPI/authAPI";
+//import {secureAPI} from "../../../API/secureAPI/secureAPI"
+//import {stopSubmit} from "redux-form";
+import {setAuthUserData} from "./actions";
 
 
 export const authMe = () => async dispatch => {

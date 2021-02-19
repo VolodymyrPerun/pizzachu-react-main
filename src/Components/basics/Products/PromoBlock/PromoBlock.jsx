@@ -6,10 +6,14 @@ import {NavLink} from "react-router-dom";
 import {faTruck} from "@fortawesome/free-solid-svg-icons";
 import {FontAwesomeIcon} from "@fortawesome/react-fontawesome";
 import Timer from "../../../commons/Timer/Timer";
-import Preloader from "../../../commons/Preloader/Preloader";
+//import Preloader from "../../../commons/Preloader/Preloader";
 
 
-export const PromoBlock = ({isFetching, products, getAllPromoProducts}) => {
+export const PromoBlock = ({
+                               //isFetching,
+                               products,
+                               getAllPromoProducts
+}) => {
 
     let [type, setType] = useState(PRODUCT_TYPE.PIZZA);
 
@@ -23,7 +27,7 @@ export const PromoBlock = ({isFetching, products, getAllPromoProducts}) => {
 
     useEffect(() => {
         getAllPromoProducts(type, PRODUCT_SECTION.PROMOTIONAL, SIZES_DEFAULT.XL);
-    }, [type]);
+    }, [type, getAllPromoProducts]);
 
 
     return <>

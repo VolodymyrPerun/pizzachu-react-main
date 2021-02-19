@@ -6,7 +6,7 @@ import {Pagination} from 'antd';
 import {FastBackwardFilled, FastForwardFilled} from '@ant-design/icons';
 import {Filter} from "../Filter/Filter";
 import SortBy from "../SortBy/SortBy";
-import Preloader from "../../commons/Preloader/Preloader";
+//import Preloader from "../../commons/Preloader/Preloader";
 import {PAGE_DEFAULT, PRODUCT_TYPE} from "../../../constants";
 
 const Products = memo(({
@@ -38,7 +38,7 @@ const Products = memo(({
                 getAllProducts(type, section, size_id, pageSize, currentPage);
             }
         );
-    }, []);
+    }, [getAllProducts]);
 
     const [activeTab, setActiveTab] = useState(0);
 

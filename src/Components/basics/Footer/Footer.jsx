@@ -1,5 +1,5 @@
 import React from 'react';
-import  './Footer.scss';
+import './Footer.scss';
 import {faEnvelope} from "@fortawesome/free-solid-svg-icons";
 import {FontAwesomeIcon} from "@fortawesome/react-fontawesome";
 import {faViber, faWhatsapp} from "@fortawesome/free-brands-svg-icons";
@@ -22,7 +22,8 @@ const Footer = () => {
             </div>
 
             <div className="credits">
-                <p className="credits_title">copyright © 2021 🍕 all rights reserved:
+                <p className="credits_title">copyright © 2021 <span role="img" aria-label="information">🍕</span> all
+                    rights reserved:
                     <a rel='noopener noreferrer'
                        href="mailto:volodimirperun007@gmail.com"> volodimirperun007@gmail.com</a>
                 </p>

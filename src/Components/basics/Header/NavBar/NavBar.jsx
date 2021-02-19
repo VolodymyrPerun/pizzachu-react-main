@@ -36,7 +36,7 @@ const NavBar = () => {
             <nav className={styles.navbar}>
                 <Link to='/' className={styles.logo} onClick={closeMobileMenu}>
                     <p>P<span>i</span>zz<span>ac</span>hu</p> <img src={logo} alt={'logo'}/>
-                    <span className={styles.label}> i cheese you! 🍕</span>
+                    <span role="img" aria-label="information" className={styles.label}> i cheese you! 🍕</span>
                 </Link>
                 <div className={styles.menuIcon} onClick={handleClick}>
                     {click
