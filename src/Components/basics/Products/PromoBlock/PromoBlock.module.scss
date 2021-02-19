@@ -1,0 +1,188 @@
+* {
+  transition: all 0.3s ease-out;
+  line-height: 22px;
+}
+
+.container {
+  justify-content: center;
+  justify-items: center;
+  align-items: center;
+  align-self: center;
+  align-content: center;
+  text-align: center;
+  font-family: 'Caveat', cursive;
+  font-weight: 800;
+  margin-bottom: 50px;
+  padding-bottom: 30px;
+  background: #fff;
+  border-radius: 15px;
+  border: 2px solid #f0f0f0;
+  box-shadow: 0 14px 28px rgba(0, 0, 0, 0.25), 0 10px 10px rgba(0, 0, 0, 0.22);
+
+  .delivery {
+    display: grid;
+    justify-content: center;
+    align-content: center;
+    justify-items: center;
+    align-self: center;
+  }
+
+  .promoContainer {
+    max-width: 70%;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    justify-content: center;
+    justify-items: center;
+    align-items: center;
+    align-self: center;
+    align-content: center;
+    text-align: center;
+    margin-left: auto;
+    margin-right: auto;
+    font-family: 'Caveat', cursive;
+    font-weight: 800;
+
+    .promoCard {
+      display: grid;
+      grid-template-rows: 1fr 1fr 1fr 2fr 1fr;
+      border-radius: 15px;
+      margin: 5px;
+      padding: 10px;
+      width: 55vh;
+      max-width: 65%;
+      max-height: 200px;
+      justify-content: center;
+      justify-items: center;
+      text-align: center;
+      background: #fff;
+      border: 1px solid #f0f0f0;
+      box-shadow: 0 14px 28px rgba(0, 0, 0, 0.25), 0 10px 10px rgba(0, 0, 0, 0.22);
+
+
+      &:hover {
+        transform: scale(1.02);
+
+        &:after {
+          content: '';
+          position: absolute;
+          top: 0;
+          left: 0;
+          bottom: 0;
+          right: 0;
+          z-index: 2;
+          border-radius: 15px;
+          background: linear-gradient(-71deg, #000 0%, grey 49%, #fff 100%);
+          opacity: 0.2;
+        }
+      }
+
+      .promoLabel {
+        align-self: start;
+        text-align: left;
+        color: #EE7178;
+      }
+
+      .image {
+        width: 140px;
+        height: 70px;
+      }
+
+      .title {
+        color: black;
+        font-size: 17px;
+        margin: 0;
+        font-weight: bold;
+      }
+
+      .weight {
+        position: relative;
+        color: gray;
+        font-size: 17px;
+        text-align: left;
+        right: -50px;
+        border: 1px solid #f0f0f0;
+        border-radius: 15px;
+        padding: 0 5px;
+        margin: 0;
+
+        &:nth-child(2) {
+          right: 50px;
+        }
+
+        span {
+          color: black;
+          font-weight: 600;
+        }
+      }
+
+      .description {
+        font-weight: 600;
+        font-size: 17px;
+        color: olivedrab;
+      }
+
+      .price {
+        position: relative;
+        color: gray;
+        font-size: 17px;
+        text-align: right;
+        left: -30px;
+        margin: 0;
+        border: 1px solid #f0f0f0;
+        border-radius: 15px;
+        padding: 0 5px;
+
+        span {
+          color: black;
+          font-weight: 600;
+        }
+
+        .description {
+          width: 60%;
+          font-weight: 400;
+          font-size: 26px;
+          color: olivedrab;
+        }
+      }
+    }
+  }
+}
+
+
+@media only screen and (max-width: 1020px) {
+  .container {
+    margin: 0;
+    padding: 0;
+
+    .delivery {
+
+      & > span {
+        display: grid;
+        justify-content: center;
+        align-content: center;
+        justify-items: center;
+        align-self: center;
+      }
+    }
+
+    .promoContainer {
+      max-width: 90%;
+      display: grid;
+      grid-template-columns: 1fr;
+    }
+  }
+}
+
+@media only screen and (max-width: 580px) {
+  .container {
+    max-width: 350px;
+    margin: 0;
+    padding: 0;
+
+
+    .promoCard {
+      max-width: 250px;
+    }
+  }
+}
+
