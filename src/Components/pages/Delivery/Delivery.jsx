@@ -1,21 +1,24 @@
 import React from 'react';
 import styles from './Delivery.module.scss';
 import deliveryPagePhoto from "../../../assets/images/delivery.png";
+import {LazyLoadImage} from "react-lazy-load-image-component";
+import 'react-lazy-load-image-component/src/effects/blur.css';
+
 
 const Delivery = () => {
     return (
         <div className={styles.container}>
             <h2 className={styles.title}>ДОСТАВКА І ОПЛАТА</h2>
-            <img alt='img' src={deliveryPagePhoto}/>
+            <LazyLoadImage effect="blur" alt='img' src={deliveryPagePhoto}/>
             <div className={styles.contacts}>
                 <h3 className={styles.title}>МИ НЕ ВСТИГЛИ ЗА 29 ХВИЛИН?</h3>
                 <p className={styles.subtitle}>
-                     На Ваш баланс нараховуються бали в розмірі 5% від суми кожного замовлення. Бонусний рахунок
+                    На Ваш баланс нараховуються бали в розмірі 5% від суми кожного замовлення. Бонусний рахунок
                     закріплений за номером телефону. Збирайте бали та отримуйте частково оплачене або цілком
-                         безкоштовне замовлення протягом 30 днів.
+                    безкоштовне замовлення протягом 30 днів.
                 </p>
                 <p className={styles.subtitle}>
-                     Компенсаційні піца та рол змінюються залежно від дня тижня. Весь список страв представлений внизу
+                    Компенсаційні піца та рол змінюються залежно від дня тижня. Весь список страв представлений внизу
                     сторінки.
                 </p>
                 <p className={styles.subtitle}>

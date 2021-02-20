@@ -1,4 +1,4 @@
-import React, {useEffect, useState} from 'react';
+import React, {memo, useCallback, useEffect, useState} from 'react';
 import styles from './PromoBlock.module.scss'
 import noPhoto from "../../../../assets/images/no-aveliable-image.png";
 import {PRODUCT_SECTION, PRODUCT_TYPE, SIZES_DEFAULT} from "../../../../constants";
@@ -9,21 +9,17 @@ import Timer from "../../../commons/Timer/Timer";
 //import Preloader from "../../../commons/Preloader/Preloader";
 
 
-export const PromoBlock = ({
-                               //isFetching,
-                               products,
-                               getAllPromoProducts
-}) => {
+const PromoBlock = memo(({products, getAllPromoProducts}) => {
 
     let [type, setType] = useState(PRODUCT_TYPE.PIZZA);
 
-    setTimeout(() => {
+    useCallback(setTimeout(() => {
         setType(type = PRODUCT_TYPE.PIZZA);
-    }, 15000);
+    }, 17000), [type]);
 
-    setTimeout(() => {
+    useCallback(setTimeout(() => {
         setType(type = PRODUCT_TYPE.SUSHI_AND_ROLES);
-    }, 10000);
+    }, 10000), [type]);
 
     useEffect(() => {
         getAllPromoProducts(type, PRODUCT_SECTION.PROMOTIONAL, SIZES_DEFAULT.XL);
@@ -63,7 +59,8 @@ export const PromoBlock = ({
                                     ? <img className={styles.image}
                                            src={`http://localhost:5000/${prod.product_photo}`}
                                            alt={'product'}/>
-                                    : <img className={styles.image} src={noPhoto} alt={'product'}/>}
+                                    : <img className={styles.image} src={noPhoto}
+                                           alt={'product'}/>}
                                 {prod.section_id !== PRODUCT_SECTION.DRINKS
                                     ? <p className={styles.weight}>Вага: <span>{prod.weight}</span> гр</p>
                                     : <p className={styles.weight}>Об'єм: <span>{prod.weight}</span> л</p>}
@@ -79,5 +76,6 @@ export const PromoBlock = ({
             </div>
         }
     </>
-};
+});
 
+export default PromoBlock;

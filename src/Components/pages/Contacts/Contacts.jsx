@@ -13,7 +13,7 @@ const Contacts = () => {
                 <span className={styles.logo}>P<span>i</span>zz<span>ac</span>hu</span> –
                 наші контакти
             </p>
-            <img alt='img' src={contactsPagePhoto}/>
+            <img className={styles.img} alt='img' src={contactsPagePhoto}/>
             <div className={styles.contacts}>
                 <h3 className={styles.title}>Співпраця та партнерство:</h3>
                 <a href="tel:+380985845196" className={styles.subtitle} rel="noopener noreferrer">

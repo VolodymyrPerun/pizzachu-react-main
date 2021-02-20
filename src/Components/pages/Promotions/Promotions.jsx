@@ -3,6 +3,8 @@ import styles from './Promotions.module.scss';
 import promoLatePhoto from "../../../assets/images/prom_late.png";
 import promoBirthPhoto from "../../../assets/images/prom_birth.png";
 import promoBonusPhoto from "../../../assets/images/prom_bonus.png";
+import {LazyLoadImage} from "react-lazy-load-image-component";
+import 'react-lazy-load-image-component/src/effects/blur.css';
 
 
 const Promotions = () => {
@@ -11,7 +13,7 @@ const Promotions = () => {
         <>
             <div className={styles.container}>
                 <div className={styles.aside}>
-                    <img alt='img' src={promoLatePhoto}/>
+                    <LazyLoadImage effect="blur" alt='img' src={promoLatePhoto}/>
                 </div>
                 <div className={styles.line}/>
                 <div className={styles.description}>
@@ -34,7 +36,7 @@ const Promotions = () => {
             </div>
             <div className={styles.container}>
                 <div className={styles.aside}>
-                    <img alt='img' src={promoBirthPhoto}/>
+                    <LazyLoadImage effect="blur" alt='img' src={promoBirthPhoto}/>
                 </div>
                 <div className={styles.line}/>
                 <div className={styles.description}>
@@ -61,7 +63,7 @@ const Promotions = () => {
             </div>
             <div className={styles.container}>
                 <div className={styles.aside}>
-                    <img alt='img' src={promoBonusPhoto}/>
+                    <LazyLoadImage effect="blur" alt='img' src={promoBonusPhoto}/>
                 </div>
                 <div className={styles.line}/>
                 <div className={styles.description}>

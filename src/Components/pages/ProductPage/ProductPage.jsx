@@ -1,4 +1,4 @@
-import React, {useEffect} from 'react';
+import React, {memo, useEffect} from 'react';
 import styles from './ProductPage.module.scss'
 import Preloader from "../../commons/Preloader/Preloader";
 import noPhoto from "../../../assets/images/no-aveliable-image.png";
@@ -16,7 +16,7 @@ import {
 import {FontAwesomeIcon} from "@fortawesome/react-fontawesome";
 import {shuffle} from 'lodash';
 
-export const ProductPage = ({product, match, getProductById, isFetching, products}) => {
+export const ProductPage = memo(({product, match, getProductById, isFetching, products}) => {
 
     useEffect(() => {
         getProductById(match.params.productId);
@@ -24,19 +24,19 @@ export const ProductPage = ({product, match, getProductById, isFetching, product
 
 
     return <>
-        {isFetching
-            ? <Preloader/>
-            : <div className={styles.container}>
-                <div className={styles.card}>
-                    <NavLink className={styles.closeBtn} to={'/home'}>
-                        <CloseCircleOutlined className={styles.icon}/>
-                    </NavLink>
-                    {product.product_photo
-                        ? <img className={styles.image} src={`http://localhost:5000/${product.product_photo}`}
-                               alt={'product'}/>
-                        : <img className={styles.image} src={noPhoto} alt={'product'}/>}
-                    <p className={styles.title}>{product.name}</p>
-                    {product.description
+        {
+            isFetching ? <Preloader/> :
+                <div className={styles.container}>
+                    <div className={styles.card}>
+                        <NavLink className={styles.closeBtn} to={'/home'}>
+                            <CloseCircleOutlined className={styles.icon}/>
+                        </NavLink>
+                        {product.product_photo
+                            ? <img className={styles.image} src={`http://localhost:5000/${product.product_photo}`}
+                                   alt={'product'}/>
+                            : <img className={styles.image} src={noPhoto} alt={'product'}/>}
+                        <p className={styles.title}>{product.name}</p>
+                        {product.description
                         ? <p className={styles.description}>
                             <FontAwesomeIcon
                                 style={{marginRight: '7px', fontSize: '18px', color: '#EE7178'}}
@@ -116,8 +116,8 @@ export const ProductPage = ({product, match, getProductById, isFetching, product
                             })}
                         </div>
                     </> : null}
-            </div>
+                </div>
         }
     </>
-};
+});
 

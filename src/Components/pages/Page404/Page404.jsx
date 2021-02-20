@@ -1,18 +1,21 @@
-import React, {useEffect} from 'react';
+import React, {useMemo} from 'react';
 import style from "./Page404.module.scss";
 import error from "../../../assets/images/not_found_bg.png";
 import PagePhoto from "../../../assets/images/404.gif";
+import {LazyLoadImage} from "react-lazy-load-image-component";
+import 'react-lazy-load-image-component/src/effects/blur.css';
 
 
 export const Page404 = ({history}) => {
 
-    useEffect(() => {
+    useMemo(() => {
         setTimeout(() => history.push('/'), 10000);
     }, [history]);
 
     return (
         <div className={style.page}>
-            <img
+            <LazyLoadImage
+                effect="blur"
                 alt='img'
                 src={PagePhoto}/>
             <div className={style.errorContent}

@@ -1,6 +1,9 @@
 import React from 'react';
 import styles from './AboutUs.module.scss';
 import aboutPagePhoto from "../../../assets/images/about.png";
+import {LazyLoadImage} from "react-lazy-load-image-component";
+import 'react-lazy-load-image-component/src/effects/blur.css';
+
 
 const AboutUs = () => {
 
@@ -13,7 +16,7 @@ const AboutUs = () => {
                     доставка суші та піци у
                     Львові
                 </p>
-                <img alt='img' src={aboutPagePhoto}/>
+                <LazyLoadImage effect="blur" alt='img' src={aboutPagePhoto}/>
             </div>
             <div className={styles.line}/>
             <div className={styles.description}>

@@ -24,25 +24,12 @@ const Timer = () => {
 
     const [timeLeft, setTimeLeft] = useState(calculateTimeLeft());
 
-    useEffect(() => {
-            let cleanupFunction = false;
-            try {
-                if (!cleanupFunction) {
-                    setTimeout(() => {
-                    setTimeLeft(calculateTimeLeft());
-                    }, 1000);
-                }
-            } catch (e) {
-                console.error(e);
-            }
-            return (() => {
-                    cleanupFunction = true;
-                    setTimeout(() => {
-                        setTimeLeft(calculateTimeLeft());
-                    }, 1000);
-                }
-            );
-    });
+    const set = React.useCallback(e => {
+        setInterval(() => {
+            setTimeLeft(calculateTimeLeft(e));
+        }, 1000);
+    }, []);
+
 
     Object.keys(timeLeft).forEach((interval, i) => {
         if (!timeLeft[interval]) {
@@ -50,11 +37,18 @@ const Timer = () => {
         }
 
         timerComponents.push(
-            <span key={i}>
-      {timeLeft[interval]} {interval}{" "}
-    </span>
+            <span key={i}>{timeLeft[interval]} {interval}{" "}</span>
         );
     });
+
+
+    useEffect(() => {
+        if (!timeLeft) return;
+        set();
+        return () => clearInterval(set());
+
+    }, [set, timeLeft]);
+
 
     return (
         <>

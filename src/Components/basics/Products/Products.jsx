@@ -1,4 +1,4 @@
-import React, {memo, useEffect, useState} from 'react';
+import React, {memo, useMemo, useState} from 'react';
 import PropTypes from 'prop-types';
 import ProductCard from "../../basics/Products/ProductsCard/ProductsCard";
 import styles from './Products.module.scss'
@@ -25,7 +25,7 @@ const Products = memo(({
                        }) => {
 
 
-    useEffect((type, section, size_id, pageSize, currentPage) => {
+    useMemo((type, section, size_id, pageSize, currentPage) => {
         let cleanupFunction = false;
         try {
             (!cleanupFunction) &&

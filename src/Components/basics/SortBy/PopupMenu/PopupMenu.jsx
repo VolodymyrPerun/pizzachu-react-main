@@ -1,4 +1,4 @@
-import React, {useEffect} from 'react';
+import React, {memo, useMemo} from 'react';
 import styles from './PopupMenu.module.scss';
 import {FontAwesomeIcon} from "@fortawesome/react-fontawesome";
 import {faCaretDown} from "@fortawesome/free-solid-svg-icons";
@@ -6,7 +6,7 @@ import PropTypes from "prop-types";
 import {PRODUCT_TYPE} from "../../../../constants";
 
 let label = "оберіть метод сортування";
-const PopupMenu = ({sortItems, setFilter}) => {
+const PopupMenu = memo(({sortItems, setFilter}) => {
 
     const [visiblePopup, setVisiblePopup] = React.useState(false);
     const [activeItem, setActiveItem] = React.useState(0);
@@ -42,7 +42,7 @@ const PopupMenu = ({sortItems, setFilter}) => {
         }
     };
 
-    useEffect(() => {
+    useMemo(() => {
         document.querySelector('body').addEventListener('click', clickOutsideCallback);
         return () => document.querySelector('body').removeEventListener('click', clickOutsideCallback);
     }, [clickOutsideCallback]);
@@ -78,7 +78,7 @@ const PopupMenu = ({sortItems, setFilter}) => {
             )}
         </>
     );
-};
+});
 
 PopupMenu.propTypes = {
     sortItems: PropTypes.arrayOf(PropTypes.object),

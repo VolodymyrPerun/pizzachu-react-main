@@ -3,10 +3,11 @@
   width: 70%;
   height: auto;
   justify-self: center;
-  justify-content: space-around;
+  justify-content: center;
   justify-items: center;
-  align-content: space-between;
+  align-content: center;
   align-self: center;
+  align-items: center;
   padding: 0 5px;
   grid-template-columns: 1fr;
   grid-template-rows: 1fr;
@@ -19,7 +20,8 @@
     font-weight: bolder;
   }
 
-  img {
+  .img {
+    margin: 0 auto;
     border-radius: 2px;
     height: 30vh;
     width: 44.5%;
@@ -74,7 +76,7 @@
     grid-template-rows: 1fr;
     margin-top: 30px;
 
-    img {
+    .img {
       height: 33vh;
       width: 52.5%;
     }
