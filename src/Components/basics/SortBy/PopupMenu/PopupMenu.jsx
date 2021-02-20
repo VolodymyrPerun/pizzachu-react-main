@@ -12,7 +12,8 @@ const PopupMenu = memo(({sortItems, setFilter}) => {
     const [activeItem, setActiveItem] = React.useState(0);
     const blockRef = React.useRef(0);
     const clickOutsideCallback = React.useCallback(e => {
-        if (!e.path.includes(blockRef.current)) {
+        const path = e.path || (e.composedPath && e.composedPath());
+        if (!path.includes(blockRef.current)) {
             setVisiblePopup(false);
         }
     }, []);
