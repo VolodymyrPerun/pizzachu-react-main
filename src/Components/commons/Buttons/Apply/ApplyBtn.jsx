@@ -1,10 +1,14 @@
 import React from 'react';
 import style from './ApplyBtn.module.scss';
+import {FontAwesomeIcon} from "@fortawesome/react-fontawesome";
 
-const ApplyBtn = React.memo(({handleClick, label}) => {
+const ApplyBtn = React.memo(({handleClick, label, icon}) => {
     return (
         <>
-            <button className={style.button} onClick={handleClick}>{label}</button>
+            <span className={style.button} onClick={handleClick}>
+                {<FontAwesomeIcon style={{marginRight: '7px', color: 'azure'}} icon={icon}/>}
+                {label}
+            </span>
         </>
     )
 });

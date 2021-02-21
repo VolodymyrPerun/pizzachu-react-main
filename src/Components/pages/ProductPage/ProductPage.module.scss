@@ -4,6 +4,8 @@
 }
 
 .container {
+  display: grid;
+  grid-area: content;
   justify-content: center;
   justify-items: center;
   align-items: center;

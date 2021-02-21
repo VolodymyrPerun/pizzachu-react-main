@@ -7,6 +7,7 @@ import {PRODUCT_SECTION, PRODUCT_TYPE} from "../../../constants";
 import {CloseCircleOutlined} from '@ant-design/icons';
 import {NavLink} from "react-router-dom";
 import {
+    faArrowLeft,
     faBalanceScaleLeft,
     faInfo,
     faMoneyBillWave,
@@ -15,6 +16,7 @@ import {
 } from "@fortawesome/free-solid-svg-icons";
 import {FontAwesomeIcon} from "@fortawesome/react-fontawesome";
 import {shuffle} from 'lodash';
+import ApplyBtn from "../../commons/Buttons/Apply/ApplyBtn";
 
 export const ProductPage = memo(({product, match, getProductById, isFetching, products}) => {
 
@@ -116,6 +118,13 @@ export const ProductPage = memo(({product, match, getProductById, isFetching, pr
                             })}
                         </div>
                     </> : null}
+
+                    <NavLink style={{margin: '30px auto'}} to={'/home'}>
+                        <ApplyBtn
+                            icon={faArrowLeft}
+                            label={'Повернутись назад'}
+                        />
+                    </NavLink>
                 </div>
         }
     </>

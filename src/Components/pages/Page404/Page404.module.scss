@@ -1,6 +1,7 @@
 .page {
   width: 80%;
   display: grid;
+  grid-area: content;
   align-content: space-around;
   align-self: center;
   grid-template-columns: 1fr 1fr;
