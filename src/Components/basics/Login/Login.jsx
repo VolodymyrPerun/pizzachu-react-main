@@ -1,45 +1,70 @@
 import React from 'react';
 import style from './Login.module.scss';
-import loginPagePhoto from '../../../assets/images/login-panda.gif'
-import bg from "../../../assets/images/login-page-bg.png";
+import loginPagePhoto from '../../../assets/images/login-pizza.gif'
 import LoginForm from "./LoginForm";
 import {faSignInAlt} from "@fortawesome/free-solid-svg-icons";
 import {FontAwesomeIcon} from "@fortawesome/react-fontawesome";
 import {connect} from "react-redux";
 import {login} from "../../../redux/reducers/authReducer/thunks";
-import {Redirect} from "react-router-dom";
+import {NavLink, Redirect} from "react-router-dom";
+import Preloader from "../../commons/Preloader/Preloader";
+import styles from "../../basics/Login/Login.module.scss";
+import {CloseOutlined} from '@ant-design/icons';
 
 
-const Login = ({isAuth, login, captchaUrl}) => {
+const Login = ({
+                   isAuth,
+                   isFetching,
+                   errorMessage,
+                   match,
+                   login,
+                   loginAdmin,
+                   adminErrorMessage
+               }) => {
 
-    let onSubmit = formData => {
-        login(formData.email, formData.password, formData.rememberMe, formData.captcha);
+
+    console.log(isAuth);
+
+    const onSubmit = data => {
+
+        if (match.path === '/login') {
+            login(data.email, data.password)
+        }
+
+        if (match.path === '/auth-admin') {
+            loginAdmin(data.email, data.password)
+        }
     };
 
     if (isAuth) {
-        return <Redirect to={'/profile'}/>
+        return <Redirect to={`/home`}/>
+    }
+    if (isFetching) {
+        return <div className={styles.preloader}>
+
+            <Preloader/>
+            </div>
     }
 
     return (
-        <div className={style.login}
-             style={{
-                 backgroundImage: `url(${bg})`,
-                 backgroundPosition: 'center',
-                 backgroundSize: 'cover',
-                 backgroundRepeat: 'no-repeat'
-             }}>
+        <div className={style.login}>
             <img
                 alt='img'
                 src={loginPagePhoto}/>
 
             <div className={style.forms}>
+                    <NavLink className={styles.closeBtn} to={'/home'}>
+                        <CloseOutlined className={styles.icon}/>
+                    </NavLink>
                 <h1 className={style.title}>
                     <FontAwesomeIcon
                         style={{marginRight: '13px', bottom: '-5px', position: 'relative'}}
                         icon={faSignInAlt}/>
-                    Login
+                    Вхід
                 </h1>
-                <LoginForm onSubmit={onSubmit} captchaUrl={captchaUrl}/>
+                <LoginForm onSubmit={onSubmit}
+                           errorMessage={errorMessage}
+                           adminErrorMessage={adminErrorMessage}/>
             </div>
         </div>
     )

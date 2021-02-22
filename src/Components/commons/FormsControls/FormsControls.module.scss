@@ -28,10 +28,10 @@
   }
 
   .errorsContainer {
-    font: 12px raleway-grid, sans-serif;
+    font: 11px raleway-grid, sans-serif;
     font-weight: 400;
     margin-bottom: 5px;
-    max-width: 150px;
+    max-width: 195px;
 
     span {
       border: none;
@@ -39,7 +39,7 @@
       color: #fff;
       background: #c51244 !important;
       padding: 5px !important;
-      border-radius: 0 !important;
+      border-radius: 15px !important;
       position: relative;
       display: inline-block !important;
       box-shadow: 1px 1px 1px #aaaaaa;
@@ -59,6 +59,7 @@
 
     .warning {
       background-color: #ffc500 !important;
+      color: #008E46;
 
       &:before {
         border-bottom: 10px solid #ffc500 !important;

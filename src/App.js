@@ -18,6 +18,8 @@ import ErrorMessages from "./Components/commons/ErrorMessages/ErrorMessages";
 import ProductPage from "./containers/ProductPage/ProductPage";
 import Delivery from "./Components/pages/Delivery/Delivery";
 import Footer from "./Components/basics/Footer/Footer";
+import Cart from "./Components/basics/Cart/Cart";
+import Login from "./containers/Login/Login";
 
 
 class App extends Component {
@@ -67,6 +69,8 @@ class App extends Component {
                         <Route path='/home' render={() => <Home/>} exact/>
                         <Route path='/promotions' render={() => <Promotions/>}/>
                         <Route path='/delivery' render={() => <Delivery/>}/>
+                        <Route path='/cart' render={() => <Cart/>}/>
+                        <Route path='/login' render={() => <Login/>}/>
                         <Route path='/productPage/:productId?' render={() => <ProductPage/>}/>
                         <Route path='/error' render={() =>
                             <ErrorMessages globalError={this.props.globalError} history={this.props.history}/>}/>

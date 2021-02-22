@@ -1,37 +1,73 @@
+.preloader {
+  height: 72vh;
+  max-height: 72vh;
+}
+
 .login {
-  grid-template-columns: 1fr 1fr;
   display: grid;
-  border: 4px solid chocolate;
-  border-radius: 15px;
+  grid-area: content;
+  height: 60vh;
+  max-height: 70vh;
+  margin: 0 auto 22px auto;
+  width: 50%;
+  justify-content: center;
+  justify-items: center;
+  align-items: center;
+  align-self: center;
+  align-content: center;
   text-align: center;
+  grid-template-columns: 1fr;
 
   img {
     background-repeat: no-repeat;
     background-position: center;
     background-size: cover;
     align-self: center;
-    max-height: 750px;
+    max-height: 250px;
+    max-width: 250px;
     grid-column: 1;
     grid-row: 1;
+    border-radius: 15px;
   }
 
   .forms {
-    min-width: 150px;
-    max-width: 300px;
+    min-height: 300px;
+    max-height: 392px;
+    min-width: 230px;
+    max-width: 400px;
     align-content: center;
     align-items: center;
     align-self: center;
-    grid-column: 2;
+    grid-column: 1;
     grid-row: 1;
     padding: 15px;
     border-radius: 15px;
-    background: black;
-    color: tomato;
-    font: 20px "Matura MT Script Capitals", -apple-system, "Segoe UI", "Roboto", "Oxygen", "Ubuntu", "Cantarell", "Fira Sans", "Droid Sans", "Helvetica Neue", sans-serif;
-    opacity: 0.8;
+    background: #28262B;
+    color: #DEE8C1;
+    font: 20px Caveat, italic;
+    opacity: 0.9;
 
     .title {
-      font-size: 35px;
+      font-size: 25px;
+    }
+
+    .closeBtn {
+      display: flex;
+      justify-items: right;
+      justify-content: right;
+      align-content: end;
+      color: #EFEFEF;
+
+      .icon {
+        font-size: 18px;
+        font-weight: 800;
+        position: relative;
+        margin-left: auto;
+
+        &:hover {
+          transform: rotate(180deg);
+        }
+      }
     }
 
     .inputContainer {
@@ -42,9 +78,12 @@
 
       .input {
         outline: hidden;
-        font: 15px "Matura MT Script Capitals", -apple-system, "Segoe UI", "Roboto", "Oxygen", "Ubuntu", "Cantarell", "Fira Sans", "Droid Sans", "Helvetica Neue", sans-serif;
-        max-width: 150px;
-        color: tomato;
+        font: 20px Caveat, italic;
+        font-weight: 600;
+        max-width: 320px;
+        color: #008E46;
+        border-radius: 15px;
+        box-shadow: 0 14px 28px rgba(0, 0, 0, 0.25), 0 10px 10px rgba(0, 0, 0, 0.22);
 
         &:last-child {
           margin-bottom: 5px;
@@ -65,11 +104,40 @@
       align-items: center;
       text-align: center;
     }
+
+    .errMsg {
+      font: 15px raleway-grid, sans-serif;
+      text-align: center;
+      border-radius: 15px;
+      color: #EFEFEF;
+      font-style: italic;
+      font-size: 17px;
+      font-weight: 600;
+      width: 90%;
+      margin-bottom: 30px;
+    }
+
+    .menuItemLink {
+      transition: 0.3s;
+      color: #EFEFEF;
+      font: 20px Caveat, italic;
+      font-weight: 400;
+      display: flex;
+      text-align: center;
+      margin-bottom: 10px;
+      margin-top: 10px;
+    }
+
+    .menuItemLink:hover {
+      border-bottom: 1px dotted #EFEFEF;
+      transition: 0.3ms ease;
+    }
   }
 }
 
 @media only screen and (max-width: 572px) {
   .login {
+    width: 90%;
     grid-template-columns: 1fr;
 
     img {

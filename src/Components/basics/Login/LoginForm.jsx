@@ -1,5 +1,5 @@
 import React from 'react';
-import style from './Login.module.scss';
+import styles from './Login.module.scss';
 import {Field, reduxForm} from "redux-form";
 import SubmitFollowBtn from "../../commons/Buttons/SubmitFollow/SubmitFollowBtn";
 import {faAt, faKey} from "@fortawesome/free-solid-svg-icons";
@@ -7,6 +7,7 @@ import {FontAwesomeIcon} from "@fortawesome/react-fontawesome";
 import FormsControlItem from "../../commons/FormsControls/FormsControls";
 import {INPUT} from "../../../constants/formsControls.enum";
 import {email, maxLengthCreator, minLengthCreator, password, required} from "../../../validators/validators";
+import {NavLink} from "react-router-dom";
 
 
 const maxLength20 = maxLengthCreator(20);
@@ -15,17 +16,17 @@ const minLength2 = minLengthCreator(2);
 const minLength4 = minLengthCreator(4);
 
 
-let LoginForm = ({handleSubmit, pristine, submitting, reset, error, captchaUrl}) => {
+let LoginForm = ({handleSubmit, pristine, submitting, reset, error, errorMessage, adminErrorMessage}) => {
 
     return (
         <form onSubmit={handleSubmit}>
-            <div className={style.inputContainer}>
+            <div className={styles.inputContainer}>
 
-                <Field className={style.input}
+                <Field className={styles.input}
                        name={"email"}
                        component={FormsControlItem(INPUT)}
                        type={"email"}
-                       placeholder={'Email'}
+                       placeholder={'Емейл'}
                        validate={[required, maxLength45, minLength2]}
                        warn={email}
                        label={<FontAwesomeIcon
@@ -33,13 +34,13 @@ let LoginForm = ({handleSubmit, pristine, submitting, reset, error, captchaUrl})
                            icon={faAt}/>}
                 />
             </div>
-            <div className={style.inputContainer}>
+            <div className={styles.inputContainer}>
 
-                <Field className={style.input}
+                <Field className={styles.input}
                        name={"password"}
                        component={FormsControlItem(INPUT)}
                        type={'password'}
-                       placeholder={'Password'}
+                       placeholder={'Пароль'}
                        validate={[required, maxLength20, minLength4]}
                        warn={password}
                        label={<FontAwesomeIcon
@@ -47,43 +48,30 @@ let LoginForm = ({handleSubmit, pristine, submitting, reset, error, captchaUrl})
                            icon={faKey}/>}
                 />
             </div>
-            <div className={style.inputContainer}>
-                <Field className={style.input}
-                       name={"rememberMe"}
-                       component={'input'}
-                       type={'Checkbox'}
-                />
-                <label className={style.input} htmlFor={"rememberMe"}> remember me</label>
-            </div>
 
-            {captchaUrl && <img style={{width: '70%', height: '70%', marginTop: '15px'}} src={captchaUrl} alt={'captcha'}/>}
-            {captchaUrl && <div className={style.inputContainer}>
-                <Field className={style.input}
-                       name={"captcha"}
-                       component={FormsControlItem(INPUT)}
-                       type={'text'}
-                       placeholder={'symbols from image'}
-                       validate={[required]}
-                />
-            </div>}
-
-            <div className={style.inputContainer}>
+            <div className={styles.inputContainer}>
                 <SubmitFollowBtn
-                    label="Login"
+                    label={"Увійти"}
                     name={'Submit'}
                     type={"submit"}
                     disabled={pristine || submitting}
                     onClick={reset}
                 />
             </div>
-
+            <div className={styles.inputContainer}>
+                <NavLink className={styles.menuItemLink} to={'/forgot-password'}>Забули пароль?</NavLink>
+            </div>
             {error &&
-            <div className={style.formsSummaryError}>
+            <div className={styles.formsSummaryError}>
                 <span>ERROR: {error}</span>
             </div>}
+            {errorMessage && '/' + window.location.href.split('/').pop() === '/login' &&
+            <div className={styles.errMsg}>{errorMessage}</div>}
+            {adminErrorMessage && '/' + window.location.href.split('/').pop() === '/auth-admin' &&
+            <div className={styles.errMsg}>{adminErrorMessage}</div>}
         </form>
     )
-}
+};
 
 export default reduxForm({
     // a unique name for the form

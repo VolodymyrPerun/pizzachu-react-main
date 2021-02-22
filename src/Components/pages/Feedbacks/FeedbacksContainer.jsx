@@ -1,7 +1,7 @@
 import {addMessage, setIsFetching} from '../../../redux/reducers/dialogsReducer/actions';
 import Feedbacks from "./Feedbacks";
 import {connect} from 'react-redux';
-import {withAuthRedirect} from "../../../HOC/withAuthRedirect";
+import {withAuthRedirect} from "../../../hoc/withAuthRedirect";
 import {compose} from "redux";
 
 
