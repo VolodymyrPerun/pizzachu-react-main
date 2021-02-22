@@ -1,14 +1,14 @@
 import React, {useState} from 'react';
-import {Button} from './Button/Button';
+import {Button} from './Button/ButtonLogin';
 import {Link} from 'react-router-dom';
-import styles from './NavBar.module.scss'
+import styles from './NavBar.module.scss';
 import Dropdown from './Dropdown/Dropdown';
-import {faBars, faTimes, faCaretDown} from "@fortawesome/free-solid-svg-icons";
+import {faBars, faCaretDown, faSignInAlt, faSignOutAlt, faTimes} from "@fortawesome/free-solid-svg-icons";
 import {FontAwesomeIcon} from "@fortawesome/react-fontawesome";
-import logo from '../../../../assets/images/mail_bg.png'
-import SingUpIcon from "../../../commons/CustomIcons/SingUp";
+import logo from '../../../../assets/images/mail_bg.png';
 
-const NavBar = () => {
+const NavBar = ({isAuth}) => {
+
     const [click, setClick] = useState(false);
     const [dropdown, setDropdown] = useState(false);
 
@@ -34,7 +34,7 @@ const NavBar = () => {
     return (
         <>
             <nav className={styles.navbar}>
-                <Link to='/' className={styles.logo} onClick={closeMobileMenu}>
+                <Link to='/home' className={styles.logo} onClick={closeMobileMenu}>
                     <p>P<span>i</span>zz<span>ac</span>hu</p> <img src={logo} alt={'logo'}/>
                     <span role="img" aria-label="information" className={styles.label}> i cheese you! 🍕</span>
                 </Link>
@@ -49,7 +49,7 @@ const NavBar = () => {
                 </div>
                 <ul className={click ? `${styles.navMenu} ${styles.active}` : `${styles.navMenu}`}>
                     <li className={styles.navItem}>
-                        <Link to='/' className={styles.navLinks} onClick={closeMobileMenu}>
+                        <Link to='/home' className={styles.navLinks} onClick={closeMobileMenu}>
                             Головна
                         </Link>
                     </li>
@@ -115,19 +115,37 @@ const NavBar = () => {
                         </Link>
                     </li>
                     <li>
-                        <Link
-                            to='/sign-up'
-                            className={styles.navLinksMobile}
-                            onClick={closeMobileMenu}
-                        >
-                            Sign Up<SingUpIcon/>
-                        </Link>
+                        {isAuth ?
+                            <Link
+                                to='/logout'
+                                className={styles.navLinksMobile}
+                                onClick={closeMobileMenu}
+                            >
+                                Вихід <FontAwesomeIcon className={styles.faBars} icon={faSignOutAlt}/>
+                            </Link>
+                            : <Link
+                                to='/login'
+                                className={styles.navLinksMobile}
+                                onClick={closeMobileMenu}
+                            >
+                                Вхід <FontAwesomeIcon className={styles.faBars} icon={faSignInAlt}/>
+                            </Link>}
                     </li>
                 </ul>
-                <Button/>
+                {isAuth ?
+                    <Button
+                        path={'/logout'}
+                        label={'Вихід'}
+                        icon={<FontAwesomeIcon className={styles.faBars} icon={faSignOutAlt}/>
+                        }/>
+                    : <Button
+                        path={'/login'}
+                        label={'Вхід'}
+                        icon={<FontAwesomeIcon className={styles.faBars} icon={faSignInAlt}/>
+                        }/>}
             </nav>
         </>
     );
-}
+};
 
 export default NavBar;

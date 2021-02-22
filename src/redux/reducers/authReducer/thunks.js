@@ -1,44 +1,294 @@
-//import {authAPI} from "../../../API/authAPI/authAPI";
-//import {secureAPI} from "../../../API/secureAPI/secureAPI"
-//import {stopSubmit} from "redux-form";
-import {setAuthUserData} from "./actions";
+import {authAPI} from "../../../API/authAPI/authAPI";
+import {checkAccessTokenPresent} from "../../../helpers/checkAccessTokenPresent";
+//import {refreshUserToken} from "../refreshReducer/thunks";
+import {TOKEN_ENUM} from "../../../constants";
+import {CUSTOM_ERRORS} from "../../../constants";
+// import historyRout from "../../../helpers/history";
+// import {adminAPI} from "../../../api/adminAPI";
+// import {userAPI} from "../../../api/userAPI";
+import {
+    changePasswordErrMsg,
+    resetPasswordErrMsg,
+    sendMailErrMsg,
+    setIsAuth,
+    setIsFetching,
+    setIsPasswordChanged,
+    setIsProfileUpdate,
+    setIsResetPassword,
+    setIsSentMail,
+    setLoginAdminErrMsg,
+    setLoginErrMsg,
+    setMeDates,
+    setMyID
+} from "./actions";
 
 
 export const authMe = () => async dispatch => {
-    // let response = await authAPI.authMe();
-    // if (response.data.resultCode === 0) {
-    //     let {id, email, login} = response.data.data;
-    //     dispatch(setAuthUserData(id, email, login, true));
-    // }
-    // dispatch(setAuthUserData(id, email, login, true));
-    dispatch(setAuthUserData(1, 'email@com.ua', 'Vova', true));
+
+    try {
+        dispatch(setIsFetching(true))
+        const token = checkAccessTokenPresent();
+        if (token) {
+            const meDates = await authAPI.authMe(token);
+
+            console.log(meDates.data);
+
+            dispatch(setMeDates(meDates.data));
+            dispatch(setMyID(meDates.data.id));
+            dispatch(setIsAuth(true));
+            dispatch(setIsFetching(false));
+
+        } else {
+            dispatch(setIsFetching(false));
+        }
+    } catch (e) {
+        // dispatch(setIsFetching(false));
+        // if (e.response.data.code === CUSTOM_ERRORS[4012].code) {
+        //     dispatch(refreshUserToken());
+        //     dispatch(authMe())
+        // }
+    }
 };
 
-export const login = (email, password, rememberMe, captcha) => async dispatch => {
-    // let response = await authAPI.login(email, password, rememberMe, captcha);
-    //
-    // if (response.data.resultCode === 0) {
-    //     dispatch(authMe());
-    // } else {
-    //     if (response.data.resultCode === 10) {
-    //         dispatch(getCaptchaUrl());
-    //     }
-    //     let message = response.data.messages && response.data.messages.length > 0
-    //         ? response.data.messages[0] :
-    //         "Wrong email or password!"
-    //     dispatch(stopSubmit("loginForm", {_error: message}));
-    // }
+export const login = (email, password) => async dispatch => {
+
+    try {
+
+        dispatch(setIsFetching(true));
+
+        const authResult = await authAPI.loginAdmin(email, password);
+
+
+        localStorage.setItem(TOKEN_ENUM.access_token, authResult.data[TOKEN_ENUM.access_token]);
+        localStorage.setItem(TOKEN_ENUM.refresh_token, authResult.data[TOKEN_ENUM.refresh_token]);
+
+        const token = checkAccessTokenPresent();
+
+
+        const meDates = await authAPI.authMe(token);
+
+        if (meDates) {
+            dispatch(setMyID(meDates.data.id));
+            dispatch(setMeDates(meDates.data));
+            dispatch(setIsAuth(true));
+            dispatch(setIsFetching(false));
+            dispatch(setLoginErrMsg(null));
+
+        } else {
+            setIsFetching(false);
+        }
+
+    } catch (e) {
+        dispatch(setIsFetching(false));
+
+        if (e.response.data.code) {
+            dispatch(setLoginErrMsg(CUSTOM_ERRORS[e.response.data.code].message));
+        }
+    }
+
 };
 
-export const getCaptchaUrl = () => async dispatch => {
-    // const response = await secureAPI.getSecureCaptchaUrl();
-    // const captchaUrl = response.data.url;
-    // dispatch(getCaptchaUrlSuccess(captchaUrl));
-};
+
+// export const loginAdmin = (email, password) => async dispatch => {
+//
+//     try {
+//         dispatch(setIsFetching(true));
+//
+//         const authData = await adminAPI.authAdmin(email, password);
+//
+//         if (authData) {
+//
+//             localStorage.setItem(tokenEnum.access_token, authData.data[tokenEnum.access_token]);
+//             localStorage.setItem(tokenEnum.refresh_token, authData.data[tokenEnum.refresh_token]);
+//
+//             const token = checkAccessTokenPresent();
+//
+//             const meDates = await adminAPI.adminInfo(token);
+//
+//             if (meDates) {
+//                 dispatch(setMyID(meDates.data.id));
+//                 dispatch(setMeDates(meDates.data));
+//                 dispatch(setIsAuth(true));
+//                 dispatch(setIsFetching(false));
+//                 dispatch(setLoginAdminErrMsg(null))
+//             } else {
+//                 dispatch(setIsFetching(false))
+//             }
+//         }
+//
+//     } catch (e) {
+//         dispatch(setIsFetching(false));
+//
+//         if (e.response.data.code) {
+//             dispatch(setLoginAdminErrMsg(customErrors[e.response.data.code].message))
+//         }
+//     }
+//
+//
+// };
 
 export const logout = () => async dispatch => {
-    // let response = await authAPI.logout();
-    // if (response.data.resultCode === 0) {
-    //     dispatch(setAuthUserData(null, null, null, false));
-    // }
+
+    try {
+
+        const token = checkAccessTokenPresent();
+
+        await authAPI.logout(token);
+
+        localStorage.removeItem(TOKEN_ENUM.access_token);
+        localStorage.removeItem(TOKEN_ENUM.refresh_token);
+
+        dispatch(setIsAuth(false));
+
+        dispatch(setMeDates(null));
+
+
+    } catch (e) {}
 };
+
+// export const changeUserPassword = data => async dispatch => {
+//     try {
+//         dispatch(setIsFetching(true));
+//
+//         const token = checkAccessTokenPresent();
+//
+//         if (token) {
+//             await authAPI.changePassword(token, data);
+//
+//             dispatch(setIsPasswordChanged(true));
+//             dispatch(setIsFetching(false));
+//             dispatch(changePasswordErrMsg(null));
+//
+//         } else {
+//             dispatch(setIsFetching(false));
+//         }
+//     } catch (e) {
+//
+//         dispatch(setIsFetching(false));
+//
+//         if (e.response.data.code) {
+//
+//             dispatch(changePasswordErrMsg(CUSTOM_ERRORS[e.response.data.code].message));
+//         }
+//         if (e.response.data.code === CUSTOM_ERRORS[4012].code) {
+//
+//             dispatch(refreshUserToken());
+//             dispatch(changeUserPassword(data));
+//         }
+//
+//     }
+// };
+
+export const sendEmailForChangeForgotPassword = email => async dispatch => {
+
+    try {
+        dispatch(setIsFetching(true));
+
+        await authAPI.sendEmailForChangePassword(email);
+
+        dispatch(setIsSentMail(true));
+        dispatch(setIsFetching(false));
+        dispatch(sendMailErrMsg(null));
+
+    } catch (e) {
+
+        dispatch(setIsFetching(false));
+
+        if (e.response.data.code) {
+
+            dispatch(sendMailErrMsg(CUSTOM_ERRORS[e.response.data.code].message));
+
+        }
+    }
+};
+
+export const resetUserPassword = (data, token) => async dispatch => {
+    try {
+        dispatch(setIsFetching(true));
+
+        await authAPI.resetPassword(data, token);
+
+        dispatch(setIsFetching(false));
+        dispatch(setIsResetPassword(true));
+        dispatch(resetPasswordErrMsg(null));
+
+    } catch (e) {
+
+        dispatch(setIsFetching(false));
+
+        if (e.response.data.code) {
+
+            dispatch(resetPasswordErrMsg(CUSTOM_ERRORS[e.response.data.code].message));
+        }
+    }
+
+};
+
+// export const updateUserDates = data => async dispatch => {
+//     try {
+//         dispatch(setIsProfileUpdate(false));
+//
+//         const token = checkAccessTokenPresent();
+//
+//         if (token) {
+//
+//             await userAPI.updateProfileInfo(token, data);
+//
+//             const meDates = await authAPI.meInfo(token);
+//
+//             dispatch(setMeDates(meDates.data));
+//
+//             dispatch(setIsProfileUpdate(true))
+//
+//         } else {
+//             dispatch(setIsProfileUpdate(true));
+//         }
+//
+//
+//     } catch (e) {
+//         dispatch(setIsProfileUpdate(true));
+//
+//         if (e.response.data.code === customErrors[4012].code) {
+//
+//             dispatch(refreshUserToken());
+//             dispatch(updateUserDates(data));
+//         }
+//     }
+// };
+
+// export const updateDoctorProfilePhoto = avatar => async dispatch => {
+//
+//     try {
+//         dispatch(setIsProfileUpdate(false));
+//
+//         const token = checkAccessTokenPresent();
+//
+//         if (token) {
+//
+//             await doctorsAPI.updateDoctorAvatar(avatar, token);
+//
+//             const meDates = await authAPI.meInfo(token);
+//
+//             dispatch(setMeDates(meDates.data));
+//             dispatch(updateDoctorPhotoErrMsg(null));
+//             dispatch(setIsProfileUpdate(true));
+//
+//         } else {
+//             dispatch(setIsProfileUpdate(true))
+//         }
+//
+//     } catch (e) {
+//
+//         dispatch(setIsProfileUpdate(true));
+//
+//         if (e.response.data.code) {
+//
+//             dispatch(updateDoctorPhotoErrMsg(customErrors[e.response.data.code].message));
+//         }
+//
+//         if (e.response.data.code === customErrors[4012].code) {
+//             dispatch(refreshUserToken());
+//             dispatch(updateDoctorProfilePhoto(avatar))
+//         }
+//     }
+// };

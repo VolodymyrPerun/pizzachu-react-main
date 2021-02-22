@@ -3,21 +3,23 @@
 }
 
 .btn {
-  padding: 8px 20px;
+  padding: 8px 10px;
   border-radius: 4px;
   outline: none;
   border: none;
   font-size: 18px;
+  font-family: 'Caveat', cursive;
+  text-transform: capitalize;
   color: #fff;
   cursor: pointer;
   background-color: var(--primary);
   box-shadow: 0 2px 2px -2px rgba(0,0,0,.5);
 
   &:hover {
-    padding: 6px 18px;
+    padding: 6px 12px;
     transition: all 0.3s ease-out;
     background-color: transparent;
-    color: #fff;
+    color: var(--primary);
     border-radius: 4px;
     border: 2px solid var(--primary);
   }

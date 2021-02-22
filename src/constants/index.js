@@ -4,3 +4,6 @@ module.exports.PAGE_DEFAULT = require('./pageDefault.enum');
 module.exports.SIZES_DEFAULT = require('./sizesDefault.enum');
 module.exports.LABELS_UA = require('./labelsUA.enum');
 module.exports.SORT_POPUP_LABELS = require('./sortPopupLables.enum');
+module.exports.HEADER_ENUM = require('./authConstants/header.enum');
+module.exports.TOKEN_ENUM = require('./authConstants/token.enum');
+module.exports.CUSTOM_ERRORS = require('./customErrors/customErrors');

@@ -6,7 +6,7 @@ import {
 
 
 let initialState = {
-    initialized: true,//false!!!
+    initialized: false,
     globalError: null,
     isFetching: true
 };

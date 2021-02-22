@@ -1,9 +1,10 @@
-//import {authMe} from "../authReducer/thunks";
+import {authMe} from "../authReducer/thunks";
 import {initializedSuccess, setGlobalError} from "./actions";
 
 
 export const initializeApp = () => async dispatch => {
-    // await Promise.all([dispatch(authMe())]);
+
+    await Promise.all([dispatch(authMe())]);
     dispatch(initializedSuccess());
 };
 
