@@ -2,101 +2,120 @@
   transition: all 0.3s ease-out;
 }
 
-.card {
+.container {
   display: grid;
-  grid-template-rows: 2fr 1fr 1fr 2fr 1fr;
-  border-radius: 15px;
-  margin: 5px;
-  padding: 10px;
+  grid-template-rows: 5fr 1fr;
   max-width: 250px;
-  max-height: 380px;
-  justify-content: center;
-  justify-items: center;
-  text-align: center;
-  background: #fff;
-  border: 1px solid #f0f0f0;
-  box-shadow: 0 14px 28px rgba(0, 0, 0, 0.25), 0 10px 10px rgba(0, 0, 0, 0.22);
-  font-family: 'Caveat', cursive;
-  font-weight: 800;
 
-
-  &:hover {
-    transform: scale(1.02);
-
-    &:after {
-      content: '';
-      position: absolute;
-      top: 0;
-      left: 0;
-      bottom: 0;
-      right: 0;
-      z-index: 2;
-      border-radius: 15px;
-      background: linear-gradient(-71deg, #000 0%, grey 49%, #fff 100%);
-      opacity: 0.2;
-    }
-  }
-
-  .image {
+  .card {
     grid-row: 1;
-    width: 210px;
-    height: 150px;
-  }
+    display: grid;
+    grid-template-rows: 2fr 1fr 1fr 2fr 1fr;
+    border-radius: 15px 15px 0 0;
+    margin: 5px;
+    padding: 10px;
+    max-width: 251px;
+    max-height: 380px;
+    justify-content: center;
+    justify-items: center;
+    text-align: center;
+    background: #fff;
+    border: 1px solid #f0f0f0;
+    box-shadow: 0 2px 6px rgba(0,0,0,0.5), inset 0 1px rgba(255,255,255,0.3), inset 0 10px rgba(255,255,255,0.2), inset 0 10px 20px rgba(255,255,255,0.25), inset 0 -15px 30px rgba(0,0,0,0.3);
+    -o-box-shadow: 0 2px 6px rgba(0,0,0,0.5), inset 0 1px rgba(255,255,255,0.3), inset 0 10px rgba(255,255,255,0.2), inset 0 10px 20px rgba(255,255,255,0.25), inset 0 -15px 30px rgba(0,0,0,0.3);
+    -webkit-box-shadow: 0 2px 6px rgba(0,0,0,0.5), inset 0 1px rgba(255,255,255,0.3), inset 0 10px rgba(255,255,255,0.2), inset 0 10px 20px rgba(255,255,255,0.25), inset 0 -15px 30px rgba(0,0,0,0.3);
+    -moz-box-shadow: 0 2px 6px rgba(0,0,0,0.5), inset 0 1px rgba(255,255,255,0.3), inset 0 10px rgba(255,255,255,0.2), inset 0 10px 20px rgba(255,255,255,0.25), inset 0 -15px 30px rgba(0,0,0,0.3);
+    font-family: 'Caveat', cursive;
+    font-weight: 800;
 
-  .title {
-    grid-row: 3;
-    max-height: 15px;
-    color: black;
-    font-size: 22px;
-    margin: 0;
-    font-weight: bold;
-  }
 
-  .weight {
-    grid-row: 2;
-    display: flex;
-    justify-content: space-around;
+    &:hover {
+      transform: scale(1);
 
-    & > p {
-      max-height: 25px;
-      color: gray;
+      &:after {
+        content: '';
+        position: absolute;
+        top: 0;
+        left: 0;
+        bottom: 0;
+        right: 0;
+        z-index: 2;
+        border-radius: 15px 15px 0 0;
+        background: linear-gradient(-71deg, #000 0%, grey 49%, #fff 100%);
+        opacity: 0.2;
+      }
+    }
+
+    .image {
+      grid-row: 1;
+      width: 210px;
+      height: 150px;
+    }
+
+    .title {
+      grid-row: 3;
+      max-height: 15px;
+      color: black;
+      font-size: 22px;
+      margin: 0;
+      font-weight: bold;
+      width: 220px;
+      max-width: 220px;
+    }
+
+    .weight {
+      grid-row: 2;
+      display: flex;
+      justify-content: space-around;
+
+      & > p {
+        max-height: 25px;
+        color: gray;
+        font-size: 19px;
+        text-align: left;
+        border: 1px solid #f0f0f0;
+        border-radius: 15px;
+        padding: 0 5px;
+      }
+
+      span {
+        color: black;
+        font-weight: 600;
+      }
+    }
+
+    .description {
+      grid-row: 4;
+      max-height: 50px;
+      font-weight: 600;
       font-size: 19px;
-      text-align: left;
+      color: olivedrab;
+      margin-bottom: 45px;
+    }
+
+    .price {
+      grid-row: 5;
+      max-height: 25px;
+      position: relative;
+      color: gray;
+      font-size: 20px;
+      text-align: right;
+      left: -30px;
       border: 1px solid #f0f0f0;
       border-radius: 15px;
       padding: 0 5px;
-    }
 
-    span {
-      color: black;
-      font-weight: 600;
+      span {
+        color: black;
+        font-weight: 600;
+      }
     }
   }
 
-  .description {
-    grid-row: 4;
-    max-height: 50px;
-    font-weight: 600;
-    font-size: 19px;
-    color: olivedrab;
-  }
-
-  .price {
-    grid-row: 5;
-    max-height: 25px;
-    position: relative;
-    color: gray;
-    font-size: 20px;
-    text-align: right;
-    left: -30px;
-    border: 1px solid #f0f0f0;
-    border-radius: 15px;
-    padding: 0 5px;
-
-    span {
-      color: black;
-      font-weight: 600;
-    }
+  .btn {
+    grid-row: 2;
   }
 }
+
+
 
