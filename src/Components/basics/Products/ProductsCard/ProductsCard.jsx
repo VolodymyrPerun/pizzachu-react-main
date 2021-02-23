@@ -4,6 +4,8 @@ import noPhoto from '../../../../assets/images/no-aveliable-image.png';
 import {PRODUCT_SECTION, PRODUCT_TYPE} from '../../../../constants/';
 import {NavLink} from "react-router-dom";
 import PropTypes from "prop-types";
+import AddTo from "../../../commons/Buttons/AddTo/AddTo";
+import {faCartPlus} from "@fortawesome/free-solid-svg-icons";
 
 
 const ProductsCard = ({
@@ -23,11 +25,12 @@ const ProductsCard = ({
 
     return (
         <>
-            {<NavLink className={styles.card} to={'/productPage/' + productId}>
+            {<div className={styles.container}>
+                <NavLink className={styles.card} to={'/productPage/' + productId}>
                     {product_photo
                         ? //isFetching ? <img className={styles.image} src={noPhoto} alt={'product'}/> :
-                            <img className={styles.image} src={`http://localhost:5000/${product_photo}`}
-                                 alt={'product'}/>
+                        <img className={styles.image} src={`http://localhost:5000/${product_photo}`}
+                             alt={'product'}/>
                         : <img className={styles.image} src={noPhoto} alt={'product'}/>}
                     <div className={styles.weight}>
                         {section_id !== PRODUCT_SECTION.DRINKS
@@ -42,7 +45,12 @@ const ProductsCard = ({
                         ? <p className={styles.description}>{description}</p>
                         : <p className={styles.description} style={{color: 'transparent', visibility: 'hidden'}}>.</p>}
                     <p className={styles.price}>Ціна: <span>{price}</span> грн.</p>
+
                 </NavLink>
+                <div className={styles.btn}>
+                    <AddTo to={'/cart'} label={'Купити'} icon={faCartPlus}/>
+                </div>
+            </div>
             }
         </>
     )

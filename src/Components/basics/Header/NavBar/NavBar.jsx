@@ -6,6 +6,7 @@ import Dropdown from './Dropdown/Dropdown';
 import {faBars, faCaretDown, faSignInAlt, faSignOutAlt, faTimes} from "@fortawesome/free-solid-svg-icons";
 import {FontAwesomeIcon} from "@fortawesome/react-fontawesome";
 import logo from '../../../../assets/images/mail_bg.png';
+import CartCounts from "../CartCounts/CartCounts";
 
 const NavBar = ({isAuth}) => {
 
@@ -16,7 +17,7 @@ const NavBar = ({isAuth}) => {
     const closeMobileMenu = () => setClick(false);
 
     const onMouseEnter = () => {
-        if (window.innerWidth < 960) {
+        if (window.innerWidth < 1020) {
             setDropdown(false);
         } else {
             setDropdown(true);
@@ -24,7 +25,7 @@ const NavBar = ({isAuth}) => {
     };
 
     const onMouseLeave = () => {
-        if (window.innerWidth < 960) {
+        if (window.innerWidth < 1020) {
             setDropdown(false);
         } else {
             setDropdown(false);
@@ -143,6 +144,7 @@ const NavBar = ({isAuth}) => {
                         label={'Вхід'}
                         icon={<FontAwesomeIcon className={styles.faBars} icon={faSignInAlt}/>
                         }/>}
+                <CartCounts/>
             </nav>
         </>
     );

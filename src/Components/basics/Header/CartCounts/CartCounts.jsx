@@ -10,7 +10,8 @@ const CartCounts = () => {
     const {productsCount, totalPrice} = useSelector(({cart}) => (
         {
             productsCount: cart.productsCount,
-            totalPrice: cart.totalPrice.toString().replace(/(\d)(?=(\d\d\d)+(?!\d))/g, "$1.")
+            totalPrice: cart.totalPrice
+            // totalPrice: cart.totalPrice.toString().replace(/(\d)(?=(\d\d\d)+(?!\d))/g, "$1.")
         }));
 
     return (

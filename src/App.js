@@ -20,6 +20,7 @@ import Delivery from "./Components/pages/Delivery/Delivery";
 import Footer from "./Components/basics/Footer/Footer";
 import Cart from "./Components/basics/Cart/Cart";
 import Login from "./containers/Login/Login";
+import CartCounts from "./Components/basics/Header/CartCounts/CartCounts";
 
 
 class App extends Component {
@@ -79,7 +80,7 @@ class App extends Component {
                 </div>
             </div>
         );
-    }
+    };
 }
 
 let mapStateToProps = ({app}) => {

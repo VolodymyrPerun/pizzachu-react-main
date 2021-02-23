@@ -4,10 +4,10 @@ export const checkAccessTokenPresent = () => {
     const token = localStorage.getItem(TOKEN_ENUM.access_token);
 
     if (!token) {
-        return false
+        return false;
     }
 
-    return token
+    return token;
 };
 
 
