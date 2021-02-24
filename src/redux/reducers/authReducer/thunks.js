@@ -1,22 +1,18 @@
+import { v4 as uuidv4 } from 'uuid';
 import {authAPI} from "../../../API/authAPI/authAPI";
 import {checkAccessTokenPresent} from "../../../helpers/checkAccessTokenPresent";
 //import {refreshUserToken} from "../refreshReducer/thunks";
-import {TOKEN_ENUM} from "../../../constants";
-import {CUSTOM_ERRORS} from "../../../constants";
+import {CUSTOM_ERRORS, TOKEN_ENUM} from "../../../constants";
 // import historyRout from "../../../helpers/history";
 // import {adminAPI} from "../../../api/adminAPI";
 // import {userAPI} from "../../../api/userAPI";
 import {
-    changePasswordErrMsg,
     resetPasswordErrMsg,
     sendMailErrMsg,
     setIsAuth,
     setIsFetching,
-    setIsPasswordChanged,
-    setIsProfileUpdate,
     setIsResetPassword,
     setIsSentMail,
-    setLoginAdminErrMsg,
     setLoginErrMsg,
     setMeDates,
     setMyID
@@ -24,6 +20,7 @@ import {
 
 
 export const authMe = () => async dispatch => {
+    let tempId = localStorage.getItem('tempId');
 
     try {
         dispatch(setIsFetching(true))
@@ -31,11 +28,14 @@ export const authMe = () => async dispatch => {
         if (token) {
             const meDates = await authAPI.authMe(token);
 
-            console.log(meDates.data);
-
             dispatch(setMeDates(meDates.data));
             dispatch(setMyID(meDates.data.id));
             dispatch(setIsAuth(true));
+            dispatch(setIsFetching(false));
+            localStorage.setItem('tempId', '');
+
+        } else if (!tempId) {
+            localStorage.setItem('tempId', uuidv4());
             dispatch(setIsFetching(false));
 
         } else {
@@ -252,43 +252,6 @@ export const resetUserPassword = (data, token) => async dispatch => {
 //
 //             dispatch(refreshUserToken());
 //             dispatch(updateUserDates(data));
-//         }
-//     }
-// };
-
-// export const updateDoctorProfilePhoto = avatar => async dispatch => {
-//
-//     try {
-//         dispatch(setIsProfileUpdate(false));
-//
-//         const token = checkAccessTokenPresent();
-//
-//         if (token) {
-//
-//             await doctorsAPI.updateDoctorAvatar(avatar, token);
-//
-//             const meDates = await authAPI.meInfo(token);
-//
-//             dispatch(setMeDates(meDates.data));
-//             dispatch(updateDoctorPhotoErrMsg(null));
-//             dispatch(setIsProfileUpdate(true));
-//
-//         } else {
-//             dispatch(setIsProfileUpdate(true))
-//         }
-//
-//     } catch (e) {
-//
-//         dispatch(setIsProfileUpdate(true));
-//
-//         if (e.response.data.code) {
-//
-//             dispatch(updateDoctorPhotoErrMsg(customErrors[e.response.data.code].message));
-//         }
-//
-//         if (e.response.data.code === customErrors[4012].code) {
-//             dispatch(refreshUserToken());
-//             dispatch(updateDoctorProfilePhoto(avatar))
 //         }
 //     }
 // };

@@ -28,7 +28,7 @@ const Timer = () => {
         setInterval(() => {
             setTimeLeft(calculateTimeLeft(e));
         }, 1000);
-    }, []);
+    }, [setTimeLeft]);
 
 
     Object.keys(timeLeft).forEach((interval, i) => {
@@ -44,7 +44,7 @@ const Timer = () => {
 
     useEffect(() => {
         if (!timeLeft) return;
-        set();
+        clearInterval(set());
         return () => clearInterval(set());
 
     }, [set, timeLeft]);

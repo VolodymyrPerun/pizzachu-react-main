@@ -4,14 +4,14 @@ import {HEADER_ENUM} from '../../constants';
 
 export const cartAPI = {
     getCart(access_token) {
-        return instance.post(`cart`,{
+        return instance.get(`cart`, {
             headers: {
                 [HEADER_ENUM.AUTHORIZATION]: access_token
             }
         });
     },
     getUnauthorizedCart(tempId) {
-        return instance.post(`cart/unauthorized?tempId=${tempId}`);
+        return instance.get(`cart/unauthorized?tempId=${tempId}`);
     },
     addProductToCart(access_token, productId, count = 1) {
         return instance.post(`cart?productId=${productId}`, {count}, {
@@ -23,7 +23,7 @@ export const cartAPI = {
     addProductToUnauthorizedCart(tempId, productId, count = 1) {
         return instance.post(`cart/unauthorized?tempId=${tempId}&productId=${productId}`, {count});
     },
-    updateProductInCart(productId, access_token, count) {
+    updateProductInCart(access_token, productId, count) {
         return instance.put(`cart?&productId=${productId}`, {count}, {
             headers: {
                 [HEADER_ENUM.AUTHORIZATION]: access_token

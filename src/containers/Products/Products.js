@@ -4,6 +4,7 @@ import {getAllProducts} from "../../redux/reducers/productsReducer/thunks";
 import {setCurrentPage} from "../../redux/reducers/productsReducer/actions";
 import {setFilter, setSearchQuery} from "../../redux/reducers/filterReducer/actions";
 import {orderBy} from "lodash";
+import {addProductToCart, getCart} from "../../redux/reducers/cartReducer/thunks";
 
 
 const sortBy = (products, filterBy) => {
@@ -35,7 +36,7 @@ const searchProducts = (products, filterBy, searchQuery) => {
 };
 
 
-const mapStateToProps = ({productsPage, filter}) => ({
+const mapStateToProps = ({productsPage, filter, cart}) => ({
     products: productsPage.products && searchProducts(
         productsPage.products &&
         sortBy(productsPage.products, 'name'), filter.filterBy, filter.searchQuery),
@@ -52,5 +53,7 @@ export default connect(mapStateToProps, {
     getAllProducts,
     setCurrentPage,
     setFilter,
-    setSearchQuery
+    setSearchQuery,
+    addProductToCart,
+    getCart,
 })(Products);

@@ -12,7 +12,6 @@ export const getProductById = productId => async dispatch => {
         dispatch(setProduct(response.data));
         dispatch(setIsFetching(false));
     } catch (e) {
-        console.log(e);
+        console.error(e);
     }
-
 };

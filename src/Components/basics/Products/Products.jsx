@@ -1,4 +1,4 @@
-import React, {memo, useMemo, useState} from 'react';
+import React, {memo, useEffect, useState} from 'react';
 import PropTypes from 'prop-types';
 import ProductCard from "../../basics/Products/ProductsCard/ProductsCard";
 import styles from './Products.module.scss'
@@ -21,11 +21,13 @@ const Products = memo(({
                            setFilter,
                            searchQuery,
                            isFetching,
-                           setSearchQuery
+                           setSearchQuery,
+                           addProductToCart,
+                           getCart
                        }) => {
 
 
-    useMemo((type, section, size_id, pageSize, currentPage) => {
+    useEffect((type, section, size_id, pageSize, currentPage) => {
         let cleanupFunction = false;
         try {
             (!cleanupFunction) &&
@@ -87,7 +89,12 @@ const Products = memo(({
                 // isFetching
                 // ? <Preloader/> :
                     products.map(product =>
-                    <ProductCard key={product.productId} {...product} isFetching={isFetching}/>
+                        <ProductCard key={product.productId}
+                                     {...product}
+                                     isFetching={isFetching}
+                                     addProductToCart={addProductToCart}
+                                     getCart={getCart}
+                        />
                 )}
         </div>
 

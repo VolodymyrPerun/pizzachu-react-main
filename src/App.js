@@ -18,9 +18,8 @@ import ErrorMessages from "./Components/commons/ErrorMessages/ErrorMessages";
 import ProductPage from "./containers/ProductPage/ProductPage";
 import Delivery from "./Components/pages/Delivery/Delivery";
 import Footer from "./Components/basics/Footer/Footer";
-import Cart from "./Components/basics/Cart/Cart";
+import Cart from "./containers/Cart/Cart";
 import Login from "./containers/Login/Login";
-import CartCounts from "./Components/basics/Header/CartCounts/CartCounts";
 
 
 class App extends Component {
@@ -30,11 +29,11 @@ class App extends Component {
     };
 
     catchAllUnhandledErrors = ({reason}) => {
-        this.props.catchGlobalError(reason.toString())
+        this.props.catchGlobalError(reason.toString());
     };
 
     componentDidMount() {
-      this.props.initializeApp();
+        this.props.initializeApp();
         window.addEventListener("unhandledrejection", this.catchAllUnhandledErrors);
     };
 

@@ -1,38 +1,18 @@
-import {ADD_TO_CART, CLEAR_ITEMS, MINUS_ITEM, PLUS_ITEM, REMOVE_ITEMS_BY_ID} from "./constants";
+import {
+    SET_CART,
+    SET_PRODUCT_COUNT,
+    SET_PRODUCT_ID,
+    SET_TEMP_ID,
+    SET_PRODUCTS_LENGTH,
+    SET_TOTAL_PRODUCTS_SUM
+} from "./constants";
 
 
-export const addToCart = ({productId, type, size}) => (dispatch, getState) => {
-    const pizzas = getState().products.data;
-    const pizzaObj = pizzas.find(obj => obj.productId === productId);
+export const setCart = payload => ({type: SET_CART, payload});
+export const setProductCount = payload => ({type: SET_PRODUCT_COUNT, payload});
+export const setProductId = payload => ({type: SET_PRODUCT_ID, payload});
+export const setTempId = payload => ({type: SET_TEMP_ID, payload});
+export const setProductsLength = payload => ({type: SET_PRODUCTS_LENGTH, payload});
+export const setTotalProductsSum = payload => ({type: SET_TOTAL_PRODUCTS_SUM, payload});
 
-    dispatch({
-        type: ADD_TO_CART,
-        payload: {
-            productId: pizzaObj.productId,
-            imageUrl: pizzaObj.imageUrl,
-            name: pizzaObj.name,
-            price: pizzaObj.price,
-            type,
-            size,
-        },
-    });
-};
 
-export const plusItem = productId => ({
-    type: PLUS_ITEM,
-    payload: productId,
-});
-
-export const minusItem = productId => ({
-    type: MINUS_ITEM,
-    payload: productId,
-});
-
-export const removeItemsById = productId => ({
-    type: REMOVE_ITEMS_BY_ID,
-    payload: Number(productId),
-});
-
-export const clearItems = {
-    type: CLEAR_ITEMS
-};

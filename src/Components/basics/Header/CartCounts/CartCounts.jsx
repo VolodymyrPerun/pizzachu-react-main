@@ -7,17 +7,16 @@ import {NavLink} from "react-router-dom";
 
 const CartCounts = () => {
 
-    const {productsCount, totalPrice} = useSelector(({cart}) => (
+    const {productsLength, totalProductsSum} = useSelector(({cart}) => (
         {
-            productsCount: cart.productsCount,
-            totalPrice: cart.totalPrice
-            // totalPrice: cart.totalPrice.toString().replace(/(\d)(?=(\d\d\d)+(?!\d))/g, "$1.")
+            productsLength: cart.productsLength,
+            totalProductsSum: (cart.totalProductsSum).toString().replace(/(\d)(?=(\d\d\d)+(?!\d))/g, "$1.")
         }));
 
     return (
         <NavLink to="/cart" title={'Перейти в корзину'} className={styles.container}>
             <div style={{fontSize: '14px'}}>
-                {totalPrice}
+                {totalProductsSum}
                 <FontAwesomeIcon
                 style={{marginLeft: '7px', color: 'azure'}}
                 icon={faHryvnia}/>
@@ -26,7 +25,7 @@ const CartCounts = () => {
                 <FontAwesomeIcon
                     style={{marginRight: '7px', color: 'azure'}}
                     icon={faCartArrowDown}/>
-                {productsCount}
+                {productsLength}
             </div>
         </NavLink>
     )

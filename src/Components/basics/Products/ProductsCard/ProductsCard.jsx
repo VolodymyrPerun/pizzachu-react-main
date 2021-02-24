@@ -1,4 +1,4 @@
-import React from 'react';
+import React, {useEffect} from 'react';
 import styles from './ProductsCard.module.scss';
 import noPhoto from '../../../../assets/images/no-aveliable-image.png';
 import {PRODUCT_SECTION, PRODUCT_TYPE} from '../../../../constants/';
@@ -12,15 +12,37 @@ const ProductsCard = ({
                           productId,
                           name,
                           type_id,
-                          setProductSize,
                           description,
                           product_photo,
                           price,
                           weight,
                           section_id,
                           isFetching,
+                          addProductToCart,
+                          getCart,
+                          cart,
                           ...rest
                       }) => {
+
+
+    useEffect(() => {
+        let cleanupFunction = false;
+        try {
+            (!cleanupFunction) &&
+            getCart();
+        } catch (e) {
+            console.error(e);
+        }
+        return (() => {
+                cleanupFunction = true;
+                getCart();
+            }
+        );
+    }, [getCart, addProductToCart, productId]);
+
+    let handleClick = (id, count) => {
+        addProductToCart(id, count);
+    };
 
 
     return (
@@ -48,7 +70,8 @@ const ProductsCard = ({
 
                 </NavLink>
                 <div className={styles.btn}>
-                    <AddTo to={'/cart'} label={'Купити'} icon={faCartPlus}/>
+                    <AddTo to={'/cart'} label={'Купити'} icon={faCartPlus}
+                           handleClick={() => handleClick(productId, 1)}/>
                 </div>
             </div>
             }

@@ -1,44 +1,59 @@
-import {ADD_TO_CART, CLEAR_ITEMS, MINUS_ITEM, PLUS_ITEM, REMOVE_ITEMS_BY_ID} from "./constants";
-import produce from 'immer';
-import {map, reduce} from 'lodash';
+import {
+    SET_CART,
+    SET_PRODUCT_COUNT,
+    SET_PRODUCT_ID,
+    SET_TEMP_ID,
+    SET_PRODUCTS_LENGTH,
+    SET_TOTAL_PRODUCTS_SUM
+} from "./constants";
 
 
-const initState = {
-    products: {},
-    totalPrice: 0,
-    productsCount: 0,
+const initialState = {
+    cart: null,
+    // productPrice: 0,//price
+    productCount: 1,//count
+    // totalProductSum: 0,//sum
+    totalProductsSum: 0,//totalCount
+    productsLength: 0,//productsCount
+    productId: null,
+    tempId: null
 };
 
-const cartReducer= (state = initState, action) => {
-    return produce(state, draft => {
-        switch (action.type) {
-            case ADD_TO_CART:
-                if (!draft.products[action.payload.productId]) {
-                    draft.products[action.payload.productId] = [];
-                }
-                draft.products[action.payload.productId].push(action.payload);
-                break;
-            case PLUS_ITEM:
-                draft.products[action.payload].push(draft.products[action.payload][0]);
-                break;
-            case MINUS_ITEM:
-                if (draft.products[action.payload].length > 1) {
-                    draft.products[action.payload].shift();
-                }
-                break;
-            case REMOVE_ITEMS_BY_ID:
-                delete draft.products[action.payload];
-                break;
-            case CLEAR_ITEMS:
-                draft.products = {};
-                break;
-            default:
-        }
-
-        const result = reduce(map(draft.products), (prev, cur) => prev.concat(cur), []);
-        draft.totalPrice = result.reduce((total, obj) => obj.price + total, 0);
-        draft.productsCount = result.length;
-    });
+const cartReducer = (state = initialState, action) => {
+    switch (action.type) {
+        case SET_CART:
+            return {
+                ...state,
+                cart: action.payload
+            }
+        case SET_TEMP_ID:
+            return {
+                ...state,
+                tempId: action.payload
+            }
+        case SET_PRODUCT_ID:
+            return {
+                ...state,
+                productId: action.payload
+            }
+        case SET_PRODUCT_COUNT:
+            return {
+                ...state,
+                productCount: action.payload
+            }
+        case SET_PRODUCTS_LENGTH:
+            return {
+                ...state,
+                productsLength: action.payload
+            }
+        case SET_TOTAL_PRODUCTS_SUM:
+            return {
+                ...state,
+                totalProductsSum: action.payload
+            }
+        default:
+            return state;
+    }
 };
 
 export default cartReducer;
