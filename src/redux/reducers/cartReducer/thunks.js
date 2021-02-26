@@ -28,6 +28,10 @@ export const addProductToCart = (productId, count) => async dispatch => {
         dispatch(setProductCount(count));
         dispatch(setProductId(productId));
         await cartAPI.addProductToCart(token, productId, count);
+        let response = await cartAPI.getCart(token);
+        dispatch(setCart(response.data.cart));
+        dispatch(setTotalProductsSum(response.data.totalCount));
+        dispatch(setProductsLength(response.data.productsCount));
 
 
     } else if (!token) {
@@ -35,6 +39,10 @@ export const addProductToCart = (productId, count) => async dispatch => {
         dispatch(setProductId(productId));
         dispatch(setTempId(tempId));
         await cartAPI.addProductToUnauthorizedCart(tempId, productId, count);
+        let response = await cartAPI.getUnauthorizedCart(tempId);
+        dispatch(setCart(response.data.cart));
+        dispatch(setProductsLength(response.data.productsCount));
+        dispatch(setTotalProductsSum(response.data.totalCount));
     }
 };
 
@@ -43,15 +51,71 @@ export const updateProductInCart = (productId, count) => async dispatch => {
     let tempId = localStorage.getItem('tempId');
     const token = checkAccessTokenPresent();
     if (token) {
-        dispatch(setProductCount(count));
+        await cartAPI.updateProductInCart(productId, count, token);
         dispatch(setProductId(productId));
-        await cartAPI.updateProductInCart(token, productId, count);
+        dispatch(setProductCount(count));
+        let newResponse = await cartAPI.getCart(token);
+        dispatch(setCart(newResponse.data.cart));
+        dispatch(setProductsLength(newResponse.data.productsCount));
+        dispatch(setTotalProductsSum(newResponse.data.totalCount));
+
+
+    } else if (!token) {
+        await cartAPI.updateProductInUnauthorizedCart(tempId, productId, count);
+        dispatch(setTempId(tempId));
+        dispatch(setProductId(productId));
+        dispatch(setProductCount(count));
+        let newResponse = await cartAPI.getUnauthorizedCart(tempId);
+        dispatch(setCart(newResponse.data.cart));
+        dispatch(setProductsLength(newResponse.data.productsCount));
+        dispatch(setTotalProductsSum(newResponse.data.totalCount));
+    }
+};
+
+export const deleteProductFromCart = productId => async dispatch => {
+
+    let tempId = localStorage.getItem('tempId');
+    const token = checkAccessTokenPresent();
+    if (token) {
+        dispatch(setProductId(productId));
+        await cartAPI.deleteProductFromCart(productId, token);
+        let response = await cartAPI.getCart(token);
+        dispatch(setCart(response.data.cart));
+        dispatch(setTotalProductsSum(response.data.totalCount));
+        dispatch(setProductsLength(response.data.productsCount));
+
+
+    } else if (!token) {
+        dispatch(setProductId(productId));
+        dispatch(setTempId(tempId));
+        await cartAPI.deleteProductFromUnauthorizedCart(productId, tempId);
+        dispatch(setTempId(tempId));
+        let response = await cartAPI.getUnauthorizedCart(tempId);
+        dispatch(setCart(response.data.cart));
+        dispatch(setProductsLength(response.data.productsCount));
+        dispatch(setTotalProductsSum(response.data.totalCount));
+    }
+};
+
+export const deleteCart = () => async dispatch => {
+
+    let tempId = localStorage.getItem('tempId');
+    const token = checkAccessTokenPresent();
+    if (token) {
+        await cartAPI.deleteCart(token);
+        let response = await cartAPI.getCart(token);
+        dispatch(setCart(response.data.cart));
+        dispatch(setTotalProductsSum(response.data.totalCount));
+        dispatch(setProductsLength(response.data.productsCount));
 
 
     } else if (!token) {
         dispatch(setTempId(tempId));
-        dispatch(setProductCount(count));
-        dispatch(setProductId(productId));
-        await cartAPI.updateProductInUnauthorizedCart(tempId, productId, count);
+        await cartAPI.deleteUnauthorizedCart(tempId);
+        dispatch(setTempId(tempId));
+        let response = await cartAPI.getUnauthorizedCart(tempId);
+        dispatch(setCart(response.data.cart));
+        dispatch(setProductsLength(response.data.productsCount));
+        dispatch(setTotalProductsSum(response.data.totalCount));
     }
 };

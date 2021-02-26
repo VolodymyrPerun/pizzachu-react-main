@@ -4,6 +4,7 @@
   flex-direction: column;
   grid-area: content;
   height: auto;
+  min-height: 58.6vh;
   width: 70%;
   justify-content: space-around;
   justify-items: center;
@@ -14,7 +15,7 @@
   font-family: 'Caveat', cursive;
   font-weight: 800;
   border-radius: 15px;
-  margin: 5px auto;
+  margin: 5px auto 20px auto;
   padding: 10px;
   background: #fff;
   border: 2px solid #f0f0f0;
@@ -60,12 +61,13 @@
   }
 
   .cartClear {
-
+    text-align: center;
   }
 
   .cartItemContainer {
     display: flex;
     justify-content: space-between;
+    // flex-wrap: wrap;
     align-content: center;
     flex-direction: row;
     width: 90%;
@@ -118,8 +120,6 @@
     }
 
     .cartCounter {
-      grid-row: 3;
-      grid-column: 2;
       display: flex;
       align-items: center;
       align-self: center;
@@ -132,7 +132,7 @@
         text-align: center;
         height: 10px;
         color: #008E46;
-        margin: 0 20px;
+        margin: 0 10px;
         transition: 0.2ms ease;
 
         &:hover {
@@ -143,6 +143,18 @@
           color: #25d366;
           transform: scale(0.8);
         }
+      }
+
+      .disable {
+        display: flex;
+        align-items: center;
+        align-self: center;
+        text-align: center;
+        height: 10px;
+        color: #aaaaaa;
+        margin: 0 10px;
+        transition: 0.2ms ease;
+        transform: scale(0.8);
       }
 
       .count {
@@ -182,7 +194,7 @@
       align-items: center;
       align-self: center;
       justify-content: space-between;
-      color: #515151;
+      color: #EE7178;
       margin: 0 10px;
       transition: 0.2ms ease;
 
@@ -204,9 +216,8 @@
     flex-direction: row;
     width: 90%;
     margin: 30px 0;
+
     .totalProductsCount {
-      grid-row: 4;
-      grid-column: 1;
       display: flex;
       align-items: center;
       align-self: center;
@@ -225,8 +236,6 @@
     }
 
     .totalSum {
-      grid-row: 4;
-      grid-column: 3 / 5;
       display: flex;
       align-items: center;
       align-self: center;
@@ -249,8 +258,6 @@
     margin-bottom: 15px;
 
     .goBack {
-      grid-row: 5;
-      grid-column: 1;
       display: flex;
       align-items: center;
       align-self: center;
@@ -258,8 +265,6 @@
     }
 
     .order {
-      grid-row: 5;
-      grid-column: 3 / 5;
       display: flex;
       align-items: center;
       align-self: center;
@@ -272,8 +277,6 @@
   .container {
 
       .closeBtn {
-        grid-column: 1;
-        grid-row: 1;
         display: flex;
         justify-self: end;
 
@@ -286,10 +289,86 @@
 
 
 
-@media only screen and (max-width: 550px) {
+@media only screen and (max-width: 600px) {
 
   .container {
+    width: 90%;
 
+    .cartLogoContainer {
+
+      .cartLogo {
+
+        .logoTittle {
+          font-size: 22px;
+        }
+      }
+    }
+
+    .cartClear {
+      margin: 10px;
+    }
+
+    .cartItemContainer {
+      display: grid;
+      grid-template-rows: 1fr 1fr;
+      grid-template-columns: 2fr 1fr 1fr;
+      justify-content: space-between;
+      align-content: center;
+      align-self: center;
+      flex-direction: row;
+      width: 90%;
+
+      .cartItem {
+        grid-row: 1;
+        grid-column: 1 / 4;
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        grid-template-rows: 1fr 1fr;
+
+        .size {
+          font-size: 15px;
+        }
+      }
+
+      .cartCounter {
+        grid-row: 2;
+        grid-column: 1;
+      }
+
+      .sum {
+        grid-row: 2;
+        grid-column: 2;
+        margin: 0 20px;
+      }
+
+      .delete {
+        grid-row: 2;
+        grid-column: 3;
+        margin: 0 20px;
+      }
+    }
+
+    .totalGroup {
+      .totalProductsCount {
+        font-size: 15px;
+        margin: 10px;
+      }
+
+      .totalSum {
+        font-size: 15px;
+      }
+    }
+
+    .btnGroup {
+
+      .goBack {
+        margin-right: 10px;
+      }
+
+      .order {
+        margin-left: 10px;
+      }
+    }
   }
 }
 

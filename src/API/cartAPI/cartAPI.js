@@ -23,8 +23,8 @@ export const cartAPI = {
     addProductToUnauthorizedCart(tempId, productId, count = 1) {
         return instance.post(`cart/unauthorized?tempId=${tempId}&productId=${productId}`, {count});
     },
-    updateProductInCart(access_token, productId, count) {
-        return instance.put(`cart?&productId=${productId}`, {count}, {
+    updateProductInCart(productId, count, access_token) {
+        return instance.put(`cart?productId=${productId}`, {count}, {
             headers: {
                 [HEADER_ENUM.AUTHORIZATION]: access_token
             }
@@ -34,16 +34,16 @@ export const cartAPI = {
         return instance.put(`cart/unauthorized?tempId=${tempId}&productId=${productId}`, {count});
     },
     deleteProductFromCart(productId, access_token) {
-        return instance.delete(`cart/?&productId=${productId}`, {
+        return instance.delete(`cart/product?productId=${productId}`, {
             headers: {
                 [HEADER_ENUM.AUTHORIZATION]: access_token
             }
         });
     },
-    deleteProductFromUnauthorizedCart(tempId, productId) {
-        return instance.delete(`cart/unauthorized?tempId=${tempId}&productId=${productId}`);
+    deleteProductFromUnauthorizedCart(productId, tempId) {
+        return instance.delete(`cart/unauthorized/product?productId=${productId}&tempId=${tempId}`);
     },
-    deleteCart(productId, access_token) {
+    deleteCart(access_token) {
         return instance.delete(`cart`, {
             headers: {
                 [HEADER_ENUM.AUTHORIZATION]: access_token

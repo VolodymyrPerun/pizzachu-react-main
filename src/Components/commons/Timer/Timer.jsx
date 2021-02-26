@@ -47,7 +47,7 @@ const Timer = () => {
         clearInterval(set());
         return () => clearInterval(set());
 
-    }, [set, timeLeft]);
+    }, [set, setTimeLeft, timeLeft]);
 
 
     return (

@@ -23,7 +23,7 @@ export const authMe = () => async dispatch => {
     let tempId = localStorage.getItem('tempId');
 
     try {
-        dispatch(setIsFetching(true))
+        dispatch(setIsFetching(true));
         const token = checkAccessTokenPresent();
         if (token) {
             const meDates = await authAPI.authMe(token);
@@ -58,7 +58,8 @@ export const login = (email, password) => async dispatch => {
 
         const authResult = await authAPI.loginAdmin(email, password);
 
-
+        localStorage.getItem('tempId');
+        localStorage.setItem('tempId', '');
         localStorage.setItem(TOKEN_ENUM.access_token, authResult.data[TOKEN_ENUM.access_token]);
         localStorage.setItem(TOKEN_ENUM.refresh_token, authResult.data[TOKEN_ENUM.refresh_token]);
 

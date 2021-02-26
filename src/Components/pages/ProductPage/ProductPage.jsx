@@ -9,6 +9,7 @@ import {NavLink} from "react-router-dom";
 import {
     faArrowLeft,
     faBalanceScaleLeft,
+    faCartPlus,
     faInfo,
     faMoneyBillWave,
     faPrescriptionBottle,
@@ -17,12 +18,35 @@ import {
 import {FontAwesomeIcon} from "@fortawesome/react-fontawesome";
 import {shuffle} from 'lodash';
 import ApplyBtn from "../../commons/Buttons/Apply/ApplyBtn";
+import AddTo from "../../commons/Buttons/AddTo/AddTo";
 
-export const ProductPage = memo(({product, match, getProductById, isFetching, products}) => {
+export const ProductPage = memo(({
+                                     product,
+                                     match,
+                                     getProductById,
+                                     isFetching,
+                                     products,
+                                     addProductToCart,
+                                     getCart,
+                                 }) => {
 
     useEffect(() => {
-        getProductById(match.params.productId);
-    }, [match.params.productId, getProductById]);
+        try {
+            getProductById(match.params.productId);
+            getCart();
+        } catch (e) {
+            console.error(e);
+        }
+        return (() => {
+                getProductById(match.params.productId);
+                getCart();
+            }
+        );
+    }, [getCart, addProductToCart, match.params.productId, getProductById]);
+
+    let handleClick = (id, count) => {
+        addProductToCart(id, count);
+    };
 
 
     return <>
@@ -73,13 +97,18 @@ export const ProductPage = memo(({product, match, getProductById, isFetching, pr
 
 
                     </div>
-                    <p className={styles.delivery}>
-                        <FontAwesomeIcon
-                            style={{marginRight: '7px', color: '#EE7178'}}
-                            icon={faTruck}/>
-                        Доставимо до <span style={{color: '#EE7178'}}>29</span> хвилин або даруємо піцу/рол за спізнення
-                    </p>
-                </div>
+                        <p className={styles.delivery}>
+                            <FontAwesomeIcon
+                                style={{marginRight: '7px', color: '#EE7178'}}
+                                icon={faTruck}/>
+                            Доставимо до <span style={{color: '#EE7178'}}>29</span> хвилин або даруємо піцу/рол за
+                            спізнення
+                        </p>
+                        <div className={styles.btn}>
+                            <AddTo to={'/cart'} label={'Купити'} icon={faCartPlus}
+                                   handleClick={() => handleClick(product.productId, 1)}/>
+                        </div>
+                    </div>
 
                 {products.length > 1 ?
                     <>

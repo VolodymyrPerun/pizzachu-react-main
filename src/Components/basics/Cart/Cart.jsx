@@ -1,80 +1,63 @@
-import React, {useCallback, useEffect} from 'react';
+import React, {memo, useCallback, useEffect} from 'react';
 import styles from './Cart.module.scss';
 import ApplyBtn from "../../commons/Buttons/Apply/ApplyBtn";
 import {FontAwesomeIcon} from "@fortawesome/react-fontawesome";
-import {faArrowLeft, faArrowRight, faCartArrowDown, faHryvnia, faTrashAlt} from "@fortawesome/free-solid-svg-icons";
+import {
+    faArrowLeft,
+    faArrowRight,
+    faCartArrowDown,
+    faHryvnia,
+    faTrash,
+    faTrashAlt
+} from "@fortawesome/free-solid-svg-icons";
 import {CloseCircleOutlined, MinusCircleOutlined, PlusCircleOutlined} from '@ant-design/icons';
 import {NavLink} from "react-router-dom";
-import emptyCart from "../../../assets/images/modal-cart-dummy.svg"
+import emptyCart from "../../../assets/images/modal-cart-dummy.svg";
 
 
-const Cart = ({
-                  updateProductInCart,
-                  totalProductsSum,
-                  productsLength,
-                  productCount,
-                  getCart,
-                  cart
-              }) => {
-
-    // const plus = (id, count) => {
-    //     count = productCount + count;
-    //     updateProductInCart(id, count);
-    // };
-    //
-    // const minus = (id, count) => {
-    //     if (count > 1) {
-    //         count = productCount - count;
-    //     } else {
-    //         count = 1;
-    //     }
-    //     updateProductInCart(id, count);
-    // };
-
-    const plusCallback = useCallback((id) => {
-        ++productCount;
-        updateProductInCart(id, productCount);
-    }, [productCount]);
+const Cart = memo(({
+                       deleteProductFromCart,
+                       updateProductInCart,
+                       totalProductsSum,
+                       productsLength,
+                       deleteCart,
+                       getCart,
+                       cart
+                   }) => {
 
 
-
-    const minusCallback = useCallback((id) => {
-        if (productCount > 1) {
-            --productCount;
+    const minus = useCallback((id, count) => {
+        if (count > 1) {
+            updateProductInCart(id, --count);
+        } else {
+            updateProductInCart(id, 1);
         }
-        updateProductInCart(id, productCount);
-    }, [productCount]);
+    }, [updateProductInCart]);
 
-   useEffect(() => {
-        let cleanupFunction = false;
-        try {
-            (!cleanupFunction) &&
-            getCart();
-        } catch (e) {
-            console.error(e);
-        }
-        return (() => {
-                cleanupFunction = true;
-                getCart();
-            }
-        );
-    }, [getCart, productCount,updateProductInCart, plusCallback, minusCallback]);
+    const plus = useCallback((id, count) => {
+        updateProductInCart(id, ++count);
+    }, [updateProductInCart]);
+
+    const deleteProduct = useCallback(productId => {
+        deleteProductFromCart(productId);
+    }, [deleteProductFromCart]);
+
+    const cartClear = useCallback(() => {
+        deleteCart();
+    }, [deleteCart]);
 
 
+    useEffect(() => {
+        getCart()
+    }, [getCart, updateProductInCart, plus, minus, deleteProduct, cartClear]);
 
-
-    const cartClear = () => {
-
-    };
 
     return (
         <>
-
             <div className={styles.container}>
                 <NavLink className={styles.closeBtn} to={'/home'}>
                     <CloseCircleOutlined className={styles.icon}/>
                 </NavLink>
-
 
                 <div className={styles.cartLogoContainer}>
                     <div className={styles.cartLogo}>
@@ -95,21 +78,24 @@ const Cart = ({
                     </div>
                 </div>
 
-                {productCount && cart ?
+                {productsLength !== 0 ?
                     cart.map(cartItem =>
                         <div key={cartItem.id} className={styles.cartItemContainer}>
-                            <div className={styles.cartItem}>
+                            <NavLink to={'/productPage/' + cartItem.productId} className={styles.cartItem}>
                                 <img className={styles.img}
                                      src={`http://localhost:5000/${cartItem['Product.product_photo']}`}
                                      alt={'productImage'}/>
                                 <span className={styles.tittle}>{cartItem['Product.name']}</span>
                                 <span className={styles.size}>{cartItem.price} грн</span>
-                            </div>
+                            </NavLink>
 
                             <div className={styles.cartCounter}>
-                                <div onClick={() => minusCallback(cartItem.productId, 1)} className={styles.minus}><MinusCircleOutlined/></div>
+                                <div onClick={() => minus(cartItem.productId, cartItem.count)}
+                                     className={cartItem.count > 1 ? styles.minus : styles.disable}>
+                                    <MinusCircleOutlined/></div>
                                 <div className={styles.count}><span>{cartItem.count}</span></div>
-                                <div onClick={() => plusCallback(cartItem.productId, 1)} className={styles.plus}><PlusCircleOutlined/></div>
+                                <div onClick={() => plus(cartItem.productId, cartItem.count)} className={styles.plus}>
+                                    <PlusCircleOutlined/></div>
                             </div>
 
                             <div className={styles.sum}>
@@ -120,7 +106,11 @@ const Cart = ({
                                     icon={faHryvnia}/>
                             </div>
 
-                            <div className={styles.delete}><CloseCircleOutlined/></div>
+                            <div onClick={() => deleteProduct(cartItem.productId)}
+                                 className={styles.delete}>
+                                <FontAwesomeIcon
+                                    icon={faTrash}/>
+                            </div>
                         </div>
                     ) : <div style={{height: '50%', width: '50%', margin: '0 auto'}}>
                         <h3>Кошик порожній</h3>
@@ -149,18 +139,17 @@ const Cart = ({
                         />
                     </NavLink>
 
-                    <div className={styles.order}>
+                    <NavLink to={'/purchase'} className={styles.order}>
                         <ApplyBtn
                             icon={faArrowRight}
-                            // handleClick={cartClear}
                             label={'Замовити товари'}
                         />
-                    </div>
+                    </NavLink>
                 </div>
 
             </div>
         </>
     )
-};
+});
 
 export default Cart;
