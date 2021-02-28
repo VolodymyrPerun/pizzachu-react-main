@@ -19,16 +19,19 @@ const Login = ({
                    match,
                    login,
                    loginAdmin,
-                   adminErrorMessage
+                   adminErrorMessage,
+                   setCart,
+                   cart
                }) => {
 
-
-    console.log(isAuth);
 
     const onSubmit = data => {
 
         if (match.path === '/login') {
-            login(data.email, data.password)
+            localStorage.setItem("cart", JSON.stringify(cart));
+            login(data.email, data.password);
+            cart = JSON.parse(localStorage.getItem("cart"));
+            localStorage.setItem("cart", '');//todo localstorage cart when logout
         }
 
         if (match.path === '/auth-admin') {
@@ -40,10 +43,7 @@ const Login = ({
         return <Redirect to={`/home`}/>
     }
     if (isFetching) {
-        return <div className={styles.preloader}>
-
-            <Preloader/>
-            </div>
+        return <div className={styles.preloader}><Preloader/></div>
     }
 
     return (
@@ -72,8 +72,7 @@ const Login = ({
 
 const mapStateToProps = state => {
     return {
-        isAuth: state.auth.isAuth,
-        captchaUrl: state.auth.captchaUrl
+        isAuth: state.auth.isAuth
     }
 };
 
