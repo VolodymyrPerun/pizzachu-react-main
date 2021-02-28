@@ -1,4 +1,4 @@
-import React, {useState} from 'react';
+import React, {useMemo, useState} from 'react';
 import {Button} from './Button/ButtonLogin';
 import {Link} from 'react-router-dom';
 import styles from './NavBar.module.scss';
@@ -8,7 +8,8 @@ import {FontAwesomeIcon} from "@fortawesome/react-fontawesome";
 import logo from '../../../../assets/images/mail_bg.png';
 import CartCounts from "../CartCounts/CartCounts";
 
-const NavBar = ({isAuth}) => {
+
+const NavBar = ({isAuth, me}) => {
 
     const [click, setClick] = useState(false);
     const [dropdown, setDropdown] = useState(false);
@@ -31,6 +32,11 @@ const NavBar = ({isAuth}) => {
             setDropdown(false);
         }
     };
+
+
+    useMemo(() => {
+        console.log(me);
+    }, [me])
 
     return (
         <>
@@ -118,6 +124,7 @@ const NavBar = ({isAuth}) => {
                     <li>
                         {isAuth ?
                             <Link
+                                title={me.surname ? me.name + ' ' + me.surname : me.name}
                                 to='/logout'
                                 className={styles.navLinksMobile}
                                 onClick={closeMobileMenu}
@@ -135,6 +142,7 @@ const NavBar = ({isAuth}) => {
                 </ul>
                 {isAuth ?
                     <Button
+                        title={me.surname ? me.name + ' ' + me.surname : me.name}
                         path={'/logout'}
                         label={'Вихід'}
                         icon={<FontAwesomeIcon className={styles.faBars} icon={faSignOutAlt}/>
