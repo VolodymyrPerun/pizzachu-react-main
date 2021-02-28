@@ -64,6 +64,10 @@
     text-align: center;
   }
 
+  .cartClear {
+    text-align: center;
+  }
+
   .cartItemContainer {
     display: flex;
     justify-content: space-between;
@@ -177,8 +181,6 @@
     }
 
     .sum {
-      grid-row: 3;
-      grid-column: 3;
       display: flex;
       align-items: center;
       align-self: center;
@@ -188,8 +190,6 @@
     }
 
     .delete {
-      grid-row: 3;
-      grid-column: 4;
       display: flex;
       align-items: center;
       align-self: center;
@@ -294,9 +294,9 @@
   .container {
     width: 90%;
 
-    .cartLogoContainer {
+    .logoContainer {
 
-      .cartLogo {
+      .logo {
 
         .logoTittle {
           font-size: 22px;

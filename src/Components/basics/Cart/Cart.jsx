@@ -25,7 +25,6 @@ const Cart = memo(({
                        cart
                    }) => {
 
-
     const minus = useCallback((id, count) => {
         if (count > 1) {
             updateProductInCart(id, --count);
@@ -135,16 +134,17 @@ const Cart = memo(({
                     <NavLink className={styles.goBack} to={'/home'}>
                         <ApplyBtn
                             icon={faArrowLeft}
-                            label={'Повернутись назад'}
+                            label={'Продовжити покупки'}
                         />
                     </NavLink>
 
+                    {productsLength !== 0 ?
                     <NavLink to={'/purchase'} className={styles.order}>
                         <ApplyBtn
                             icon={faArrowRight}
                             label={'Замовити товари'}
                         />
-                    </NavLink>
+                    </NavLink> : null}
                 </div>
 
             </div>

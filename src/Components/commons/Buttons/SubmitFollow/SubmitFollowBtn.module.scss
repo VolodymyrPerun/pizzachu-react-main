@@ -1,17 +1,69 @@
 .button {
-  width: 70px;
-  font: 18px Caveat, cursive;
-  font-weight: bold;
-  text-transform: capitalize;
-  border-radius: 5px;
-  color: #DEE8C1;
-  background-color: #EE7178;
-  padding: 3px;
-  transition: 0.3s ease;
-  z-index: 10;
+  height: 45px;
+  display: flex;
+  justify-content: center;
+  justify-items: center;
+  align-items: center;
+  align-self: center;
+  align-content: center;
+  text-align: center;
+  border: none;
+  color: #fff;
+  text-decoration: none;
+  background-color: #EE7179;
+  padding: 5px;
+  font-size: 18px;
+  font-family: 'Caveat', cursive;
+  font-weight: 600;
+  letter-spacing: 2px;
+  line-height: 12px;
+  text-transform: none;
+  border-radius: 15px;
+  position: relative;
+  outline: none;
+  transition: background-color .1s ease;
+  cursor: pointer;
 
-  &:hover, :active, :focus {
-    color: #EE7178;
-    background-color: #DEE8C1;
+  &::after {
+    transition: background-color .2s ease;
+    position: absolute;
+    content: '';
+    height: 3.5px;
+    bottom: 0;
+    width: 91%;
+    background-color: darken(#EE7179, 50%);
+    opacity: .18;
+    border-bottom-left-radius: 12px;
+    border-bottom-right-radius: 12px;
+    left: 8px;
+  }
+
+  &:focus, &:hover {
+    text-decoration: none;
+    color: #fff
+  }
+
+  &:hover {
+    background-color: lighten(#EE7179, 5%) !important;
+
+    &::after {
+      opacity: .22 !important;
+    }
+  }
+
+  &:active {
+    background-color: darken(#EE7179, 5%) !important;
+
+    &::after {
+      opacity: .32
+    }
+  }
+}
+
+@media only screen and (max-width: 572px) {
+  .button {
+    height: 30px;
+    padding: 5px;
+    font-size: 15px;
   }
 }

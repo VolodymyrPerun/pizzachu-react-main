@@ -56,7 +56,7 @@ export const login = (email, password) => async dispatch => {
 
         dispatch(setIsFetching(true));
 
-        const authResult = await authAPI.loginAdmin(email, password);
+        const authResult = await authAPI.login(email, password);
 
         localStorage.getItem('tempId');
         localStorage.setItem('tempId', '');
@@ -65,11 +65,10 @@ export const login = (email, password) => async dispatch => {
 
         const token = checkAccessTokenPresent();
 
-
         const meDates = await authAPI.authMe(token);
 
         if (meDates) {
-            dispatch(setMyID(meDates.data.id));
+            dispatch(setMyID(meDates.data.userId));
             dispatch(setMeDates(meDates.data));
             dispatch(setIsAuth(true));
             dispatch(setIsFetching(false));

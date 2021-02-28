@@ -42,7 +42,8 @@ const PromoBlock = memo(({products, getAllPromoProducts}) => {
 
                     <span><FontAwesomeIcon
                         style={{marginRight: '7px', color: '#EE7178'}}
-                        icon={faTruck}/>Доставимо до <span style={{color: '#EE7178'}}>29</span> хвилин або даруємо піцу/рол за спізнення</span>
+                        icon={faTruck}/>Доставимо до <span style={{color: '#EE7178'}}>29
+                    </span> хвилин або даруємо піцу/рол за спізнення</span>
                 </p>
 
                 {<div className={styles.promoContainer}>
