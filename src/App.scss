@@ -1,6 +1,13 @@
+@charset "UTF-8";
 @import url('https://fonts.googleapis.com/css2?family=Caveat:wght@400;500&display=swap');
 
+@font-face {
+    font-family: 'Caveat';
+    src: url('./assets/fonts/Caveat-Regular.ttf') format('truetype');
+}
+
 *{
+    font-family: Caveat, cursive;
     outline: none !important;
 }
 
@@ -23,9 +30,6 @@ body {
     height: auto;
     margin: 0 auto;
     background: whitesmoke;
-    //background: #FFEFBA; /* fallback for old browsers */
-    //background: -webkit-linear-gradient(to right, #FFFFFF, #FFEFBA); /* Chrome 10-25, Safari 5.1-6 */
-    //background: linear-gradient(to right, #FFFFFF, #FFEFBA); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
 
     grid-template-areas: "header"
                          "content"

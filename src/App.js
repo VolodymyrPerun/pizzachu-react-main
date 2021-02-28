@@ -20,6 +20,8 @@ import Delivery from "./Components/pages/Delivery/Delivery";
 import Footer from "./Components/basics/Footer/Footer";
 import Cart from "./containers/Cart/Cart";
 import Login from "./containers/Login/Login";
+import Purchase from "./containers/Purchase/Purchase";
+import OrderMessage from "./containers/OrderMessage/OrderMessage";
 
 
 class App extends Component {
@@ -68,10 +70,12 @@ class App extends Component {
                         <Route path='/feedbacks' render={() => <Feedbacks/>}/>
                         <Route path='/home' render={() => <Home/>} exact/>
                         <Route path='/promotions' render={() => <Promotions/>}/>
+                        <Route path='/purchase' render={() => <Purchase/>}/>
                         <Route path='/delivery' render={() => <Delivery/>}/>
                         <Route path='/cart' render={() => <Cart/>}/>
                         <Route path='/login' render={() => <Login/>}/>
                         <Route path='/productPage/:productId?' render={() => <ProductPage/>}/>
+                        <Route path='/orderMessage' render={() => <OrderMessage history={this.props.history}/>}/>
                         <Route path='/error' render={() =>
                             <ErrorMessages globalError={this.props.globalError} history={this.props.history}/>}/>
                         <Route path='*' render={() => <Page404 history={this.props.history}/>}/>}/>
