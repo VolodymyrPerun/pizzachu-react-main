@@ -7,6 +7,8 @@ import productPage from './reducers/productPageReducer';
 import filter from "./reducers/filterReducer";
 import promo from "./reducers/promoBlockReducer";
 import cart from "./reducers/cartReducer";
+import users from "./reducers/usersReducer";
+import purchase from "./reducers/purchaseReducer";
 import {reducer as form} from 'redux-form';
 
 
@@ -14,10 +16,12 @@ export const reducers = combineReducers({
     messagesPage,
     productsPage,
     productPage,
+    purchase,
     auth,
     app,
     filter,
     promo,
     cart,
+    users,
     form
 });

@@ -75,7 +75,7 @@ class App extends Component {
                         <Route path='/cart' render={() => <Cart/>}/>
                         <Route path='/login' render={() => <Login/>}/>
                         <Route path='/productPage/:productId?' render={() => <ProductPage/>}/>
-                        <Route path='/orderMessage' render={() => <OrderMessage history={this.props.history}/>}/>
+                        <Route path='/orderMessage' render={() => <OrderMessage/>}/>
                         <Route path='/error' render={() =>
                             <ErrorMessages globalError={this.props.globalError} history={this.props.history}/>}/>
                         <Route path='*' render={() => <Page404 history={this.props.history}/>}/>}/>

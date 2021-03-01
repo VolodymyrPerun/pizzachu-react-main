@@ -7,11 +7,8 @@ import {NavLink} from "react-router-dom";
 import {CloseCircleOutlined} from '@ant-design/icons';
 
 
-export const OrderMessage = ({history, isAuth, me}) => {
+export const OrderMessage = ({isAuth, me}) => {
 
-    useMemo(() => {
-        setTimeout(() => history.push('/'), 10000);
-    }, [history]);
 
     return (
         <div className={style.page}>
