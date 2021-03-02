@@ -1,4 +1,4 @@
-import React, {useMemo} from 'react';
+import React from 'react';
 import style from "./OrderMessage.module.scss";
 import 'react-lazy-load-image-component/src/effects/blur.css';
 import {faClock, faStopwatch, faTruck} from "@fortawesome/free-solid-svg-icons";

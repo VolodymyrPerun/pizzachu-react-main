@@ -1,5 +1,5 @@
 import instance from '../../helpers/API';
-import {HEADER_ENUM} from '../../constants';
+import {HEADER_ENUM, PAGE_DEFAULT} from '../../constants';
 
 
 export const purchaseAPI = {
@@ -15,46 +15,50 @@ export const purchaseAPI = {
             email, phone, name, city, street, house, apartment, entrance, floor
         });
     },
-    addProductToCart(access_token, productId, count = 1) {
-        return instance.post(`cart?productId=${productId}`, {count}, {
+    getAllClientPurchases(
+        pageSize = PAGE_DEFAULT.PAGE_SIZE,
+        currentPage = PAGE_DEFAULT.CURRENT_PAGE,
+        access_token) {
+        return instance.get(`purchase/client?limit=${pageSize}&page=${currentPage}`, {
             headers: {
                 [HEADER_ENUM.AUTHORIZATION]: access_token
             }
         });
     },
-    addProductToUnauthorizedCart(tempId, productId, count = 1) {
-        return instance.post(`cart/unauthorized?tempId=${tempId}&productId=${productId}`, {count});
-    },
-    updateProductInCart(productId, count, access_token) {
-        return instance.put(`cart?productId=${productId}`, {count}, {
-            headers: {
-                [HEADER_ENUM.AUTHORIZATION]: access_token
-            }
-        });
-    },
-    updateProductInUnauthorizedCart(tempId, productId, count) {
-        return instance.put(`cart/unauthorized?tempId=${tempId}&productId=${productId}`, {count});
-    },
-    deleteProductFromCart(productId, access_token) {
-        return instance.delete(`cart/product?productId=${productId}`, {
-            headers: {
-                [HEADER_ENUM.AUTHORIZATION]: access_token
-            }
-        });
-    },
-    deleteProductFromUnauthorizedCart(productId, tempId) {
-        return instance.delete(`cart/unauthorized/product?productId=${productId}&tempId=${tempId}`);
-    },
-    deleteCart(access_token) {
-        return instance.delete(`cart`, {
-            headers: {
-                [HEADER_ENUM.AUTHORIZATION]: access_token
-            }
-        });
-    },
-    deleteUnauthorizedCart(tempId) {
-        return instance.delete(`cart/unauthorized?tempId=${tempId}`);
-    }
+
+    // addProductToUnauthorizedCart(tempId, productId, count = 1) {
+    //     return instance.post(`cart/unauthorized?tempId=${tempId}&productId=${productId}`, {count});
+    // },
+    // updateProductInCart(productId, count, access_token) {
+    //     return instance.put(`cart?productId=${productId}`, {count}, {
+    //         headers: {
+    //             [HEADER_ENUM.AUTHORIZATION]: access_token
+    //         }
+    //     });
+    // },
+    // updateProductInUnauthorizedCart(tempId, productId, count) {
+    //     return instance.put(`cart/unauthorized?tempId=${tempId}&productId=${productId}`, {count});
+    // },
+    // deleteProductFromCart(productId, access_token) {
+    //     return instance.delete(`cart/product?productId=${productId}`, {
+    //         headers: {
+    //             [HEADER_ENUM.AUTHORIZATION]: access_token
+    //         }
+    //     });
+    // },
+    // deleteProductFromUnauthorizedCart(productId, tempId) {
+    //     return instance.delete(`cart/unauthorized/product?productId=${productId}&tempId=${tempId}`);
+    // },
+    // deleteCart(access_token) {
+    //     return instance.delete(`cart`, {
+    //         headers: {
+    //             [HEADER_ENUM.AUTHORIZATION]: access_token
+    //         }
+    //     });
+    // },
+    // deleteUnauthorizedCart(tempId) {
+    //     return instance.delete(`cart/unauthorized?tempId=${tempId}`);
+    // }
 };
 
 

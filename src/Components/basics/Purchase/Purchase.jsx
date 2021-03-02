@@ -14,10 +14,11 @@ import {
     faMoneyCheck,
     faShoppingCart
 } from "@fortawesome/free-solid-svg-icons";
-import {NavLink, Redirect} from "react-router-dom";
+import {NavLink} from "react-router-dom";
 import {FontAwesomeIcon} from "@fortawesome/react-fontawesome";
 import {CloseCircleOutlined} from '@ant-design/icons';
 import SubmitFollowBtn from "../../commons/Buttons/SubmitFollow/SubmitFollowBtn";
+import OrderMessage from "../../../containers/OrderMessage/OrderMessage";
 
 
 const useStyles = makeStyles((theme) => ({
@@ -71,7 +72,6 @@ const Purchase = memo(({
         floor: me ? me.floor : '',
     });
 
-
     const handleChange = event => {
         const city = event.target.name;
         setState({
@@ -81,7 +81,6 @@ const Purchase = memo(({
     };
 
     const onSubmit = () => {
-
         addPurchase(
             state.email,
             state.phone,
@@ -92,9 +91,7 @@ const Purchase = memo(({
             state.apartment,
             state.entrance,
             state.floor
-        )
-        // .then(
-        // () => {});
+        );
         deleteCart();
         localStorage.setItem('tempId', '');
     };
@@ -106,8 +103,8 @@ const Purchase = memo(({
 
     return (
         <>
-            {!cart ? <Redirect to='/orderMessage'/> :
-                <div className={styles.container}>
+            {productsLength
+                ? <div className={styles.container}>
                     <NavLink className={styles.closeBtn} to={'/cart'}>
                         <CloseCircleOutlined className={styles.icon}/>
                     </NavLink>
@@ -117,7 +114,7 @@ const Purchase = memo(({
                             <FontAwesomeIcon
                                 style={{marginRight: '7px', color: '#EE7178'}}
                                 icon={faMoneyCheck}/>
-                            <span className={styles.logoTittle}>
+                            <span className={styles.tittle}>
                             Оформити замовлення
                         </span>
                         </div>
@@ -128,7 +125,7 @@ const Purchase = memo(({
                             <FontAwesomeIcon
                                 style={{marginRight: '7px', color: '#EE7178'}}
                                 icon={faAddressCard}/>
-                            <span className={styles.logoTittle}>
+                            <span className={styles.tittle}>
                             Персональні дані
                         </span>
                         </div>
@@ -227,7 +224,6 @@ const Purchase = memo(({
                             <FormHelperText>Населений пункт</FormHelperText>
                         </FormControl>
 
-
                         <TextField style={{color: '#008E46'}}
                                    required
                                    id="filled-required"
@@ -310,7 +306,7 @@ const Purchase = memo(({
                                 <FontAwesomeIcon
                                     style={{marginRight: '7px', color: '#EE7178'}}
                                     icon={faShoppingCart}/>
-                                <span className={styles.logoTittle}>
+                                <span className={styles.tittle}>
                             Ваше замовлення
                         </span>
                             </div>
@@ -318,7 +314,7 @@ const Purchase = memo(({
 
                         <div className={styles.wrapper}>
                             {cart && cart.map(cartItem =>
-                                <div key={cartItem.id} className={styles.cartItemContainer}>
+                                <div key={cartItem.id} className={styles.itemContainer}>
                                     <NavLink to={'/productPage/' + cartItem.productId} className={styles.cartItem}>
                                         <img className={styles.img}
                                              src={`http://localhost:5000/${cartItem['Product.product_photo']}`}
@@ -328,7 +324,7 @@ const Purchase = memo(({
                                     </NavLink>
 
 
-                                    <NavLink to={'/productPage/' + cartItem.productId} className={styles.cartCounter}>
+                                    <NavLink to={'/productPage/' + cartItem.productId} className={styles.counter}>
                                         <div className={styles.count}><span>{cartItem.count} шт</span></div>
                                     </NavLink>
 
@@ -381,7 +377,8 @@ const Purchase = memo(({
                             </div>}
                         </div>
                     </form>
-                </div>}
+                </div>
+                : <OrderMessage/>}
         </>
     );
 });

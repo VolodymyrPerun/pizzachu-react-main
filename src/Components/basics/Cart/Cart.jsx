@@ -25,6 +25,7 @@ const Cart = memo(({
                        cart
                    }) => {
 
+
     const minus = useCallback((id, count) => {
         if (count > 1) {
             updateProductInCart(id, --count);
@@ -58,12 +59,12 @@ const Cart = memo(({
                     <CloseCircleOutlined className={styles.icon}/>
                 </NavLink>
 
-                <div className={styles.cartLogoContainer}>
-                    <div className={styles.cartLogo}>
+                <div className={styles.logoContainer}>
+                    <div className={styles.logo}>
                         <FontAwesomeIcon
                             style={{marginRight: '7px', color: '#EE7178'}}
                             icon={faCartArrowDown}/>
-                        <span className={styles.logoTittle}>
+                        <span className={styles.tittle}>
                             Корзина
                         </span>
                     </div>
@@ -79,7 +80,7 @@ const Cart = memo(({
 
                 {productsLength !== 0 ?
                     cart.map(cartItem =>
-                        <div key={cartItem.id} className={styles.cartItemContainer}>
+                        <div key={cartItem.id} className={styles.itemContainer}>
                             <NavLink to={'/productPage/' + cartItem.productId} className={styles.cartItem}>
                                 <img className={styles.img}
                                      src={`http://localhost:5000/${cartItem['Product.product_photo']}`}
@@ -88,7 +89,7 @@ const Cart = memo(({
                                 <span className={styles.size}>{cartItem.price} грн</span>
                             </NavLink>
 
-                            <div className={styles.cartCounter}>
+                            <div className={styles.counter}>
                                 <div onClick={() => minus(cartItem.productId, cartItem.count)}
                                      className={cartItem.count > 1 ? styles.minus : styles.disable}>
                                     <MinusCircleOutlined/></div>

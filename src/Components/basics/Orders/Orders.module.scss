@@ -1,0 +1,261 @@
+.container {
+  display: flex;
+  flex-wrap: wrap;
+  flex-direction: column;
+  grid-area: content;
+  height: auto;
+  min-height: 58.6vh;
+  width: 70%;
+  justify-content: space-around;
+  justify-items: center;
+  align-items: baseline;
+  align-self: center;
+  align-content: center;
+  text-align: center;
+  font-family: 'Caveat', cursive;
+  font-weight: 800;
+  border-radius: 15px;
+  margin: 5px auto 20px auto;
+  padding: 10px;
+  background: #fff;
+  border: 2px solid #f0f0f0;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.5), inset 0 1px rgba(255, 255, 255, 0.3), inset 0 10px rgba(255, 255, 255, 0.2), inset 0 10px 20px rgba(255, 255, 255, 0.25), inset 0 -15px 30px rgba(0, 0, 0, 0.3);
+  -o-box-shadow: 0 2px 6px rgba(0, 0, 0, 0.5), inset 0 1px rgba(255, 255, 255, 0.3), inset 0 10px rgba(255, 255, 255, 0.2), inset 0 10px 20px rgba(255, 255, 255, 0.25), inset 0 -15px 30px rgba(0, 0, 0, 0.3);
+  -webkit-box-shadow: 0 2px 6px rgba(0, 0, 0, 0.5), inset 0 1px rgba(255, 255, 255, 0.3), inset 0 10px rgba(255, 255, 255, 0.2), inset 0 10px 20px rgba(255, 255, 255, 0.25), inset 0 -15px 30px rgba(0, 0, 0, 0.3);
+  -moz-box-shadow: 0 2px 6px rgba(0, 0, 0, 0.5), inset 0 1px rgba(255, 255, 255, 0.3), inset 0 10px rgba(255, 255, 255, 0.2), inset 0 10px 20px rgba(255, 255, 255, 0.25), inset 0 -15px 30px rgba(0, 0, 0, 0.3);
+
+  .closeBtn {
+    display: flex;
+    justify-content: space-around;
+    justify-items: center;
+    align-items: baseline;
+    align-self: flex-end;
+    align-content: center;
+    text-align: right;
+    color: #EE7178;
+
+    .icon:hover {
+      transform: rotate(180deg);
+    }
+  }
+
+  .logoContainer {
+    display: flex;
+    flex-wrap: nowrap;
+    flex-direction: row;
+    height: auto;
+    width: 95%;
+    justify-content: space-around;
+    justify-items: center;
+    align-items: baseline;
+    align-self: center;
+    align-content: center;
+    text-align: center;
+    margin-bottom: 0;
+
+    .logo {
+      .tittle {
+        font-size: 27px;
+      }
+    }
+  }
+
+  .orderItemContainer {
+    display: flex;
+    justify-content: space-between;
+    // flex-wrap: wrap;
+    align-content: center;
+    height: 65px;
+    flex-direction: row;
+    width: 90%;
+    margin: 10px 0;
+    border-radius: 15px;
+    border: 2px solid #f0f0f0;
+    box-shadow: 0 7px 20px rgba(0, 0, 0, 0.25), 0 7px 7px rgba(0, 0, 0, 0.22);
+
+    .cartItem {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      flex-direction: column;
+      max-width: 250px;
+      height: auto;
+      padding: 5px;
+
+      .tittle {
+        color: black;
+        font-size: 17px;
+        margin: 0;
+        font-weight: bold;
+      }
+
+      .size {
+        grid-row: 2;
+        grid-column: 2;
+        position: relative;
+        color: gray;
+        font-size: 17px;
+        border: 1px solid #f0f0f0;
+        border-radius: 15px;
+        padding: 0 2.5px;
+        margin: 0;
+      }
+    }
+
+    .counter {
+      display: flex;
+      align-items: center;
+      align-self: center;
+      justify-content: space-between;
+
+      .count {
+        display: flex;
+        align-items: center;
+        align-self: center;
+        text-align: center;
+        height: 10px;
+        color: gray;
+        margin-right: 20px;
+        font-size: 17px;
+        border: 1px solid #f0f0f0;
+        border-radius: 15px;
+        padding: 15px;
+      }
+
+      .done {
+        display: flex;
+        align-items: center;
+        align-self: center;
+        text-align: center;
+        height: 10px;
+        color: #EE7178;
+        margin-right: 20px;
+        font-size: 17px;
+        border: 1px solid #EE7178;
+        border-radius: 15px;
+        padding: 15px;
+      }
+    }
+
+    .sum {
+      display: flex;
+      align-items: center;
+      align-self: center;
+      justify-content: space-between;
+      color: black;
+      margin: 0 10px;
+    }
+  }
+
+  .btn {
+    display: flex;
+    justify-content: space-between;
+    align-content: center;
+    flex-direction: row;
+    width: 90%;
+    margin: 15px 0;
+
+    .goBack {
+      display: flex;
+      align-items: center;
+      align-self: center;
+      justify-content: space-between;
+    }
+  }
+
+  .emptyOrder {
+    height: 50%;
+    width: 50%;
+    margin: 0 auto;
+
+    p,span {
+      font-size: 18px;
+    }
+
+    .register {
+      color: #EE7178;
+
+      span:hover {
+        border-bottom: 1px solid#EE7178;
+      }
+    }
+
+  }
+}
+
+@media only screen and (max-width: 1020px) {
+  .container {
+
+    .closeBtn {
+      display: flex;
+      justify-self: end;
+
+      .icon:hover {
+        transform: rotate(0deg);
+      }
+    }
+  }
+}
+
+
+@media only screen and (max-width: 760px) {
+
+  .container {
+    width: 90%;
+    align-items: center;
+
+    .logoContainer {
+
+      .logo {
+
+        .tittle {
+          font-size: 22px;
+        }
+      }
+    }
+
+    .orderItemContainer {
+      flex-direction: column;
+      width: 70%;
+      height: auto;
+
+      .cartItem {
+        .size {
+          font-size: 15px;
+        }
+      }
+
+      .sum {
+        margin: 0 20px;
+
+        span {
+          font-size: 19px;
+        }
+      }
+    }
+
+    .totalGroup {
+      .totalProductsCount {
+        font-size: 15px;
+        margin: 10px;
+      }
+
+      .totalSum {
+        font-size: 15px;
+      }
+    }
+
+    .btn {
+
+      .goBack {
+        margin-right: 10px;
+      }
+
+      .order {
+        margin-left: 10px;
+      }
+    }
+  }
+}
+
+

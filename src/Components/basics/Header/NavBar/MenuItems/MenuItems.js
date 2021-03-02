@@ -10,8 +10,8 @@ export const MenuItems = [
         cName: 'dropdownLink'
     },
     {
-        title: 'Відгуки',
-        path: '/feedbacks',
+        title: 'Мої замовлення',
+        path: '/orders',
         cName: 'dropdownLink'
     }
 ];

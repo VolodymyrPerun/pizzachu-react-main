@@ -1,25 +1,54 @@
 import {
-    SET_PURCHASE,
-    SET_TEMP_ID
+    SET_PURCHASES,
+    SET_TEMP_ID,
+    SET_CURRENT_PAGE,
+    SET_PAGE_SIZE,
+    SET_TOTAL_PURCHASES_COUNT,
+    TOGGLE_IS_FETCHING
 } from "./constants";
+import {PAGE_DEFAULT} from "../../../constants";
 
 
 const initialState = {
-    purchase: null,
-    tempId: null
+    purchases: [],
+    tempId: null,
+    pageSize: PAGE_DEFAULT.PAGE_SIZE,
+    total: 0,
+    currentPage: PAGE_DEFAULT.CURRENT_PAGE,
+    isFetching: true
 };
 
 const cartReducer = (state = initialState, action) => {
     switch (action.type) {
-        case SET_PURCHASE:
+        case SET_PURCHASES:
             return {
                 ...state,
-                purchase: action.payload
+                purchases: action.payload
             }
         case SET_TEMP_ID:
             return {
                 ...state,
                 tempId: action.payload
+            }
+        case SET_TOTAL_PURCHASES_COUNT:
+            return {
+                ...state,
+                total: action.payload
+            }
+        case SET_CURRENT_PAGE:
+            return {
+                ...state,
+                currentPage: action.payload
+            }
+        case SET_PAGE_SIZE:
+            return {
+                ...state,
+                pageSize: action.payload
+            }
+        case TOGGLE_IS_FETCHING:
+            return {
+                ...state,
+                isFetching: action.payload
             }
         default:
             return state;

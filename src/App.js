@@ -22,6 +22,7 @@ import Cart from "./containers/Cart/Cart";
 import Login from "./containers/Login/Login";
 import Purchase from "./containers/Purchase/Purchase";
 import OrderMessage from "./containers/OrderMessage/OrderMessage";
+import Orders from "./containers/Orders/Orders";
 
 
 class App extends Component {
@@ -76,6 +77,7 @@ class App extends Component {
                         <Route path='/login' render={() => <Login/>}/>
                         <Route path='/productPage/:productId?' render={() => <ProductPage/>}/>
                         <Route path='/orderMessage' render={() => <OrderMessage/>}/>
+                        <Route path='/orders' render={() => <Orders/>}/>
                         <Route path='/error' render={() =>
                             <ErrorMessages globalError={this.props.globalError} history={this.props.history}/>}/>
                         <Route path='*' render={() => <Page404 history={this.props.history}/>}/>}/>
