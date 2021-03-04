@@ -1,25 +1,45 @@
-import React, {memo, useEffect} from 'react';
+import React, {memo, useMemo} from 'react';
 import styles from './Orders.module.scss';
 import ApplyBtn from "../../commons/Buttons/Apply/ApplyBtn";
 import {FontAwesomeIcon} from "@fortawesome/react-fontawesome";
 import {faArrowLeft, faAward} from "@fortawesome/free-solid-svg-icons";
-import {CloseCircleOutlined} from '@ant-design/icons';
+import {CloseCircleOutlined, FastBackwardFilled, FastForwardFilled} from '@ant-design/icons';
 import {NavLink} from "react-router-dom";
 import Preloader from "../../commons/Preloader/Preloader";
+import {Pagination} from "antd";
 
 
 const Orders = memo(({
+                         length,
                          isAuth,
                          purchases,
-                         getAllClientPurchases
+                         getAllClientPurchases,
+                         pageSize,
+                         setCurrentPage,
                      }) => {
 
 
-    useEffect(() => {
-        getAllClientPurchases(10, 1)
+    useMemo((pageSize, currentPage) => {
+        getAllClientPurchases(pageSize, currentPage)
     }, [getAllClientPurchases]);
 
-    let unique = purchases.filter((set => f => !set.has(f.created_at) && set.add(f.created_at))(new Set()));
+    const onPageChange = currentPage => {
+        setCurrentPage(currentPage);
+        getAllClientPurchases(pageSize, currentPage)
+    };
+
+    let pagesCount = Math.floor(Math.ceil(length / pageSize) * 10);
+
+    function itemRender(current, type, originalElement) {
+        if (type === 'prev') {
+            return <button><FastBackwardFilled/></button>;
+        }
+        if (type === 'next') {
+            return <button><FastForwardFilled/></button>;
+        }
+        return originalElement;
+    }
+
 
     return (
         <>
@@ -41,14 +61,14 @@ const Orders = memo(({
 
                 {isAuth
                     ? <>
-                        {!unique ? <Preloader/> :
-                            unique.map((purchaseItem, i) =>
+                        {!purchases ? <Preloader/> :
+                            purchases.map((purchaseItem, i) =>
                                 purchaseItem.status_id === 1 || purchaseItem.status_id === 2 || purchaseItem.status_id === 4 ?
                                     <div key={purchaseItem.id} className={styles.orderItemContainer}>
 
                                         <div className={styles.counter}>
                                             <div className={styles.count}>
-                                                <span>№ {++i}</span></div>
+                                                <span>№ {purchaseItem.id}</span></div>
                                         </div>
 
                                         <div className={styles.sum}>
@@ -85,12 +105,23 @@ const Orders = memo(({
                             )}
                     </>
                     : <div className={styles.emptyOrder}>
-                                <h3>Замовлення відсутні</h3>
-                                <p>Але це ніколи не пізно виправити :)</p>
+                        <h3>Замовлення відсутні</h3>
+                        <p>Але це ніколи не пізно виправити :)</p>
                         <p>Для того, щоб зберігати інформацію про замовлення, необхідно зараєструватись</p>
-                        <NavLink className={styles.register} to={'/register'}><span>Зараєструватись зараз?</span></NavLink>
-                            </div>}
+                        <NavLink className={styles.register}
+                                 to={'/register'}><span>Зараєструватись зараз?</span></NavLink>
+                    </div>}
 
+                <Pagination
+                    className={styles.pagination}
+                    total={pagesCount}
+                    itemRender={itemRender}
+                    showLessItems={true}
+                    showSizeChanger={false}
+                    onChange={(p) => {
+                        onPageChange(p)
+                    }}
+                />
 
                 <div className={styles.btn}>
                     <NavLink className={styles.goBack} to={'/home'}>

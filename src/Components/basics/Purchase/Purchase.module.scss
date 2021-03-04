@@ -223,16 +223,9 @@
     align-content: center;
     flex-direction: row;
     width: 100%;
-    margin-bottom: 15px;
+    margin: 25px 0 20px 20px;
 
     .goBack {
-      display: flex;
-      align-items: center;
-      align-self: center;
-      justify-content: space-between;
-    }
-
-    .order {
       display: flex;
       align-items: center;
       align-self: center;
@@ -355,10 +348,6 @@
 
       .goBack {
         margin-right: 10px;
-      }
-
-      .order {
-        margin-left: 10px;
       }
     }
   }

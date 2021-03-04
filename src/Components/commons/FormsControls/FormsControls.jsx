@@ -2,14 +2,17 @@ import React from 'react';
 import style from './FormsControls.module.scss';
 import {FontAwesomeIcon} from "@fortawesome/react-fontawesome";
 import {faExclamationCircle, faExclamationTriangle} from '@fortawesome/free-solid-svg-icons';
-import {INPUT, TEXTAREA} from '../../../constants/formsControls.enum'
+import {INPUT, TEXT_FIELD, TEXTAREA} from '../../../constants/formsControls.enum'
+import TextField from "@material-ui/core/TextField";
 
 
-const FormsControlItem = item => ({input, meta: {touched, error, warning}, child, ...restProps}) => {
+const FormsControlItem = item => ({input, value, label, meta: {touched, error, warning}, child, ...restProps}) => {
 
     let isError = touched && ((error || warning));
 
+
     const Error = () => {
+
 
         return (
             <div className={style.errorsContainer}>
@@ -51,6 +54,19 @@ const FormsControlItem = item => ({input, meta: {touched, error, warning}, child
                         <input className={style.inputField}
                                {...input}
                                {...restProps}
+                        />
+                        <Error/>
+                    </div>
+                </>
+            )
+        case TEXT_FIELD:
+            return (
+                <>
+                    <div className={`${style.formsControls} ${isError ? style.error : ""}`}>
+                        <TextField label={label}
+                                   value={value}
+                                   {...input}
+                                   {...restProps}
                         />
                         <Error/>
                     </div>

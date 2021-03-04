@@ -20,7 +20,6 @@ const Login = ({
                    login,
                    loginAdmin,
                    adminErrorMessage,
-                   setCart,
                    cart
                }) => {
 

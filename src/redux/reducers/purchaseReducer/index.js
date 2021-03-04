@@ -4,7 +4,8 @@ import {
     SET_CURRENT_PAGE,
     SET_PAGE_SIZE,
     SET_TOTAL_PURCHASES_COUNT,
-    TOGGLE_IS_FETCHING
+    TOGGLE_IS_FETCHING,
+    SET_PURCHASES_LENGTH
 } from "./constants";
 import {PAGE_DEFAULT} from "../../../constants";
 
@@ -14,6 +15,7 @@ const initialState = {
     tempId: null,
     pageSize: PAGE_DEFAULT.PAGE_SIZE,
     total: 0,
+    length: 0,
     currentPage: PAGE_DEFAULT.CURRENT_PAGE,
     isFetching: true
 };
@@ -34,6 +36,11 @@ const cartReducer = (state = initialState, action) => {
             return {
                 ...state,
                 total: action.payload
+            }
+        case SET_PURCHASES_LENGTH:
+            return {
+                ...state,
+                length: action.payload
             }
         case SET_CURRENT_PAGE:
             return {

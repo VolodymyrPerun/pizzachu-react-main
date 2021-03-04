@@ -4,7 +4,8 @@ import {
     SET_PURCHASES,
     SET_TEMP_ID,
     SET_TOTAL_PURCHASES_COUNT,
-    TOGGLE_IS_FETCHING
+    TOGGLE_IS_FETCHING,
+    SET_PURCHASES_LENGTH
 } from "./constants";
 
 
@@ -13,6 +14,7 @@ export const setTempId = payload => ({type: SET_TEMP_ID, payload});
 export const setPageSize = payload => ({type: SET_PAGE_SIZE, payload});
 export const setCurrentPage = payload => ({type: SET_CURRENT_PAGE, payload});
 export const setTotalPurchasesCount = payload => ({type: SET_TOTAL_PURCHASES_COUNT, payload});
+export const setPurchasesLength = payload => ({type: SET_PURCHASES_LENGTH, payload});
 export const setIsFetching = isFetching => ({type: TOGGLE_IS_FETCHING, payload: isFetching});
 
 

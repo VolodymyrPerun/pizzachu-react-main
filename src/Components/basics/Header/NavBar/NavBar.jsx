@@ -96,11 +96,11 @@ const NavBar = ({isAuth, me}) => {
                     </li>
                     <li className={`${styles.navItem} ${styles.navMobileItem}`}>
                         <Link
-                            to='/feedbacks'
+                            to='/orders'
                             className={styles.navLinks}
                             onClick={closeMobileMenu}
                         >
-                            Відгуки
+                            Мої замовлення
                         </Link>
                     </li>
                     <li className={styles.navItem}>

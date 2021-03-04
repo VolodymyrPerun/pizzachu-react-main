@@ -25,6 +25,7 @@
     font: 14px "Matura MT Script Capitals", -apple-system, "Segoe UI", "Roboto", "Oxygen", "Ubuntu", "Cantarell", "Fira Sans", "Droid Sans", "Helvetica Neue", sans-serif;
     max-width: 150px;
     color: tomato;
+    border: 2px solid gray;
   }
 
   .errorsContainer {
@@ -53,7 +54,7 @@
         border-right: 10px solid transparent;
         border-bottom: 10px solid #c51244;
         position: absolute;
-        top: -10px;
+        top: -5px;
       }
     }
 

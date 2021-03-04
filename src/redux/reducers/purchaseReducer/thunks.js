@@ -1,6 +1,6 @@
 import {purchaseAPI} from "../../../API/purchaseAPI/purchaseAPI";
 import {checkAccessTokenPresent} from "../../../helpers/checkAccessTokenPresent";
-import {setIsFetching, setPurchase, setTempId, setTotalPurchasesCount} from "./actions";
+import {setIsFetching, setPurchase, setPurchasesLength, setTempId, setTotalPurchasesCount} from "./actions";
 
 
 export const addPurchase = (email,
@@ -49,5 +49,6 @@ export const getAllClientPurchases = (pageSize, currentPage) => async dispatch =
     let response = await purchaseAPI.getAllClientPurchases(pageSize, currentPage, token);
     dispatch(setIsFetching(false));
     dispatch(setPurchase(response.data.purchase));
+    dispatch(setPurchasesLength(response.data.length))
     dispatch(setTotalPurchasesCount(response.data.total));
 };

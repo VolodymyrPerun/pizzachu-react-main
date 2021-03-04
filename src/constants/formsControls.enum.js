@@ -1,4 +1,5 @@
 module.exports = {
     TEXTAREA: 'Textarea',
-    INPUT: 'Input'
+    INPUT: 'Input',
+    TEXT_FIELD: 'TextField'
 };
