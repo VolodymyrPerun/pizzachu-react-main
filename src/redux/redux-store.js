@@ -9,10 +9,12 @@ import promo from "./reducers/promoBlockReducer";
 import cart from "./reducers/cartReducer";
 import users from "./reducers/usersReducer";
 import purchase from "./reducers/purchaseReducer";
+import registerClients from "./reducers/registerClientsReducer";
 import {reducer as form} from 'redux-form';
 
 
 export const reducers = combineReducers({
+    registerClients,
     messagesPage,
     productsPage,
     productPage,

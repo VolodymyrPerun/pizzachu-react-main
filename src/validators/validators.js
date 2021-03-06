@@ -1,7 +1,7 @@
 export const required = value => value ? undefined : "Це поле не може бути порожнім";
 
 export const number = value =>
-    value &&  value >= 0
+    value >= 0
         ? undefined
         :  'Поле повинно містити лише цифри вище 0';
 

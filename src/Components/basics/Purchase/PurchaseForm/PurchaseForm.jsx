@@ -5,11 +5,11 @@ import FormControl from '@material-ui/core/FormControl';
 import NativeSelect from '@material-ui/core/NativeSelect';
 import styles from './PurchaseForm.module.scss';
 import {Field, reduxForm} from "redux-form";
-import {email, maxLengthCreator, minLengthCreator, number, phone, required} from "../../../validators/validators";
-import FormsControlItem from "../../commons/FormsControls/FormsControls";
-import {TEXT_FIELD} from "../../../constants/formsControls.enum";
+import {email, maxLengthCreator, minLengthCreator, number, phone, required} from "../../../../validators/validators";
+import FormsControlItem from "../../../commons/FormsControls/FormsControls";
+import {TEXT_FIELD} from "../../../../constants/formsControls.enum";
 import {connect} from "react-redux";
-import SubmitFollowBtn from "../../commons/Buttons/SubmitFollow/SubmitFollowBtn";
+import SubmitFollowBtn from "../../../commons/Buttons/SubmitFollow/SubmitFollowBtn";
 import {faArrowRight} from "@fortawesome/free-solid-svg-icons";
 
 
@@ -53,8 +53,6 @@ const PurchaseForm = ({
 
     const classes = useStyles();
 
-    console.log(state);
-
     return (
         <>
             <form
@@ -68,7 +66,7 @@ const PurchaseForm = ({
                        value={isAuth ? me.name : null}
                        variant="filled"
                        name="name"
-                       validate={[required, maxLength20, minLength2]}
+                       validate={[required, minLength2, maxLength20]}
                        onChange={(event => setState({
                            ...state,
                            name: event.target.value
@@ -84,11 +82,11 @@ const PurchaseForm = ({
                     label={"Телефон"}
                     placeholder={'(0xx) xxx xx xx'}
                     name={"phone"}
-                    validate={[required, number, maxLength10, minLength10]}
+                    validate={[required, number, minLength10, maxLength10]}
                     warn={phone}
                     onChange={(event => setState({
                         ...state,
-                        email: event.target.value
+                        phone: event.target.value
                     }))}
                 />
 
@@ -101,7 +99,7 @@ const PurchaseForm = ({
                     label={"Ел. скринька"}
                     placeholder={'pizzachu@icheese.you'}
                     name={"email"}
-                    validate={[required, maxLength45, minLength2]}
+                    validate={[required, minLength2, maxLength45]}
                     warn={email}
                     onChange={(event => setState({
                         ...state,
@@ -165,7 +163,7 @@ const PurchaseForm = ({
                        name="street"
                        label="Вулиця"
                        variant="filled"
-                       validate={[required, maxLength45, minLength2]}
+                       validate={[required, minLength2, maxLength45]}
                        onChange={(event => setState({
                            ...state,
                            street: event.target.value
@@ -178,7 +176,7 @@ const PurchaseForm = ({
                        name="house"
                        label="Будинок"
                        variant="filled"
-                       validate={[required, maxLength45, minLength2]}
+                       validate={[required, minLength2, maxLength45]}
                        onChange={(event => setState({
                            ...state,
                            house: event.target.value
@@ -189,7 +187,7 @@ const PurchaseForm = ({
                        id="filled-required"
                        name="apartment"
                        label="Квартира"
-                       validate={[required, number, maxLength10, minLength1]}
+                       validate={[number, minLength1, maxLength10]}
                        variant="filled"
                        validation={'number'}
                        onChange={(event => setState({
@@ -202,7 +200,7 @@ const PurchaseForm = ({
                        id="filled-required"
                        name="entrance"
                        label="Під'їзд"
-                       validate={[required, number, maxLength10, minLength1]}
+                       validate={[number, minLength1, maxLength10]}
                        variant="filled"
                        onChange={(event => setState({
                            ...state,
@@ -215,7 +213,7 @@ const PurchaseForm = ({
                        name="floor"
                        label="Поверх"
                        variant="filled"
-                       validate={[required, number, maxLength10, minLength1]}
+                       validate={[number, minLength1, maxLength10]}
                        onChange={(event => setState({
                            ...state,
                            floor: event.target.value

@@ -7,3 +7,5 @@ module.exports.SORT_POPUP_LABELS = require('./sortPopupLables.enum');
 module.exports.HEADER_ENUM = require('./authConstants/header.enum');
 module.exports.TOKEN_ENUM = require('./authConstants/token.enum');
 module.exports.CUSTOM_ERRORS = require('./customErrors/customErrors');
+module.exports.USER_ROLE = require('./userConstants/userRole.enum');
+module.exports.USER_STATUS = require('./userConstants/userStatus.enum');

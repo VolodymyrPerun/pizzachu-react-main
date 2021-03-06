@@ -109,10 +109,10 @@ const Orders = memo(({
                         <p>Але це ніколи не пізно виправити :)</p>
                         <p>Для того, щоб зберігати інформацію про замовлення, необхідно зараєструватись</p>
                         <NavLink className={styles.register}
-                                 to={'/register'}><span>Зараєструватись зараз?</span></NavLink>
+                                 to={'/registerClients'}><span>Зараєструватись зараз?</span></NavLink>
                     </div>}
 
-                <Pagination
+                {isAuth ? <Pagination
                     className={styles.pagination}
                     total={pagesCount}
                     itemRender={itemRender}
@@ -121,7 +121,7 @@ const Orders = memo(({
                     onChange={(p) => {
                         onPageChange(p)
                     }}
-                />
+                /> : null}
 
                 <div className={styles.btn}>
                     <NavLink className={styles.goBack} to={'/home'}>

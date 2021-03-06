@@ -20,7 +20,7 @@ const initialState = {
     isFetching: true
 };
 
-const cartReducer = (state = initialState, action) => {
+const purchaseReducer = (state = initialState, action) => {
     switch (action.type) {
         case SET_PURCHASES:
             return {
@@ -62,4 +62,4 @@ const cartReducer = (state = initialState, action) => {
     }
 };
 
-export default cartReducer;
+export default purchaseReducer;

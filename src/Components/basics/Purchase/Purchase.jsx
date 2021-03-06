@@ -12,7 +12,7 @@ import {NavLink} from "react-router-dom";
 import {FontAwesomeIcon} from "@fortawesome/react-fontawesome";
 import {CloseCircleOutlined} from '@ant-design/icons';
 import OrderMessage from "../../../containers/OrderMessage/OrderMessage";
-import PurchaseForm from "../PurchaseForm/PurchaseForm";
+import PurchaseForm from "./PurchaseForm/PurchaseForm";
 
 
 const Purchase = memo(({
