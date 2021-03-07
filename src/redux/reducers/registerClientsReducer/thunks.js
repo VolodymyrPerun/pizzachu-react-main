@@ -1,5 +1,5 @@
 import {registerClientsAPI} from "../../../API/registerClientsAPI/registerClientsAPI";
-import {setRegisterErrMsg} from "./actions";
+import {setIsFetching, setRegisterErrMsg, setRegisterSuccess} from "./actions";
 import {CUSTOM_ERRORS} from "../../../constants";
 
 
@@ -37,11 +37,13 @@ export const registerClient = (
             floor);
 
         if (response) {
+            dispatch(setRegisterSuccess(true));
+            dispatch(setIsFetching(true));
             dispatch(setRegisterErrMsg(null));
         }
 
     } catch (e) {
-        //dispatch(setIsFetching(false));
+        dispatch(setIsFetching(true));
 
         if (e.response.data.code) {
             dispatch(setRegisterErrMsg(CUSTOM_ERRORS[e.response.data.code].message));

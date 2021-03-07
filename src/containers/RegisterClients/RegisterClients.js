@@ -7,6 +7,8 @@ const mapStateToProps = ({auth, registerClients}) => ({
     isAuth: auth.isAuth,
     me: auth.me,
     errorMessage: registerClients.registerErrMsg,
+    isFetching: registerClients.isFetching,
+    isRegisterSuccess: registerClients.isRegisterSuccess
 });
 
 export default connect(mapStateToProps, {

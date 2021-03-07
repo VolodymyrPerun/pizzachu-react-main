@@ -84,16 +84,17 @@ const RegisterClientsForm = ({
                 {/*        <UploadOutlined/> Завантажити фото*/}
                 {/*    </label>*/}
                 {/*</div>*/}
-
-                <Field style={{color: '#008E46'}}
-                       component={FormsControlItem(TEXT_FIELD)}
-                       required
-                       type={'text'}
-                       label={"Ім'я"}
-                       variant={"filled"}
-                       name={"name"}
-                       validate={[required, minLength2, maxLength20]}
-                />
+                <div>
+                    <Field style={{color: '#008E46'}}
+                           component={FormsControlItem(TEXT_FIELD)}
+                           required
+                           type={'text'}
+                           label={"Ім'я"}
+                           variant={"filled"}
+                           name={"name"}
+                           validate={[required, minLength2, maxLength20]}
+                    />
+                </div>
 
                 <div>
                     <Field style={{color: '#008E46'}}
@@ -112,7 +113,7 @@ const RegisterClientsForm = ({
                            component={FormsControlItem(TEXT_FIELD)}
                            required
                            type={'text'}
-                           name="age"
+                           name={"age"}
                            label={"Ваш вік"}
                            variant={"filled"}
                            validate={[required, minLength2, maxLength45]}
@@ -137,7 +138,7 @@ const RegisterClientsForm = ({
                     <FormControl className={classes.formControl}>
                         <Field required
                                component={FormsControlItem(SELECT)}
-                               name="gender_id"
+                               name={"gender_id"}
                                className={styles.select}
                         >
                             <option></option>
@@ -152,7 +153,7 @@ const RegisterClientsForm = ({
                     <Field
                         style={{color: '#008E46'}}
                         required
-                        variant="filled"
+                        variant={"filled"}
                         component={FormsControlItem(TEXT_FIELD)}
                         label={"Телефон"}
                         placeholder={'(0xx) xxx xx xx'}
@@ -177,13 +178,13 @@ const RegisterClientsForm = ({
                 </div>
 
                 <div>
-                    <FormControl variant="filled" className={classes.formControl}>
-                        <Field variant="filled"
+                    <FormControl variant={"filled"} className={classes.formControl}>
+                        <Field variant={"filled"}
                                style={{color: '#008E46'}}
                                required
                                component={FormsControlItem(SELECT)}
                                className={styles.select}
-                               name="city"
+                               name={"city"}
                         >
                             <option></option>
                             <option value={'Львів'}>Львів</option>
@@ -287,6 +288,7 @@ const RegisterClientsForm = ({
                         name={'Submit'}
                         type={"submit"}
                         disabled={pristine || submitting}
+                        onClick={reset}
                     />
                 </div>
 
