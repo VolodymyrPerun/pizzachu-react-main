@@ -1,13 +1,12 @@
-import React from 'react';
+import React, {memo} from 'react';
 import {makeStyles} from '@material-ui/core/styles';
 import FormHelperText from '@material-ui/core/FormHelperText';
 import FormControl from '@material-ui/core/FormControl';
-import NativeSelect from '@material-ui/core/NativeSelect';
 import styles from './PurchaseForm.module.scss';
 import {Field, reduxForm} from "redux-form";
 import {email, maxLengthCreator, minLengthCreator, number, phone, required} from "../../../../validators/validators";
 import FormsControlItem from "../../../commons/FormsControls/FormsControls";
-import {TEXT_FIELD} from "../../../../constants/formsControls.enum";
+import {SELECT, TEXT_FIELD} from "../../../../constants/formsControls.enum";
 import {connect} from "react-redux";
 import SubmitFollowBtn from "../../../commons/Buttons/SubmitFollow/SubmitFollowBtn";
 import {faArrowRight} from "@fortawesome/free-solid-svg-icons";
@@ -41,42 +40,35 @@ const maxLength10 = maxLengthCreator(10);
 const minLength10 = minLengthCreator(10);
 
 
-const PurchaseForm = ({
-                          me,
-                          isAuth,
-                          onSubmit,
-                          handleChange,
-                          state,
-                          setState,
-                          pristine, submitting, reset, error
-                      }) => {
+const PurchaseForm = memo(({
+                               me,
+                               isAuth,
+                               handleSubmit,
+                               errorMessage,
+                               pristine, submitting, reset, error
+                           }) => {
 
     const classes = useStyles();
+
 
     return (
         <>
             <form
-                onSubmit={onSubmit} className={classes.root} autoComplete="on">
+                onSubmit={handleSubmit} className={classes.root} autoComplete="on">
 
                 <Field style={{color: '#008E46'}}
                        component={FormsControlItem(TEXT_FIELD)}
                        required
-                       id="standard-required"
                        label={"Ім'я"}
                        value={isAuth ? me.name : null}
                        variant="filled"
                        name="name"
                        validate={[required, minLength2, maxLength20]}
-                       onChange={(event => setState({
-                           ...state,
-                           name: event.target.value
-                       }))}
                 />
 
                 <Field
                     style={{color: '#008E46'}}
                     required
-                    id={"standard-required"}
                     variant="filled"
                     component={FormsControlItem(TEXT_FIELD)}
                     label={"Телефон"}
@@ -84,16 +76,11 @@ const PurchaseForm = ({
                     name={"phone"}
                     validate={[required, number, minLength10, maxLength10]}
                     warn={phone}
-                    onChange={(event => setState({
-                        ...state,
-                        phone: event.target.value
-                    }))}
                 />
 
                 <Field
                     style={{color: '#008E46'}}
                     required
-                    id={"standard-required"}
                     variant="filled"
                     component={FormsControlItem(TEXT_FIELD)}
                     label={"Ел. скринька"}
@@ -101,23 +88,18 @@ const PurchaseForm = ({
                     name={"email"}
                     validate={[required, minLength2, maxLength45]}
                     warn={email}
-                    onChange={(event => setState({
-                        ...state,
-                        email: event.target.value
-                    }))}
                 />
 
 
                 <FormControl variant="filled" className={classes.formControl}>
-                    <NativeSelect style={{color: '#008E46'}}
-                                  required
-                                  onChange={handleChange}
-                                  name="city"
-                                  className={classes.selectEmpty}
-                                  inputProps={{id: 'city'}}
+                    <Field style={{color: '#008E46'}}
+                           required
+                           component={FormsControlItem(SELECT)}
+                           name={"city"}
+                           className={styles.select}
                     >
                         <option style={{color: 'red'}}
-                                value={isAuth ? me.city : state.city}>{isAuth ? me.city : state.city}</option>
+                                value={isAuth ? me.city : ''}>{isAuth ? me.city : ''}</option>
                         <option value={'Львів'}>Львів</option>
                         <option value={'Брюховичі'}>Брюховичі</option>
                         <option value={'Наварія'}>Наварія</option>
@@ -152,7 +134,7 @@ const PurchaseForm = ({
                         <option value={'Пустомити'}>Пустомити</option>
                         <option value={'Підсадки'}>Підсадки</option>
                         <option value={'Підбірці'}>Підбірці</option>
-                    </NativeSelect>
+                    </Field>
                     <FormHelperText>Населений пункт</FormHelperText>
                 </FormControl>
 
@@ -164,10 +146,6 @@ const PurchaseForm = ({
                        label="Вулиця"
                        variant="filled"
                        validate={[required, minLength2, maxLength45]}
-                       onChange={(event => setState({
-                           ...state,
-                           street: event.target.value
-                       }))}
                 />
                 <Field style={{color: '#008E46'}}
                        component={FormsControlItem(TEXT_FIELD)}
@@ -176,11 +154,7 @@ const PurchaseForm = ({
                        name="house"
                        label="Будинок"
                        variant="filled"
-                       validate={[required, minLength2, maxLength45]}
-                       onChange={(event => setState({
-                           ...state,
-                           house: event.target.value
-                       }))}
+                       validate={[required, minLength1, maxLength45]}
                 />
                 <Field style={{color: '#008E46'}}
                        component={FormsControlItem(TEXT_FIELD)}
@@ -190,10 +164,6 @@ const PurchaseForm = ({
                        validate={[number, minLength1, maxLength10]}
                        variant="filled"
                        validation={'number'}
-                       onChange={(event => setState({
-                           ...state,
-                           apartment: event.target.value
-                       }))}
                 />
                 <Field style={{color: '#008E46'}}
                        component={FormsControlItem(TEXT_FIELD)}
@@ -202,10 +172,6 @@ const PurchaseForm = ({
                        label="Під'їзд"
                        validate={[number, minLength1, maxLength10]}
                        variant="filled"
-                       onChange={(event => setState({
-                           ...state,
-                           entrance: event.target.value
-                       }))}
                 />
                 <Field style={{color: '#008E46'}}
                        component={FormsControlItem(TEXT_FIELD)}
@@ -214,10 +180,6 @@ const PurchaseForm = ({
                        label="Поверх"
                        variant="filled"
                        validate={[number, minLength1, maxLength10]}
-                       onChange={(event => setState({
-                           ...state,
-                           floor: event.target.value
-                       }))}
                 />
 
                 <div className={styles.order}>
@@ -235,10 +197,13 @@ const PurchaseForm = ({
                 <div className={styles.formsSummaryError}>
                     <span>ERROR: {error}</span>
                 </div>}
+
+                {errorMessage && '/' + window.location.href.split('/').pop() === '/purchase' &&
+                <div className={styles.errMsg}>{errorMessage}</div>}
             </form>
         </>
     );
-};
+});
 
 
 export default connect(({auth}) => ({
@@ -247,6 +212,7 @@ export default connect(({auth}) => ({
         name: (auth.me ? auth.me.name : ''),
         email: (auth.me ? auth.me.email : ''),
         phone: (auth.me ? auth.me.phone : ''),
+        city: (auth.me ? auth.me.city : ''),
         street: (auth.me ? auth.me.street : ''),
         house: (auth.me ? auth.me.house : ''),
         apartment: (auth.me ? auth.me.apartment : ''),

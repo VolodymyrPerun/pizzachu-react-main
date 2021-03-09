@@ -1,4 +1,4 @@
-import React, {memo, useEffect, useState} from 'react';
+import React, {memo, useEffect} from 'react';
 import styles from './Purchase.module.scss';
 import ApplyBtn from "../../commons/Buttons/Apply/ApplyBtn";
 import {
@@ -24,41 +24,23 @@ const Purchase = memo(({
                            isAuth,
                            addPurchase,
                            deleteCart,
+                           errorMessage,
+                           isPurchaseSuccess,
                            pristine, submitting, reset, error
                        }) => {
 
 
-    let [state, setState] = useState({
-        email: me ? me.email : '',
-        phone: me ? me.phone : '',
-        city: me ? me.city : 'Львів',
-        name: me ? me.name : '',
-        street: me ? me.street : '',
-        house: me ? me.house : '',
-        apartment: me ? me.apartment : '',
-        entrance: me ? me.entrance : '',
-        floor: me ? me.floor : '',
-    });
-
-    const handleChange = event => {
-        const city = event.target.name;
-        setState({
-            ...state,
-            [city]: event.target.value,
-        });
-    };
-
-    const onSubmit = () => {
+    const onSubmit = formData => {
         addPurchase(
-            state.email,
-            state.phone,
-            state.name,
-            state.city,
-            state.street,
-            state.house,
-            state.apartment,
-            state.entrance,
-            state.floor
+            formData.email,
+            formData.phone,
+            formData.name,
+            formData.city,
+            formData.street,
+            formData.house,
+            formData.apartment,
+            formData.entrance,
+            formData.floor
         );
         deleteCart();
         localStorage.setItem('tempId', '');
@@ -71,7 +53,7 @@ const Purchase = memo(({
 
     return (
         <>
-            {productsLength
+            {!isPurchaseSuccess
                 ? <div className={styles.container}>
                     <NavLink className={styles.closeBtn} to={'/cart'}>
                         <CloseCircleOutlined className={styles.icon}/>
@@ -154,10 +136,11 @@ const Purchase = memo(({
                         onSubmit={onSubmit}
                         me={me}
                         isAuth={isAuth}
-                        handleChange={handleChange}
                         error={error}
-                        state={state}
-                        setState={setState}
+                        errorMessage={errorMessage}
+                        pristine={pristine}
+                        submitting={submitting}
+                        reset={reset}
                     />
 
                     <div className={styles.btnGroup}>

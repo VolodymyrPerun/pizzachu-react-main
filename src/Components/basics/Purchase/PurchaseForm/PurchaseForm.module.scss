@@ -10,16 +10,39 @@ form {
   .formsSummaryError {
         font: 15px raleway-grid, sans-serif;
         font-weight: bold;
-        margin: 5px auto;
-        display: flex;
-        color: #c21500;
-        max-width: 70%;
-        justify-content: center;
-        align-self: center;
-        align-content: center;
-        align-items: center;
-        text-align: center;
-      }
+    margin: 5px auto;
+    display: flex;
+    color: #c21500;
+    max-width: 70%;
+    justify-content: center;
+    align-self: center;
+    align-content: center;
+    align-items: center;
+    text-align: center;
+  }
+
+  .select {
+    color: #008E46;
+    background-color: #EBEBEB;
+    border-top: none;
+    border-right: none;
+    border-left: none;
+    border-bottom: 1.2px solid gray;
+    width: 150px;
+    height: 32px;
+    border-radius: 3px 3px 0 0;
+    margin-bottom: 0;
+    padding-bottom: 0;
+    font-size: 17px;
+
+    &:hover {
+      background-color: #E5E5E5;
+    }
+  }
+
+  .errMsg {
+    color: darkred;
+  }
 
   .order {
     display: flex;
