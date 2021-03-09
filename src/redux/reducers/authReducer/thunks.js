@@ -133,10 +133,12 @@ export const logout = () => async dispatch => {
 
         const token = checkAccessTokenPresent();
 
-        await authAPI.logout(token);
+        await authAPI.logoutClient(token);
 
         localStorage.removeItem(TOKEN_ENUM.access_token);
         localStorage.removeItem(TOKEN_ENUM.refresh_token);
+
+        localStorage.setItem('tempId', uuidv4());
 
         dispatch(setIsAuth(false));
 

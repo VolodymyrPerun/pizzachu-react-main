@@ -8,7 +8,7 @@ import {setCurrentPage, setPageSize} from "../../redux/reducers/purchaseReducer/
 const sortBy = (purchases, filterBy) => {
     switch (filterBy) {
         case 'created_at':
-           return orderBy(purchases.filter((set => f => !set.has(f.created_at) && set.add(f.created_at))(new Set())), 'created_at', 'asc');
+           return orderBy(purchases.filter((set => f => !set.has(f.created_at) && set.add(f.created_at))(new Set())), 'created_at', 'desc');
         default:
             return purchases;
     }
@@ -19,7 +19,8 @@ const mapStateToProps = ({auth, purchase}) => ({
     pageSize: purchase.pageSize,
     length: purchase.length,
     purchases: purchase.purchases
-        && purchase.purchases && sortBy(purchase.purchases, 'created_at')
+        && purchase.purchases && sortBy(purchase.purchases, 'created_at'),
+    errorMessage: purchase.purchaseErrMsg,
 });
 
 export default connect(mapStateToProps, {

@@ -5,7 +5,6 @@ import {FontAwesomeIcon} from "@fortawesome/react-fontawesome";
 import {faArrowLeft, faAward} from "@fortawesome/free-solid-svg-icons";
 import {CloseCircleOutlined, FastBackwardFilled, FastForwardFilled} from '@ant-design/icons';
 import {NavLink} from "react-router-dom";
-import Preloader from "../../commons/Preloader/Preloader";
 import {Pagination} from "antd";
 
 
@@ -15,6 +14,7 @@ const Orders = memo(({
                          purchases,
                          getAllClientPurchases,
                          pageSize,
+                         errorMessage,
                          setCurrentPage,
                      }) => {
 
@@ -61,8 +61,14 @@ const Orders = memo(({
 
                 {isAuth
                     ? <>
-                        {!purchases ? <Preloader/> :
-                            purchases.map((purchaseItem, i) =>
+                        {!purchases || length === 0
+                            ? <div className={styles.emptyOrder}>
+                                {errorMessage && '/' + window.location.href.split('/').pop() === '/orders' &&
+                                <div style={{marginBottom: 30}}>{errorMessage}</div>}
+                                <NavLink className={styles.register}
+                                         to={'/home'}><span>Перейти до покупок?</span></NavLink>
+                            </div>
+                            : purchases.map((purchaseItem, i) =>
                                 purchaseItem.status_id === 1 || purchaseItem.status_id === 2 || purchaseItem.status_id === 4 ?
                                     <div key={purchaseItem.id} className={styles.orderItemContainer}>
 
@@ -84,7 +90,9 @@ const Orders = memo(({
 
                                         <div className={styles.counter}>
                                             <div className={styles.count}>
-                                                <span>Година: {(purchaseItem.created_at).toLocaleString().slice(11, 19)}</span>
+                                                <span>Година: {
+                                                    purchaseItem.created_at.toLocaleString('pl-PL').slice(11, 19)
+                                                }</span>
                                             </div>
                                         </div>
 
@@ -105,14 +113,14 @@ const Orders = memo(({
                             )}
                     </>
                     : <div className={styles.emptyOrder}>
-                        <h3>Замовлення відсутні</h3>
-                        <p>Але це ніколи не пізно виправити :)</p>
+                        {errorMessage && '/' + window.location.href.split('/').pop() === '/orders' &&
+                        <div style={{marginBottom: 30}}>{errorMessage}</div>}
                         <p>Для того, щоб зберігати інформацію про замовлення, необхідно зараєструватись</p>
                         <NavLink className={styles.register}
                                  to={'/registerClients'}><span>Зараєструватись зараз?</span></NavLink>
                     </div>}
 
-                {isAuth ? <Pagination
+                {isAuth && purchases.length > 0 ? <Pagination
                     className={styles.pagination}
                     total={pagesCount}
                     itemRender={itemRender}
