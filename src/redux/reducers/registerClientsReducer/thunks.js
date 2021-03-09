@@ -1,6 +1,7 @@
 import {registerClientsAPI} from "../../../API/registerClientsAPI/registerClientsAPI";
 import {setIsFetching, setRegisterErrMsg, setRegisterSuccess} from "./actions";
 import {CUSTOM_ERRORS} from "../../../constants";
+import {stopSubmit} from "redux-form";
 
 
 export const registerClient = (
@@ -44,6 +45,11 @@ export const registerClient = (
 
     } catch (e) {
         dispatch(setIsFetching(true));
+
+        let message = e.response.data.message && e.response.data.message.length > 0
+            ? CUSTOM_ERRORS['4003'].message :
+            CUSTOM_ERRORS['4042'].message;
+        dispatch(stopSubmit("registerForm", {_error: message}));
 
         if (e.response.data.code) {
             dispatch(setRegisterErrMsg(CUSTOM_ERRORS[e.response.data.code].message));

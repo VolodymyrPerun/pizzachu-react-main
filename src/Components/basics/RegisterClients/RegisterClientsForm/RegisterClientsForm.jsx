@@ -48,15 +48,12 @@ const minLength10 = minLengthCreator(10);
 
 
 const RegisterClientsForm = ({
-                                 me,
-                                 isAuth,
-                                 setState,
                                  errorMessage,
-                                 state,
                                  handleSubmit,
                                  pristine, submitting, reset, error
                              }) => {
 
+    console.log(error);
     const classes = useStyles();
 
     return (

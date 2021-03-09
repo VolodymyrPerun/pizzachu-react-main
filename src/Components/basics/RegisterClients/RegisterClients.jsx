@@ -1,4 +1,4 @@
-import React, {memo, useEffect, useState} from 'react';
+import React, {memo} from 'react';
 import styles from './RegisterClients.module.scss';
 import ApplyBtn from "../../commons/Buttons/Apply/ApplyBtn";
 import {faAddressCard, faArrowLeft, faUserPlus} from "@fortawesome/free-solid-svg-icons";
@@ -20,10 +20,6 @@ const RegisterClients = memo(({
                               }, match) => {
 
 
-    let [state, setState] = useState({
-        user_photo: null,
-    });
-
     const onSubmit = formData => {
         registerClient(
             formData.user_photo,
@@ -43,10 +39,6 @@ const RegisterClients = memo(({
         );
         localStorage.setItem('tempId', '');
     };
-
-    useEffect(() => {
-
-    }, [registerClient, setState]);
 
     if (!isFetching) {
         return <Preloader/>
@@ -90,8 +82,6 @@ const RegisterClients = memo(({
                                 me={me}
                                 isAuth={isAuth}
                                 error={error}
-                                state={state}
-                                setState={setState}
                                 errorMessage={errorMessage}
                                 pristine={pristine}
                                 submitting={submitting}
@@ -102,12 +92,11 @@ const RegisterClients = memo(({
                                 <NavLink className={styles.goBack} to={'/home'}>
                                     <ApplyBtn
                                         icon={faArrowLeft}
-                                        label={'На головну'}
+                                        label={'На головну сторінку'}
                                     />
                                 </NavLink>
                             </div>
                         </div>
-
                     </div>
 
                     : <div className={styles.container}>
