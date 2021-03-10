@@ -5,6 +5,8 @@ import FormControl from '@material-ui/core/FormControl';
 import styles from './RegisterClientsForm.module.scss';
 import {Field, reduxForm} from "redux-form";
 import {
+    age120,
+    age18,
     email,
     maxLengthCreator,
     minLengthCreator,
@@ -42,6 +44,7 @@ const useStyles = makeStyles((theme) => ({
 const maxLength20 = maxLengthCreator(20);
 const maxLength45 = maxLengthCreator(45);
 const minLength2 = minLengthCreator(2);
+const maxLength3 = maxLengthCreator(3);
 const minLength1 = minLengthCreator(1);
 const maxLength10 = maxLengthCreator(10);
 const minLength10 = minLengthCreator(10);
@@ -53,7 +56,7 @@ const RegisterClientsForm = ({
                                  pristine, submitting, reset, error
                              }) => {
 
-    console.log(error);
+
     const classes = useStyles();
 
     return (
@@ -62,25 +65,6 @@ const RegisterClientsForm = ({
                 onSubmit={handleSubmit}
                 className={classes.root}
                 autoComplete="on">
-
-                {/*<div>*/}
-                {/*    <label className={styles.customFileUpload}>*/}
-                {/*        <input type={'file'}*/}
-                {/*               name={'user_photo'}*/}
-                {/*               accept={'.jpg, .png, .jpeg'}*/}
-                {/*               onChange={e => {*/}
-
-                {/*                   if (e.target.files.length) {*/}
-                {/*                       setState({*/}
-                {/*                           ...state,*/}
-                {/*                           user_photo: e.target.files[0]*/}
-                {/*                       });*/}
-                {/*                   }*/}
-                {/*               }}*/}
-                {/*        />*/}
-                {/*        <UploadOutlined/> Завантажити фото*/}
-                {/*    </label>*/}
-                {/*</div>*/}
                 <div>
                     <Field style={{color: '#008E46'}}
                            component={FormsControlItem(TEXT_FIELD)}
@@ -113,8 +97,8 @@ const RegisterClientsForm = ({
                            name={"age"}
                            label={"Ваш вік"}
                            variant={"filled"}
-                           validate={[required, minLength2, maxLength45]}
-                           warn={number}
+                           validate={[ required, minLength2, maxLength3]}
+                           warn={[number, age18, age120]}
                     />
                 </div>
 

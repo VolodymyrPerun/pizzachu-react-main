@@ -5,9 +5,8 @@
 
 .login {
   display: grid;
-  grid-area: content;
-  height: 60vh;
-  max-height: 70vh;
+  height: auto;
+  max-height: 80vh;
   margin: 0 auto 22px auto;
   width: 50%;
   justify-content: center;
@@ -32,7 +31,7 @@
 
   .forms {
     min-height: 300px;
-    max-height: 392px;
+    max-height: 592px;
     min-width: 230px;
     max-width: 400px;
     align-content: center;
@@ -72,8 +71,8 @@
 
     .inputContainer {
       display: flex;
-      flex-direction: row;
-      justify-content: center;
+      flex-direction: column;
+      justify-content: space-around;
       align-items: center;
 
       .input {
@@ -131,6 +130,14 @@
     .menuItemLink:hover {
       border-bottom: 1px dotted #EFEFEF;
       transition: 0.3ms ease;
+    }
+  }
+
+  .loginBtnLink {
+    color: #EE7178;
+
+    span:hover {
+      border-bottom: 1px solid#EE7178;
     }
   }
 }

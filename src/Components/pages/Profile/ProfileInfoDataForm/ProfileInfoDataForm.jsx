@@ -1,16 +1,14 @@
 import React, {memo} from 'react';
-import {makeStyles} from '@material-ui/core/styles';
-import FormHelperText from '@material-ui/core/FormHelperText';
-import FormControl from '@material-ui/core/FormControl';
-import styles from './PurchaseForm.module.scss';
-import {Field, reduxForm} from "redux-form";
-import {email, maxLengthCreator, minLengthCreator, number, phone, required} from "../../../../validators/validators";
+import styles from './ProfileInfoDataForm.module.scss';
+import SubmitFollowBtn from "../../../commons/Buttons/SubmitFollow/SubmitFollowBtn";
 import FormsControlItem from "../../../commons/FormsControls/FormsControls";
 import {SELECT, TEXT_FIELD} from "../../../../constants/formsControls.enum";
-import {connect} from "react-redux";
-import SubmitFollowBtn from "../../../commons/Buttons/SubmitFollow/SubmitFollowBtn";
-import {faArrowRight} from "@fortawesome/free-solid-svg-icons";
-
+import {age120, age18, maxLengthCreator, minLengthCreator, number, phone} from "../../../../validators/validators";
+import {Field, reduxForm} from "redux-form";
+import FormControl from "@material-ui/core/FormControl";
+import FormHelperText from "@material-ui/core/FormHelperText";
+import {faArrowLeft, faArrowRight} from "@fortawesome/free-solid-svg-icons";
+import {makeStyles} from "@material-ui/core/styles";
 
 const useStyles = makeStyles((theme) => ({
     formControl: {
@@ -33,73 +31,90 @@ const useStyles = makeStyles((theme) => ({
 }));
 
 const maxLength20 = maxLengthCreator(20);
-const maxLength45 = maxLengthCreator(45);
 const minLength2 = minLengthCreator(2);
+const maxLength3 = maxLengthCreator(3);
 const minLength1 = minLengthCreator(1);
 const maxLength10 = maxLengthCreator(10);
 const minLength10 = minLengthCreator(10);
 
 
-const PurchaseForm = memo(({
-                               me,
-                               isAuth,
-                               handleSubmit,
-                               errorMessage,
-                               pristine, submitting, reset, error
-                           }) => {
+const ProfileInfoDataForm = memo(({handleSubmit, pristine, submitting, goToEditMode, setEditMode, initialValues}) => {
 
     const classes = useStyles();
 
-
     return (
-        <>
-            <form
-                onSubmit={handleSubmit} className={classes.root} autoComplete="on">
-
+        <form
+            onSubmit={handleSubmit}
+            className={classes.root}
+            autoComplete="on">
+            <div>
                 <Field style={{color: '#008E46'}}
                        component={FormsControlItem(TEXT_FIELD)}
-                       required
+                       type={'text'}
                        label={"Ім'я"}
-                       value={isAuth ? me.name : null}
-                       variant="filled"
-                       name="name"
-                       validate={[required, minLength2, maxLength20]}
+                       variant={"filled"}
+                       name={"name"}
+                       validate={[minLength2, maxLength20]}
                 />
+            </div>
 
+            <div>
+                <Field style={{color: '#008E46'}}
+                       component={FormsControlItem(TEXT_FIELD)}
+                       type={'text'}
+                       label={"Прізвище"}
+                       variant={"filled"}
+                       name={"surname"}
+                       validate={[minLength2, maxLength20]}
+                />
+            </div>
+
+            <div>
+                <Field style={{color: '#008E46'}}
+                       component={FormsControlItem(TEXT_FIELD)}
+                       type={'text'}
+                       name={"age"}
+                       label={"Ваш вік"}
+                       variant={"filled"}
+                       validate={[minLength2, maxLength3]}
+                       warn={[number, age18, age120]}
+                />
+            </div>
+
+            <div>
+                <FormControl className={classes.formControl}>
+                    <Field component={FormsControlItem(SELECT)}
+                           name={"gender_id"}
+                           className={styles.select}
+                    >
+                        <option></option>
+                        <option value={1}>Чоловіча</option>
+                        <option value={2}>Жіноча</option>
+                    </Field>
+                    <FormHelperText>Стать</FormHelperText>
+                </FormControl>
+            </div>
+
+            <div>
                 <Field
                     style={{color: '#008E46'}}
-                    required
-                    variant="filled"
+                    variant={"filled"}
                     component={FormsControlItem(TEXT_FIELD)}
                     label={"Телефон"}
                     placeholder={'(0xx) xxx xx xx'}
                     name={"phone"}
-                    validate={[required, number, minLength10, maxLength10]}
+                    validate={[number, minLength10, maxLength10]}
                     warn={phone}
                 />
+            </div>
 
-                <Field
-                    style={{color: '#008E46'}}
-                    required
-                    variant="filled"
-                    component={FormsControlItem(TEXT_FIELD)}
-                    label={"Ел. скринька"}
-                    placeholder={'pizzachu@icheese.you'}
-                    name={"email"}
-                    validate={[required, minLength2, maxLength45]}
-                    warn={email}
-                />
-
-
-                <FormControl variant="filled" className={classes.formControl}>
-                    <Field style={{color: '#008E46'}}
-                           required
-                           component={FormsControlItem(SELECT)}
-                           name={"city"}
+            <div>
+                <FormControl variant={"filled"} className={classes.formControl}>
+                    <Field component={FormsControlItem(SELECT)}
                            className={styles.select}
+                           name={"city"}
                     >
-                        <option style={{color: 'red'}}
-                                value={isAuth ? me.city : ''}>{isAuth ? me.city : ''}</option>
+                        <option></option>
                         <option value={'Львів'}>Львів</option>
                         <option value={'Брюховичі'}>Брюховичі</option>
                         <option value={'Наварія'}>Наварія</option>
@@ -137,91 +152,79 @@ const PurchaseForm = memo(({
                     </Field>
                     <FormHelperText>Населений пункт</FormHelperText>
                 </FormControl>
+            </div>
 
+            <div>
                 <Field style={{color: '#008E46'}}
                        component={FormsControlItem(TEXT_FIELD)}
-                       required
-                       id="filled-required"
-                       name="street"
-                       label="Вулиця"
-                       variant="filled"
-                       validate={[required, minLength2, maxLength45]}
+                       name={"street"}
+                       label={"Вулиця"}
+                       variant={"filled"}
+                       validate={[minLength2, maxLength10]}
                 />
-                <Field style={{color: '#008E46'}}
-                       component={FormsControlItem(TEXT_FIELD)}
-                       required
-                       id="filled-required"
-                       name="house"
-                       label="Будинок"
-                       variant="filled"
-                       validate={[required, minLength1, maxLength45]}
-                />
-                <Field style={{color: '#008E46'}}
-                       component={FormsControlItem(TEXT_FIELD)}
-                       id="filled-required"
-                       name="apartment"
-                       label="Квартира"
-                       validate={[number, maxLength10]}
-                       variant="filled"
-                       validation={'number'}
-                />
-                <Field style={{color: '#008E46'}}
-                       component={FormsControlItem(TEXT_FIELD)}
-                       id="filled-required"
-                       name="entrance"
-                       label="Під'їзд"
-                       validate={[number, maxLength10]}
-                       variant="filled"
-                />
-                <Field style={{color: '#008E46'}}
-                       component={FormsControlItem(TEXT_FIELD)}
-                       id="filled-required"
-                       name="floor"
-                       label="Поверх"
-                       variant="filled"
-                       validate={[number, maxLength10]}
-                />
+            </div>
 
-                <div className={styles.order}>
-                    <SubmitFollowBtn
-                        icon={faArrowRight}
-                        label={'Підтвердити замовлення '}
-                        name={'Submit'}
-                        type={"submit"}
-                        disabled={pristine || submitting}
-                        onClick={reset}
-                    />
-                </div>
+            <div>
+                <Field style={{color: '#008E46'}}
+                       component={FormsControlItem(TEXT_FIELD)}
+                       name={"house"}
+                       label={"Будинок"}
+                       variant={"filled"}
+                       validate={[minLength1, maxLength10]}
+                />
+            </div>
 
-                {error &&
-                <div className={styles.formsSummaryError}>
-                    <span>ERROR: {error}</span>
-                </div>}
+            {initialValues.apartment && <div>
+                <Field style={{color: '#008E46'}}
+                       component={FormsControlItem(TEXT_FIELD)}
+                       name={"apartment"}
+                       label={"Квартира"}
+                       variant={"filled"}
+                       warn={number}
+                />
+            </div>}
 
-                {errorMessage && '/' + window.location.href.split('/').pop() === '/purchase' &&
-                <div className={styles.errMsg}>{errorMessage}</div>}
-            </form>
-        </>
-    );
+            {initialValues.entrance && <div>
+                <Field style={{color: '#008E46'}}
+                       component={FormsControlItem(TEXT_FIELD)}
+                       name={"entrance"}
+                       label={"Під'їзд"}
+                       warn={number}
+                       variant={"filled"}
+                />
+            </div>}
+
+            {initialValues.floor && <div>
+                <Field style={{color: '#008E46'}}
+                       component={FormsControlItem(TEXT_FIELD)}
+                       name={"floor"}
+                       label={"Поверх"}
+                       variant={"filled"}
+                       warn={number}
+                />
+            </div>}
+
+            <div className={styles.order}>
+                <SubmitFollowBtn
+                    icon={faArrowRight}
+                    label={'Змінити '}
+                    name={'Submit'}
+                    type={"submit"}
+                    disabled={pristine || submitting}
+                    onClick={goToEditMode}
+                />
+                <SubmitFollowBtn
+                    icon={faArrowLeft}
+                    label={' Відмінити'}
+                    handleClick={() => {
+                        setEditMode(false)
+                    }}
+                />
+            </div>
+        </form>
+    )
 });
 
-
-export default connect(({auth}) => ({
-
-    initialValues: {
-        name: (auth.me ? auth.me.name : ''),
-        email: (auth.me ? auth.me.email : ''),
-        phone: (auth.me ? auth.me.phone : ''),
-        city: (auth.me ? auth.me.city : ''),
-        street: (auth.me ? auth.me.street : ''),
-        house: (auth.me ? auth.me.house : ''),
-        apartment: (auth.me ? auth.me.apartment : ''),
-        entrance: (auth.me ? auth.me.entrance : ''),
-        floor: (auth.me ? auth.me.floor : '')
-    },
-    enableReinitialize: true,
-    keepDirtyOnReinitialize: true
-}))(reduxForm({
-    form: 'purchaseForm',
-})(PurchaseForm));
-
+export default reduxForm({
+    form: 'profileInfoDataForm'
+})(ProfileInfoDataForm);

@@ -19,9 +19,9 @@ export const authAPI = {
     loginSeller(email, password) {
         return instance.post(`auth/seller`, {email, password});
     },
-    logout: access_token => {
+    logoutClient: access_token => {
 
-        return instance.post(`auth/logout`, {}, {
+        return instance.post(`auth/logout-client`, {}, {
             headers: {
                 [HEADER_ENUM.AUTHORIZATION]: access_token
             }

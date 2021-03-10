@@ -9,7 +9,7 @@ import logo from '../../../../assets/images/mail_bg.png';
 import CartCounts from "../CartCounts/CartCounts";
 
 
-const NavBar = ({isAuth, me}) => {
+const NavBar = ({isAuth, me, cart, logout, setCart}) => {
 
     const [click, setClick] = useState(false);
     const [dropdown, setDropdown] = useState(false);
@@ -31,6 +31,17 @@ const NavBar = ({isAuth, me}) => {
         } else {
             setDropdown(false);
         }
+    };
+
+
+    const onClickLogout = () => {
+        localStorage.setItem("cart", JSON.stringify(cart));
+
+        cart = JSON.parse(localStorage.getItem("cart"));
+        logout();
+        closeMobileMenu();
+        setCart(cart)
+        localStorage.setItem("cart", '');
     };
 
 
@@ -125,9 +136,9 @@ const NavBar = ({isAuth, me}) => {
                         {isAuth ?
                             <Link
                                 title={me.surname ? me.name + ' ' + me.surname : me.name}
-                                to='/logout'
+                                to='/home'
                                 className={styles.navLinksMobile}
-                                onClick={closeMobileMenu}
+                                onClick={onClickLogout}
                             >
                                 Вихід <FontAwesomeIcon className={styles.faBars} icon={faSignOutAlt}/>
                             </Link>
@@ -142,11 +153,12 @@ const NavBar = ({isAuth, me}) => {
                 </ul>
                 {isAuth ?
                     <Button
+                        path={'/'}
                         title={me.surname ? me.name + ' ' + me.surname : me.name}
-                        path={'/logout'}
                         label={'Вихід'}
-                        icon={<FontAwesomeIcon className={styles.faBars} icon={faSignOutAlt}/>
-                        }/>
+                        icon={<FontAwesomeIcon className={styles.faBars} icon={faSignOutAlt}/>}
+                        onClick={onClickLogout}
+                    />
                     : <Button
                         path={'/login'}
                         label={'Вхід'}

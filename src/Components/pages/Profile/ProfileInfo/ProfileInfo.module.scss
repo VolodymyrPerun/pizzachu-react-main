@@ -1,0 +1,189 @@
+.descriptionBlock {
+  display: flex;
+  flex-wrap: wrap;
+  flex-direction: column;
+  grid-area: content;
+  height: auto;
+  min-height: 58.6vh;
+  width: 70%;
+  justify-content: space-around;
+  justify-items: center;
+  align-items: baseline;
+  align-self: center;
+  align-content: center;
+  text-align: center;
+  font-family: Caveat, 'Cavaet', cursive;
+  font-weight: 800;
+  border-radius: 15px;
+  margin: 5px auto 20px auto;
+  padding: 10px;
+  background: #fff;
+  border: 2px solid #f0f0f0;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.5), inset 0 1px rgba(255, 255, 255, 0.3), inset 0 10px rgba(255, 255, 255, 0.2), inset 0 10px 20px rgba(255, 255, 255, 0.25), inset 0 -15px 30px rgba(0, 0, 0, 0.3);
+  -o-box-shadow: 0 2px 6px rgba(0, 0, 0, 0.5), inset 0 1px rgba(255, 255, 255, 0.3), inset 0 10px rgba(255, 255, 255, 0.2), inset 0 10px 20px rgba(255, 255, 255, 0.25), inset 0 -15px 30px rgba(0, 0, 0, 0.3);
+  -webkit-box-shadow: 0 2px 6px rgba(0, 0, 0, 0.5), inset 0 1px rgba(255, 255, 255, 0.3), inset 0 10px rgba(255, 255, 255, 0.2), inset 0 10px 20px rgba(255, 255, 255, 0.25), inset 0 -15px 30px rgba(0, 0, 0, 0.3);
+  -moz-box-shadow: 0 2px 6px rgba(0, 0, 0, 0.5), inset 0 1px rgba(255, 255, 255, 0.3), inset 0 10px rgba(255, 255, 255, 0.2), inset 0 10px 20px rgba(255, 255, 255, 0.25), inset 0 -15px 30px rgba(0, 0, 0, 0.3);
+  z-index: 1;
+
+  .content {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+    align-items: center;
+    align-self: center;
+    width: 100%;
+
+    img {
+      align-items: center;
+      align-self: center;
+      height: 230px;
+      width: 230px;
+      border-radius: 15px;
+      max-height: 350px;
+      max-width: 350px;
+      border: 2px solid #EE7178;
+      transition: 1s ease;
+      margin-bottom: 10px;
+      box-shadow: 0 2px 6px rgba(0, 0, 0, 0.5), inset 0 1px rgba(255, 255, 255, 0.3), inset 0 10px rgba(255, 255, 255, 0.2), inset 0 10px 20px rgba(255, 255, 255, 0.25), inset 0 -15px 30px rgba(0, 0, 0, 0.3);
+      -o-box-shadow: 0 2px 6px rgba(0, 0, 0, 0.5), inset 0 1px rgba(255, 255, 255, 0.3), inset 0 10px rgba(255, 255, 255, 0.2), inset 0 10px 20px rgba(255, 255, 255, 0.25), inset 0 -15px 30px rgba(0, 0, 0, 0.3);
+      -webkit-box-shadow: 0 2px 6px rgba(0, 0, 0, 0.5), inset 0 1px rgba(255, 255, 255, 0.3), inset 0 10px rgba(255, 255, 255, 0.2), inset 0 10px 20px rgba(255, 255, 255, 0.25), inset 0 -15px 30px rgba(0, 0, 0, 0.3);
+      -moz-box-shadow: 0 2px 6px rgba(0, 0, 0, 0.5), inset 0 1px rgba(255, 255, 255, 0.3), inset 0 10px rgba(255, 255, 255, 0.2), inset 0 10px 20px rgba(255, 255, 255, 0.25), inset 0 -15px 30px rgba(0, 0, 0, 0.3);
+    }
+
+    input[type="file"] {
+      display: none;
+    }
+
+    .customFileUpload {
+      margin-bottom: 15px;
+      padding: 7px 4px;
+      border: 1px solid #ccc;
+      display: inline-block;
+      font-family: raleway-grid, sans-serif;
+      font-size: 11px;
+      font-weight: 600;
+      border-radius: 5px;
+      text-transform: uppercase;
+      background-color: #F0650D;
+      color: whitesmoke;
+      box-shadow: 0 3px 10px rgba(0, 0, 0, .25);
+      cursor: pointer;
+    }
+
+    .contentInfo {
+      max-width: 750px;
+      padding: 15px;
+      margin-bottom: 10px;
+      border-radius: 15px;
+      background: #DEE8C1;
+      font: 20px Caveat, cursive;
+      opacity: 0.8;
+      border: 2px solid #f0f0f0;
+      box-shadow: 0 2px 6px rgba(0, 0, 0, 0.5), inset 0 1px rgba(255, 255, 255, 0.3), inset 0 10px rgba(255, 255, 255, 0.2), inset 0 10px 20px rgba(255, 255, 255, 0.25), inset 0 -15px 30px rgba(0, 0, 0, 0.3);
+      -o-box-shadow: 0 2px 6px rgba(0, 0, 0, 0.5), inset 0 1px rgba(255, 255, 255, 0.3), inset 0 10px rgba(255, 255, 255, 0.2), inset 0 10px 20px rgba(255, 255, 255, 0.25), inset 0 -15px 30px rgba(0, 0, 0, 0.3);
+      -webkit-box-shadow: 0 2px 6px rgba(0, 0, 0, 0.5), inset 0 1px rgba(255, 255, 255, 0.3), inset 0 10px rgba(255, 255, 255, 0.2), inset 0 10px 20px rgba(255, 255, 255, 0.25), inset 0 -15px 30px rgba(0, 0, 0, 0.3);
+      -moz-box-shadow: 0 2px 6px rgba(0, 0, 0, 0.5), inset 0 1px rgba(255, 255, 255, 0.3), inset 0 10px rgba(255, 255, 255, 0.2), inset 0 10px 20px rgba(255, 255, 255, 0.25), inset 0 -15px 30px rgba(0, 0, 0, 0.3);
+    }
+
+    .btn {
+      display: flex;
+      justify-content: space-between;
+      align-content: center;
+      flex-direction: row;
+      width: 90%;
+      margin: 15px 0;
+
+      .goBack {
+        display: flex;
+        align-items: center;
+        align-self: center;
+        justify-content: space-between;
+      }
+    }
+  }
+}
+
+.logoContainer {
+  display: flex;
+  flex-wrap: nowrap;
+  flex-direction: row;
+  height: auto;
+  width: 95%;
+  justify-content: space-around;
+  justify-items: center;
+  align-items: baseline;
+  align-self: center;
+  align-content: center;
+  text-align: center;
+  margin-bottom: 20px;
+
+  .logo {
+    .tittle {
+      font-size: 27px;
+    }
+  }
+}
+
+.closeBtn {
+  position: relative;
+  display: flex;
+  justify-content: left;
+  justify-items: flex-end;
+  align-items: baseline;
+  align-self: flex-end;
+  align-content: center;
+  text-align: right;
+  color: #EE7178;
+  margin-right: 10px;
+
+  .icon:hover {
+    transform: rotate(180deg);
+  }
+}
+
+.emptyProfile {
+  display: flex;
+  flex-wrap: wrap;
+  flex-direction: column;
+  grid-area: content;
+  height: auto;
+  min-height: 58.6vh;
+  width: 70%;
+  justify-content: space-around;
+  justify-items: center;
+  align-items: center;
+  align-self: center;
+  align-content: center;
+  text-align: center;
+  font-family: Caveat, 'Cavaet', cursive;
+  font-weight: 800;
+  border-radius: 15px;
+  margin: 5px auto 20px auto;
+  padding: 10px;
+  background: #fff;
+  border: 2px solid #f0f0f0;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.5), inset 0 1px rgba(255, 255, 255, 0.3), inset 0 10px rgba(255, 255, 255, 0.2), inset 0 10px 20px rgba(255, 255, 255, 0.25), inset 0 -15px 30px rgba(0, 0, 0, 0.3);
+  -o-box-shadow: 0 2px 6px rgba(0, 0, 0, 0.5), inset 0 1px rgba(255, 255, 255, 0.3), inset 0 10px rgba(255, 255, 255, 0.2), inset 0 10px 20px rgba(255, 255, 255, 0.25), inset 0 -15px 30px rgba(0, 0, 0, 0.3);
+  -webkit-box-shadow: 0 2px 6px rgba(0, 0, 0, 0.5), inset 0 1px rgba(255, 255, 255, 0.3), inset 0 10px rgba(255, 255, 255, 0.2), inset 0 10px 20px rgba(255, 255, 255, 0.25), inset 0 -15px 30px rgba(0, 0, 0, 0.3);
+  -moz-box-shadow: 0 2px 6px rgba(0, 0, 0, 0.5), inset 0 1px rgba(255, 255, 255, 0.3), inset 0 10px rgba(255, 255, 255, 0.2), inset 0 10px 20px rgba(255, 255, 255, 0.25), inset 0 -15px 30px rgba(0, 0, 0, 0.3);
+
+  p,span {
+    font-size: 18px;
+  }
+
+  .register {
+    color: #EE7178;
+
+    span:hover {
+      border-bottom: 1px solid#EE7178;
+    }
+  }
+
+}
+
+@media only screen and (max-width: 600px) {
+
+  .descriptionBlock {
+    width: 90%;
+  }
+}

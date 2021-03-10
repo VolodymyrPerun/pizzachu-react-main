@@ -33,8 +33,7 @@ let LoginForm = ({handleSubmit, pristine, submitting, reset, error, errorMessage
                            style={{marginRight: '13px', bottom: '-5px', position: 'relative'}}
                            icon={faAt}/>}
                 />
-            </div>
-            <div className={styles.inputContainer}>
+           
 
                 <Field className={styles.input}
                        name={"password"}
@@ -47,9 +46,7 @@ let LoginForm = ({handleSubmit, pristine, submitting, reset, error, errorMessage
                            style={{marginRight: '13px', bottom: '-5px', position: 'relative'}}
                            icon={faKey}/>}
                 />
-            </div>
 
-            <div className={styles.inputContainer}>
                 <SubmitFollowBtn
                     label={"Увійти"}
                     name={'Submit'}
@@ -57,8 +54,7 @@ let LoginForm = ({handleSubmit, pristine, submitting, reset, error, errorMessage
                     disabled={pristine || submitting}
                     onClick={reset}
                 />
-            </div>
-            <div className={styles.inputContainer}>
+
                 <NavLink className={styles.menuItemLink} to={'/forgot-password'}>Забули пароль?</NavLink>
             </div>
             {error &&

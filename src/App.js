@@ -24,6 +24,7 @@ import Purchase from "./containers/Purchase/Purchase";
 import OrderMessage from "./containers/OrderMessage/OrderMessage";
 import Orders from "./containers/Orders/Orders";
 import RegisterClients from "./containers/RegisterClients/RegisterClients";
+import Profile from "./containers/Profile/Profile";
 
 
 class App extends Component {
@@ -80,6 +81,7 @@ class App extends Component {
                         <Route path='/orderMessage' render={() => <OrderMessage/>}/>
                         <Route path='/orders' render={() => <Orders/>}/>
                         <Route path='/registerClients' render={() => <RegisterClients/>}/>
+                        <Route path='/profile' render={() => <Profile/>}/>
                         <Route path='/error' render={() =>
                             <ErrorMessages globalError={this.props.globalError} history={this.props.history}/>}/>
                         <Route path='*' render={() => <Page404 history={this.props.history}/>}/>}/>
@@ -102,7 +104,7 @@ let AppContainer = compose(
     withRouter,
     connect(mapStateToProps, {catchGlobalError, initializeApp}))(App);
 
-let SocialApp = props => {
+let PizzachuApp = props => {
     return <StrictMode>
         <BrowserRouter basename={process.env.PUBLIC_URL}>
             <Provider store={store}>
@@ -112,4 +114,4 @@ let SocialApp = props => {
     </StrictMode>
 };
 
-export default SocialApp;
+export default PizzachuApp;

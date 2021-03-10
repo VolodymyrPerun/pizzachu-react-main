@@ -9,6 +9,13 @@ export const usersAPI = {
                 [HEADER_ENUM.AUTHORIZATION]: access_token
             }
         });
+    },
+    updateProfileInfo(data, access_token) {
+        return instance.put(`users/update-profile`, data, {
+            headers: {
+                [HEADER_ENUM.AUTHORIZATION]: access_token
+            }
+        });
     }
 };
 

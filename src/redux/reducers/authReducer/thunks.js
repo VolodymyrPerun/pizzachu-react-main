@@ -1,4 +1,4 @@
-import { v4 as uuidv4 } from 'uuid';
+import {v4 as uuidv4} from 'uuid';
 import {authAPI} from "../../../API/authAPI/authAPI";
 import {checkAccessTokenPresent} from "../../../helpers/checkAccessTokenPresent";
 //import {refreshUserToken} from "../refreshReducer/thunks";
@@ -7,16 +7,21 @@ import {CUSTOM_ERRORS, TOKEN_ENUM} from "../../../constants";
 // import {adminAPI} from "../../../api/adminAPI";
 // import {userAPI} from "../../../api/userAPI";
 import {
+    changePasswordErrMsg,
     resetPasswordErrMsg,
     sendMailErrMsg,
     setIsAuth,
     setIsFetching,
+    setIsPasswordChanged,
+    setIsProfileUpdate,
     setIsResetPassword,
     setIsSentMail,
     setLoginErrMsg,
     setMeDates,
     setMyID
 } from "./actions";
+import {usersAPI} from "../../../API/usersAPI/usersAPI";
+import {refreshUserToken} from "../refreshReducer/thunks";
 
 
 export const authMe = () => async dispatch => {
@@ -138,6 +143,7 @@ export const logout = () => async dispatch => {
         localStorage.removeItem(TOKEN_ENUM.access_token);
         localStorage.removeItem(TOKEN_ENUM.refresh_token);
 
+
         localStorage.setItem('tempId', uuidv4());
 
         dispatch(setIsAuth(false));
@@ -148,38 +154,38 @@ export const logout = () => async dispatch => {
     } catch (e) {}
 };
 
-// export const changeUserPassword = data => async dispatch => {
-//     try {
-//         dispatch(setIsFetching(true));
-//
-//         const token = checkAccessTokenPresent();
-//
-//         if (token) {
-//             await authAPI.changePassword(token, data);
-//
-//             dispatch(setIsPasswordChanged(true));
-//             dispatch(setIsFetching(false));
-//             dispatch(changePasswordErrMsg(null));
-//
-//         } else {
-//             dispatch(setIsFetching(false));
-//         }
-//     } catch (e) {
-//
-//         dispatch(setIsFetching(false));
-//
-//         if (e.response.data.code) {
-//
-//             dispatch(changePasswordErrMsg(CUSTOM_ERRORS[e.response.data.code].message));
-//         }
-//         if (e.response.data.code === CUSTOM_ERRORS[4012].code) {
-//
-//             dispatch(refreshUserToken());
-//             dispatch(changeUserPassword(data));
-//         }
-//
-//     }
-// };
+export const changeUserPassword = data => async dispatch => {
+    try {
+        dispatch(setIsFetching(true));
+
+        const token = checkAccessTokenPresent();
+
+        if (token) {
+            await authAPI.changePassword(token, data);
+
+            dispatch(setIsPasswordChanged(true));
+            dispatch(setIsFetching(false));
+            dispatch(changePasswordErrMsg(null));
+
+        } else {
+            dispatch(setIsFetching(false));
+        }
+    } catch (e) {
+
+        dispatch(setIsFetching(false));
+
+        if (e.response.data.code) {
+
+            dispatch(changePasswordErrMsg(CUSTOM_ERRORS[e.response.data.code].message));
+        }
+        if (e.response.data.code === CUSTOM_ERRORS[4012].code) {
+
+            dispatch(refreshUserToken());
+            dispatch(changeUserPassword(data));
+        }
+
+    }
+};
 
 export const sendEmailForChangeForgotPassword = email => async dispatch => {
 
@@ -226,34 +232,38 @@ export const resetUserPassword = (data, token) => async dispatch => {
 
 };
 
-// export const updateUserDates = data => async dispatch => {
-//     try {
-//         dispatch(setIsProfileUpdate(false));
-//
-//         const token = checkAccessTokenPresent();
-//
-//         if (token) {
-//
-//             await userAPI.updateProfileInfo(token, data);
-//
-//             const meDates = await authAPI.meInfo(token);
-//
-//             dispatch(setMeDates(meDates.data));
-//
-//             dispatch(setIsProfileUpdate(true))
-//
-//         } else {
-//             dispatch(setIsProfileUpdate(true));
-//         }
-//
-//
-//     } catch (e) {
-//         dispatch(setIsProfileUpdate(true));
-//
-//         if (e.response.data.code === customErrors[4012].code) {
-//
-//             dispatch(refreshUserToken());
-//             dispatch(updateUserDates(data));
-//         }
-//     }
-// };
+export const updateUserDates = data => async dispatch => {
+    try {
+        dispatch(setIsProfileUpdate(false));
+
+        const token = checkAccessTokenPresent();
+
+        if (token) {
+
+            debugger
+
+            await usersAPI.updateProfileInfo(data, token);
+
+            const meDates = await authAPI.authMe(token);
+
+            debugger
+
+            dispatch(setMeDates(meDates.data));
+
+            dispatch(setIsProfileUpdate(true))
+
+        } else {
+            dispatch(setIsProfileUpdate(true));
+        }
+
+
+    } catch (e) {
+        dispatch(setIsProfileUpdate(true));
+
+        if (e.response.data.code === CUSTOM_ERRORS[4012].code) {
+
+            dispatch(refreshUserToken());
+            dispatch(updateUserDates(data));
+        }
+    }
+};
