@@ -15,9 +15,13 @@ import {
 } from "@fortawesome/free-solid-svg-icons";
 import {FontAwesomeIcon} from "@fortawesome/react-fontawesome";
 import {faOdnoklassniki} from "@fortawesome/free-brands-svg-icons";
+import {configs} from "../../../../config/configs";
+import noPhoto from "../../../../assets/images/no-aveliable-image.png";
+
 
 const ProfileInfoData = ({
                              me: {
+                                 user_photo,
                                  email,
                                  phone,
                                  name,
@@ -44,6 +48,9 @@ const ProfileInfoData = ({
                 label="Змінити профіль"
                 name={'Edit'}
                 type={"button"}/>}
+            <img
+                src={user_photo != null ? `${configs.HOST}:${configs.PORT}/${user_photo}` : noPhoto}
+                alt='noPhoto'/>
             <ul className={styles.container}>
                 <li>
                     <FontAwesomeIcon

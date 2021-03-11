@@ -12,4 +12,4 @@ export const SET_LOGIN_ADMIN_ERR_MSG = 'pizzachu-react-main/authReducer/set-logi
 export const CHANGE_PASSWORD_ERR_MSG = 'pizzachu-react-main/authReducer/change-password-err-msg';
 export const SEND_MAIL_ERR_MSG = 'pizzachu-react-main/authReducer/send-mail-err-msg';
 export const RESET_PASSWORD_ERR_MSG = 'pizzachu-react-main/authReducer/reset-password-err-msg';
-export const UPDATE_DOCTOR_PHOTO_ERR_MSG = 'pizzachu-react-main/authReducer/UPDATE_DOCTOR_PHOTO_ERR_MSG';
+export const UPDATE_USER_PHOTO_ERR_MSG = 'pizzachu-react-main/authReducer/UPDATE_USER_PHOTO_ERR_MSG';

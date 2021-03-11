@@ -9,6 +9,7 @@ import FormControl from "@material-ui/core/FormControl";
 import FormHelperText from "@material-ui/core/FormHelperText";
 import {faArrowLeft, faArrowRight} from "@fortawesome/free-solid-svg-icons";
 import {makeStyles} from "@material-ui/core/styles";
+import {UploadOutlined} from '@ant-design/icons';
 
 
 const useStyles = makeStyles((theme) => ({
@@ -38,7 +39,15 @@ const minLength1 = minLengthCreator(1);
 const maxLength10 = maxLengthCreator(10);
 const minLength10 = minLengthCreator(10);
 
-const ProfileInfoDataForm = memo(({handleSubmit, pristine, submitting, goToEditMode, setEditMode, initialValues}) => {
+const ProfileInfoDataForm = memo(({
+                                      handleSubmit,
+                                      pristine,
+                                      submitting,
+                                      goToEditMode,
+                                      setEditMode,
+                                      initialValues,
+                                      onMainPhotoSelected
+                                  }) => {
 
     const classes = useStyles();
 
@@ -47,6 +56,16 @@ const ProfileInfoDataForm = memo(({handleSubmit, pristine, submitting, goToEditM
             onSubmit={handleSubmit}
             className={classes.root}
             autoComplete="on">
+            <div>
+                <label className={styles.customFileUpload}>
+                    <input type={'file'}
+                           name={'user_photo'}
+                           accept={'.jpg, .png, .jpeg'}
+                           onChange={onMainPhotoSelected}
+                    />
+                    <UploadOutlined/> Завантажити фото
+                </label>
+            </div>
             <div>
                 <Field style={{color: '#008E46'}}
                        component={FormsControlItem(TEXT_FIELD)}

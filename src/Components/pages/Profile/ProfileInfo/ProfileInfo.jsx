@@ -1,11 +1,9 @@
-import React, {useEffect, useState} from 'react';
+import React, {useState} from 'react';
 import styles from './ProfileInfo.module.scss';
-import {CloseCircleOutlined, UploadOutlined} from '@ant-design/icons';
-import noPhoto from "../../../../assets/images/no-aveliable-image.png";
+import {CloseCircleOutlined} from '@ant-design/icons';
 import Preloader from "../../../commons/Preloader/Preloader";
 import ProfileInfoData from "../ProfileInfoData/ProfileInfoData";
 import ProfileInfoDataForm from "../ProfileInfoDataForm/ProfileInfoDataForm";
-import {configs} from "../../../../config/configs";
 import {NavLink} from "react-router-dom";
 import ApplyBtn from "../../../commons/Buttons/Apply/ApplyBtn";
 import {faArrowLeft, faUserTie} from "@fortawesome/free-solid-svg-icons";
@@ -47,26 +45,10 @@ const ProfileInfo = ({
     };
 
     const onMainPhotoSelected = e => {
-        debugger
         if (e.target.files.length) {
             savePhoto(e.target.files[0]);
         }
     };
-
-    // useEffect(() => {
-    //     try {
-    //         updateProfileInfo()
-    //         updateProfileInfo()
-    //     } catch (e) {
-    //         console.error(e);
-    //     }
-    //     return (() => {
-    //             updateProfileInfo();
-    //             updateProfileInfo();
-    //         }
-    //     );
-    // }, [updateProfileInfo, savePhoto]);
-
 
     return (
         <>
@@ -89,17 +71,6 @@ const ProfileInfo = ({
                         </span>
                             </div>
                         </div>
-                        <img
-                            src={user_photo != null ? `${configs.HOST}:${configs.PORT}/${user_photo}` : noPhoto}
-                            alt='noPhoto'/>
-                        {isAuth && <label className={styles.customFileUpload}>
-                            <input type={'file'}
-                                   name={'user_photo'}
-                                   accept={'.jpg, .png, .jpeg'}
-                                   onChange={onMainPhotoSelected}
-                            />
-                            <UploadOutlined/> Завантажити фото
-                        </label>}
                         <div className={styles.contentInfo}>
                             {editMode
                                 ?
@@ -115,9 +86,10 @@ const ProfileInfo = ({
                                     apartment,
                                     entrance,
                                     floor
-                                }} setEditMode={setEditMode} onSubmit={onSubmit}/>
+                                }} onMainPhotoSelected={onMainPhotoSelected} setEditMode={setEditMode} onSubmit={onSubmit}/>
                                 :
                                 <ProfileInfoData me={{
+                                    user_photo,
                                     email,
                                     phone,
                                     name,

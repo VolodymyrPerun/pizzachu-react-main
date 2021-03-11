@@ -1,4 +1,4 @@
-import React from 'react';
+import React, {useEffect} from 'react';
 import ProfileInfo from "../Profile/ProfileInfo/ProfileInfo";
 import '../../../App.scss';
 import styles from "./ProfileInfo/ProfileInfo.module.scss";
@@ -9,7 +9,17 @@ import {faArrowLeft, faUserTie} from "@fortawesome/free-solid-svg-icons";
 import {FontAwesomeIcon} from "@fortawesome/react-fontawesome";
 
 
-const Profile = ({me, isFetching, isAuth, updateUserProfilePhoto, errorMessage, updateUserDates: updateProfileInfo}) => {
+const Profile = ({me, authMe, isFetching, isAuth, updateUserProfilePhoto, errorMessage, updateUserDates: updateProfileInfo}) => {
+
+    const refreshProfile=()=> {
+        let userId = me.userId;
+        authMe(userId);
+    };
+
+    useEffect(() => {
+      //  refreshProfile();
+    }, [me, authMe]);
+
     return (
         <>
             {isAuth
@@ -18,6 +28,7 @@ const Profile = ({me, isFetching, isAuth, updateUserProfilePhoto, errorMessage, 
                     <ProfileInfo
                         isAuth={isAuth}
                         me={me}
+                        authMe={authMe}
                         isFetching={isFetching}
                         errorMessage={errorMessage}
                         savePhoto={updateUserProfilePhoto}

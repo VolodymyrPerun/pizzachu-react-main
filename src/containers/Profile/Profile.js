@@ -20,5 +20,5 @@ export default connect(
     mapStateToProps,
     {
         updateUserDates,
-        updateUserProfilePhoto
+        updateUserProfilePhoto,
     })(Profile);
