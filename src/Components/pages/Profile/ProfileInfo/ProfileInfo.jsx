@@ -1,4 +1,4 @@
-import React, {useState} from 'react';
+import React, {useEffect, useState} from 'react';
 import styles from './ProfileInfo.module.scss';
 import {CloseCircleOutlined, UploadOutlined} from '@ant-design/icons';
 import noPhoto from "../../../../assets/images/no-aveliable-image.png";
@@ -10,6 +10,7 @@ import {NavLink} from "react-router-dom";
 import ApplyBtn from "../../../commons/Buttons/Apply/ApplyBtn";
 import {faArrowLeft, faUserTie} from "@fortawesome/free-solid-svg-icons";
 import {FontAwesomeIcon} from "@fortawesome/react-fontawesome";
+
 
 const ProfileInfo = ({
                          me: {
@@ -46,14 +47,26 @@ const ProfileInfo = ({
     };
 
     const onMainPhotoSelected = e => {
+        debugger
         if (e.target.files.length) {
             savePhoto(e.target.files[0]);
         }
     };
 
-    // if (!isAuth) {
-    //     return <Preloader/>
-    // }
+    // useEffect(() => {
+    //     try {
+    //         updateProfileInfo()
+    //         updateProfileInfo()
+    //     } catch (e) {
+    //         console.error(e);
+    //     }
+    //     return (() => {
+    //             updateProfileInfo();
+    //             updateProfileInfo();
+    //         }
+    //     );
+    // }, [updateProfileInfo, savePhoto]);
+
 
     return (
         <>

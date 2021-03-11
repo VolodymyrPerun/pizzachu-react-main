@@ -3,14 +3,18 @@ import styles from './ProfileInfoData.module.scss';
 import SubmitFollowBtn from "../../../commons/Buttons/SubmitFollow/SubmitFollowBtn";
 import {
     faBuilding,
-    faCalendar, faCity, faDoorClosed, faDoorOpen,
-    faEnvelopeOpen, faExternalLinkSquareAlt,
+    faCalendar,
+    faCity,
+    faDoorClosed,
+    faDoorOpen,
+    faEnvelopeOpen,
+    faExternalLinkSquareAlt,
     faFileSignature,
     faMobileAlt,
-    faMoneyCheck, faStreetView
+    faStreetView
 } from "@fortawesome/free-solid-svg-icons";
 import {FontAwesomeIcon} from "@fortawesome/react-fontawesome";
-import {faOdnoklassniki, faOdnoklassnikiSquare} from "@fortawesome/free-brands-svg-icons";
+import {faOdnoklassniki} from "@fortawesome/free-brands-svg-icons";
 
 const ProfileInfoData = ({
                              me: {

@@ -9,7 +9,7 @@ import {faArrowLeft, faUserTie} from "@fortawesome/free-solid-svg-icons";
 import {FontAwesomeIcon} from "@fortawesome/react-fontawesome";
 
 
-const Profile = ({me, isFetching, isAuth, savePhoto, errorMessage, updateUserDates: updateProfileInfo}) => {
+const Profile = ({me, isFetching, isAuth, updateUserProfilePhoto, errorMessage, updateUserDates: updateProfileInfo}) => {
     return (
         <>
             {isAuth
@@ -20,7 +20,7 @@ const Profile = ({me, isFetching, isAuth, savePhoto, errorMessage, updateUserDat
                         me={me}
                         isFetching={isFetching}
                         errorMessage={errorMessage}
-                        savePhoto={savePhoto}
+                        savePhoto={updateUserProfilePhoto}
                         updateProfileInfo={updateProfileInfo}
                     />
                 </div>

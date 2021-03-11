@@ -1,7 +1,7 @@
 import {connect} from "react-redux";
 import {withRouter} from "react-router-dom";
 import Profile from "../../Components/pages/Profile/Profile";
-import {updateUserDates} from "../../redux/reducers/authReducer/thunks";
+import {updateUserDates, updateUserProfilePhoto} from "../../redux/reducers/authReducer/thunks";
 
 const mapStateToProps = ({auth}) => {
 
@@ -19,5 +19,6 @@ const LoginWithRouter = withRouter(Profile);
 export default connect(
     mapStateToProps,
     {
-        updateUserDates
+        updateUserDates,
+        updateUserProfilePhoto
     })(Profile);

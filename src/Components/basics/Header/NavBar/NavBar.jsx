@@ -114,6 +114,15 @@ const NavBar = ({isAuth, me, cart, logout, setCart}) => {
                             Мої замовлення
                         </Link>
                     </li>
+                    <li className={`${styles.navItem} ${styles.navMobileItem}`}>
+                        <Link
+                            to='/profile'
+                            className={styles.navLinks}
+                            onClick={closeMobileMenu}
+                        >
+                            Мій профіль
+                        </Link>
+                    </li>
                     <li className={styles.navItem}>
                         <Link
                             to='/about'

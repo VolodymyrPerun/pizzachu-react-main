@@ -18,10 +18,11 @@ import {
     setIsSentMail,
     setLoginErrMsg,
     setMeDates,
-    setMyID
+    setMyID, updateDoctorPhotoErrMsg
 } from "./actions";
 import {usersAPI} from "../../../API/usersAPI/usersAPI";
 import {refreshUserToken} from "../refreshReducer/thunks";
+import {profileAPI} from "../../../API/profileAPI/profileAPI";
 
 
 export const authMe = () => async dispatch => {
@@ -240,13 +241,9 @@ export const updateUserDates = data => async dispatch => {
 
         if (token) {
 
-            debugger
-
             await usersAPI.updateProfileInfo(data, token);
 
             const meDates = await authAPI.authMe(token);
-
-            debugger
 
             dispatch(setMeDates(meDates.data));
 
@@ -264,6 +261,49 @@ export const updateUserDates = data => async dispatch => {
 
             dispatch(refreshUserToken());
             dispatch(updateUserDates(data));
+        }
+    }
+};
+
+export const updateUserProfilePhoto = user_photo => async dispatch => {
+
+    try {
+        dispatch(setIsProfileUpdate(false));
+
+        const token = checkAccessTokenPresent();
+
+        if (token) {
+
+            debugger
+
+           await profileAPI.updateProfilePhoto(user_photo, token);
+
+            debugger
+
+            const meDates = await authAPI.authMe(token);
+
+            dispatch(setMeDates(meDates.data));
+
+            dispatch(updateDoctorPhotoErrMsg(null));
+
+            dispatch(setIsProfileUpdate(true));
+
+        } else {
+            dispatch(setIsProfileUpdate(true))
+        }
+
+    } catch (e) {
+
+        dispatch(setIsProfileUpdate(true));
+
+        if (e.response.data.code) {
+
+            dispatch(updateDoctorPhotoErrMsg(CUSTOM_ERRORS[e.response.data.code].message));
+        }
+
+        if (e.response.data.code === CUSTOM_ERRORS[4012].code) {
+            dispatch(refreshUserToken());
+            dispatch(updateUserProfilePhoto(user_photo))
         }
     }
 };

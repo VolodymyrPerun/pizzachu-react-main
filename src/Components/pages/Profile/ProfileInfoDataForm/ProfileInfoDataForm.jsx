@@ -10,6 +10,7 @@ import FormHelperText from "@material-ui/core/FormHelperText";
 import {faArrowLeft, faArrowRight} from "@fortawesome/free-solid-svg-icons";
 import {makeStyles} from "@material-ui/core/styles";
 
+
 const useStyles = makeStyles((theme) => ({
     formControl: {
         margin: theme.spacing(2),
@@ -36,7 +37,6 @@ const maxLength3 = maxLengthCreator(3);
 const minLength1 = minLengthCreator(1);
 const maxLength10 = maxLengthCreator(10);
 const minLength10 = minLengthCreator(10);
-
 
 const ProfileInfoDataForm = memo(({handleSubmit, pristine, submitting, goToEditMode, setEditMode, initialValues}) => {
 

@@ -1,5 +1,5 @@
-import createHistory from 'history/createBrowserHistory';
-
-const historyRout = createHistory();
-
-export default historyRout;
+// import createHistory from 'history/createBrowserHistory';
+//
+// const historyRout = createHistory();
+//
+// export default historyRout;
