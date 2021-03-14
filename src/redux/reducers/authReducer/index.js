@@ -12,7 +12,7 @@ import {
     SET_LOGIN_ERR_MSG,
     SET_ME_INFO,
     SET_MY_ID,
-    UPDATE_USER_PHOTO_ERR_MSG
+    UPDATE_USER_ERR_MSG
 } from "./constants";
 
 const initialState = {
@@ -29,7 +29,7 @@ const initialState = {
     changePasswordErrMsg: null,
     sendMailErrMsg: null,
     resetPasswordErrMsg: null,
-    updateDoctorPhotoErrMsg: null,
+    updateUserErrMsg: null
 };
 
 const authReducer = (state = initialState, action) => {
@@ -100,10 +100,10 @@ const authReducer = (state = initialState, action) => {
                 ...state,
                 resetPasswordErrMsg: action.payload
             };
-        case UPDATE_USER_PHOTO_ERR_MSG :
+        case UPDATE_USER_ERR_MSG :
             return {
                 ...state,
-                sendMailErrMsg: action.payload
+                updateUserPhotoErrMsg: action.payload
             };
         default :
             return state

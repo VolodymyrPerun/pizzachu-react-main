@@ -95,12 +95,12 @@ const ProfileInfoData = ({
                 {apartment && <li>
                     <FontAwesomeIcon
                         style={{marginRight: '7px', color: '#EE7178'}}
-                        icon={faDoorOpen}/><span>Квартира:</span> {apartment}
+                        icon={faDoorClosed}/><span>Квартира:</span> {apartment}
                 </li>}
                 {entrance && <li>
                     <FontAwesomeIcon
                         style={{marginRight: '7px', color: '#EE7178'}}
-                        icon={faDoorClosed}/><span>Під'їзд:</span> {entrance}
+                        icon={faDoorOpen}/><span>Під'їзд:</span> {entrance}
                 </li>}
                 {floor && <li>
                     <FontAwesomeIcon

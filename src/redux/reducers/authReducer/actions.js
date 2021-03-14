@@ -9,7 +9,7 @@ import {
     SET_LOGIN_ADMIN_ERR_MSG,
     SET_LOGIN_ERR_MSG,
     SET_ME_INFO,
-    SET_MY_ID, UPDATE_USER_PHOTO_ERR_MSG
+    SET_MY_ID, UPDATE_USER_ERR_MSG
 } from "./constants";
 
 export const setMeDates = payload => ({type: SET_ME_INFO, payload});
@@ -25,6 +25,6 @@ export const setLoginAdminErrMsg = payload => ({type: SET_LOGIN_ADMIN_ERR_MSG, p
 export const changePasswordErrMsg = payload => ({type: CHANGE_PASSWORD_ERR_MSG, payload});
 export const sendMailErrMsg = payload => ({type: SEND_MAIL_ERR_MSG, payload});
 export const resetPasswordErrMsg = payload => ({type: RESET_PASSWORD_ERR_MSG, payload});
-export const updateUserPhotoErrMsg = payload => ({type: UPDATE_USER_PHOTO_ERR_MSG, payload});
+export const updateUserErrMsg = payload => ({type: UPDATE_USER_ERR_MSG, payload});
 
 

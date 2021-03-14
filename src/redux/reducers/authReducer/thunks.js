@@ -18,7 +18,7 @@ import {
     setIsSentMail,
     setLoginErrMsg,
     setMeDates,
-    setMyID, updateUserPhotoErrMsg
+    setMyID, updateUserErrMsg
 } from "./actions";
 import {usersAPI} from "../../../API/usersAPI/usersAPI";
 import {refreshUserToken} from "../refreshReducer/thunks";
@@ -256,6 +256,11 @@ export const updateUserDates = data => async dispatch => {
     } catch (e) {
         dispatch(setIsProfileUpdate(true));
 
+        if (e.response.data.code) {
+
+            dispatch(updateUserErrMsg(CUSTOM_ERRORS[4042].message));
+        }
+
         if (e.response.data.code === CUSTOM_ERRORS[4012].code) {
 
             dispatch(refreshUserToken());
@@ -279,7 +284,7 @@ export const updateUserProfilePhoto = user_photo => async dispatch => {
 
             dispatch(setMeDates(meDates.data));
 
-            dispatch(updateUserPhotoErrMsg(null));
+            dispatch(updateUserErrMsg(null));
 
             dispatch(setIsProfileUpdate(true));
 
@@ -293,7 +298,7 @@ export const updateUserProfilePhoto = user_photo => async dispatch => {
 
         if (e.response.data.code) {
 
-            dispatch(updateUserPhotoErrMsg(CUSTOM_ERRORS[e.response.data.code].message));
+            dispatch(updateUserErrMsg(CUSTOM_ERRORS[e.response.data.code].message));
         }
 
         if (e.response.data.code === CUSTOM_ERRORS[4012].code) {

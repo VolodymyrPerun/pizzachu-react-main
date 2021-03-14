@@ -60,15 +60,15 @@ form {
     text-align: center;
   }
 
+  .errMsg {
+    color: darkred;
+  }
+
   .order {
     display: flex;
     align-items: center;
     align-self: center;
     justify-content: space-between;
-  }
-
-  .errMsg {
-    color: darkred;
   }
 }
 

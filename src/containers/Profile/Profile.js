@@ -11,6 +11,7 @@ const mapStateToProps = ({auth}) => {
         isFetching: auth.isFetching,
         errorMessage: auth.loginErrMsg,
         adminErrorMessage: auth.loginAdminErrMsg,
+        updateUserPhotoErrMsg: auth.updateUserPhotoErrMsg
     }
 };
 
