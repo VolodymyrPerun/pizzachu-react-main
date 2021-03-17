@@ -7,6 +7,7 @@ import productPage from './reducers/productPageReducer';
 import filter from "./reducers/filterReducer";
 import promo from "./reducers/promoBlockReducer";
 import cart from "./reducers/cartReducer";
+import comments from "./reducers/commentReducer";
 import users from "./reducers/usersReducer";
 import purchase from "./reducers/purchaseReducer";
 import registerClients from "./reducers/registerClientsReducer";
@@ -18,6 +19,7 @@ export const reducers = combineReducers({
     messagesPage,
     productsPage,
     productPage,
+    comments,
     purchase,
     auth,
     app,

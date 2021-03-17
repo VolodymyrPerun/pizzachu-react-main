@@ -1,10 +1,10 @@
-import React, {memo, useEffect} from 'react';
-import styles from './ProductPage.module.scss'
+import React, {memo, useEffect, useState} from 'react';
+import styles from './ProductPage.module.scss';
 import Preloader from "../../commons/Preloader/Preloader";
 import noPhoto from "../../../assets/images/no-aveliable-image.png";
-import sizeIcon from '../../../assets/images/diameter-icon.png'
+import sizeIcon from '../../../assets/images/diameter-icon.png';
 import {PRODUCT_SECTION, PRODUCT_TYPE} from "../../../constants";
-import {CloseCircleOutlined} from '@ant-design/icons';
+import {CloseCircleOutlined, FastBackwardFilled, FastForwardFilled} from '@ant-design/icons';
 import {NavLink} from "react-router-dom";
 import {
     faArrowLeft,
@@ -19,6 +19,19 @@ import {FontAwesomeIcon} from "@fortawesome/react-fontawesome";
 import {shuffle} from 'lodash';
 import ApplyBtn from "../../commons/Buttons/Apply/ApplyBtn";
 import AddTo from "../../commons/Buttons/AddTo/AddTo";
+import {reduxForm} from "redux-form";
+import CommentForm from "./CommentForm/CommentForm";
+import CommentCard from "./CommentCard/CommentCard";
+import style from "./CommentForm/CommentForm.module.scss";
+import Rating from "material-ui-rating";
+import Box from "@material-ui/core/Box";
+import {Pagination} from 'antd';
+
+
+const CommentReduxForm = reduxForm({
+    form: 'comment'
+})(CommentForm);
+
 
 export const ProductPage = memo(({
                                      product,
@@ -28,26 +41,72 @@ export const ProductPage = memo(({
                                      products,
                                      addProductToCart,
                                      getCart,
+
+                                     pageCount,
+                                     pageSize,
+                                     myID,
+                                     commentInfo,
+                                     me,
+                                     isLoadingComments,
+                                     isAuth,
+                                     getCommentsFromDB,
+                                     sendComment,
+                                     setCurrentPage,
+                                     deleteChosenComment,
+                                     editChosenComment,
+                                     currentPage,
+                                     averageRate,
+                                     setProductMark,
+                                     getAverageProductMark,
+                                     isMarkLoading
                                  }) => {
 
-    useEffect(() => {
-        try {
-            getProductById(match.params.productId);
-            getCart();
-        } catch (e) {
-            console.error(e);
-        }
-        return (() => {
-                getProductById(match.params.productId);
-                getCart();
-            }
-        );
-    }, [getCart, addProductToCart, match.params.productId, getProductById]);
+
+   // console.log(currentPage, setCurrentPage);
+
+    useEffect((productId, pageSize, currentPage) => {
+        productId = match.params.productId;
+        getProductById(productId);
+        getCommentsFromDB(productId, pageSize, currentPage);
+        //  getAverageProductMark(match.params.productId);
+        getCart();
+    }, [match.params.productId, getProductById, getCommentsFromDB, getCart]);
+
 
     let handleClick = (id, count) => {
         addProductToCart(id, count);
     };
 
+    const onSendComment = data => {
+        sendComment(match.params.productId, data, pageSize, currentPage);
+    };
+
+    const onPageChange = currentPage => {
+        setCurrentPage(currentPage);
+        getCommentsFromDB(match.params.productId, pageSize, currentPage);
+    };
+
+    let pagesCount = Math.floor(Math.ceil(pageCount / pageSize) * 10);
+
+    function itemRender(current, type, originalElement) {
+        if (type === 'prev') {
+            return <button><FastBackwardFilled/></button>;
+        }
+        if (type === 'next') {
+            return <button><FastForwardFilled/></button>;
+        }
+        return originalElement;
+    }
+
+    const [star, setStar] = useState(1);
+
+    // if (!isMarkLoading) {
+    //     return <Preloader/>
+    // }
+
+    const evaluateProduct = star => {
+        setProductMark(star, match.params.productId)
+    };
 
     return <>
         {
@@ -147,6 +206,88 @@ export const ProductPage = memo(({
                             })}
                         </div>
                     </> : null}
+
+
+                    {
+                        isAuth && <div>
+                            <div className={style.commentTitle}>Ваші відгуки:</div>
+                            <Box component={"fieldset"} mb={3} borderColor={"transparent"}>
+                                <div className={styles.ratingTitle}>Оцініть товар {product.name}:</div>
+                                <Rating
+                                    name={"simple-controlled"}
+                                    value={star}
+                                    onChange={(star) => {
+                                        setStar(star);
+                                        evaluateProduct(star)
+                                    }}
+                                />
+                            </Box>
+                        </div>
+
+                    }
+
+                    {
+                        (!isAuth) && <div className={styles.rate}>
+                            <div className={styles.ratingTitle}>Середня
+                                оцінка:
+                            </div>
+                            <Rating name="half-rating-read" value={averageRate}
+                                    precision={0.5}
+                                    readOnly/>
+                        </div>
+                    }
+
+                    {
+                        isLoadingComments ?
+                            <Preloader/> :
+                            <div className={styles.commentContainer}>
+                                <div className={styles.commentArea}>
+                                    <CommentReduxForm
+                                        onSubmit={onSendComment}
+                                        isAuth={isAuth}
+                                        evaluateProduct={evaluateProduct}
+                                        averageRate={averageRate}
+                                    />
+                                </div>
+
+                                {
+                                    commentInfo.map(
+                                        comment =>
+
+                                            <CommentCard
+                                                key={comment.id}
+                                                commentId={comment.id}
+                                                commentText={comment.text}
+                                                commentTime={comment.created_at}
+                                                name={comment["User.name"]}
+                                                surname={comment["User.surname"]}
+                                                user_photo={comment["User.user_photo"]}
+                                                isOwner={myID === comment.userId}
+                                                me={me}
+                                                deleteChosenComment={deleteChosenComment}
+                                                productId={match.params.productId}
+                                                editChosenComment={editChosenComment}
+                                                isAuth={isAuth}
+                                                commentsCountOnPage={pageCount}
+                                                currentPage={currentPage}
+                                            />
+                                    )
+                                }
+                                <Pagination
+                                    className={styles.pagination}
+                                    total={pagesCount}
+                                    itemRender={itemRender}
+                                    showLessItems={true}
+                                    showSizeChanger={false}
+                                    onChange={(p) => {
+                                        onPageChange(p)
+                                    }}
+                                />
+
+                            </div>
+
+
+                    }
 
                     <NavLink style={{margin: '30px auto'}} to={'/home'}>
                         <ApplyBtn

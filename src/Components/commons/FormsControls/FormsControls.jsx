@@ -4,6 +4,8 @@ import {FontAwesomeIcon} from "@fortawesome/react-fontawesome";
 import {faExclamationCircle, faExclamationTriangle} from '@fortawesome/free-solid-svg-icons';
 import {INPUT, SELECT, TEXT_FIELD, TEXTAREA} from '../../../constants/formsControls.enum'
 import TextField from "@material-ui/core/TextField";
+import Rating from "material-ui-rating/lib";
+import Box from "@material-ui/core/Box";
 
 
 const FormsControlItem = item => ({input, value, label, meta: {touched, error, warning}, child, ...restProps}) => {

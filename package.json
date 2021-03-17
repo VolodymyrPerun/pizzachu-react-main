@@ -4,6 +4,11 @@
   "private": true,
   "homepage": "https://pandagram.netlify.app/",
   "dependencies": {
+    "@material-ui/core": "latest",
+    "@material-ui/icons": "^4.11.2",
+    "@material-ui/lab": "latest",
+    "dayjs": "^1.10.4",
+    "history": "latest",
     "@fortawesome/fontawesome-svg-core": "^1.2.34",
     "@fortawesome/free-solid-svg-icons": "^5.15.2",
     "@fortawesome/react-fontawesome": "^0.1.14",
@@ -56,7 +61,6 @@
   "devDependencies": {
     "@ant-design/icons": "^4.3.0",
     "@fortawesome/free-brands-svg-icons": "^5.15.2",
-    "@material-ui/core": "^4.11.3",
     "@node-sass/cdn-importer": "^1.0.0",
     "@node-sass/node-module-importer": "^1.2.3",
     "@types/antd": "^1.0.0",
@@ -70,7 +74,7 @@
     "@types/react-router-dom": "^5.1.7",
     "@types/redux": "^3.6.0",
     "@types/redux-thunk": "^2.1.0",
-    "history": "^5.0.0",
+    "material-ui-rating": "^4.2.0",
     "prop-types": "^15.7.2",
     "react-test-renderer": "^16.14.0",
     "semantic-ui-react": "^2.0.3"

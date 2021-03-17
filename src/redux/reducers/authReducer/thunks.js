@@ -35,7 +35,7 @@ export const authMe = () => async dispatch => {
             const meDates = await authAPI.authMe(token);
 
             dispatch(setMeDates(meDates.data));
-            dispatch(setMyID(meDates.data.id));
+            dispatch(setMyID(meDates.data.userId));
             dispatch(setIsAuth(true));
             dispatch(setIsFetching(false));
             localStorage.setItem('tempId', '');
