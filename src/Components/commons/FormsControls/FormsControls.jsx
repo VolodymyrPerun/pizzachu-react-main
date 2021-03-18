@@ -42,8 +42,8 @@ const FormsControlItem = item => ({input, value, label, meta: {touched, error, w
                 <textarea className={style.textareaField}
                           {...input}
                           {...restProps}
-                          rows="4"
-                          cols="50"/>
+                          rows={4}
+                          cols={50}/>
                         <Error/>
                     </div>
                 </>

@@ -140,7 +140,7 @@
     align-items: center;
     justify-self: center;
     align-content: center;
-    width: 30%;
+    min-width: 30%;
     border-bottom: 2px solid #aaaaaa;
     font-size: 22px;
     padding: 10px;
@@ -287,8 +287,9 @@
 
   .commentArea {
     width: 80%;
-    height: 130px;
+    height: auto;
     border-radius: 15px;
+    padding: 20px;
     background: #fff;
     border: 1px solid #f0f0f0;
     box-shadow: 0 14px 28px rgba(0, 0, 0, 0.25), 0 10px 10px rgba(0, 0, 0, 0.22);

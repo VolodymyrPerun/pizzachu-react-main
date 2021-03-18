@@ -9,6 +9,7 @@ import {NavLink} from "react-router-dom";
 import {
     faArrowLeft,
     faBalanceScaleLeft,
+    faBell,
     faCartPlus,
     faInfo,
     faMoneyBillWave,
@@ -19,18 +20,11 @@ import {FontAwesomeIcon} from "@fortawesome/react-fontawesome";
 import {shuffle} from 'lodash';
 import ApplyBtn from "../../commons/Buttons/Apply/ApplyBtn";
 import AddTo from "../../commons/Buttons/AddTo/AddTo";
-import {reduxForm} from "redux-form";
-import CommentForm from "./CommentForm/CommentForm";
+import {CommentForm} from "./CommentForm/CommentForm";
 import CommentCard from "./CommentCard/CommentCard";
-import style from "./CommentForm/CommentForm.module.scss";
 import Rating from "material-ui-rating";
 import Box from "@material-ui/core/Box";
 import {Pagination} from 'antd';
-
-
-const CommentReduxForm = reduxForm({
-    form: 'comment'
-})(CommentForm);
 
 
 export const ProductPage = memo(({
@@ -58,7 +52,7 @@ export const ProductPage = memo(({
                                      averageRate,
                                      setProductMark,
                                      getAverageProductMark,
-                                     isMarkLoading
+                                     isMarkLoading,
                                  }) => {
 
 
@@ -70,7 +64,7 @@ export const ProductPage = memo(({
         getCommentsFromDB(productId, pageSize, currentPage);
         //  getAverageProductMark(match.params.productId);
         getCart();
-    }, [match.params.productId, getProductById, getCommentsFromDB, getCart]);
+    }, [match.params.productId, getProductById, getCommentsFromDB, getCart, pageSize]);
 
 
     let handleClick = (id, count) => {
@@ -81,9 +75,9 @@ export const ProductPage = memo(({
         sendComment(match.params.productId, data, pageSize, currentPage);
     };
 
-    const onPageChange = currentPage => {
+    const onPageChange = curPage => {
         setCurrentPage(currentPage);
-        getCommentsFromDB(match.params.productId, pageSize, currentPage);
+        getCommentsFromDB(match.params.productId, pageSize, curPage);
     };
 
     let pagesCount = Math.floor(Math.ceil(pageCount / pageSize) * 10);
@@ -210,7 +204,13 @@ export const ProductPage = memo(({
 
                     {
                         isAuth && <div>
-                            <div className={style.commentTitle}>Ваші відгуки:</div>
+                            <div className={styles.moreProductsTitle}>
+                                <FontAwesomeIcon
+                                    style={{marginLeft: '7px', fontSize: '18px', color: '#EE7178'}}
+                                    icon={faBell}/>
+                                (<span style={{fontSize: '18px', color: '#EE7178'}}>{pageCount}</span>) Відгуки про
+                                товар {product.name} :
+                            </div>
                             <Box component={"fieldset"} mb={3} borderColor={"transparent"}>
                                 <div className={styles.ratingTitle}>Оцініть товар {product.name}:</div>
                                 <Rating
@@ -223,7 +223,6 @@ export const ProductPage = memo(({
                                 />
                             </Box>
                         </div>
-
                     }
 
                     {
@@ -242,7 +241,7 @@ export const ProductPage = memo(({
                             <Preloader/> :
                             <div className={styles.commentContainer}>
                                 <div className={styles.commentArea}>
-                                    <CommentReduxForm
+                                    <CommentForm
                                         onSubmit={onSendComment}
                                         isAuth={isAuth}
                                         evaluateProduct={evaluateProduct}
@@ -263,16 +262,16 @@ export const ProductPage = memo(({
                                                 surname={comment["User.surname"]}
                                                 user_photo={comment["User.user_photo"]}
                                                 isOwner={myID === comment.userId}
-                                                me={me}
                                                 deleteChosenComment={deleteChosenComment}
                                                 productId={match.params.productId}
                                                 editChosenComment={editChosenComment}
                                                 isAuth={isAuth}
-                                                commentsCountOnPage={pageCount}
                                                 currentPage={currentPage}
+                                                pageSize={pageSize}
                                             />
                                     )
                                 }
+                                
                                 <Pagination
                                     className={styles.pagination}
                                     total={pagesCount}
@@ -285,8 +284,6 @@ export const ProductPage = memo(({
                                 />
 
                             </div>
-
-
                     }
 
                     <NavLink style={{margin: '30px auto'}} to={'/home'}>

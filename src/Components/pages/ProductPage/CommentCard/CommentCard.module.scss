@@ -93,12 +93,14 @@
 
     .commentText {
       width: 95%;
-      color: #EE7179;
+      color: #008E46;
       font-family: Caveat, cursive;
       font-size: 22px;
       font-weight: 500;
       align-self: center;
       margin-top: 10px;
+      word-wrap: break-word;
+      word-break: break-word;
     }
 
     .editAreaContainer {
@@ -125,17 +127,17 @@
         align-items: center;
 
         .editCancel {
-          width: 150px;
-          height: 35px;
+          width: 120px;
+          height: 32px;
           border-radius: 10px;
           color: #f1f1f1;
           background: #ff1744;
           border: 2px solid #ffffff;
           font-size: 18px;
-          margin-left: -15px;
           margin-top: 15px;
           transition: 0.3s;
           cursor: pointer;
+          text-transform: capitalize !important;
 
           &:hover {
             transform: scale(1.05);
@@ -145,15 +147,15 @@
 
         .editConfirm {
           background: #283593;
-          width: 150px;
-          height: 35px;
+          width: 120px;
+          height: 32px;
           border-radius: 10px;
           color: #f1f1f1;
           border: 2px solid #ffffff;
           font-size: 18px;
           margin-top: 15px;
-          margin-left: 10px;
           cursor: pointer;
+          text-transform: capitalize !important;
 
           &:hover {
             transform: scale(1.05);
@@ -165,7 +167,8 @@
 
     .changeText {
       display: flex;
-      margin-left: 20px
+      margin-left: auto;
+      margin-right: auto;
     }
 
     .commentDate {

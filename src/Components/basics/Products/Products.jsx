@@ -32,7 +32,6 @@ const Products = memo(({
         try {
             (!cleanupFunction) &&
             getAllProducts(type, section, size_id, pageSize, currentPage);
-            debugger
         } catch (e) {
             console.error(e);
         }

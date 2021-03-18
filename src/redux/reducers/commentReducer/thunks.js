@@ -1,8 +1,9 @@
 import {commentAPI} from "../../../API/commentAPI/commentAPI";
 import {reset} from "redux-form";
 import {refreshUserToken} from "../refreshReducer/thunks";
-import {setCommentInfo, setCurrentPage, setIsLoading, setTotalCommentsCount} from "./actions";
+import {setCommentInfo, setCurrentPage, setIsLoading, setPageSize, setTotalCommentsCount} from "./actions";
 import {CUSTOM_ERRORS} from "../../../constants";
+
 
 export const getCommentsFromDB = (productId, commentsCount, currentPage) => async dispatch => {
 
@@ -22,14 +23,14 @@ export const getCommentsFromDB = (productId, commentsCount, currentPage) => asyn
 
 };
 
-export const sendComment = (productId, data, commentsCount, currentPage) => async dispatch => {
+export const sendComment = (productId, data, pageSize, currentPage) => async dispatch => {
 
     try {
         dispatch(setIsLoading(true));
 
         await commentAPI.postComment(productId, data);
 
-        const commentsInfo = await commentAPI.getAllComments(productId, commentsCount, currentPage);
+        const commentsInfo = await commentAPI.getAllComments(productId, pageSize, currentPage);
 
         dispatch(setCommentInfo(commentsInfo.data.comments));
         dispatch(setTotalCommentsCount(commentsInfo.data.commentsCount));
@@ -41,26 +42,22 @@ export const sendComment = (productId, data, commentsCount, currentPage) => asyn
 
         if (e.response.data.code === CUSTOM_ERRORS[4012].code) {
             dispatch(refreshUserToken());
-            dispatch(sendComment(data, productId, commentsCount, currentPage))
+            dispatch(sendComment(productId, data, pageSize, currentPage));
         }
     }
-
 };
 
-export const editChosenComment = (comment_id, data, productId, commentsCount, currentPage) => async dispatch => {
+export const editChosenComment = (comment_id, data, productId, pageSize, currentPage) => async dispatch => {
 
     try {
         dispatch(setIsLoading(true));
 
-        debugger
-
         await commentAPI.editComment(comment_id, data);
 
         dispatch(setCurrentPage(currentPage));
+        dispatch(setPageSize(pageSize));
 
-        const commentsInfo = await commentAPI.getAllComments(productId, commentsCount, currentPage);
-
-        debugger
+        const commentsInfo = await commentAPI.getAllComments(productId, pageSize, currentPage);
 
         dispatch(setCommentInfo(commentsInfo.data.comments));
         dispatch(setTotalCommentsCount(commentsInfo.data.commentsCount));
@@ -71,13 +68,13 @@ export const editChosenComment = (comment_id, data, productId, commentsCount, cu
 
         if (e.response.data.code === CUSTOM_ERRORS[4012].code) {
             dispatch(refreshUserToken());
-            dispatch(editChosenComment(comment_id, data, commentsCount, currentPage))
+            dispatch(editChosenComment(comment_id, data, productId, pageSize, currentPage))
         }
 
     }
 };
 
-export const deleteChosenComment = (comment_id, productId, commentsCount, currentPage) => async dispatch => {
+export const deleteChosenComment = (comment_id, productId, pageSize, currentPage) => async dispatch => {
 
     try {
         dispatch(setIsLoading(true));
@@ -85,9 +82,9 @@ export const deleteChosenComment = (comment_id, productId, commentsCount, curren
         await commentAPI.deleteComment(comment_id);
 
         dispatch(setCurrentPage(currentPage));
-        dispatch(setTotalCommentsCount(commentsCount));
+        dispatch(setPageSize(pageSize));
 
-        const commentsInfo = await commentAPI.getAllComments(productId, commentsCount, currentPage);
+        const commentsInfo = await commentAPI.getAllComments(productId, pageSize, currentPage);
 
         dispatch(setCommentInfo(commentsInfo.data.comments));
         dispatch(setTotalCommentsCount(commentsInfo.data.commentsCount));
@@ -98,8 +95,7 @@ export const deleteChosenComment = (comment_id, productId, commentsCount, curren
 
         if (e.response.data.code === CUSTOM_ERRORS[4012].code) {
             dispatch(refreshUserToken());
-            dispatch(deleteChosenComment(comment_id, commentsCount, currentPage))
+            dispatch(deleteChosenComment(comment_id, productId, pageSize, currentPage))
         }
-
     }
 };

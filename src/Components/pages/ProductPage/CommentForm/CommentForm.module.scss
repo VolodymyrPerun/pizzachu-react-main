@@ -8,19 +8,26 @@
 }
 
 textarea {
-  border: 2px solid #2957ac;
+  border: 2px solid #D0D0D0;
+  border-radius: 5px;
   width: 95%;
   resize: none;
   align-self: center;
-  height: 40px;
-  outline: #2d439e;
+  height: 60px;
+  outline: none;
   font-size: 17px;
-  color: #6d6d6d;
+  color: black;
+  padding: 9px;
+  box-sizing: border-box;
+  overflow: hidden;
+  background-color: #DEE8C1 !important;
+  word-break: break-word;
+  max-lines: 50;
 }
 
 textarea::placeholder {
+  color: #008E46;
   font-size: 17px;
-
 }
 
 .commentForm {
@@ -46,19 +53,17 @@ textarea::placeholder {
   border-radius: 10px;
   border: 2px solid #ffffff;
   color: #f1f1f1;
-  font-family: "Arial MT", serif;
-  font-size: 23px;
+  font-size: 20px;
   font-weight: 400;
   display: flex;
   justify-content: center;
   align-items: center;
-  background: #ff4313;
+  background: #EE7179;
   margin-left: 20px;
   transition: 0.2s;
   margin-top: 4%;
   cursor: pointer;
-
-
+  text-transform: capitalize;
 }
 
 .commentBtn:hover {
@@ -68,11 +73,11 @@ textarea::placeholder {
 
 .commentTitle {
   width: 95%;
-  color: #1c6c9c;
-  font-family: "Arial - Bold MT", serif;
+  color: #008E46;
   font-size: 22px;
   font-weight: 600;
   margin-bottom: 3px;
+  margin-top: 30px;
 }
 
 @media (max-width: 800px) {

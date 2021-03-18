@@ -4,8 +4,8 @@ import {checkAccessTokenPresent} from "../../helpers/checkAccessTokenPresent";
 
 export const commentAPI = {
 
-    getAllComments: (productId, commentsCount = 5, currentPage = 1) => {
-        return instance.get(`/comments?productId=${productId}&limit=${commentsCount}&page=${currentPage}`)
+    getAllComments: (productId, pageSize = 5, currentPage = 1) => {
+        return instance.get(`/comments?productId=${productId}&limit=${pageSize}&page=${currentPage}`)
     },
 
     postComment: (productId, commentData) => {

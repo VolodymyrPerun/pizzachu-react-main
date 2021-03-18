@@ -21,24 +21,26 @@ const CommentCard = (
         isOwner,
         editChosenComment,
         isAuth,
-        commentsCountOnPage,
         currentPage,
-        deleteChosenComment
+        deleteChosenComment,
+        pageSize
     }
 ) => {
-
-    console.log(commentsCountOnPage, currentPage);
 
 
     const useStyles = makeStyles((theme) => ({
         button: {
             margin: theme.spacing(1),
+            width: 120,
+            height: 32,
+            borderRadius: 10,
+            textTransform: 'capitalize'
         },
     }));
     const classes = useStyles();
 
     const onCommentDelete = () => {
-        deleteChosenComment(commentId, commentsCountOnPage, currentPage)
+        deleteChosenComment(commentId, productId, pageSize, currentPage);
     };
 
     const [editMode, setEditMode] = useState(false);
@@ -57,8 +59,7 @@ const CommentCard = (
     };
 
     const updateComment = () => {
-        debugger
-        editChosenComment(commentId, comment, productId, commentsCountOnPage, currentPage);
+        editChosenComment(commentId, comment, productId, pageSize, currentPage);
         setEditMode(!editMode);
     };
 
@@ -91,15 +92,15 @@ const CommentCard = (
                             </div>
 
                             <div className={styles.editBtnContainer}>
-                                <button className={styles.editCancel} onClick={turnEditMode}>ВІДХИЛИТИ</button>
-                                <button className={styles.editConfirm} onClick={updateComment}>ПРИЙНЯТИ</button>
+                                <button className={styles.editCancel} onClick={turnEditMode}>Відхилити</button>
+                                <button className={styles.editConfirm} onClick={updateComment}>Прийняти</button>
                             </div>
                         </div>
                 }
                 <br/>
                 <div className={styles.changeText}>
                     {
-                        isOwner && isAuth && <div>
+                        isOwner && isAuth && !editMode && <div>
                             <Button
                                 variant={"outlined"}
                                 color={"default"}
@@ -113,7 +114,7 @@ const CommentCard = (
 
                         </div>
                     }
-                    {isOwner && isAuth && <div>
+                    {isOwner && isAuth && !editMode && <div>
                         <Button
                             variant={"outlined"}
                             color={"secondary"}
