@@ -1,36 +1,36 @@
 import {
-    SET_COMMENT_INFO,
     SET_CURRENT_PAGE,
-    SET_LOADING_PROGRESS,
-    SET_TOTAL_PAGES_COUNT,
-    SET_PAGE_SIZE
+    SET_PAGE_SIZE,
+    SET_REPLY_COMMENTS_INFO,
+    SET_TOTAL_REPLY_COMMENT_COUNT,
+    TOGGLE_CLOSED_COMMENTS
 } from "./constants";
 
 
 const initialState = {
-    commentInfo: [],
-    pageCount: null,
-    pageSize: 5,
+    replyCommentsInfo: [],
+    totalReplyCommentsCount: 0,
+    pageSize: 3,
     currentPage: 1,
-    isLoading: false
+    isClosed: false,
 };
 
-const commentReducer = (
+const replyCommentsReducer = (
     state
         = initialState,
     action
 ) => {
     switch (action.type) {
 
-        case SET_COMMENT_INFO :
+        case SET_REPLY_COMMENTS_INFO :
             return {
                 ...state,
-                commentInfo: action.payload
+                replyCommentsInfo: action.payload
             };
-        case SET_TOTAL_PAGES_COUNT :
+        case SET_TOTAL_REPLY_COMMENT_COUNT :
             return {
                 ...state,
-                pageCount: action.payload
+                totalReplyCommentsCount: action.payload
             };
         case SET_PAGE_SIZE:
             return {
@@ -42,14 +42,14 @@ const commentReducer = (
                 ...state,
                 currentPage: action.payload
             };
-        case SET_LOADING_PROGRESS:
+        case TOGGLE_CLOSED_COMMENTS :
             return {
                 ...state,
-                isLoading: action.payload
+                isClosed: action.payload
             };
         default :
             return state
     }
 };
 
-export default commentReducer;
+export default replyCommentsReducer;

@@ -1,6 +1,6 @@
 import React from 'react';
 import {Field, reset} from 'redux-form';
-import styles from './CommentForm.module.scss';
+import styles from './ReplyCommentForm.module.scss';
 import {TEXTAREA} from "../../../../constants/formsControls.enum";
 import {reduxForm} from "redux-form";
 import FormsControlItem from "../../../commons/FormsControls/FormsControls";
@@ -54,7 +54,7 @@ export const Form = ({handleSubmit, pristine, submitting, isAuth}) => {
     )
 };
 
-export const CommentForm = reduxForm({
-    form: 'comment'
+export const ReplyCommentForm = reduxForm({
+    form: 'replyComment'
 })(Form);
 

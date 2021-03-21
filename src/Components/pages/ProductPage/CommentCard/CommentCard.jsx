@@ -7,6 +7,11 @@ import DeleteIcon from '@material-ui/icons/Delete';
 import Button from "@material-ui/core/Button";
 import makeStyles from "@material-ui/core/styles/makeStyles";
 import EditIcon from '@material-ui/icons/Edit';
+import {faAngleDown, faReply} from "@fortawesome/free-solid-svg-icons";
+import {FontAwesomeIcon} from "@fortawesome/react-fontawesome";
+import ReplyCommentCard from "../ReplyCommentCard/ReplyCommentCard";
+import SubmitFollowBtn from "../../../commons/Buttons/SubmitFollow/SubmitFollowBtn";
+import {ReplyCommentForm} from "../ReplyCommentForm/ReplyCommentForm";
 
 
 const CommentCard = (
@@ -23,10 +28,16 @@ const CommentCard = (
         isAuth,
         currentPage,
         deleteChosenComment,
-        pageSize
+        pageSize,
+
+        replyCommentsInfo,
+        getReplyCommentsFromDB,
+        totalReplyCommentsCount,
+        deleteChosenReplyComment,
+        editChosenReplyComment,
+        sendReplyComment
     }
 ) => {
-
 
     const useStyles = makeStyles((theme) => ({
         button: {
@@ -44,11 +55,15 @@ const CommentCard = (
     };
 
     const [editMode, setEditMode] = useState(false);
+    const [isClosed, setIsClosed] = useState(false);
+    const [isClosedForm, setIsClosedForm] = useState(false);
+
     const [comment, setComment] = useState(commentText);
 
     useEffect(() => {
         setComment(commentText);
-    }, [commentText]);
+        getReplyCommentsFromDB(commentId, pageSize, currentPage);
+    }, [commentText, getReplyCommentsFromDB, commentId]);
 
     const turnEditMode = () => {
         setEditMode(!editMode);
@@ -62,6 +77,22 @@ const CommentCard = (
         editChosenComment(commentId, comment, productId, pageSize, currentPage);
         setEditMode(!editMode);
     };
+
+    const toggleReplyComments = () => {
+        getReplyCommentsFromDB(commentId);
+        setIsClosed(!isClosed);
+    };
+
+
+    const toggleReplyCommentsForm = () => {
+        setIsClosedForm(!isClosedForm);
+    };
+
+    const onSendComment = data => {
+        sendReplyComment(commentId, data);
+        setIsClosed(!isClosed);
+    };
+
 
     return (
         <div className={styles.commentCardContainer}>
@@ -78,7 +109,6 @@ const CommentCard = (
                 <div className={styles.commentCommon}/>
 
                 {
-
                     !editMode ?
                         <div className={styles.commentText}>{commentText}</div> :
                         <div className={styles.editAreaContainer}>
@@ -97,7 +127,7 @@ const CommentCard = (
                             </div>
                         </div>
                 }
-                <br/>
+
                 <div className={styles.changeText}>
                     {
                         isOwner && isAuth && !editMode && <div>
@@ -110,8 +140,6 @@ const CommentCard = (
                             >
                                 Редагувати
                             </Button>
-
-
                         </div>
                     }
                     {isOwner && isAuth && !editMode && <div>
@@ -130,10 +158,66 @@ const CommentCard = (
                 <div className={styles.commentDate}>
                     {'Додано: ' + dayjs(commentTime).format('HH:mm DD/MM/YYYY')}
                 </div>
+
+                {isAuth && !editMode && <div>
+                    <p className={styles.replyComment} onClick={toggleReplyCommentsForm}>
+                        <FontAwesomeIcon
+                            style={{
+                                marginRight: '7px',
+                                fontSize: '15px',
+                                transform: 'rotate(180deg)'
+                            }}
+                            icon={faReply}/>Відповісти
+                    </p>
+                </div>}
+
+
+                {isAuth &&
+                <div>
+                    <SubmitFollowBtn handleClick={toggleReplyComments}
+                                     label={'Показати/приховати відповіді'}
+                                     icon={faAngleDown}
+                    >
+                    </SubmitFollowBtn>
+                </div>
+                }
+
+                {isAuth &&
+                <div className={styles.commentContainer}>
+                    {isAuth && isClosedForm && <div className={styles.commentArea}>
+                        <ReplyCommentForm
+                            onSubmit={onSendComment}
+                            isAuth={isAuth}
+                        />
+                    </div>}
+
+
+                    {isAuth && isClosed &&
+
+                    replyCommentsInfo.map(
+                        comment =>
+                            comment.commentId === commentId ?
+
+                                <ReplyCommentCard
+                                    key={comment.id}
+                                    commentId={commentId}
+                                    id={comment.id}
+                                    commentText={comment.text}
+                                    commentTime={comment.created_at}
+                                    name={comment["User.name"]}
+                                    surname={comment["User.surname"]}
+                                    user_photo={comment["User.user_photo"]}
+                                    isOwner={isOwner}
+                                    deleteChosenReplyComment={deleteChosenReplyComment}
+                                    editChosenReplyComment={editChosenReplyComment}
+                                    isAuth={isAuth}
+                                    currentPage={currentPage}
+                                    pageSize={pageSize}
+                                    getReplyCommentsFromDB={getReplyCommentsFromDB}
+                                /> : null)}
+                </div>}
             </div>
         </div>
-
-
     )
 };
 

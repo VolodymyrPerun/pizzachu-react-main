@@ -5,13 +5,13 @@ import {setCommentInfo, setCurrentPage, setIsLoading, setPageSize, setTotalComme
 import {CUSTOM_ERRORS} from "../../../constants";
 
 
-export const getCommentsFromDB = (productId, commentsCount, currentPage) => async dispatch => {
+export const getCommentsFromDB = (productId, pageSize, currentPage) => async dispatch => {
 
     try {
         dispatch(setIsLoading(true));
         dispatch(setCurrentPage(currentPage));
 
-        const commentsInfo = await commentAPI.getAllComments(productId, commentsCount, currentPage);
+        const commentsInfo = await commentAPI.getAllComments(productId, pageSize, currentPage);
 
         dispatch(setCommentInfo(commentsInfo.data.comments));
         dispatch(setTotalCommentsCount(commentsInfo.data.commentsCount));

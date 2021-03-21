@@ -9,22 +9,32 @@ import {
     editChosenComment,
     getCommentsFromDB,
     sendComment
-} from "../../redux/reducers/commentReducer/thunks";
-import {setCurrentPage} from "../../redux/reducers/commentReducer/actions";
+} from "../../redux/reducers/commentsReducer/thunks";
+import {setCurrentPage} from "../../redux/reducers/commentsReducer/actions";
+import {
+    deleteChosenReplyComment,
+    editChosenReplyComment,
+    getReplyCommentsFromDB,
+    sendReplyComment
+} from "../../redux/reducers/replyCommentsReducer/thunks";
 
 
-const mapStateToProps = ({productPage, productsPage, auth, comments}) => ({
+const mapStateToProps = ({productPage, productsPage, auth, comments, replyComments}) => ({
     product: productPage.product,
     isFetching: productPage.isFetching,
     products: productsPage.products,
     isLoadingComments: comments.isLoadingComments,
-    commentInfo:comments.commentInfo,
+    commentInfo: comments.commentInfo,
     pageCount: comments.pageCount,
     currentPage: comments.currentPage,
     pageSize: comments.pageSize,
+    replyCommentsInfo: replyComments.replyCommentsInfo,
+    totalReplyCommentsCount: replyComments.totalReplyCommentsCount,
+    isClosed: replyComments.isClosed,
+    currentPageFoReplyComments: replyComments.currentPage,
+    pageSizeFoReplyComments: replyComments.pageSize,
     isAuth: auth.isAuth,
     myID: auth.myID,
-    me: auth.me,
     averageRate: comments.averageRate
 });
 
@@ -38,6 +48,10 @@ export default compose(
         sendComment,
         deleteChosenComment,
         editChosenComment,
-        setCurrentPage
+        setCurrentPage,
+        getReplyCommentsFromDB,
+        deleteChosenReplyComment,
+        editChosenReplyComment,
+        sendReplyComment
     }),
     withRouter)(ProductPage);

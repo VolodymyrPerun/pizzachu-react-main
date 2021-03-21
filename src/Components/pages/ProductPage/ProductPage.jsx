@@ -25,6 +25,7 @@ import CommentCard from "./CommentCard/CommentCard";
 import Rating from "material-ui-rating";
 import Box from "@material-ui/core/Box";
 import {Pagination} from 'antd';
+import ReplyCommentCard from "./ReplyCommentCard/ReplyCommentCard";
 
 
 export const ProductPage = memo(({
@@ -40,7 +41,6 @@ export const ProductPage = memo(({
                                      pageSize,
                                      myID,
                                      commentInfo,
-                                     me,
                                      isLoadingComments,
                                      isAuth,
                                      getCommentsFromDB,
@@ -53,12 +53,20 @@ export const ProductPage = memo(({
                                      setProductMark,
                                      getAverageProductMark,
                                      isMarkLoading,
+
+                                     isClosed,
+                                     replyCommentsInfo,
+                                     totalReplyCommentsCount,
+                                     currentPageFoReplyComments,
+                                     pageSizeFoReplyComments,
+                                     getReplyCommentsFromDB,
+                                     deleteChosenReplyComment,
+                                     editChosenReplyComment,
+                                     sendReplyComment
                                  }) => {
 
 
-   // console.log(currentPage, setCurrentPage);
-
-    useEffect((productId, pageSize, currentPage) => {
+    useEffect((productId, commentId, pageSize, currentPage) => {
         productId = match.params.productId;
         getProductById(productId);
         getCommentsFromDB(productId, pageSize, currentPage);
@@ -226,7 +234,7 @@ export const ProductPage = memo(({
                     }
 
                     {
-                        (!isAuth) && <div className={styles.rate}>
+                        !isAuth && <div className={styles.rate}>
                             <div className={styles.ratingTitle}>Середня
                                 оцінка:
                             </div>
@@ -244,8 +252,6 @@ export const ProductPage = memo(({
                                     <CommentForm
                                         onSubmit={onSendComment}
                                         isAuth={isAuth}
-                                        evaluateProduct={evaluateProduct}
-                                        averageRate={averageRate}
                                     />
                                 </div>
 
@@ -268,10 +274,19 @@ export const ProductPage = memo(({
                                                 isAuth={isAuth}
                                                 currentPage={currentPage}
                                                 pageSize={pageSize}
+                                                replyCommentsInfo={replyCommentsInfo}
+                                                isClosed={isClosed}
+                                                getReplyCommentsFromDB={getReplyCommentsFromDB}
+                                                match={match}
+                                                totalReplyCommentsCount={totalReplyCommentsCount}
+                                                deleteChosenReplyComment={deleteChosenReplyComment}
+                                                editChosenReplyComment={editChosenReplyComment}
+                                                sendReplyComment={sendReplyComment}
                                             />
                                     )
                                 }
-                                
+
+
                                 <Pagination
                                     className={styles.pagination}
                                     total={pagesCount}
