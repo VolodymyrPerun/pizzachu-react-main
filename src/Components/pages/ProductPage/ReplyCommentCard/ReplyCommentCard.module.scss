@@ -3,10 +3,10 @@
   max-width: 65%;
   width: 65%;
   height: auto;
-  margin-bottom: 20px;
   display: flex;
   justify-content: space-between;
-
+  margin-top: 20px;
+  margin-bottom: 20px;
 
   .commentatorInfo {
     display: flex;
@@ -19,8 +19,8 @@
     .avatar {
       max-width: 120px;
       max-height: 120px;
-      width: 120px;
-      height: 120px;
+      width: 60px;
+      height: 60px;
       border-radius: 50%;
       margin-bottom: 10px;
       border: 2px solid #f0f0f0;
@@ -31,7 +31,7 @@
     .commentatorName {
       color: #008E46;
       font-family: 'Caveat', cursive;
-      font-size: 20px;
+      font-size: 15px;
       font-weight: 600;
       align-self: start;
       display: flex;
@@ -48,8 +48,6 @@
   }
 
   .commentInformation {
-    //max-width: 35vw;
-    //color: darkslateblue;
     display: flex;
     flex-direction: column;
     flex-wrap: wrap;
@@ -61,7 +59,6 @@
     padding: 10px;
     border-radius: 10px;
     justify-content: center;
-    // border-radius: 15px;
     background-color: #f0f0f0;
     border: 1px solid white;
     box-shadow: 0 14px 28px rgba(0, 0, 0, 0.25), 0 10px 10px rgba(0, 0, 0, 0.22);
@@ -95,12 +92,17 @@
       width: 95%;
       color: #008E46;
       font-family: Caveat, cursive;
-      font-size: 22px;
+      font-size: 17px;
       font-weight: 500;
       align-self: center;
       margin-top: 10px;
       word-wrap: break-word;
       word-break: break-word;
+      border: 1px solid #cccccc;
+      border-radius: 5px;
+      padding: 20px 5px;
+      text-indent: 15px;
+      box-shadow: 0 2px 4px rgba(0, 0, 0, 0.25), 0 4px 4px rgba(0, 0, 0, 0.22);
     }
 
     .editAreaContainer {
@@ -127,7 +129,7 @@
         align-items: center;
 
         .editCancel {
-          width: 120px;
+          width: 100px;
           height: 32px;
           border-radius: 10px;
           color: #f1f1f1;
@@ -147,7 +149,7 @@
 
         .editConfirm {
           background: #283593;
-          width: 120px;
+          width: 100px;
           height: 32px;
           border-radius: 10px;
           color: #f1f1f1;
@@ -178,12 +180,16 @@
       display: flex;
       margin-left: auto;
       margin-right: auto;
+
+      button {
+        width: 105px;
+      }
     }
 
     .commentDate {
       color: #25d366;
       font-family: Caveat, cursive;
-      font-size: 15px;
+      font-size: 12px;
       font-weight: 600;
       align-self: center;
       width: 95%;
@@ -192,18 +198,17 @@
 }
 
 
+//@media (max-width: 900px) {
+//  .editConfirm, .editCancel {
+//    width: 100px;
+//    font-size: 13px;
+//  }
+//  .changeText {
+//    flex-direction: column;
+//  }
+//}
 
-@media (max-width: 600px) {
-  .editConfirm, .editCancel {
-    width: 100px;
-    font-size: 13px;
-  }
-  .changeText {
-    flex-direction: column;
-  }
-}
-
-@media (max-width: 550px) {
+@media (max-width: 900px) {
   .commentCardContainer {
     flex-direction: column;
     align-items: center;
@@ -213,6 +218,15 @@
   .commentCommon {
     display: none;
   }
+
+  .editConfirm, .editCancel {
+    width: 100px;
+    font-size: 13px;
+  }
+  .changeText {
+    flex-direction: column;
+  }
+
   .editAreaContainer {
     margin-top: 15px;
   }
@@ -220,8 +234,13 @@
     margin-top: 20px;
   }
   .commentInformation {
+    width: 200px!important;
     border-top-left-radius: 10px;
+    margin-top: 20px;
 
+    &:before, &:after {
+      display: none;
+    }
   }
 }
 

@@ -22,30 +22,22 @@ export const productsAPI = {
     getProductById(productId) {
         return instance.get(`products/${productId}`);
     },
-
-
     setMark: (access_token, mark, productId) => {
-
         return instance.post(`/products/evaluate-product?productId=${productId}`, {mark}, {
             headers: {
                 [AUTHORIZATION]: access_token
             }
         })
-
     },
     getIsEvaluated: (access_token, productId) => {
-
         return instance.get(`/products/is-evaluated?productId=${productId}`, {
             headers: {
                 [AUTHORIZATION]: access_token
             }
         })
-
     },
     getAVGMark: productId => {
-
         return instance.get(`/products/average-mark?productId=${productId}`)
-
     },
 };
 

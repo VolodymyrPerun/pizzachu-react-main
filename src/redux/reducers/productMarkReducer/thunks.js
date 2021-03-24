@@ -1,8 +1,8 @@
-import {checkAccessTokenPresent} from "../../helpers/checkAccessTokenPresent";
-import {productsAPI} from "../../API/productsAPI/productsAPI";
-import {refreshUserToken} from "../reducers/refreshReducer/thunks";
+import {checkAccessTokenPresent} from "../../../helpers/checkAccessTokenPresent";
+import {productsAPI} from "../../../API/productsAPI/productsAPI";
+import {refreshUserToken} from "../refreshReducer/thunks";
 import {setIsEvaluated, setIsMarkLoading, setMark} from "./actions";
-import {CUSTOM_ERRORS} from "../../constants";
+import {CUSTOM_ERRORS} from "../../../constants";
 
 
 export const setProductMark = (mark, productId) => async dispatch => {

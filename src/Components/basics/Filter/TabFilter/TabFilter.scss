@@ -14,6 +14,7 @@ button {
   -webkit-transition: .25s;
   -o-transition: .25s;
   transition: .25s;
+  cursor: pointer;
 
   &:focus, &:hover {
     background-color: #DEE8C1;

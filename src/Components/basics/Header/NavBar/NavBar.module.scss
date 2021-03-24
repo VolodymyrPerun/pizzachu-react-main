@@ -1,6 +1,8 @@
 .navbar {
-  background: #DEE8C1;
+  position: fixed;
   height: 80px;
+  width: 100%;
+  background: #DEE8C1;
   display: flex;
   justify-content: center;
   align-items: center;
@@ -8,6 +10,7 @@
   font-weight: 400;
   font-family: 'Caveat', cursive;
   box-shadow: 0 5px 5px -5px rgba(0,0,0,.5);
+  z-index: 999;
 
   .logo {
     display: flex;

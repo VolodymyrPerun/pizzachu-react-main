@@ -17,9 +17,14 @@ import {
     getReplyCommentsFromDB,
     sendReplyComment
 } from "../../redux/reducers/replyCommentsReducer/thunks";
+import {
+    getAverageProductMark,
+    getIsEvaluatedProduct,
+    setProductMark,
+} from "../../redux/reducers/productMarkReducer/thunks";
 
 
-const mapStateToProps = ({productPage, productsPage, auth, comments, replyComments}) => ({
+const mapStateToProps = ({productPage, productsPage, auth, comments, replyComments, productMark}) => ({
     product: productPage.product,
     isFetching: productPage.isFetching,
     products: productsPage.products,
@@ -35,7 +40,9 @@ const mapStateToProps = ({productPage, productsPage, auth, comments, replyCommen
     pageSizeFoReplyComments: replyComments.pageSize,
     isAuth: auth.isAuth,
     myID: auth.myID,
-    averageRate: comments.averageRate
+    mark: productMark.mark,
+    isEvaluated: productMark.isEvaluated,
+    isMarkLoading: productMark.isMarkLoading,
 });
 
 
@@ -52,6 +59,9 @@ export default compose(
         getReplyCommentsFromDB,
         deleteChosenReplyComment,
         editChosenReplyComment,
-        sendReplyComment
+        sendReplyComment,
+        getIsEvaluatedProduct,
+        setProductMark,
+        getAverageProductMark
     }),
     withRouter)(ProductPage);

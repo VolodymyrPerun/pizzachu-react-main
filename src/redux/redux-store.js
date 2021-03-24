@@ -12,6 +12,7 @@ import users from "./reducers/usersReducer";
 import purchase from "./reducers/purchaseReducer";
 import registerClients from "./reducers/registerClientsReducer";
 import replyComments from './reducers/replyCommentsReducer';
+import productMark from './reducers/productMarkReducer';
 import {reducer as form} from 'redux-form';
 
 
@@ -21,6 +22,7 @@ export const reducers = combineReducers({
     productsPage,
     productPage,
     replyComments,
+    productMark,
     comments,
     purchase,
     auth,

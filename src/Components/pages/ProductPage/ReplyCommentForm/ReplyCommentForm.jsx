@@ -19,7 +19,7 @@ export const Form = ({handleSubmit, pristine, submitting, isAuth}) => {
                             <Field
                                 name={"text"}
                                 component={FormsControlItem(TEXTAREA)}
-                                placeholder={"Введіть ваше повідомлення..."}
+                                placeholder={"Залишити відгук..."}
                                 autoFocus={true}
                             />
                         </div>
@@ -29,7 +29,7 @@ export const Form = ({handleSubmit, pristine, submitting, isAuth}) => {
                     <div className={styles.formInfo}>
                         <Field
                             component={FormsControlItem(TEXTAREA)}
-                            placeholder={"Введіть ваше повідомлення..."}
+                            placeholder={"Залишити відгук..."}
                             disabled
                         />
                         <div className={styles.noAuth}>Залишати відгуки можуть лише авторизовані користувачі</div>

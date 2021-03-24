@@ -7,10 +7,9 @@ import DeleteIcon from '@material-ui/icons/Delete';
 import Button from "@material-ui/core/Button";
 import makeStyles from "@material-ui/core/styles/makeStyles";
 import EditIcon from '@material-ui/icons/Edit';
-import {faAngleDown, faReply} from "@fortawesome/free-solid-svg-icons";
+import {faAngleDown, faAngleUp, faReply} from "@fortawesome/free-solid-svg-icons";
 import {FontAwesomeIcon} from "@fortawesome/react-fontawesome";
 import ReplyCommentCard from "../ReplyCommentCard/ReplyCommentCard";
-import SubmitFollowBtn from "../../../commons/Buttons/SubmitFollow/SubmitFollowBtn";
 import {ReplyCommentForm} from "../ReplyCommentForm/ReplyCommentForm";
 
 
@@ -28,7 +27,7 @@ const CommentCard = (
         isAuth,
         currentPage,
         deleteChosenComment,
-        pageSize,
+        // pageSize,
 
         replyCommentsInfo,
         getReplyCommentsFromDB,
@@ -50,13 +49,12 @@ const CommentCard = (
     }));
     const classes = useStyles();
 
-    const onCommentDelete = () => {
-        deleteChosenComment(commentId, productId, pageSize, currentPage);
-    };
 
     const [editMode, setEditMode] = useState(false);
     const [isClosed, setIsClosed] = useState(false);
     const [isClosedForm, setIsClosedForm] = useState(false);
+    const [active, setIsActive] = useState(false);
+    let [pageSize, setPageSize] = useState(3);
 
     const [comment, setComment] = useState(commentText);
 
@@ -64,6 +62,11 @@ const CommentCard = (
         setComment(commentText);
         getReplyCommentsFromDB(commentId, pageSize, currentPage);
     }, [commentText, getReplyCommentsFromDB, commentId]);
+
+    const onCommentDelete = () => {
+        deleteChosenComment(commentId, productId, pageSize, currentPage);
+    };
+
 
     const turnEditMode = () => {
         setEditMode(!editMode);
@@ -90,7 +93,12 @@ const CommentCard = (
 
     const onSendComment = data => {
         sendReplyComment(commentId, data);
-        setIsClosed(!isClosed);
+    };
+
+    const moreReplyComments = () => {
+        setPageSize(pageSize + 3);
+        getReplyCommentsFromDB(commentId, pageSize, currentPage);
+        setIsActive(active);
     };
 
 
@@ -173,16 +181,6 @@ const CommentCard = (
 
 
                 {isAuth &&
-                <div>
-                    <SubmitFollowBtn handleClick={toggleReplyComments}
-                                     label={'Показати/приховати відповіді'}
-                                     icon={faAngleDown}
-                    >
-                    </SubmitFollowBtn>
-                </div>
-                }
-
-                {isAuth &&
                 <div className={styles.commentContainer}>
                     {isAuth && isClosedForm && <div className={styles.commentArea}>
                         <ReplyCommentForm
@@ -190,6 +188,17 @@ const CommentCard = (
                             isAuth={isAuth}
                         />
                     </div>}
+
+                    {isAuth &&
+                    <div className={styles.btnMode}>
+                    <span className={active ? styles.active : styles.showHide} onClick={toggleReplyComments}>
+                        Показати/приховати відповіді
+                        <FontAwesomeIcon
+                            className={styles.icon}
+                            icon={faAngleDown}/>
+                    </span>
+                    </div>
+                    }
 
 
                     {isAuth && isClosed &&
@@ -216,6 +225,27 @@ const CommentCard = (
                                     getReplyCommentsFromDB={getReplyCommentsFromDB}
                                 /> : null)}
                 </div>}
+
+                {isAuth && isClosed &&
+                <div className={styles.btnMode}>
+                    <span className={styles.showHide} onClick={moreReplyComments}>
+                       Більше повідомлень
+                        <FontAwesomeIcon
+                            className={styles.icon}
+                            icon={faAngleDown}/>
+                    </span>
+                </div>
+                }
+                {isAuth && isClosed &&
+                <div className={styles.btnMode}>
+                    <span className={styles.showHide} onClick={toggleReplyComments}>
+                       Закрити всі
+                        <FontAwesomeIcon
+                            className={styles.icon}
+                            icon={faAngleUp}/>
+                    </span>
+                </div>
+                }
             </div>
         </div>
     )

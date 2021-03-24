@@ -22,10 +22,10 @@ import ApplyBtn from "../../commons/Buttons/Apply/ApplyBtn";
 import AddTo from "../../commons/Buttons/AddTo/AddTo";
 import {CommentForm} from "./CommentForm/CommentForm";
 import CommentCard from "./CommentCard/CommentCard";
-import Rating from "material-ui-rating";
+import Rating from "material-ui-rating/lib";
 import Box from "@material-ui/core/Box";
 import {Pagination} from 'antd';
-import ReplyCommentCard from "./ReplyCommentCard/ReplyCommentCard";
+import {checkAccessTokenPresent} from "../../../helpers/checkAccessTokenPresent";
 
 
 export const ProductPage = memo(({
@@ -36,7 +36,6 @@ export const ProductPage = memo(({
                                      products,
                                      addProductToCart,
                                      getCart,
-
                                      pageCount,
                                      pageSize,
                                      myID,
@@ -49,16 +48,14 @@ export const ProductPage = memo(({
                                      deleteChosenComment,
                                      editChosenComment,
                                      currentPage,
-                                     averageRate,
                                      setProductMark,
+                                     getIsEvaluatedProduct,
                                      getAverageProductMark,
+                                     mark,
                                      isMarkLoading,
-
                                      isClosed,
                                      replyCommentsInfo,
                                      totalReplyCommentsCount,
-                                     currentPageFoReplyComments,
-                                     pageSizeFoReplyComments,
                                      getReplyCommentsFromDB,
                                      deleteChosenReplyComment,
                                      editChosenReplyComment,
@@ -70,9 +67,20 @@ export const ProductPage = memo(({
         productId = match.params.productId;
         getProductById(productId);
         getCommentsFromDB(productId, pageSize, currentPage);
-        //  getAverageProductMark(match.params.productId);
+        getAverageProductMark(match.params.productId);
         getCart();
-    }, [match.params.productId, getProductById, getCommentsFromDB, getCart, pageSize]);
+        const token = checkAccessTokenPresent();
+
+        if (token) {
+            getIsEvaluatedProduct(productId)
+        }
+    }, [match.params.productId,
+        getProductById,
+        getCommentsFromDB,
+        getCart,
+        pageSize,
+        getAverageProductMark,
+        getIsEvaluatedProduct]);
 
 
     let handleClick = (id, count) => {
@@ -102,18 +110,19 @@ export const ProductPage = memo(({
 
     const [star, setStar] = useState(1);
 
-    // if (!isMarkLoading) {
-    //     return <Preloader/>
-    // }
+    if (!isMarkLoading) {
+        return <Preloader/>
+    }
 
     const evaluateProduct = star => {
-        setProductMark(star, match.params.productId)
+        setProductMark(star, match.params.productId);
     };
 
     return <>
         {
             isFetching ? <Preloader/> :
                 <div className={styles.container}>
+
                     <div className={styles.card}>
                         <NavLink className={styles.closeBtn} to={'/home'}>
                             <CloseCircleOutlined className={styles.icon}/>
@@ -124,40 +133,41 @@ export const ProductPage = memo(({
                             : <img className={styles.image} src={noPhoto} alt={'product'}/>}
                         <p className={styles.title}>{product.name}</p>
                         {product.description
-                        ? <p className={styles.description}>
-                            <FontAwesomeIcon
-                                style={{marginRight: '7px', fontSize: '18px', color: '#EE7178'}}
-                                icon={faInfo}/>
-                            {product.description}
-                        </p>
-                        : <p className={styles.description} style={{color: 'transparent', visibility: 'hidden'}}>.</p>}
-                    <div className={styles.atributes}>
-                        <p className={styles.price}><FontAwesomeIcon
-                            style={{marginRight: '10px', color: '#EE7178'}}
-                            icon={faMoneyBillWave}/>Ціна: <span>{product.price}</span> грн</p>
-                        {product.section_id !== PRODUCT_SECTION.DRINKS
-                            ? <p className={styles.weight}><FontAwesomeIcon
-                                style={{marginRight: '7px', color: '#EE7178'}}
-                                icon={faBalanceScaleLeft}/>Вага: <span>{product.weight}</span> гр</p>
-                            : <p className={styles.weight}><FontAwesomeIcon
-                                style={{marginRight: '7px', color: '#EE7178'}}
-                                icon={faPrescriptionBottle}/>Об'єм: <span>{product.weight}</span> л</p>}
-                        {product.type_id === PRODUCT_TYPE.PIZZA
-                            ? <p className={styles.weight}>
-                                <img style={{
-                                    position: 'relative',
-                                    top: '2px',
-                                    marginRight: '7px',
-                                    color: '#EE7178',
-                                    width: '20px',
-                                    height: '20px'
-                                }}
-                                     className={styles.image} src={sizeIcon} alt={'icon'}/>
-                                Розмір: <span>{product['ProductSize.size']}</span> см</p>
-                            : <p className={styles.weight} style={{color: 'transparent', visibility: 'hidden'}}>.</p>}
+                            ? <p className={styles.description}>
+                                <FontAwesomeIcon
+                                    style={{marginRight: '7px', fontSize: '18px', color: '#EE7178'}}
+                                    icon={faInfo}/>
+                                {product.description}
+                            </p>
+                            : <p className={styles.description}
+                                 style={{color: 'transparent', visibility: 'hidden'}}>.</p>}
 
-
-                    </div>
+                        <div className={styles.atributes}>
+                            <p className={styles.price}><FontAwesomeIcon
+                                style={{marginRight: '10px', color: '#EE7178'}}
+                                icon={faMoneyBillWave}/>Ціна: <span>{product.price}</span> грн</p>
+                            {product.section_id !== PRODUCT_SECTION.DRINKS
+                                ? <p className={styles.weight}><FontAwesomeIcon
+                                    style={{marginRight: '7px', color: '#EE7178'}}
+                                    icon={faBalanceScaleLeft}/>Вага: <span>{product.weight}</span> гр</p>
+                                : <p className={styles.weight}><FontAwesomeIcon
+                                    style={{marginRight: '7px', color: '#EE7178'}}
+                                    icon={faPrescriptionBottle}/>Об'єм: <span>{product.weight}</span> л</p>}
+                            {product.type_id === PRODUCT_TYPE.PIZZA
+                                ? <p className={styles.weight}>
+                                    <img style={{
+                                        position: 'relative',
+                                        top: '2px',
+                                        marginRight: '7px',
+                                        color: '#EE7178',
+                                        width: '20px',
+                                        height: '20px'
+                                    }}
+                                         className={styles.image} src={sizeIcon} alt={'icon'}/>
+                                    Розмір: <span>{product['ProductSize.size']}</span> см</p>
+                                :
+                                <p className={styles.weight} style={{color: 'transparent', visibility: 'hidden'}}>.</p>}
+                        </div>
                         <p className={styles.delivery}>
                             <FontAwesomeIcon
                                 style={{marginRight: '7px', color: '#EE7178'}}
@@ -171,44 +181,17 @@ export const ProductPage = memo(({
                         </div>
                     </div>
 
-                {products.length > 1 ?
-                    <>
-                        <p className={styles.moreProductsTitle}>Пропонуємо також: </p>
-                        <div className={styles.promoContainer}>
-                            {shuffle(products).map((prod, i) => {
-                                if (prod
-                                     && i <= 3
-                                ) {
-                                    return <NavLink key={prod.productId} className={styles.promoCard}
-                                                    to={'/productPage/' + prod.productId}>
-                                        {prod.product_photo
-                                            ? <img className={styles.image}
-                                                   src={`http://localhost:5000/${prod.product_photo}`}
-                                                   alt={'product'}/>
-                                            : <img className={styles.image} src={noPhoto} alt={'product'}/>}
-                                        {prod.section_id !== PRODUCT_SECTION.DRINKS
-                                            ? <p className={styles.weight}>Вага: <span>{prod.weight}</span> гр</p>
-                                            : <p className={styles.weight}>Об'єм: <span>{prod.weight}</span> л</p>}
-                                        {prod.type_id === PRODUCT_TYPE.PIZZA
-                                            ?
-                                            <p className={styles.weight}>Розмір: <span>{prod['ProductSize.size']}</span> см
-                                            </p>
-                                            : <p className={styles.weight}
-                                                 style={{color: 'transparent', visibility: 'hidden'}}>.</p>}
-                                        <p className={styles.title}>{prod.name}</p>
-                                        {prod.description
-                                            ? <p className={styles.description}>{prod.description}</p>
-                                            : <p className={styles.description}
-                                                 style={{color: 'transparent', visibility: 'hidden'}}>.</p>}
-                                        <p className={styles.price}>Ціна: <span>{prod.price}</span> грн.</p>
-                                    </NavLink>
-                                } else {
-                                    return null
-                                }
-                            })}
+                    {
+                        <div className={styles.rate}>
+                            <div className={styles.ratingTitle}>Середня
+                                оцінка:
+                            </div>
+                            <Rating name={"half-rating-read"}
+                                    value={mark}
+                                    precision={0.5}
+                                    readOnly/>
                         </div>
-                    </> : null}
-
+                    }
 
                     {
                         isAuth && <div>
@@ -222,6 +205,7 @@ export const ProductPage = memo(({
                             <Box component={"fieldset"} mb={3} borderColor={"transparent"}>
                                 <div className={styles.ratingTitle}>Оцініть товар {product.name}:</div>
                                 <Rating
+                                    className={styles.rating}
                                     name={"simple-controlled"}
                                     value={star}
                                     onChange={(star) => {
@@ -230,17 +214,6 @@ export const ProductPage = memo(({
                                     }}
                                 />
                             </Box>
-                        </div>
-                    }
-
-                    {
-                        !isAuth && <div className={styles.rate}>
-                            <div className={styles.ratingTitle}>Середня
-                                оцінка:
-                            </div>
-                            <Rating name="half-rating-read" value={averageRate}
-                                    precision={0.5}
-                                    readOnly/>
                         </div>
                     }
 
@@ -300,6 +273,45 @@ export const ProductPage = memo(({
 
                             </div>
                     }
+
+                    {products.length > 1 ?
+                        <>
+                            <p className={styles.moreProductsTitle}>Пропонуємо також: </p>
+                            <div className={styles.promoContainer}>
+                                {shuffle(products).map((prod, i) => {
+                                    if (prod
+                                        && i <= 3
+                                    ) {
+                                        return <NavLink key={prod.productId} className={styles.promoCard}
+                                                        to={'/productPage/' + prod.productId}>
+                                            {prod.product_photo
+                                                ? <img className={styles.image}
+                                                       src={`http://localhost:5000/${prod.product_photo}`}
+                                                       alt={'product'}/>
+                                                : <img className={styles.image} src={noPhoto} alt={'product'}/>}
+                                            {prod.section_id !== PRODUCT_SECTION.DRINKS
+                                                ? <p className={styles.weight}>Вага: <span>{prod.weight}</span> гр</p>
+                                                : <p className={styles.weight}>Об'єм: <span>{prod.weight}</span> л</p>}
+                                            {prod.type_id === PRODUCT_TYPE.PIZZA
+                                                ?
+                                                <p className={styles.weight}>Розмір: <span>{prod['ProductSize.size']}</span> см
+                                                </p>
+                                                : <p className={styles.weight}
+                                                     style={{color: 'transparent', visibility: 'hidden'}}>.</p>}
+                                            <p className={styles.title}>{prod.name}</p>
+                                            {prod.description
+                                                ? <p className={styles.description}>{prod.description}</p>
+                                                : <p className={styles.description}
+                                                     style={{color: 'transparent', visibility: 'hidden'}}>.</p>}
+                                            <p className={styles.price}>Ціна: <span>{prod.price}</span> грн.</p>
+                                        </NavLink>
+                                    } else {
+                                        return null
+                                    }
+                                })}
+                            </div>
+                        </> : null}
+
 
                     <NavLink style={{margin: '30px auto'}} to={'/home'}>
                         <ApplyBtn
