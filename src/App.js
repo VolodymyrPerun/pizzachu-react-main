@@ -2,7 +2,6 @@ import React, {Component, StrictMode} from 'react';
 import './App.scss';
 import AboutUs from "./Components/pages/AboutUs/AboutUs";
 import Contacts from "./Components/pages/Contacts/Contacts";
-import Feedbacks from "./Components/pages/Feedbacks/Feedbacks";
 import Home from "./Components/pages/Home/Home";
 import Promotions from './Components/pages/Promotions/Promotions';
 import {BrowserRouter, Redirect, Route, Switch, withRouter} from "react-router-dom";
@@ -12,7 +11,6 @@ import {compose} from "redux";
 import {catchGlobalError, initializeApp} from "./redux/reducers/appReducer/thunks";
 import Preloader from "./Components/commons/Preloader/Preloader";
 import store from "./redux/index";
-import DialogsContainer from "./Components/pages/Feedbacks/FeedbacksContainer";
 import {Page404} from "./Components/pages/Page404/Page404";
 import ErrorMessages from "./Components/commons/ErrorMessages/ErrorMessages";
 import ProductPage from "./containers/ProductPage/ProductPage";
@@ -66,11 +64,8 @@ class App extends Component {
                     <Switch>
                         <Route exact path='/'
                                render={() => <Redirect from={"/"} to={"/home"}/>}/>
-                        <Route path='/dialogs'
-                               render={() => <DialogsContainer/>}/>
                         <Route path='/about' render={() => <AboutUs/>}/>
                         <Route path='/contact' render={() => <Contacts/>}/>
-                        <Route path='/feedbacks' render={() => <Feedbacks/>}/>
                         <Route path='/home' render={() => <Home/>} exact/>
                         <Route path='/promotions' render={() => <Promotions/>}/>
                         <Route path='/purchase' render={() => <Purchase/>}/>
