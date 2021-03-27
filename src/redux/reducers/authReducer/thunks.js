@@ -48,11 +48,11 @@ export const authMe = () => async dispatch => {
             dispatch(setIsFetching(false));
         }
     } catch (e) {
-        // dispatch(setIsFetching(false));
-        // if (e.response.data.code === CUSTOM_ERRORS[4012].code) {
-        //     dispatch(refreshUserToken());
-        //     dispatch(authMe())
-        // }
+        dispatch(setIsFetching(false));
+        if (e.response.data.code === CUSTOM_ERRORS[4012].code) {
+            dispatch(refreshUserToken());
+            dispatch(authMe());
+        }
     }
 };
 
@@ -155,14 +155,15 @@ export const logout = () => async dispatch => {
     } catch (e) {}
 };
 
-export const changeUserPassword = data => async dispatch => {
+export const changeUserPassword = (email, password, newPassword, repeatNewPassword) => async dispatch => {
     try {
         dispatch(setIsFetching(true));
 
         const token = checkAccessTokenPresent();
 
         if (token) {
-            await authAPI.changePassword(token, data);
+
+            await authAPI.changePassword(token, email, password, newPassword, repeatNewPassword);
 
             dispatch(setIsPasswordChanged(true));
             dispatch(setIsFetching(false));
@@ -182,7 +183,7 @@ export const changeUserPassword = data => async dispatch => {
         if (e.response.data.code === CUSTOM_ERRORS[4012].code) {
 
             dispatch(refreshUserToken());
-            dispatch(changeUserPassword(data));
+            dispatch(changeUserPassword(email, password, newPassword, repeatNewPassword));
         }
 
     }
@@ -209,28 +210,6 @@ export const sendEmailForChangeForgotPassword = email => async dispatch => {
 
         }
     }
-};
-
-export const resetUserPassword = (data, token) => async dispatch => {
-    try {
-        dispatch(setIsFetching(true));
-
-        await authAPI.resetPassword(data, token);
-
-        dispatch(setIsFetching(false));
-        dispatch(setIsResetPassword(true));
-        dispatch(resetPasswordErrMsg(null));
-
-    } catch (e) {
-
-        dispatch(setIsFetching(false));
-
-        if (e.response.data.code) {
-
-            dispatch(resetPasswordErrMsg(CUSTOM_ERRORS[e.response.data.code].message));
-        }
-    }
-
 };
 
 export const updateUserDates = data => async dispatch => {

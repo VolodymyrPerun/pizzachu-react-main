@@ -28,23 +28,16 @@ export const authAPI = {
         })
     },
 
-    changePassword: (access_token, data) => {
+    changePassword: (access_token, email, password, newPassword, repeatNewPassword) => {
 
-        return instance.put(`auth/password-change`, data, {
+        return instance.put(`auth/client/password-change`, {email, password, newPassword, repeatNewPassword}, {
             headers: {
                 [HEADER_ENUM.AUTHORIZATION]: access_token
             }
         })
     },
-    sendEmailForChangePassword: data => {
-
-        return instance.post('auth/password-refresh', data)
-
-    },
-    resetPassword: (data, token) => {
-
-        return instance.put(`auth/password-refresh/${token}`, data)
-
+    sendEmailForChangePassword: email => {
+        return instance.put('auth/restore-password', {email})
     },
     refreshToken: (refresh_token) => {
 

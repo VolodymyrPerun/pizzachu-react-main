@@ -23,6 +23,8 @@ import OrderMessage from "./containers/OrderMessage/OrderMessage";
 import Orders from "./containers/Orders/Orders";
 import RegisterClients from "./containers/RegisterClients/RegisterClients";
 import Profile from "./containers/Profile/Profile";
+import RestorePassword from "./containers/RestorePassword/RestorePassword";
+import ChangePassword from "./containers/ChangePassword/ChangePassword";
 
 
 class App extends Component {
@@ -72,6 +74,8 @@ class App extends Component {
                         <Route path='/delivery' render={() => <Delivery/>}/>
                         <Route path='/cart' render={() => <Cart/>}/>
                         <Route path='/login' render={() => <Login/>}/>
+                        <Route path='/restore-password' render={() => <RestorePassword/>}/>
+                        <Route path='/change-password' render={() => <ChangePassword/>}/>
                         <Route path='/productPage/:productId?' render={() => <ProductPage/>}/>
                         <Route path='/orderMessage' render={() => <OrderMessage/>}/>
                         <Route path='/orders' render={() => <Orders/>}/>

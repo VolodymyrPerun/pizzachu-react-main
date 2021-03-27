@@ -1,4 +1,4 @@
-import React, {useMemo, useState} from 'react';
+import React, {useState} from 'react';
 import {Button} from './Button/ButtonLogin';
 import {Link} from 'react-router-dom';
 import styles from './NavBar.module.scss';
@@ -9,7 +9,7 @@ import logo from '../../../../assets/images/mail_bg.png';
 import CartCounts from "../CartCounts/CartCounts";
 
 
-const NavBar = ({isAuth, me, cart, logout, setCart}) => {
+const NavBar = ({isAuth, me}) => {
 
     const [click, setClick] = useState(false);
     const [dropdown, setDropdown] = useState(false);
@@ -32,22 +32,6 @@ const NavBar = ({isAuth, me, cart, logout, setCart}) => {
             setDropdown(false);
         }
     };
-
-
-    const onClickLogout = () => {
-        localStorage.setItem("cart", JSON.stringify(cart));
-
-        cart = JSON.parse(localStorage.getItem("cart"));
-        logout();
-        closeMobileMenu();
-        setCart(cart)
-        localStorage.setItem("cart", '');
-    };
-
-
-    useMemo(() => {
-        console.log(me);
-    }, [me])
 
     return (
         <>
@@ -145,9 +129,9 @@ const NavBar = ({isAuth, me, cart, logout, setCart}) => {
                         {isAuth ?
                             <Link
                                 title={me.surname ? me.name + ' ' + me.surname : me.name}
-                                to='/home'
+                                to='/login'
                                 className={styles.navLinksMobile}
-                                onClick={onClickLogout}
+                                onClick={closeMobileMenu}
                             >
                                 Вихід <FontAwesomeIcon className={styles.faBars} icon={faSignOutAlt}/>
                             </Link>
@@ -162,11 +146,11 @@ const NavBar = ({isAuth, me, cart, logout, setCart}) => {
                 </ul>
                 {isAuth ?
                     <Button
-                        path={'/'}
+                        path={'/login'}
                         title={me.surname ? me.name + ' ' + me.surname : me.name}
                         label={'Вихід'}
                         icon={<FontAwesomeIcon className={styles.faBars} icon={faSignOutAlt}/>}
-                        onClick={onClickLogout}
+                        onClick={closeMobileMenu}
                     />
                     : <Button
                         path={'/login'}
