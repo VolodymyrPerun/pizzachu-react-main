@@ -7,7 +7,7 @@
   display: grid;
   height: auto;
   max-height: 80vh;
-  margin: 0 auto 22px auto;
+  margin: 15px auto 37px auto;
   width: 50%;
   justify-content: center;
   justify-items: center;
@@ -146,6 +146,7 @@
   .login {
     width: 90%;
     grid-template-columns: 1fr;
+    height: 60vh;
 
     img {
       grid-column: 1;

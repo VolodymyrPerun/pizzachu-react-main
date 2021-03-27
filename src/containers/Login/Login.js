@@ -1,6 +1,6 @@
 import {connect} from "react-redux";
 import {
-    login,
+    login, logout,
     // loginAdmin
 } from "../../redux/reducers/authReducer/thunks";
 import {withRouter} from "react-router-dom";
@@ -24,6 +24,7 @@ export default connect(
     mapStateToProps,
     {
         login,
-        setCart
+        setCart,
+        logout,
         //loginAdmin
     })(LoginWithRouter);

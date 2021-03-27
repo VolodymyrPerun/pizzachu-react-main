@@ -1,10 +1,10 @@
 import React from 'react';
 import styles from './Login.module.scss';
-import loginPagePhoto from '../../../assets/images/login-pizza.gif'
+import loginPagePhoto from '../../../assets/images/login-pizza.gif';
 import LoginForm from "./LoginForm";
-import {faSignInAlt} from "@fortawesome/free-solid-svg-icons";
+import {faSignInAlt, faSignOutAlt, faUserPlus} from "@fortawesome/free-solid-svg-icons";
 import {FontAwesomeIcon} from "@fortawesome/react-fontawesome";
-import {NavLink, Redirect} from "react-router-dom";
+import {NavLink} from "react-router-dom";
 import Preloader from "../../commons/Preloader/Preloader";
 import {CloseOutlined} from '@ant-design/icons';
 import SubmitFollowBtn from "../../commons/Buttons/SubmitFollow/SubmitFollowBtn";
@@ -18,7 +18,9 @@ const Login = ({
                    login,
                    loginAdmin,
                    adminErrorMessage,
-                   cart
+                   cart,
+                   logout,
+                   setCart
                }) => {
 
 
@@ -32,14 +34,18 @@ const Login = ({
         }
 
         if (match.path === '/auth-admin') {
-            loginAdmin(data.email, data.password)
+            loginAdmin(data.email, data.password);
         }
     };
 
+    const onClickLogout = () => {
+        localStorage.setItem("cart", JSON.stringify(cart));
+        cart = JSON.parse(localStorage.getItem("cart"));
+        logout();
+        setCart(cart)
+        localStorage.setItem("cart", '');
+    };
 
-    if (isAuth) {
-        return <Redirect to={`/home`}/>
-    }
     if (isFetching) {
         return <div className={styles.preloader}><Preloader/></div>
     }
@@ -54,16 +60,24 @@ const Login = ({
                 <NavLink className={styles.closeBtn} to={'/home'}>
                     <CloseOutlined className={styles.icon}/>
                 </NavLink>
-                <h1 className={styles.title}>
+                {!isAuth ? <h1 className={styles.title}>
                     <FontAwesomeIcon
                         style={{marginRight: '13px', bottom: '-5px', position: 'relative'}}
                         icon={faSignInAlt}/>
                     Вхід
-                </h1>
+                </h1> : <h1 className={styles.title}>
+                    <FontAwesomeIcon
+                        style={{marginRight: '13px', bottom: '-5px', position: 'relative'}}
+                        icon={faSignOutAlt}/>
+                    Вихід
+                </h1>}
 
                 <LoginForm onSubmit={onSubmit}
                            errorMessage={errorMessage}
-                           adminErrorMessage={adminErrorMessage}/>
+                           adminErrorMessage={adminErrorMessage}
+                           isAuth={isAuth}
+                           onClickLogout={onClickLogout}
+                />
 
                 <div style={{marginTop: '10px', marginBottom: '10px'}}>
                     <span>Якщо ви ще не зареєстровані, то спочатку слід зареєструватись</span>
@@ -74,6 +88,7 @@ const Login = ({
                         label={"Перейти до реєстрації"}
                         name={'Submit'}
                         type={"button"}
+                        icon={faUserPlus}
                     />
                 </NavLink>
             </div>
