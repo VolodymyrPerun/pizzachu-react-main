@@ -107,6 +107,7 @@ export const deleteCart = () => async dispatch => {
         dispatch(setCart(response.data.cart));
         dispatch(setTotalProductsSum(response.data.totalCount));
         dispatch(setProductsLength(response.data.productsCount));
+        localStorage.setItem('cart', '');
 
 
     } else if (!token) {
@@ -117,5 +118,6 @@ export const deleteCart = () => async dispatch => {
         dispatch(setCart(response.data.cart));
         dispatch(setProductsLength(response.data.productsCount));
         dispatch(setTotalProductsSum(response.data.totalCount));
+        localStorage.setItem('cart', '');
     }
 };
