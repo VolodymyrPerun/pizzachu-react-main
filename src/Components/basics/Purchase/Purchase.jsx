@@ -13,6 +13,7 @@ import {FontAwesomeIcon} from "@fortawesome/react-fontawesome";
 import {CloseCircleOutlined} from '@ant-design/icons';
 import OrderMessage from "../../../containers/OrderMessage/OrderMessage";
 import PurchaseForm from "./PurchaseForm/PurchaseForm";
+import {Redirect} from "react-router-dom";
 
 
 const Purchase = memo(({
@@ -29,8 +30,8 @@ const Purchase = memo(({
                            pristine, submitting, reset, error
                        }) => {
 
-
     const onSubmit = formData => {
+
         addPurchase(
             formData.email,
             formData.phone,
@@ -49,6 +50,10 @@ const Purchase = memo(({
     useEffect(() => {
         getCart();
     }, [getCart, deleteCart, addPurchase]);
+
+    if (!cart) {
+        return <Redirect to={'/home'}/>
+    }
 
 
     return (
