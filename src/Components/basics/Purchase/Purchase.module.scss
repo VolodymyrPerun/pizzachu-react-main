@@ -1,39 +1,39 @@
 .container {
-  display: flex;
-  flex-wrap: wrap;
-  flex-direction: column;
-  grid-area: content;
-  height: auto;
-  min-height: 58.6vh;
   width: 70%;
-  justify-content: space-around;
-  justify-items: center;
-  align-items: baseline;
-  align-self: center;
-  align-content: center;
-  text-align: center;
-  font-family: Caveat, 'Cavaet', cursive;
-  font-weight: 800;
-  border-radius: 15px;
-  margin: 5px auto 20px auto;
+  height: auto;
+  display: flex;
   padding: 10px;
+  flex-wrap: wrap;
+  font-weight: 800;
   background: #fff;
+  grid-area: content;
+  min-height: 58.6vh;
+  text-align: center;
+  align-self: center;
+  border-radius: 15px;
+  align-content: center;
+  align-items: baseline;
+  justify-items: center;
+  flex-direction: column;
   border: 2px solid #f0f0f0;
+  margin: 5px auto 20px auto;
+  justify-content: space-around;
+  font-family: Caveat, 'Cavaet', cursive;
   box-shadow: 0 2px 6px rgba(0, 0, 0, 0.5), inset 0 1px rgba(255, 255, 255, 0.3), inset 0 10px rgba(255, 255, 255, 0.2), inset 0 10px 20px rgba(255, 255, 255, 0.25), inset 0 -15px 30px rgba(0, 0, 0, 0.3);
   -o-box-shadow: 0 2px 6px rgba(0, 0, 0, 0.5), inset 0 1px rgba(255, 255, 255, 0.3), inset 0 10px rgba(255, 255, 255, 0.2), inset 0 10px 20px rgba(255, 255, 255, 0.25), inset 0 -15px 30px rgba(0, 0, 0, 0.3);
-  -webkit-box-shadow: 0 2px 6px rgba(0, 0, 0, 0.5), inset 0 1px rgba(255, 255, 255, 0.3), inset 0 10px rgba(255, 255, 255, 0.2), inset 0 10px 20px rgba(255, 255, 255, 0.25), inset 0 -15px 30px rgba(0, 0, 0, 0.3);
   -moz-box-shadow: 0 2px 6px rgba(0, 0, 0, 0.5), inset 0 1px rgba(255, 255, 255, 0.3), inset 0 10px rgba(255, 255, 255, 0.2), inset 0 10px 20px rgba(255, 255, 255, 0.25), inset 0 -15px 30px rgba(0, 0, 0, 0.3);
+  -webkit-box-shadow: 0 2px 6px rgba(0, 0, 0, 0.5), inset 0 1px rgba(255, 255, 255, 0.3), inset 0 10px rgba(255, 255, 255, 0.2), inset 0 10px 20px rgba(255, 255, 255, 0.25), inset 0 -15px 30px rgba(0, 0, 0, 0.3);
 
   .closeBtn {
     display: flex;
-    justify-content: space-around;
-    justify-items: center;
-    align-items: baseline;
-    align-self: flex-end;
-    align-content: center;
-    text-align: right;
     color: #EE7178;
+    text-align: right;
     margin-right: 10px;
+    align-self: flex-end;
+    align-items: baseline;
+    align-content: center;
+    justify-items: center;
+    justify-content: space-around;
 
     .icon:hover {
       transform: rotate(180deg);
@@ -41,18 +41,18 @@
   }
 
   .logoContainer {
-    display: flex;
-    flex-wrap: nowrap;
-    flex-direction: row;
-    height: auto;
     width: 95%;
-    justify-content: space-around;
-    justify-items: center;
-    align-items: baseline;
-    align-self: center;
-    align-content: center;
-    text-align: center;
+    height: auto;
+    display: flex;
     margin: 30px 0;
+    flex-wrap: nowrap;
+    align-self: center;
+    text-align: center;
+    flex-direction: row;
+    align-items: baseline;
+    align-content: center;
+    justify-items: center;
+    justify-content: space-around;
 
     .logo {
 
@@ -67,169 +67,169 @@
   }
 
   .wrapper {
-    display: flex;
-    justify-content: center;
-    flex-direction: column;
-    align-content: center;
-    align-self: center;
     width: 70%;
-    background: rgba(0, 0, 0, 0.10);
-    border-radius: 15px;
-    border: 2px solid #f0f0f0;
-    box-shadow: 0 7px 20px rgba(0, 0, 0, 0.25), 0 7px 7px rgba(0, 0, 0, 0.22);
     padding: 5px;
+    display: flex;
+    align-self: center;
+    border-radius: 15px;
+    align-content: center;
+    flex-direction: column;
+    justify-content: center;
+    border: 2px solid #f0f0f0;
     margin: 10px auto 20px auto;
+    background: rgba(0, 0, 0, 0.10);
+    box-shadow: 0 7px 20px rgba(0, 0, 0, 0.25), 0 7px 7px rgba(0, 0, 0, 0.22);
 
     .itemContainer {
-      display: flex;
-      justify-content: center;
-      align-content: center;
-      flex-direction: row;
       width: auto;
-      margin: 10px 0;
+      display: flex;
       padding: 10px;
+      margin: 10px 0;
+      flex-direction: row;
+      align-content: center;
+      justify-content: center;
 
       .cartItem {
         grid-row: 3;
-        grid-column: 1;
-        display: grid;
-        grid-template-columns: 1fr 1fr;
-        grid-template-rows: 1fr 1fr;
-        align-items: center;
-        justify-content: space-between;
-        max-width: 250px;
         height: auto;
         padding: 5px;
+        display: grid;
+        grid-column: 1;
+        max-width: 250px;
         background: #fff;
+        align-items: center;
         border-radius: 15px;
         border: 2px solid #f0f0f0;
+        grid-template-rows: 1fr 1fr;
+        justify-content: space-between;
+        grid-template-columns: 1fr 1fr;
         box-shadow: 0 7px 20px rgba(0, 0, 0, 0.25), 0 7px 7px rgba(0, 0, 0, 0.22);
 
         .img {
-          grid-row: 1 / 3;
-          grid-column: 1;
-          align-self: center;
           width: 80px;
           height: 50px;
+          grid-column: 1;
+          grid-row: 1 / 3;
+          align-self: center;
         }
 
         .tittle {
-          grid-row: 1;
-          grid-column: 2;
-          color: black;
-          font-size: 17px;
           margin: 0;
+          grid-row: 1;
+          color: black;
+          grid-column: 2;
+          font-size: 17px;
           font-weight: bold;
         }
 
         .size {
-          grid-row: 2;
-          grid-column: 2;
-          position: relative;
-          color: gray;
-          font-size: 17px;
-          border: 1px solid #f0f0f0;
-          border-radius: 15px;
-          padding: 0 2.5px;
           margin: 0;
+          grid-row: 2;
+          color: gray;
+          grid-column: 2;
+          font-size: 17px;
+          padding: 0 2.5px;
+          position: relative;
+          border-radius: 15px;
+          border: 1px solid #f0f0f0;
         }
       }
 
       .counter {
         display: flex;
-        align-items: center;
         align-self: center;
+        align-items: center;
         justify-content: space-between;
 
         .count {
-          display: flex;
-          align-items: center;
-          align-self: center;
-          text-align: center;
-          height: 10px;
           color: gray;
+          height: 10px;
+          display: flex;
+          padding: 15px;
+          margin: 0 10px;
           font-size: 17px;
           background: #fff;
+          align-self: center;
+          text-align: center;
+          align-items: center;
           border-radius: 15px;
           border: 2px solid #f0f0f0;
           box-shadow: 0 7px 20px rgba(0, 0, 0, 0.25), 0 7px 7px rgba(0, 0, 0, 0.22);
-          padding: 15px;
-          margin: 0 10px;
         }
       }
 
       .sum {
-        display: flex;
-        align-items: center;
-        align-self: center;
-        justify-content: space-between;
         color: black;
+        padding: 8px;
+        display: flex;
         margin: 0 10px;
         background: #fff;
+        align-self: center;
         border-radius: 15px;
+        align-items: center;
         border: 2px solid #f0f0f0;
+        justify-content: space-between;
         box-shadow: 0 7px 20px rgba(0, 0, 0, 0.25), 0 7px 7px rgba(0, 0, 0, 0.22);
-        padding: 8px;
       }
     }
   }
 
   .totalGroup {
-    display: flex;
-    justify-content: space-between;
-    align-content: center;
-    flex-direction: row;
     width: 100%;
+    display: flex;
     margin: 30px 0;
+    flex-direction: row;
+    align-content: center;
+    justify-content: space-between;
 
     .totalProductsCount {
-      display: flex;
-      align-items: center;
-      align-self: center;
-      justify-content: space-between;
+      margin: 0;
       color: black;
+      display: flex;
       font-size: 17px;
       background: #fff;
+      padding: 0 2.5px;
+      align-self: center;
+      align-items: center;
       border-radius: 15px;
       border: 2px solid #f0f0f0;
+      justify-content: space-between;
       box-shadow: 0 7px 20px rgba(0, 0, 0, 0.25), 0 7px 7px rgba(0, 0, 0, 0.22);
-      padding: 0 2.5px;
-      margin: 0;
 
       span {
-        margin-left: 5px;
         color: gray;
+        margin-left: 5px;
       }
     }
 
     .totalSum {
-      display: flex;
-      align-items: center;
-      align-self: center;
-      justify-content: space-between;
+      margin: 0;
       color: black;
+      display: flex;
       font-size: 17px;
       background: #fff;
-      border-radius: 15px;
-      border: 2px solid #f0f0f0;
-      box-shadow: 0 7px 20px rgba(0, 0, 0, 0.25), 0 7px 7px rgba(0, 0, 0, 0.22);
       padding: 0 2.5px;
-      margin: 0;
+      align-self: center;
+      border-radius: 15px;
+      align-items: center;
+      border: 2px solid #f0f0f0;
+      justify-content: space-between;
+      box-shadow: 0 7px 20px rgba(0, 0, 0, 0.25), 0 7px 7px rgba(0, 0, 0, 0.22);
     }
   }
 
   .btnGroup {
-    display: flex;
-    justify-content: space-between;
-    align-content: center;
-    flex-direction: row;
     width: 100%;
+    display: flex;
+    flex-direction: row;
+    align-content: center;
     margin: 25px 0 20px 20px;
+    justify-content: space-between;
 
     .goBack {
       display: flex;
-      align-items: center;
       align-self: center;
+      align-items: center;
       justify-content: space-between;
     }
   }
@@ -237,7 +237,6 @@
 
 @media only screen and (max-width: 1020px) {
   .container {
-
     .wrapper {
       width: 90%;
     }
@@ -253,28 +252,23 @@
   }
 }
 
-
 @media only screen and (max-width: 600px) {
-
   .container {
     width: 95%;
     padding: 0;
-    background: transparent;
     border: none;
     box-shadow: none;
     -o-box-shadow: none;
-    -webkit-box-shadow: none;
     -moz-box-shadow: none;
-
+    background: transparent;
+    -webkit-box-shadow: none;
 
     .closeBtn {
       display: none;
     }
 
     .logoContainer {
-
       .logo {
-
         .tittle {
           font-size: 22px;
         }
@@ -286,21 +280,21 @@
     }
 
     .orderItemContainer {
+      width: 90%;
       display: grid;
-      grid-template-rows: 1fr 1fr;
-      grid-template-columns: 2fr 1fr 1fr;
-      justify-content: space-between;
-      align-content: center;
       align-self: center;
       flex-direction: row;
-      width: 90%;
+      align-content: center;
+      grid-template-rows: 1fr 1fr;
+      justify-content: space-between;
+      grid-template-columns: 2fr 1fr 1fr;
 
       .cartItem {
         grid-row: 1;
-        grid-column: 1 / 4;
         display: grid;
-        grid-template-columns: 1fr 1fr;
+        grid-column: 1 / 4;
         grid-template-rows: 1fr 1fr;
+        grid-template-columns: 1fr 1fr;
 
         .size {
           font-size: 15px;
@@ -331,8 +325,8 @@
       align-self: center;
 
       .totalProductsCount {
-        font-size: 15px;
         margin: 10px;
+        font-size: 15px;
       }
 
       .totalSum {
@@ -343,8 +337,8 @@
     .btnGroup {
       width: 70%;
       display: flex;
-      align-self: center;
       margin-left: auto;
+      align-self: center;
       margin-right: auto;
 
       .goBack {
@@ -353,5 +347,3 @@
     }
   }
 }
-
-

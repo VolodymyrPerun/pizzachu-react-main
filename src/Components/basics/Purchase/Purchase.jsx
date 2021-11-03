@@ -1,165 +1,165 @@
-import React, {memo, useEffect} from 'react';
-import styles from './Purchase.module.scss';
-import ApplyBtn from "../../commons/Buttons/Apply/ApplyBtn";
+import React, { memo, useEffect } from 'react'
+import { NavLink, Redirect } from 'react-router-dom'
+import styles from './Purchase.module.scss'
+import PurchaseForm from './PurchaseForm/PurchaseForm'
+import { CloseCircleOutlined } from '@ant-design/icons'
+import ApplyBtn from '../../commons/Buttons/Apply/ApplyBtn'
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
+import OrderMessage from '../../../containers/OrderMessage/OrderMessage'
 import {
-    faAddressCard,
-    faArrowLeft,
-    faHryvnia,
-    faMoneyCheck,
-    faShoppingCart
-} from "@fortawesome/free-solid-svg-icons";
-import {NavLink} from "react-router-dom";
-import {FontAwesomeIcon} from "@fortawesome/react-fontawesome";
-import {CloseCircleOutlined} from '@ant-design/icons';
-import OrderMessage from "../../../containers/OrderMessage/OrderMessage";
-import PurchaseForm from "./PurchaseForm/PurchaseForm";
-import {Redirect} from "react-router-dom";
-
+  faHryvnia,
+  faArrowLeft,
+  faMoneyCheck,
+  faAddressCard,
+  faShoppingCart,
+} from '@fortawesome/free-solid-svg-icons'
+//////////////////////////////////////////////////
 
 const Purchase = memo(({
-                           totalProductsSum,
-                           productsLength,
-                           getCart,
-                           cart,
-                           me,
-                           isAuth,
-                           addPurchase,
-                           deleteCart,
-                           errorMessage,
-                           isPurchaseSuccess,
-                           pristine, submitting, reset, error
-                       }) => {
+  me,
+  cart,
+  reset,
+  error,
+  isAuth,
+  getCart,
+  pristine,
+  deleteCart,
+  submitting,
+  addPurchase,
+  errorMessage,
+  productsLength,
+  totalProductsSum,
+  isPurchaseSuccess,
+}) => {
 
-    const onSubmit = formData => {
+  const onSubmit = formData => {
+    addPurchase(
+      formData.name,
+      formData.city,
+      formData.house,
+      formData.floor,
+      formData.email,
+      formData.phone,
+      formData.street,
+      formData.entrance,
+      formData.apartment,
+    )
+    deleteCart()
+    localStorage.setItem('tempId', '')
+  }
 
-        addPurchase(
-            formData.email,
-            formData.phone,
-            formData.name,
-            formData.city,
-            formData.street,
-            formData.house,
-            formData.apartment,
-            formData.entrance,
-            formData.floor
-        );
-        deleteCart();
-        localStorage.setItem('tempId', '');
-    };
+  useEffect(() => {
+    getCart()
+  }, [getCart, deleteCart, addPurchase])
 
-    useEffect(() => {
-        getCart();
-    }, [getCart, deleteCart, addPurchase]);
+  if (!cart) {
+    return <Redirect to='/home'/>
+  }
 
-    if (!cart) {
-        return <Redirect to={'/home'}/>
-    }
-
-
-    return (
-        <>
-            {!isPurchaseSuccess
-                ? <div className={styles.container}>
-                    <NavLink className={styles.closeBtn} to={'/cart'}>
-                        <CloseCircleOutlined className={styles.icon}/>
-                    </NavLink>
-
-                    <div className={styles.logoContainer}>
-                        <div className={styles.logo}>
-                            <FontAwesomeIcon
-                                style={{marginRight: '7px', color: '#EE7178'}}
-                                icon={faMoneyCheck}/>
-                            <span className={styles.tittle}>
-                            Оформити замовлення
-                        </span>
-                        </div>
-                    </div>
-
-                    <div className={styles.logoContainer}>
-                        <div className={styles.logo}>
-                            <FontAwesomeIcon
-                                style={{marginRight: '7px', color: '#EE7178'}}
-                                icon={faShoppingCart}/>
-                            <span className={styles.tittle}>
+  return (
+    <>
+      {!isPurchaseSuccess
+        ? <div className={styles.container}>
+          <NavLink to='/cart' className={styles.closeBtn}>
+            <CloseCircleOutlined className={styles.icon}/>
+          </NavLink>
+          <div className={styles.logoContainer}>
+            <div className={styles.logo}>
+              <FontAwesomeIcon
+                icon={faMoneyCheck}
+                style={{ marginRight: '7px', color: '#EE7178' }}/>
+              <span className={styles.tittle}>Оформити замовлення</span>
+            </div>
+          </div>
+          <div className={styles.logoContainer}>
+            <div className={styles.logo}>
+              <FontAwesomeIcon
+                icon={faShoppingCart}
+                style={{ marginRight: '7px', color: '#EE7178' }}/>
+              <span className={styles.tittle}>
                 Ваше замовлення
                 </span>
-                        </div>
-                    </div>
+            </div>
+          </div>
+          <div className={styles.wrapper}>
+            {cart && cart.map(cartItem =>
+              <div key={cartItem.id} className={styles.itemContainer}>
+                <NavLink
+                  className={styles.cartItem}
+                  to={'/productPage/' + cartItem.productId}>
+                  <img
+                    alt='productImage'
+                    className={styles.img}
+                    src={`http://localhost:5000/${cartItem['Product.product_photo']}`}/>
+                  <span className={styles.tittle}>
+                    {cartItem['Product.name']}
+                  </span>
+                  <span className={styles.size}>{cartItem.price} грн</span>
+                </NavLink>
+                <NavLink
+                  className={styles.counter}
+                  to={'/productPage/' + cartItem.productId}>
+                  <div className={styles.count}><span>{cartItem.count} шт</span>
+                  </div>
+                </NavLink>
+                <NavLink
+                  className={styles.sum}
+                  to={'/productPage/' + cartItem.productId}>
+                  <span
+                    style={{
+                      color: '#EE7178',
+                      marginLeft: '7px',
+                      marginRight: '7px',
+                    }}>= </span>
+                  {cartItem.sum}
+                  <FontAwesomeIcon
+                    style={{ marginLeft: '7px', color: '#EE7178' }}
+                    icon={faHryvnia}/>
+                </NavLink>
+              </div>,
+            )}
+            <div className={styles.totalGroup}>
+              <div className={styles.totalProductsCount}>Всього
+                товарів: <span> {productsLength} шт.</span></div>
+              <div className={styles.totalSum}>Сума замовлення: <span
+                style={{
+                  color: 'grey',
+                  marginLeft: '7px',
+                }}>{totalProductsSum}</span>
+                <FontAwesomeIcon
+                  icon={faHryvnia}
+                  style={{ marginLeft: '7px', color: '#EE7178' }}/>
+              </div>
+            </div>
+          </div>
+          <div className={styles.logoContainer}>
+            <div className={styles.logo}>
+              <FontAwesomeIcon
+                icon={faAddressCard}
+                style={{ marginRight: '7px', color: '#EE7178' }}/>
+              <span className={styles.tittle}>Персональні дані</span>
+            </div>
+          </div>
+          <PurchaseForm
+            me={me}
+            reset={reset}
+            error={error}
+            isAuth={isAuth}
+            pristine={pristine}
+            onSubmit={onSubmit}
+            submitting={submitting}
+            errorMessage={errorMessage}/>
+          <div className={styles.btnGroup}>
+            <NavLink to='/home' className={styles.goBack}>
+              <ApplyBtn
+                icon={faArrowLeft}
+                label='Продовжити покупки'/>
+            </NavLink>
+          </div>
+        </div>
+        : <OrderMessage/>}
+    </>
+  )
+})
 
-                    <div className={styles.wrapper}>
-                        {cart && cart.map(cartItem =>
-                            <div key={cartItem.id} className={styles.itemContainer}>
-                                <NavLink to={'/productPage/' + cartItem.productId} className={styles.cartItem}>
-                                    <img className={styles.img}
-                                         src={`http://localhost:5000/${cartItem['Product.product_photo']}`}
-                                         alt={'productImage'}/>
-                                    <span className={styles.tittle}>{cartItem['Product.name']}</span>
-                                    <span className={styles.size}>{cartItem.price} грн</span>
-                                </NavLink>
-
-
-                                <NavLink to={'/productPage/' + cartItem.productId} className={styles.counter}>
-                                    <div className={styles.count}><span>{cartItem.count} шт</span></div>
-                                </NavLink>
-
-                                <NavLink to={'/productPage/' + cartItem.productId} className={styles.sum}>
-                                        <span
-                                            style={{marginRight: '7px', marginLeft: '7px', color: '#EE7178'}}>= </span>
-                                    {cartItem.sum}
-                                    <FontAwesomeIcon
-                                        style={{marginLeft: '7px', color: '#EE7178'}}
-                                        icon={faHryvnia}/>
-                                </NavLink>
-                            </div>
-                        )}
-
-                        <div className={styles.totalGroup}>
-                            <div className={styles.totalProductsCount}>Всього
-                                товарів: <span> {productsLength} шт.</span></div>
-
-                            <div className={styles.totalSum}>Сума замовлення: <span
-                                style={{marginLeft: '7px', color: 'grey'}}>{totalProductsSum}</span>
-                                <FontAwesomeIcon
-                                    style={{marginLeft: '7px', color: '#EE7178'}}
-                                    icon={faHryvnia}/>
-                            </div>
-                        </div>
-                    </div>
-
-                    <div className={styles.logoContainer}>
-                        <div className={styles.logo}>
-                            <FontAwesomeIcon
-                                style={{marginRight: '7px', color: '#EE7178'}}
-                                icon={faAddressCard}/>
-                            <span className={styles.tittle}>
-                            Персональні дані
-                        </span>
-                        </div>
-                    </div>
-
-                    <PurchaseForm
-                        onSubmit={onSubmit}
-                        me={me}
-                        isAuth={isAuth}
-                        error={error}
-                        errorMessage={errorMessage}
-                        pristine={pristine}
-                        submitting={submitting}
-                        reset={reset}
-                    />
-
-                    <div className={styles.btnGroup}>
-                        <NavLink className={styles.goBack} to={'/home'}>
-                            <ApplyBtn
-                                icon={faArrowLeft}
-                                label={'Продовжити покупки'}
-                            />
-                        </NavLink>
-                    </div>
-                </div>
-                : <OrderMessage/>}
-        </>
-    );
-});
-
-export default Purchase;
+export default Purchase

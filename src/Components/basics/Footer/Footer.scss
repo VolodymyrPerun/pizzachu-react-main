@@ -1,49 +1,47 @@
 .footer {
+  z-index: 5;
   display: grid;
   grid-area: footer;
-  z-index: 5;
-  background-color: #DEE8C1;
-  grid-template-columns: repeat(3, 1fr);
   grid-auto-rows: 1fr;
+  background-color: #DEE8C1;
   font-family: 'Caveat', cursive;
+  grid-template-columns: repeat(3, 1fr);
   box-shadow: 0 5px 5px -5px rgba(0,0,0,.5);
 
   .address {
     color: #008E46;
-    font-weight: 500;
     font-size: 16px;
+    font-weight: 500;
+    text-align: center;
     line-height: 17.87px;
     align-items: baseline;
-    text-align: center;
 
     span {
+      color: black;
       font-size: 18px;
       font-weight: 700;
       font-style: normal;
-      color: black;
     }
   }
 
   .social {
     display: flex;
-    justify-content: center;
     align-items: center;
+    justify-content: center;
 
     a {
+      width: 35px;
+      height: 35px;
+      font-size: 22px;
       padding-top: 7px;
       text-align: center;
       border-radius: 50%;
-      font-size: 22px;
-      transition: 0.3s ease;
       margin-right: 15px;
-      width: 35px;
-      height: 35px;
-
+      transition: 0.3s ease;
 
       &:hover {
         transform: scale(1.2);
       }
-
 
       a:last-child {
         margin-right: 0;
@@ -66,23 +64,21 @@
   .credits {
     color: black;
     display: flex;
-    justify-content: center;
     align-items: center;
+    justify-content: center;
 
     .credits_title {
       color: #008E46;
       font-size: 20px;
       font-weight: 500;
-      line-height: 17.87px;
       margin-right: 5px;
+      line-height: 17.87px;
       font-family: Caveat, cursive;
     }
-
   }
 }
 
 @media only screen and (max-width: 550px) {
-
   .footer {
     padding: 10px;
 
@@ -92,8 +88,8 @@
 
     .social {
       display: grid;
-      justify-content: center;
       align-items: center;
+      justify-content: center;
     }
 
     .credits {
@@ -106,5 +102,3 @@
     }
   }
 }
-
-

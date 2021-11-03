@@ -1,46 +1,46 @@
 .button {
-  height: 30px;
-  display: flex;
-  justify-content: center;
-  justify-items: center;
-  align-items: center;
-  align-self: center;
-  align-content: center;
-  text-align: center;
-  border: none;
   color: #fff;
-  text-decoration: none;
-  background-color: #EE7179;
+  height: 30px;
+  border: none;
   padding: 5px;
-  font-size: 18px;
-  font-family: 'Caveat', cursive;
-  font-weight: 600;
-  letter-spacing: 2px;
-  line-height: 12px;
-  text-transform: none;
-  border-radius: 15px;
-  position: relative;
   outline: none;
-  transition: background-color .1s ease;
+  display: flex;
   cursor: pointer;
+  font-size: 18px;
+  font-weight: 600;
+  line-height: 12px;
+  text-align: center;
+  position: relative;
+  align-self: center;
+  align-items: center;
+  border-radius: 15px;
+  letter-spacing: 2px;
+  text-transform: none;
+  justify-items: center;
+  text-decoration: none;
+  align-content: center;
+  justify-content: center;
+  background-color: #EE7179;
+  font-family: 'Caveat', cursive;
+  transition: background-color .1s ease;
 
   &::after {
-    transition: background-color .2s ease;
-    position: absolute;
-    content: '';
-    height: 3.5px;
+    left: 8px;
     bottom: 0;
     width: 91%;
-    background-color: darken(#EE7179, 50%);
+    content: '';
     opacity: .18;
+    height: 3.5px;
+    position: absolute;
     border-bottom-left-radius: 12px;
     border-bottom-right-radius: 12px;
-    left: 8px;
+    background-color: darken(#EE7179, 50%);
+    transition: background-color .2s ease;
   }
 
   &:focus, &:hover {
+    color: #fff;
     text-decoration: none;
-    color: #fff
   }
 
   &:hover {

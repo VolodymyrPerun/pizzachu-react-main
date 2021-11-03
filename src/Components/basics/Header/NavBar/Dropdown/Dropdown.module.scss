@@ -1,26 +1,26 @@
 .dropdownMenu {
-  background: transparent;
-  width: 200px;
-  position: absolute;
   top: 80px;
+  width: 200px;
   list-style: none;
   text-align: start;
+  position: absolute;
+  background: transparent;
 
   li {
-    background: #EE7178;
-    cursor: pointer;
-    height: 100%;
     width: 100%;
+    height: 100%;
+    cursor: pointer;
+    background: #EE7178;
 
     &:hover {
       background: #F2B3B3;
     }
 
     .dropdownLink {
-      display: block;
-      text-decoration: none;
       color: #fff;
       padding: 16px;
+      display: block;
+      text-decoration: none;
     }
   }
 }
@@ -28,7 +28,6 @@
 .clicked {
   display: none;
 }
-
 
 @media screen and (max-width: 960px) {
   .faCaretDown {

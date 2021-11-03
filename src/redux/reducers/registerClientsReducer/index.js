@@ -1,44 +1,50 @@
-import {SET_REGISTER_ERR_MSG, SET_REGISTER_SUCCESS, SET_TEMP_ID, SET_USER, TOGGLE_IS_FETCHING} from "./constants";
-
+import {
+  SET_USER,
+  SET_TEMP_ID,
+  TOGGLE_IS_FETCHING,
+  SET_REGISTER_ERR_MSG,
+  SET_REGISTER_SUCCESS,
+} from './constants'
+//////////////////////////////////////////////////
 
 const initialState = {
-    user: [],
-    isRegisterSuccess: false,
-    registerErrMsg: null,
-    tempId: null,
-    isFetching: true
-};
+  user: [],
+  tempId: null,
+  isFetching: true,
+  registerErrMsg: null,
+  isRegisterSuccess: false,
+}
 
 const registerClientsReducer = (state = initialState, action) => {
-    switch (action.type) {
-        case SET_USER:
-            return {
-                ...state,
-                user: action.payload
-            }
-        case SET_TEMP_ID:
-            return {
-                ...state,
-                tempId: action.payload
-            }
-        case SET_REGISTER_ERR_MSG:
-            return {
-                ...state,
-                registerErrMsg: action.payload
-            };
-        case SET_REGISTER_SUCCESS:
-            return {
-                ...state,
-                isRegisterSuccess: action.payload
-            };
-        case TOGGLE_IS_FETCHING:
-            return {
-                ...state,
-                isFetching: action.payload
-            }
-        default:
-            return state;
-    }
-};
+  switch (action.type) {
+    case SET_USER:
+      return {
+        ...state,
+        user: action.payload,
+      }
+    case SET_TEMP_ID:
+      return {
+        ...state,
+        tempId: action.payload,
+      }
+    case SET_REGISTER_ERR_MSG:
+      return {
+        ...state,
+        registerErrMsg: action.payload,
+      }
+    case SET_REGISTER_SUCCESS:
+      return {
+        ...state,
+        isRegisterSuccess: action.payload,
+      }
+    case TOGGLE_IS_FETCHING:
+      return {
+        ...state,
+        isFetching: action.payload,
+      }
+    default:
+      return state
+  }
+}
 
-export default registerClientsReducer;
+export default registerClientsReducer

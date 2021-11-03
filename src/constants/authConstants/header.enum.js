@@ -1,4 +1,4 @@
 module.exports = {
-    AUTHORIZATION: 'Authorization',
-    CONTENT_TYPE: 'Content-Type'
+  CONTENT_TYPE: 'Content-Type',
+  AUTHORIZATION: 'Authorization'
 };

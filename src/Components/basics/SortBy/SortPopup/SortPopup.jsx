@@ -1,28 +1,28 @@
-import React, {memo} from 'react';
-import PopupMenu from '../PopupMenu/PopupMenu';
-import {sortItems} from './sortItems/sortItems';
-import PropTypes from "prop-types";
+import React, { memo } from 'react'
+import PropTypes from 'prop-types'
+import PopupMenu from '../PopupMenu/PopupMenu'
+import { sortItems } from './sortItems/sortItems'
+//////////////////////////////////////////////////
 
+const SortPopup = memo(({ setFilter }) => {
 
-const SortPopup = memo(({setFilter}) => {
-
-    return (
-        <div style={{maxWidth: '180px', maxHeight: '20px'}} className="sort">
-            <PopupMenu
-                setFilter={setFilter}
-                sortItems={sortItems}>
-            </PopupMenu>
-        </div>
-    );
-});
+  return (
+    <div  className='sort' style={{ maxWidth: '180px', maxHeight: '20px' }}>
+      <PopupMenu
+        setFilter={setFilter}
+        sortItems={sortItems}>
+      </PopupMenu>
+    </div>
+  )
+})
 
 SortPopup.propTypes = {
-    sortItems: PropTypes.arrayOf(PropTypes.object),
-    setFilter: PropTypes.func
-};
+  setFilter: PropTypes.func,
+  sortItems: PropTypes.arrayOf(PropTypes.object),
+}
 
 SortPopup.defaultProps = {
-    setFilter: 'name'
-};
+  setFilter: 'name',
+}
 
-export default SortPopup;
+export default SortPopup

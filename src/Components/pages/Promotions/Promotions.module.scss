@@ -1,21 +1,21 @@
 .container {
   width: 80%;
   height: auto;
-  min-height: 80vh;
   display: grid;
+  min-height: 80vh;
   grid-area: content;
-  justify-self: center;
-  justify-content: center;
-  justify-items: center;
-  align-content: space-around;
   align-self: center;
-  grid-template-columns: 45% 5% 45%;
+  border-radius: 15px;
+  justify-self: center;
+  justify-items: center;
+  justify-content: center;
   grid-template-rows: 1fr;
   margin: 0 auto 50px auto;
-  font-family: 'Caveat', cursive;
   vertical-align: baseline;
   border: 2px solid #aaaaaa;
-  border-radius: 15px;
+  align-content: space-around;
+  font-family: 'Caveat', cursive;
+  grid-template-columns: 45% 5% 45%;
   box-shadow: 0 14px 28px rgba(0, 0, 0, 0.25), 0 10px 10px rgba(0, 0, 0, 0.22);
 
   &:nth-child(2n+2) {
@@ -35,13 +35,13 @@
     color: #008E46;
     font-size: 21px;
     font-weight: 400;
-    font-family: 'Balsamiq Sans', Arial, cursive, sans-serif;
     text-transform: uppercase;
+    font-family: 'Balsamiq Sans', Arial, cursive, sans-serif;
 
     & > span {
+      color: #EE7179;
       font-size: 20px;
       font-weight: 400;
-      color: #EE7179;
       font-style: italic;
     }
   }
@@ -52,38 +52,38 @@
   }
 
   .subtitle {
+    color: gray;
     font-size: 25px;
     font-weight: 400;
-    color: gray;
   }
 
   .aside {
     display: grid;
-    justify-self: center;
-    justify-content: center;
-    justify-items: center;
-    align-content: space-around;
     align-self: center;
+    justify-self: center;
+    justify-items: center;
+    justify-content: center;
+    align-content: space-around;
   }
 
   .description {
     width: 80%;
     display: grid;
-    justify-self: center;
-    justify-content: center;
-    justify-items: center;
-    align-content: space-around;
     align-self: center;
+    justify-self: center;
+    justify-items: center;
+    justify-content: center;
+    align-content: space-around;
   }
 
   .line {
     height: 50%;
-    border-right: 3px solid #008E46;
-    justify-self: center;
-    justify-content: center;
-    justify-items: center;
-    align-content: space-around;
     align-self: center;
+    justify-self: center;
+    justify-items: center;
+    justify-content: center;
+    align-content: space-around;
+    border-right: 3px solid #008E46;
   }
 }
 
@@ -91,8 +91,8 @@
   .container {
     width: 85%;
     padding: 0 5px;
-    grid-template-columns: 1fr;
     grid-template-rows: 1fr;
+    grid-template-columns: 1fr;
 
     &:nth-child(1) {
       margin-top: 50px;

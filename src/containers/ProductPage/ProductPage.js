@@ -1,67 +1,76 @@
-import {connect} from 'react-redux';
-import {ProductPage} from "../../Components/pages/ProductPage/ProductPage";
-import {getProductById} from "../../redux/reducers/productPageReducer/thunks";
-import {compose} from "redux";
-import {withRouter} from "react-router-dom";
-import {addProductToCart, getCart} from "../../redux/reducers/cartReducer/thunks";
+import { compose } from 'redux'
+import { connect } from 'react-redux'
+import { withRouter } from 'react-router-dom'
+import { ProductPage } from '../../components/pages/ProductPage/ProductPage'
+import { setCurrentPage } from '../../redux/reducers/commentsReducer/actions'
+import { getProductById } from '../../redux/reducers/productPageReducer/thunks'
 import {
-    deleteChosenComment,
-    editChosenComment,
-    getCommentsFromDB,
-    sendComment
-} from "../../redux/reducers/commentsReducer/thunks";
-import {setCurrentPage} from "../../redux/reducers/commentsReducer/actions";
+  getCart,
+  addProductToCart,
+} from '../../redux/reducers/cartReducer/thunks'
 import {
-    deleteChosenReplyComment,
-    editChosenReplyComment,
-    getReplyCommentsFromDB,
-    sendReplyComment
-} from "../../redux/reducers/replyCommentsReducer/thunks";
+  sendComment,
+  getCommentsFromDB,
+  editChosenComment,
+  deleteChosenComment,
+} from '../../redux/reducers/commentsReducer/thunks'
 import {
-    getAverageProductMark,
-    getIsEvaluatedProduct,
-    setProductMark,
-} from "../../redux/reducers/productMarkReducer/thunks";
+  sendReplyComment,
+  editChosenReplyComment,
+  getReplyCommentsFromDB,
+  deleteChosenReplyComment,
+} from '../../redux/reducers/replyCommentsReducer/thunks'
+import {
+  setProductMark,
+  getIsEvaluatedProduct,
+  getAverageProductMark,
+} from '../../redux/reducers/productMarkReducer/thunks'
+//////////////////////////////////////////////////
 
-
-const mapStateToProps = ({productPage, productsPage, auth, comments, replyComments, productMark}) => ({
-    product: productPage.product,
-    isFetching: productPage.isFetching,
-    products: productsPage.products,
-    isLoadingComments: comments.isLoadingComments,
-    commentInfo: comments.commentInfo,
-    pageCount: comments.pageCount,
-    currentPage: comments.currentPage,
-    pageSize: comments.pageSize,
-    replyCommentsInfo: replyComments.replyCommentsInfo,
-    totalReplyCommentsCount: replyComments.totalReplyCommentsCount,
-    isClosed: replyComments.isClosed,
-    currentPageFoReplyComments: replyComments.currentPage,
-    pageSizeFoReplyComments: replyComments.pageSize,
-    isAuth: auth.isAuth,
-    myID: auth.myID,
-    mark: productMark.mark,
-    isEvaluated: productMark.isEvaluated,
-    isMarkLoading: productMark.isMarkLoading,
-});
-
+const mapStateToProps = ({
+  auth,
+  comments,
+  productMark,
+  productPage,
+  productsPage,
+  replyComments,
+}) => ({
+  myID: auth.myID,
+  isAuth: auth.isAuth,
+  mark: productMark.mark,
+  pageSize: comments.pageSize,
+  product: productPage.product,
+  pageCount: comments.pageCount,
+  products: productsPage.products,
+  isClosed: replyComments.isClosed,
+  commentInfo: comments.commentInfo,
+  currentPage: comments.currentPage,
+  isFetching: productPage.isFetching,
+  isEvaluated: productMark.isEvaluated,
+  isMarkLoading: productMark.isMarkLoading,
+  isLoadingComments: comments.isLoadingComments,
+  pageSizeFoReplyComments: replyComments.pageSize,
+  replyCommentsInfo: replyComments.replyCommentsInfo,
+  currentPageFoReplyComments: replyComments.currentPage,
+  totalReplyCommentsCount: replyComments.totalReplyCommentsCount,
+})
 
 export default compose(
-    connect(mapStateToProps, {
-        getProductById,
-        addProductToCart,
-        getCart,
-        getCommentsFromDB,
-        sendComment,
-        deleteChosenComment,
-        editChosenComment,
-        setCurrentPage,
-        getReplyCommentsFromDB,
-        deleteChosenReplyComment,
-        editChosenReplyComment,
-        sendReplyComment,
-        getIsEvaluatedProduct,
-        setProductMark,
-        getAverageProductMark
-    }),
-    withRouter)(ProductPage);
+  connect(mapStateToProps, {
+    getCart,
+    sendComment,
+    getProductById,
+    setCurrentPage,
+    setProductMark,
+    sendReplyComment,
+    addProductToCart,
+    getCommentsFromDB,
+    editChosenComment,
+    deleteChosenComment,
+    getIsEvaluatedProduct,
+    getAverageProductMark,
+    getReplyCommentsFromDB,
+    editChosenReplyComment,
+    deleteChosenReplyComment,
+  }),
+  withRouter)(ProductPage)

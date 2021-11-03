@@ -1,25 +1,26 @@
-import {SET_FILTER, SET_QUERY} from "./constants";
+import { SET_FILTER, SET_QUERY } from './constants'
+//////////////////////////////////////////////////
 
 const initialState = {
-    searchQuery: '',
-    filterBy: null,
-};
+  filterBy: null,
+  searchQuery: '',
+}
 
 const filterReducer = (state = initialState, action) => {
-    switch (action.type) {
-        case SET_QUERY:
-            return {
-                ...state,
-                searchQuery: action.payload,
-            };
-        case SET_FILTER:
-            return {
-                ...state,
-                filterBy: action.payload,
-            };
-        default:
-            return state;
-    }
-};
+  switch (action.type) {
+    case SET_QUERY:
+      return {
+        ...state,
+        searchQuery: action.payload,
+      }
+    case SET_FILTER:
+      return {
+        ...state,
+        filterBy: action.payload,
+      }
+    default:
+      return state
+  }
+}
 
-export default filterReducer;
+export default filterReducer

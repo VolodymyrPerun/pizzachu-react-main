@@ -1,37 +1,45 @@
-export const required = value => value ? undefined : "Це поле не може бути порожнім";
+export const isRequired = value => value
+  ? undefined
+  : 'Це поле не може бути порожнім'
 
 export const number = value =>
-     value >= 0
-        ? undefined
-        :  'Поле повинно містити лише цифри вище 0';
+  value >= 0
+    ? undefined
+    : 'Поле повинно містити лише цифри вище 0'
 
 export const age18 = value =>
-    value > 18
-        ? undefined
-        :  'Ви не досягли необхідного віку';
+  value > 18
+    ? undefined
+    : 'Ви не досягли необхідного віку'
 
 export const age120 = value =>
-    value < 120
-        ? undefined
-        :  'Та ну перестаньте, люди як правило стільки не живуть ;)';
+  value < 120
+    ? undefined
+    : 'Та ну перестаньте, люди як правило стільки не живуть ;)'
 
 export const maxLengthCreator = maxLength => value =>
-    value && value.length <= maxLength ? undefined : `Максимальна кількість ${maxLength} символів`;
+  value && value.length <= maxLength
+    ? undefined
+    : `Максимальна кількість ${maxLength} символів`
 
 export const minLengthCreator = minLength => value =>
-    value && value.length >= minLength ? undefined : `Мінімальна кількість ${minLength} символів`;
+  value && value.length >= minLength
+    ? undefined
+    : `Мінімальна кількість ${minLength} символів`
 
 export const phone = value =>
-    value && !/^(?:\+3)?8?(0\d{9})$/.test(value)
-        ? 'Невірно введений номер телефону, поле повинно містити лише цифри i бути у форматі (0ХХ)ХХХХХХХ'
-        : undefined;
+  value && !/^(?:\+3)?8?(0\d{9})$/.test(value)
+    ? 'Невірно введений номер телефону, поле повинно містити лише цифри i бути у форматі (0ХХ)ХХХХХХХ'
+    : undefined
 
 export const email = value =>
-    value && !/^(?!.*\.{2})(?!\.)[a-z0-9_.'-]*[a-z0-9_'-]@(?!_)(?:[a-z0-9_'-]+\.)+[a-z0-9_'-]{2,}$/.test(value)
-        ? 'Невірно введений емейл, приклад pizzachu@ichesse.you'
-        : undefined;
+  value &&
+  !/^(?!.*\.{2})(?!\.)[a-z0-9_.'-]*[a-z0-9_'-]@(?!_)(?:[a-z0-9_'-]+\.)+[a-z0-9_'-]{2,}$/.test(
+    value)
+    ? 'Невірно введений емейл, приклад pizzachu@ichesse.you'
+    : undefined
 
 export const password = value =>
-    value && !/^(?=[A-Z])(?=.*?[0-9])(?=.*?[^\\w\\s]).+$/i.test(value)
-        ? 'Пароль повинен містити 8 символів, включаючи одну велику літеру, одну цифру, та один спеціальний символ'
-        : undefined;
+  value && !/^(?=[A-Z])(?=.*?[0-9])(?=.*?[^\\w\\s]).+$/i.test(value)
+    ? 'Пароль повинен містити 8 символів, включаючи одну велику літеру, одну цифру, та один спеціальний символ'
+    : undefined

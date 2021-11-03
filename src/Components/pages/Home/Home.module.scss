@@ -1,9 +1,9 @@
 .container {
     display: grid;
-    justify-content: center;
-    align-content: center;
+    grid-area: content;
     align-self: center;
     align-items: center;
     justify-items: center;
-    grid-area: content;
+    align-content: center;
+    justify-content: center;
 }
