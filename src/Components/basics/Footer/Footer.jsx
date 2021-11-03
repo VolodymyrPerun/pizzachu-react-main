@@ -23,26 +23,28 @@ function Copyright () {
   )
 }
 
-const Footer = () => (
-  <footer className='footer'>
-    <p className='address'><span>Наші контакти </span>+380985845196,
-      +380977377403
-      +380985845196(Viber, WhatsApp) - volodimirperun007@gmail.com</p>
-    <div className='social'>
-      <a href='viber://add?number=380985845196' rel='noopener noreferrer'
-         target='_blank'>
-        <FontAwesomeIcon className='fa-viber' icon={faViber}/></a>
-      <a href='https://wa.me/+380977377403' rel='noopener noreferrer'
-         target='_blank'>
-        <FontAwesomeIcon className='fa-whatsapp' icon={faWhatsapp}/></a>
-      <a href='mailto:volodimirperun007@gmail.com' rel='noopener noreferrer'
-         target='_blank'>
-        <FontAwesomeIcon className='fa-envelope' icon={faEnvelope}/></a>
-    </div>
-    <div className='credits'>
-      <Copyright/>
-    </div>
-  </footer>
-)
+const Footer = () => {
+  return (
+    <footer className='footer'>
+      <p className='address'><span>Наші контакти </span>+380985845196,
+        +380977377403
+        +380985845196(Viber, WhatsApp) - volodimirperun007@gmail.com</p>
+      <div className='social'>
+        <a href='viber://add?number=380985845196' rel='noopener noreferrer'
+           target='_blank'>
+          <FontAwesomeIcon className='fa-viber' icon={faViber}/></a>
+        <a href='https://wa.me/+380977377403' rel='noopener noreferrer'
+           target='_blank'>
+          <FontAwesomeIcon className='fa-whatsapp' icon={faWhatsapp}/></a>
+        <a href='mailto:volodimirperun007@gmail.com' rel='noopener noreferrer'
+           target='_blank'>
+          <FontAwesomeIcon className='fa-envelope' icon={faEnvelope}/></a>
+      </div>
+      <div className='credits'>
+        <Copyright/>
+      </div>
+    </footer>
+  )
+}
 
 export default Footer
