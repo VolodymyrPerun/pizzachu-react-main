@@ -1,19 +1,19 @@
 .container {
   width: 80%;
   display: grid;
+  padding: 0 5px;
+  margin: 0 auto;
+  text-align: center;
+  align-self: center;
   grid-area: content;
   justify-self: center;
-  justify-content: center;
   justify-items: center;
-  align-content: space-around;
-  align-self: center;
-  text-align: center;
-  padding: 0 5px;
-  grid-template-columns: 1fr;
+  justify-content: center;
   grid-template-rows: 1fr;
-  margin: 0 auto;
-  font-family: 'Caveat', cursive;
   vertical-align: baseline;
+  grid-template-columns: 1fr;
+  align-content: space-around;
+  font-family: 'Caveat', cursive;
 
   span {
     color: black;
@@ -21,52 +21,52 @@
   }
 
   img {
-    border-radius: 2px;
-    height: 60vh;
     width: auto;
+    height: 60vh;
+    border-radius: 2px;
   }
 
   .logo {
     color: #008E46;
     font-size: 21px;
     font-weight: 400;
-    font-family: 'Balsamiq Sans', Arial, cursive, sans-serif;
     text-transform: uppercase;
+    font-family: 'Balsamiq Sans', Arial, cursive, sans-serif;
 
     & > span {
+      color: #EE7179;
       font-size: 20px;
       font-weight: 400;
-      color: #EE7179;
       font-style: italic;
     }
   }
 
   .title {
+    margin: 5px 0;
     font-size: 35px;
     font-weight: 800;
-    margin: 5px 0;
   }
 
-   h3 {
+  h3 {
     font-size: 25px !important;
   }
 
   .subtitle {
+    color: gray;
+    margin: 5px 0;
     font-size: 25px;
     font-weight: 400;
     line-height: 35px;
-    color: gray;
-    margin: 5px 0;
   }
 
   .contacts {
     width: 80%;
     display: grid;
-    justify-self: center;
-    justify-content: center;
-    justify-items: center;
-    align-content: space-around;
     align-self: center;
+    justify-self: center;
+    justify-items: center;
+    justify-content: center;
+    align-content: space-around;
   }
 }
 
@@ -74,8 +74,8 @@
   .container {
     width: 90%;
     padding: 0 5px;
-    grid-template-columns: 1fr;
     grid-template-rows: 1fr;
+    grid-template-columns: 1fr;
 
     img {
       height: 33vh;
@@ -85,11 +85,11 @@
     .contacts {
       width: 100%;
       display: grid;
-      justify-self: center;
-      justify-content: center;
-      justify-items: center;
-      align-content: space-around;
       align-self: center;
+      justify-self: center;
+      justify-items: center;
+      justify-content: center;
+      align-content: space-around;
     }
   }
 }

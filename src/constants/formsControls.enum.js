@@ -1,6 +1,6 @@
 module.exports = {
-    TEXTAREA: 'Textarea',
-    INPUT: 'Input',
-    TEXT_FIELD: 'TextField',
-    SELECT: 'Select',
+  INPUT: 'Input',
+  SELECT: 'Select',
+  TEXTAREA: 'Textarea',
+  TEXT_FIELD: 'TextField'
 };

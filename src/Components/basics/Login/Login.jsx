@@ -1,101 +1,107 @@
-import React from 'react';
-import styles from './Login.module.scss';
-import loginPagePhoto from '../../../assets/images/login-pizza.gif';
-import LoginForm from "./LoginForm";
-import {faSignInAlt, faSignOutAlt, faUserPlus} from "@fortawesome/free-solid-svg-icons";
-import {FontAwesomeIcon} from "@fortawesome/react-fontawesome";
-import {NavLink} from "react-router-dom";
-import Preloader from "../../commons/Preloader/Preloader";
-import {CloseOutlined} from '@ant-design/icons';
-import SubmitFollowBtn from "../../commons/Buttons/SubmitFollow/SubmitFollowBtn";
-
+import React from 'react'
+import LoginForm from './LoginForm'
+import styles from './Login.module.scss'
+import { NavLink } from 'react-router-dom'
+import { CloseOutlined } from '@ant-design/icons'
+import Preloader from '../../commons/Preloader/Preloader'
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
+import loginPagePhoto from '../../../assets/images/login-pizza.gif'
+import SubmitFollowBtn from '../../commons/Buttons/SubmitFollow/SubmitFollowBtn'
+import {
+  faUserPlus,
+  faSignInAlt,
+  faSignOutAlt,
+} from '@fortawesome/free-solid-svg-icons'
+//////////////////////////////////////////////////
 
 const Login = ({
-                   isAuth,
-                   isFetching,
-                   errorMessage,
-                   match,
-                   login,
-                   loginAdmin,
-                   adminErrorMessage,
-                   cart,
-                   logout,
-                   setCart
-               }) => {
+  cart,
+  login,
+  match,
+  isAuth,
+  logout,
+  setCart,
+  isFetching,
+  loginAdmin,
+  errorMessage,
+  adminErrorMessage,
+}) => {
 
+  const onSubmit = data => {
 
-    const onSubmit = data => {
-
-        if (match.path === '/login') {
-            localStorage.setItem("cart", JSON.stringify(cart));
-            login(data.email, data.password);
-            cart = JSON.parse(localStorage.getItem("cart"));
-            localStorage.setItem("cart", '');
-        }
-
-        if (match.path === '/auth-admin') {
-            loginAdmin(data.email, data.password);
-        }
-    };
-
-    const onClickLogout = () => {
-        localStorage.setItem("cart", JSON.stringify(cart));
-        cart = JSON.parse(localStorage.getItem("cart"));
-        logout();
-        setCart(cart)
-        localStorage.setItem("cart", '');
-    };
-
-    if (isFetching) {
-        return <div className={styles.preloader}><Preloader/></div>
+    if (match.path === '/login') {
+      localStorage.setItem('cart', JSON.stringify(cart))
+      login(data.email, data.password)
+      cart = JSON.parse(localStorage.getItem('cart'))
+      localStorage.setItem('cart', '')
     }
 
-    return (
-        <div className={styles.login}>
-            <img
-                alt='img'
-                src={loginPagePhoto}/>
+    if (match.path === '/auth-admin') {
+      loginAdmin(data.email, data.password)
+    }
+  }
 
-            <div className={styles.forms}>
-                <NavLink className={styles.closeBtn} to={'/home'}>
-                    <CloseOutlined className={styles.icon}/>
-                </NavLink>
-                {!isAuth ? <h1 className={styles.title}>
-                    <FontAwesomeIcon
-                        style={{marginRight: '13px', bottom: '-5px', position: 'relative'}}
-                        icon={faSignInAlt}/>
-                    Вхід
-                </h1> : <h1 className={styles.title}>
-                    <FontAwesomeIcon
-                        style={{marginRight: '13px', bottom: '-5px', position: 'relative'}}
-                        icon={faSignOutAlt}/>
-                    Вихід
-                </h1>}
+  const onClickLogout = () => {
+    localStorage.setItem('cart', JSON.stringify(cart))
+    cart = JSON.parse(localStorage.getItem('cart'))
+    logout()
+    setCart(cart)
+    localStorage.setItem('cart', '')
+  }
 
-                <LoginForm onSubmit={onSubmit}
-                           errorMessage={errorMessage}
-                           adminErrorMessage={adminErrorMessage}
-                           isAuth={isAuth}
-                           onClickLogout={onClickLogout}
-                />
+  if (isFetching) {
+    return <div className={styles.preloader}><Preloader/></div>
+  }
 
-                <div style={{marginTop: '10px', marginBottom: '10px'}}>
-                    <span>Якщо ви ще не зареєстровані, то спочатку слід зареєструватись</span>
-                </div>
+  return (
+    <div className={styles.login}>
+      <img
+        alt='img'
+        src={loginPagePhoto}/>
 
-                <NavLink to="/registerClients" className={styles.inputContainer}>
-                    <SubmitFollowBtn
-                        label={"Перейти до реєстрації"}
-                        name={'Submit'}
-                        type={"button"}
-                        icon={faUserPlus}
-                    />
-                </NavLink>
-            </div>
+      <div className={styles.forms}>
+        <NavLink className={styles.closeBtn} to={'/home'}>
+          <CloseOutlined className={styles.icon}/>
+        </NavLink>
+        {!isAuth ? <h1 className={styles.title}>
+          <FontAwesomeIcon
+            style={{
+              bottom: '-5px',
+              marginRight: '13px',
+              position: 'relative',
+            }}
+            icon={faSignInAlt}/>
+          Вхід
+        </h1> : <h1 className={styles.title}>
+          <FontAwesomeIcon
+            style={{
+              bottom: '-5px',
+              marginRight: '13px',
+              position: 'relative',
+            }}
+            icon={faSignOutAlt}/>
+          Вихід
+        </h1>}
+        <LoginForm
+          isAuth={isAuth}
+          onSubmit={onSubmit}
+          errorMessage={errorMessage}
+          onClickLogout={onClickLogout}
+          adminErrorMessage={adminErrorMessage}/>
+        <div style={{ marginTop: '10px', marginBottom: '10px' }}>
+          <span>Якщо ви ще не зареєстровані, то спочатку слід зареєструватись</span>
         </div>
-    )
-};
+        <NavLink to='/registerClients' className={styles.inputContainer}>
+          <SubmitFollowBtn
+            name='Submit'
+            type='button'
+            icon={faUserPlus}
+            label='Перейти до реєстрації'/>
+        </NavLink>
+      </div>
+    </div>
+  )
+}
 
-
-export default Login;
+export default Login
 

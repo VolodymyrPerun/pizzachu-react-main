@@ -4,7 +4,7 @@ import noPhoto from "../../../../assets/images/no-aveliable-image.png";
 import {PRODUCT_SECTION, PRODUCT_TYPE, SIZES_DEFAULT} from "../../../../constants";
 import {NavLink} from "react-router-dom";
 import {faTruck} from "@fortawesome/free-solid-svg-icons";
-import {FontAwesomeIcon} from "@fortawesome/react-fontawesome";
+import {FontAwesomeIcon} from "@fortawesome/react-fontawesome"
 import Timer from "../../../commons/Timer/Timer";
 //import Preloader from "../../../commons/Preloader/Preloader";
 

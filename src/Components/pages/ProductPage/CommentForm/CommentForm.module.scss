@@ -1,28 +1,28 @@
 .noAuth {
   color: red;
-  font-style: italic;
-  align-self: center;
+  width: 95%;
   font-size: 19px;
   font-weight: 600;
-  width: 95%;
+  font-style: italic;
+  align-self: center;
 }
 
 textarea {
-  border: 2px solid #D0D0D0;
-  border-radius: 5px;
   width: 95%;
-  resize: none;
-  align-self: center;
-  height: 60px;
-  outline: none;
-  font-size: 17px;
   color: black;
+  height: 60px;
+  resize: none;
   padding: 9px;
-  box-sizing: border-box;
-  overflow: hidden;
-  background-color: #DEE8C1 !important;
-  word-break: break-word;
+  outline: none;
   max-lines: 50;
+  font-size: 17px;
+  overflow: hidden;
+  border-radius: 5px;
+  align-self: center;
+  box-sizing: border-box;
+  word-break: break-word;
+  border: 2px solid #D0D0D0;
+  background-color: #DEE8C1 !important;
 }
 
 textarea::placeholder {
@@ -31,44 +31,44 @@ textarea::placeholder {
 }
 
 .commentForm {
-  align-self: center;
   width: 100%;
   display: flex;
+  align-self: center;
+  align-items: center;
   flex-direction: column;
   justify-content: center;
-  align-items: center;
 }
 
 .formInfo {
   width: 100%;
   display: flex;
+  align-items: center;
   flex-direction: column;
   justify-content: center;
-  align-items: center;
 }
 
 .commentBtn {
   width: 120px;
   height: 32px;
-  border-radius: 10px;
-  border: 2px solid #ffffff;
+  display: flex;
+  margin-top: 4%;
   color: #f1f1f1;
   font-size: 20px;
+  cursor: pointer;
   font-weight: 400;
-  display: flex;
-  justify-content: center;
+  transition: 0.2s;
+  margin-left: 20px;
+  border-radius: 10px;
   align-items: center;
   background: #EE7179;
-  margin-left: 20px;
-  transition: 0.2s;
-  margin-top: 4%;
-  cursor: pointer;
+  justify-content: center;
+  border: 2px solid #ffffff;
   text-transform: capitalize;
 }
 
 .commentBtn:hover {
-  transform: scale(1.05);
   transition: 0.2s;
+  transform: scale(1.05);
 }
 
 .commentTitle {
@@ -76,22 +76,20 @@ textarea::placeholder {
   color: #008E46;
   font-size: 22px;
   font-weight: 600;
-  margin-bottom: 3px;
   margin-top: 30px;
+  margin-bottom: 3px;
 }
 
 @media (max-width: 800px) {
   .formInfo textarea {
     height: 30px;
   }
-
 }
 
 @media (max-width: 550px) {
   .formInfo textarea {
     height: 26px;
   }
-
 }
 
 @media (max-width: 400px) {
@@ -99,6 +97,7 @@ textarea::placeholder {
     height: 20px;
     font-size: 17px;
   }
+
   .noAuth {
     font-size: 14px
   }

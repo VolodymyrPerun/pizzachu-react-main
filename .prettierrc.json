@@ -1,0 +1,24 @@
+{
+  "semi": true,
+  "tabWidth": 2,
+  "printWidth": 80,
+  "useTabs": false,
+  "endOfLine": "lf",
+  "singleQuote": true,
+  "arrowParens": "avoid",
+  "requirePragma": false,
+  "trailingComma": "all",
+  "proseWrap": "preserve",
+  "bracketSpacing": false,
+  "jsxBracketSameLine": false,
+  "vueIndentScriptAndStyle": true,
+  "htmlWhitespaceSensitivity": "css",
+  "overrides": [
+    {
+      "files": "*.json",
+      "options": {
+        "printWidth": 200
+      }
+    }
+  ]
+}

@@ -1,28 +1,28 @@
 .page {
   width: 50%;
-  min-height: 63.5vh;
   display: grid;
-  grid-template-rows: 10% 90%;
-  grid-area: content;
-  align-content: center;
-  align-self: center;
-  text-align: center;
-  justify-content: space-around;
-  align-items: center;
-  grid-template-columns: 1fr;
-  border: 2px solid #aaaaaa;
-  border-radius: 15px;
-  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.5), inset 0 1px rgba(255, 255, 255, 0.3), inset 0 10px rgba(255, 255, 255, 0.2), inset 0 10px 20px rgba(255, 255, 255, 0.25), inset 0 -15px 30px rgba(0, 0, 0, 0.3);
-  -o-box-shadow: 0 2px 6px rgba(0, 0, 0, 0.5), inset 0 1px rgba(255, 255, 255, 0.3), inset 0 10px rgba(255, 255, 255, 0.2), inset 0 10px 20px rgba(255, 255, 255, 0.25), inset 0 -15px 30px rgba(0, 0, 0, 0.3);
-  -webkit-box-shadow: 0 2px 6px rgba(0, 0, 0, 0.5), inset 0 1px rgba(255, 255, 255, 0.3), inset 0 10px rgba(255, 255, 255, 0.2), inset 0 10px 20px rgba(255, 255, 255, 0.25), inset 0 -15px 30px rgba(0, 0, 0, 0.3);
-  -moz-box-shadow: 0 2px 6px rgba(0, 0, 0, 0.5), inset 0 1px rgba(255, 255, 255, 0.3), inset 0 10px rgba(255, 255, 255, 0.2), inset 0 10px 20px rgba(255, 255, 255, 0.25), inset 0 -15px 30px rgba(0, 0, 0, 0.3);
   margin: 0 auto;
   padding: 0 10px;
+  min-height: 63.5vh;
+  grid-area: content;
+  align-self: center;
+  text-align: center;
+  align-items: center;
+  border-radius: 15px;
+  align-content: center;
+  border: 2px solid #aaaaaa;
+  grid-template-columns: 1fr;
+  grid-template-rows: 10% 90%;
+  justify-content: space-around;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.5), inset 0 1px rgba(255, 255, 255, 0.3), inset 0 10px rgba(255, 255, 255, 0.2), inset 0 10px 20px rgba(255, 255, 255, 0.25), inset 0 -15px 30px rgba(0, 0, 0, 0.3);
+  -o-box-shadow: 0 2px 6px rgba(0, 0, 0, 0.5), inset 0 1px rgba(255, 255, 255, 0.3), inset 0 10px rgba(255, 255, 255, 0.2), inset 0 10px 20px rgba(255, 255, 255, 0.25), inset 0 -15px 30px rgba(0, 0, 0, 0.3);
+  -moz-box-shadow: 0 2px 6px rgba(0, 0, 0, 0.5), inset 0 1px rgba(255, 255, 255, 0.3), inset 0 10px rgba(255, 255, 255, 0.2), inset 0 10px 20px rgba(255, 255, 255, 0.25), inset 0 -15px 30px rgba(0, 0, 0, 0.3);
+  -webkit-box-shadow: 0 2px 6px rgba(0, 0, 0, 0.5), inset 0 1px rgba(255, 255, 255, 0.3), inset 0 10px rgba(255, 255, 255, 0.2), inset 0 10px 20px rgba(255, 255, 255, 0.25), inset 0 -15px 30px rgba(0, 0, 0, 0.3);
 
   .closeBtn {
     grid-row: 1;
-    justify-self: end;
     color: #EE7178;
+    justify-self: end;
 
     .icon:hover {
       transform: rotate(180deg);
@@ -30,15 +30,16 @@
   }
 
   .messageContent {
+    width: 70%;
     grid-row: 2;
     display: grid;
-    align-self: start;
-    width: 70%;
-    margin-right: auto;
     margin-left: auto;
+    align-self: start;
+    margin-right: auto;
 
     h3 {
       line-height: 30px;
+
       span {
         color: #EE7179;
       }

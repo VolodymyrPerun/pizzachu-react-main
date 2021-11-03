@@ -1,34 +1,32 @@
 .preloader {
+  display: flex;
   margin-left: auto;
   margin-right: auto;
-  display: flex;
   text-align: center;
-  justify-items: center;
-  justify-self: center;
   align-self: center;
+  justify-self: center;
+  justify-items: center;
   align-content: center;
   justify-content: center;
 
   .spinner {
-    position: relative;
-    text-align: center;
-    font-size: 44px;
-    color: #aaaaaa;
     padding: 10px;
+    color: #aaaaaa;
+    font-size: 44px;
+    text-align: center;
+    position: relative;
   }
 
   .spinnerBig {
+    font-size: 75px;
     position: relative;
     text-align: center;
-    font-size: 75px;
   }
 
   .tip {
+    color: #aaaaaa;
+    font-weight: 400;
     position: relative;
     font: 25px 'Caveat', cursive;
-    font-weight: 400;
-    color: #aaaaaa;
   }
 }
-
-

@@ -1,30 +1,25 @@
-import {connect} from "react-redux";
-import {
-    login, logout,
-    // loginAdmin
-} from "../../redux/reducers/authReducer/thunks";
-import {withRouter} from "react-router-dom";
-import Login from "../../Components/basics/Login/Login";
-import {setCart} from "../../redux/reducers/cartReducer/actions";
+import { connect } from 'react-redux'
+import { withRouter } from 'react-router-dom'
+import Login from '../../components/basics/Login/Login'
+import { setCart } from '../../redux/reducers/cartReducer/actions'
+import { login, logout } from '../../redux/reducers/authReducer/thunks'
+//////////////////////////////////////////////////
 
-const mapStateToProps = ({auth, cart}) => {
+const mapStateToProps = ({ auth, cart }) => ({
+  cart: cart.cart,
+  isAuth: auth.isAuth,
+  isFetching: auth.isFetching,
+  errorMessage: auth.loginErrMsg,
+  adminErrorMessage: auth.loginAdminErrMsg,
+})
 
-    return {
-        isAuth: auth.isAuth,
-        isFetching: auth.isFetching,
-        errorMessage: auth.loginErrMsg,
-        adminErrorMessage: auth.loginAdminErrMsg,
-        cart: cart.cart
-    }
-};
-
-const LoginWithRouter = withRouter(Login);
+const LoginWithRouter = withRouter(Login)
 
 export default connect(
-    mapStateToProps,
-    {
-        login,
-        setCart,
-        logout,
-        //loginAdmin
-    })(LoginWithRouter);
+  mapStateToProps,
+  {
+    login,
+    logout,
+    setCart,
+    //loginAdmin
+  })(LoginWithRouter)

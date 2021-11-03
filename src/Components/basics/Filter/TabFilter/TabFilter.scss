@@ -1,24 +1,24 @@
 button {
-  display: inline-block;
-  line-height: 18px;
-  font-weight: 800;
-  font-family: 'Caveat', cursive;
-  text-transform: uppercase;
-  padding: 5px 20px;
+  cursor: pointer;
   margin: 5px 15px;
+  font-weight: 800;
+  transition: .25s;
+  line-height: 18px;
+  padding: 5px 20px;
+  -o-transition: .25s;
+  display: inline-block;
   border: 1px solid #fff;
+  -webkit-transition: .25s;
+  text-transform: uppercase;
+  font-family: 'Caveat', cursive;
   box-shadow: 0 2px 6px rgba(0,0,0,0.5), inset 0 1px rgba(255,255,255,0.3), inset 0 10px rgba(255,255,255,0.2), inset 0 10px 20px rgba(255,255,255,0.25), inset 0 -15px 30px rgba(0,0,0,0.3);
   -o-box-shadow: 0 2px 6px rgba(0,0,0,0.5), inset 0 1px rgba(255,255,255,0.3), inset 0 10px rgba(255,255,255,0.2), inset 0 10px 20px rgba(255,255,255,0.25), inset 0 -15px 30px rgba(0,0,0,0.3);
-  -webkit-box-shadow: 0 2px 6px rgba(0,0,0,0.5), inset 0 1px rgba(255,255,255,0.3), inset 0 10px rgba(255,255,255,0.2), inset 0 10px 20px rgba(255,255,255,0.25), inset 0 -15px 30px rgba(0,0,0,0.3);
   -moz-box-shadow: 0 2px 6px rgba(0,0,0,0.5), inset 0 1px rgba(255,255,255,0.3), inset 0 10px rgba(255,255,255,0.2), inset 0 10px 20px rgba(255,255,255,0.25), inset 0 -15px 30px rgba(0,0,0,0.3);
-  -webkit-transition: .25s;
-  -o-transition: .25s;
-  transition: .25s;
-  cursor: pointer;
+  -webkit-box-shadow: 0 2px 6px rgba(0,0,0,0.5), inset 0 1px rgba(255,255,255,0.3), inset 0 10px rgba(255,255,255,0.2), inset 0 10px 20px rgba(255,255,255,0.25), inset 0 -15px 30px rgba(0,0,0,0.3);
 
   &:focus, &:hover {
-    background-color: #DEE8C1;
     color: olivedrab;
+    background-color: #DEE8C1;
   }
 }
 
@@ -29,51 +29,51 @@ button {
 
 .tabSection {
   font-size: 20px;
-  text-transform: capitalize;
   color: #008E46;
+  text-transform: capitalize;
   border-radius: 16px 16px 0 0;
 
   &:active, &:focus {
-    border-bottom: 3px solid olivedrab;
     color: olivedrab;
+    border-bottom: 3px solid olivedrab;
   }
 }
 
 .tabPromoSection {
   font-size: 20px;
-  text-transform: capitalize;
   color: indianred;
+  text-transform: capitalize;
   border-radius: 16px 16px 0 0;
 
   &:hover, &:active, &:focus {
-    background-color: #F2B3B3;
-    opacity: 0.8;
-    border-bottom: 3px solid #EE7178;
     color: snow;
+    opacity: 0.8;
+    background-color: #F2B3B3;
+    border-bottom: 3px solid #EE7178;
   }
 }
 
 .tabSize {
-  font-size: 20px;
-  text-transform: capitalize;
   color: black;
-  background-color: #D0D0D0;
+  font-size: 20px;
   border-radius: 50%;
+  background-color: #D0D0D0;
+  text-transform: capitalize;
 
   &:hover, &:active, &:focus {
-    background-color: #515151;
-    opacity: 0.8;
     color: snow;
+    opacity: 0.8;
+    background-color: #515151;
   }
 }
 
 .tabActiveSize {
-  font-size: 20px;
-  text-transform: capitalize;
   color: snow;
-  background-color: #515151;
   opacity: 0.8;
+  font-size: 20px;
   border-radius: 50%;
+  background-color: #515151;
+  text-transform: capitalize;
 
   &:hover, &:active, &:focus {
     background-color: #515151;
@@ -82,26 +82,26 @@ button {
 
 .tabActiveType {
   font-size: 18px;
+  color: olivedrab;
   border-radius: 15px;
   background-color: #DEE8C1;
-  color: olivedrab;
 
   &:focus, &:hover {
-    background-color: #DEE8C1;
     color: olivedrab;
+    background-color: #DEE8C1;
   }
 }
 
 .tabActiveSection {
-  background-color: #DEE8C1;
-  font-size: 20px;
-  text-transform: capitalize;
   color: #008E46;
-  border-radius: 16px 16px 0 0 !important;
+  font-size: 20px;
+  background-color: #DEE8C1;
+  text-transform: capitalize;
   border-bottom: 3px solid olivedrab;
+  border-radius: 16px 16px 0 0 !important;
 
   &:active, &:focus {
-    border-bottom: 3px solid olivedrab;
     color: olivedrab;
+    border-bottom: 3px solid olivedrab;
   }
 }

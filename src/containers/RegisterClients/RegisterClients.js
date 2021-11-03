@@ -1,16 +1,16 @@
-import {connect} from 'react-redux';
-import RegisterClients from "../../Components/basics/RegisterClients/RegisterClients";
-import {registerClient} from "../../redux/reducers/registerClientsReducer/thunks";
+import { connect } from 'react-redux'
+import { registerClient } from '../../redux/reducers/registerClientsReducer/thunks'
+import RegisterClients from '../../components/basics/RegisterClients/RegisterClients'
+//////////////////////////////////////////////////
 
-
-const mapStateToProps = ({auth, registerClients}) => ({
-    isAuth: auth.isAuth,
-    me: auth.me,
-    errorMessage: registerClients.registerErrMsg,
-    isFetching: registerClients.isFetching,
-    isRegisterSuccess: registerClients.isRegisterSuccess
-});
+const mapStateToProps = ({ auth, registerClients }) => ({
+  me: auth.me,
+  isAuth: auth.isAuth,
+  isFetching: registerClients.isFetching,
+  errorMessage: registerClients.registerErrMsg,
+  isRegisterSuccess: registerClients.isRegisterSuccess,
+})
 
 export default connect(mapStateToProps, {
-    registerClient
-})(RegisterClients);
+  registerClient,
+})(RegisterClients)

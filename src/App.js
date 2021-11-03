@@ -1,116 +1,79 @@
-import React, {Component, StrictMode} from 'react';
-import './App.scss';
-import AboutUs from "./Components/pages/AboutUs/AboutUs";
-import Contacts from "./Components/pages/Contacts/Contacts";
-import Home from "./Components/pages/Home/Home";
-import Promotions from './Components/pages/Promotions/Promotions';
-import {BrowserRouter, Redirect, Route, Switch, withRouter} from "react-router-dom";
-import HeaderContainer from "./Components/basics/Header/HeaderContainer";
-import {connect, Provider} from "react-redux";
-import {compose} from "redux";
-import {catchGlobalError, initializeApp} from "./redux/reducers/appReducer/thunks";
-import Preloader from "./Components/commons/Preloader/Preloader";
-import store from "./redux/index";
-import {Page404} from "./Components/pages/Page404/Page404";
-import ErrorMessages from "./Components/commons/ErrorMessages/ErrorMessages";
-import ProductPage from "./containers/ProductPage/ProductPage";
-import Delivery from "./Components/pages/Delivery/Delivery";
-import Footer from "./Components/basics/Footer/Footer";
-import Cart from "./containers/Cart/Cart";
-import Login from "./containers/Login/Login";
-import Purchase from "./containers/Purchase/Purchase";
-import OrderMessage from "./containers/OrderMessage/OrderMessage";
-import Orders from "./containers/Orders/Orders";
-import RegisterClients from "./containers/RegisterClients/RegisterClients";
-import Profile from "./containers/Profile/Profile";
-import RestorePassword from "./containers/RestorePassword/RestorePassword";
-import ChangePassword from "./containers/ChangePassword/ChangePassword";
+import { compose } from 'redux'
+import { connect, Provider } from 'react-redux'
+import React, { Component, StrictMode } from 'react'
+import { BrowserRouter, withRouter } from 'react-router-dom'
+import './App.scss'
+import store from './redux/index'
+import Routes from './routes/routes'
+import Footer from './components/basics/Footer/Footer'
+import Preloader from './components/commons/Preloader/Preloader'
+import HeaderContainer from './components/basics/Header/HeaderContainer'
+import {
+  initializeApp,
+  catchGlobalError,
+} from './redux/reducers/appReducer/thunks'
 
+//////////////////////////////////////////////////
 
 class App extends Component {
+  componentDidCatch (error, errorInfo) {
+    this.props.catchGlobalError(error)
+  };
 
-    componentDidCatch(error, errorInfo) {
-        this.props.catchGlobalError(error);
-    };
+  catchAllUnhandledErrors = ({ reason }) => {
+    this.props.catchGlobalError(reason.toString())
+  }
 
-    catchAllUnhandledErrors = ({reason}) => {
-        this.props.catchGlobalError(reason.toString());
-    };
+  componentDidMount () {
+    this.props.initializeApp()
+    window.addEventListener('unhandledrejection', this.catchAllUnhandledErrors)
+  };
 
-    componentDidMount() {
-        this.props.initializeApp();
-        window.addEventListener("unhandledrejection", this.catchAllUnhandledErrors);
-    };
+  componentWillUnmount () {
+    window.removeEventListener('unhandledrejection',
+      this.catchAllUnhandledErrors)
+  };
 
-    componentWillUnmount() {
-        window.removeEventListener("unhandledrejection", this.catchAllUnhandledErrors);
-    };
+  render () {
+    if (!this.props.initialized) {
+      return <Preloader/>
+    }
+    // if (this.props.globalError) {
+    //     return <ErrorMessages globalError={this.props.globalError} history={this.props.history}/>
+    // }
 
-
-    render() {
-
-        if (!this.props.initialized) {
-            return <Preloader/>
-        }
-
-        // if (this.props.globalError) {
-        //     return <ErrorMessages globalError={this.props.globalError} history={this.props.history}/>
-        // }
-
-        return (
-
-            <div className='app-wrapper'>
-                <HeaderContainer/>
-                <Footer/>
-                <div className='app-wrapper-content'>
-                    <Switch>
-                        <Route exact path='/'
-                               render={() => <Redirect from={"/"} to={"/home"}/>}/>
-                        <Route path='/about' render={() => <AboutUs/>}/>
-                        <Route path='/contact' render={() => <Contacts/>}/>
-                        <Route path='/home' render={() => <Home/>} exact/>
-                        <Route path='/promotions' render={() => <Promotions/>}/>
-                        <Route path='/purchase' render={() => <Purchase/>}/>
-                        <Route path='/delivery' render={() => <Delivery/>}/>
-                        <Route path='/cart' render={() => <Cart/>}/>
-                        <Route path='/login' render={() => <Login/>}/>
-                        <Route path='/restore-password' render={() => <RestorePassword/>}/>
-                        <Route path='/change-password' render={() => <ChangePassword/>}/>
-                        <Route path='/productPage/:productId?' render={() => <ProductPage/>}/>
-                        <Route path='/orderMessage' render={() => <OrderMessage/>}/>
-                        <Route path='/orders' render={() => <Orders/>}/>
-                        <Route path='/registerClients' render={() => <RegisterClients/>}/>
-                        <Route path='/profile' render={() => <Profile/>}/>
-                        <Route path='/error' render={() =>
-                            <ErrorMessages globalError={this.props.globalError} history={this.props.history}/>}/>
-                        <Route path='*' render={() => <Page404 history={this.props.history}/>}/>}/>
-                    </Switch>
-                </div>
-            </div>
-        );
-    };
+    return (
+      <div className='app-wrapper'>
+        <HeaderContainer/>
+        <Footer/>
+        <div className='app-wrapper-content'>
+          <Routes
+            history={this.props.history}
+            globalError={this.props.globalError}/>
+        </div>
+      </div>
+    )
+  };
 }
 
-let mapStateToProps = ({app}) => {
-    return {
-        globalError: app.globalError,
-        initialized: app.initialized,
-        isFetching: app.isFetching
-    }
-};
+let mapStateToProps = ({ app }) => ({
+  history: app.history,
+  isFetching: app.isFetching,
+  globalError: app.globalError,
+  initialized: app.initialized,
+})
 
 let AppContainer = compose(
-    withRouter,
-    connect(mapStateToProps, {catchGlobalError, initializeApp}))(App);
+  withRouter,
+  connect(mapStateToProps, { catchGlobalError, initializeApp }),
+)(App)
 
-let PizzachuApp = props => {
-    return <StrictMode>
-        <BrowserRouter basename={process.env.PUBLIC_URL}>
-            <Provider store={store}>
-                <AppContainer/>
-            </Provider>
-        </BrowserRouter>
-    </StrictMode>
-};
+let PizzachuApp = props => <StrictMode>
+  <BrowserRouter basename={process.env.PUBLIC_URL}>
+    <Provider store={store}>
+      <AppContainer/>
+    </Provider>
+  </BrowserRouter>
+</StrictMode>
 
-export default PizzachuApp;
+export default PizzachuApp

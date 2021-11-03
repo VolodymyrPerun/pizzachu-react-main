@@ -1,36 +1,36 @@
 import {
-    TOGGLE_IS_FETCHING,
-    GLOBAL_ERROR,
-    INITIALIZED_SUCCESS
-} from './constants';
-
+  GLOBAL_ERROR,
+  TOGGLE_IS_FETCHING,
+  INITIALIZED_SUCCESS,
+} from './constants'
+//////////////////////////////////////////////////
 
 let initialState = {
-    initialized: false,
-    globalError: null,
-    isFetching: true
-};
+  isFetching: true,
+  globalError: null,
+  initialized: false,
+}
 
 const appReducer = (state = initialState, action) => {
-    switch (action.type) {
-        case INITIALIZED_SUCCESS:
-            return {
-                ...state,
-                initialized: true
-            }
-        case GLOBAL_ERROR:
-            return {
-                ...state,
-                globalError: action.payload
-            };
-        case TOGGLE_IS_FETCHING:
-            return {
-                ...state,
-                isFetching: action.payload
-            }
-        default:
-            return state;
-    }
-};
+  switch (action.type) {
+    case INITIALIZED_SUCCESS:
+      return {
+        ...state,
+        initialized: true,
+      }
+    case GLOBAL_ERROR:
+      return {
+        ...state,
+        globalError: action.payload,
+      }
+    case TOGGLE_IS_FETCHING:
+      return {
+        ...state,
+        isFetching: action.payload,
+      }
+    default:
+      return state
+  }
+}
 
-export default appReducer;
+export default appReducer

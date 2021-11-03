@@ -2,71 +2,65 @@
 @import url('https://fonts.googleapis.com/css2?family=Caveat:wght@400;500&display=swap');
 
 @font-face {
-    font-family: 'Caveat';
-    src: url('./assets/fonts/Caveat-Regular.ttf') format('truetype');
+  font-family: 'Caveat';
+  src: url('./assets/fonts/Caveat-Regular.ttf') format('truetype');
 }
 
-*{
-    font-family: Caveat, cursive;
-    outline: none !important;
+* {
+  outline: none !important;
+  font-family: Caveat, cursive;
 }
 
 body {
-    margin: 0;
-    padding: 0;
-    background-color: snow;
+  margin: 0;
+  padding: 0;
+  background-color: snow;
 
-    ul, li, a {
-        list-style: none;
-        text-decoration: none;
-        color: black;
-    }
+  ul, li, a {
+    color: black;
+    list-style: none;
+    text-decoration: none;
+  }
 }
 
 .app-wrapper {
-    display: grid;
-    justify-content: space-between;
-    width: 100%;
-    height: auto;
-    margin: 0 auto;
-    background: whitesmoke;
-
-    grid-template-areas: "header"
-                         "content"
-                         "footer";
-
-    grid-auto-rows: 1fr auto 1fr;
-    //grid-template-columns: 1fr;
-    grid-gap: 10px;
+  width: 100%;
+  height: auto;
+  display: grid;
+  margin: 0 auto;
+  grid-gap: 10px;
+  background: whitesmoke;
+  justify-content: space-between;
+  grid-auto-rows: 1fr auto 1fr;
+  grid-template-areas: 'header'
+                         'content'
+                         'footer';
 }
 
 .app-wrapper-content {
-    width: 100%;
-    grid-area: content;
-    justify-content: space-between;
-    justify-self: center;
-    background: whitesmoke;
-    //background: #FFEFBA; /* fallback for old browsers */
-    //background: -webkit-linear-gradient(to right, #FFFFFF, #FFEFBA); /* Chrome 10-25, Safari 5.1-6 */
-    //background: linear-gradient(to right, #FFFFFF, #FFEFBA); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
+  width: 100%;
+  grid-area: content;
+  justify-self: center;
+  background: whitesmoke;
+  justify-content: space-between;
 }
 
 .app-wrapper-content img {
-    width: 88.8%;
-    max-height: 50vh;
+  width: 88.8%;
+  max-height: 50vh;
 }
 
 @media only screen and (max-width: 992px) {
-    .app-wrapper, body {
-        width: 100%;
-        max-height: 100vh;
-        margin: 0;
-        padding: 0;
-        background: #FFFFFF;
-        grid-gap: 5px 0;
-    }
+  .app-wrapper, body {
+    margin: 0;
+    padding: 0;
+    width: 100%;
+    grid-gap: 5px 0;
+    max-height: 100vh;
+    background: #FFFFFF;
+  }
 
-    body {
-        grid-gap: 15px 0;
-    }
+  body {
+    grid-gap: 15px 0;
+  }
 }

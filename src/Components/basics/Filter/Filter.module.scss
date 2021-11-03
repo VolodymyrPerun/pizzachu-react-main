@@ -1,13 +1,13 @@
 .container {
+  z-index: 1;
   width: 90%;
   height: 20vh;
   display: flex;
-  justify-self: center;
-  justify-content: space-around;
-  align-items: center;
-  align-content: center;
   align-self: center;
-  z-index: 1;
+  align-items: center;
+  justify-self: center;
+  align-content: center;
+  justify-content: space-around;
 }
 
 .inputContainer {
@@ -24,8 +24,7 @@
   .container {
     width: 75%;
     height: auto;
-    flex-direction: column;
     margin: 20px 10px;
+    flex-direction: column;
   }
 }
-

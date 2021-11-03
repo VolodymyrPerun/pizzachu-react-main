@@ -1,38 +1,38 @@
 .container {
-  display: flex;
-  flex-wrap: wrap;
-  flex-direction: column;
-  grid-area: content;
-  height: auto;
-  min-height: 58.6vh;
   width: 70%;
-  justify-content: space-around;
-  justify-items: center;
-  align-items: baseline;
-  align-self: center;
-  align-content: center;
-  text-align: center;
-  font-family: 'Caveat', cursive;
-  font-weight: 800;
-  border-radius: 15px;
-  margin: 5px auto 20px auto;
+  height: auto;
+  display: flex;
   padding: 10px;
+  flex-wrap: wrap;
+  font-weight: 800;
   background: #fff;
+  grid-area: content;
+  align-self: center;
+  text-align: center;
+  min-height: 58.6vh;
+  border-radius: 15px;
+  align-items: baseline;
+  justify-items: center;
+  align-content: center;
+  flex-direction: column;
   border: 2px solid #f0f0f0;
+  margin: 5px auto 20px auto;
+  justify-content: space-around;
+  font-family: 'Caveat', cursive;
   box-shadow: 0 2px 6px rgba(0,0,0,0.5), inset 0 1px rgba(255,255,255,0.3), inset 0 10px rgba(255,255,255,0.2), inset 0 10px 20px rgba(255,255,255,0.25), inset 0 -15px 30px rgba(0,0,0,0.3);
   -o-box-shadow: 0 2px 6px rgba(0,0,0,0.5), inset 0 1px rgba(255,255,255,0.3), inset 0 10px rgba(255,255,255,0.2), inset 0 10px 20px rgba(255,255,255,0.25), inset 0 -15px 30px rgba(0,0,0,0.3);
-  -webkit-box-shadow: 0 2px 6px rgba(0,0,0,0.5), inset 0 1px rgba(255,255,255,0.3), inset 0 10px rgba(255,255,255,0.2), inset 0 10px 20px rgba(255,255,255,0.25), inset 0 -15px 30px rgba(0,0,0,0.3);
   -moz-box-shadow: 0 2px 6px rgba(0,0,0,0.5), inset 0 1px rgba(255,255,255,0.3), inset 0 10px rgba(255,255,255,0.2), inset 0 10px 20px rgba(255,255,255,0.25), inset 0 -15px 30px rgba(0,0,0,0.3);
+  -webkit-box-shadow: 0 2px 6px rgba(0,0,0,0.5), inset 0 1px rgba(255,255,255,0.3), inset 0 10px rgba(255,255,255,0.2), inset 0 10px 20px rgba(255,255,255,0.25), inset 0 -15px 30px rgba(0,0,0,0.3);
 
   .closeBtn {
     display: flex;
-    justify-content: space-around;
+    color: #EE7178;
+    text-align: right;
+    align-self: flex-end;
     justify-items: center;
     align-items: baseline;
-    align-self: flex-end;
     align-content: center;
-    text-align: right;
-    color: #EE7178;
+    justify-content: space-around;
 
     .icon:hover {
       transform: rotate(180deg);
@@ -40,17 +40,17 @@
   }
 
   .logoContainer {
+    width: 95%;
+    height: auto;
     display: flex;
     flex-wrap: nowrap;
+    text-align: center;
+    align-self: center;
     flex-direction: row;
-    height: auto;
-    width: 95%;
-    justify-content: space-around;
     justify-items: center;
     align-items: baseline;
-    align-self: center;
     align-content: center;
-    text-align: center;
+    justify-content: space-around;
 
     .logo {
 
@@ -65,74 +65,73 @@
   }
 
   .itemContainer {
-    display: flex;
-    justify-content: space-between;
-    // flex-wrap: wrap;
-    align-content: center;
-    flex-direction: row;
     width: 90%;
+    display: flex;
     margin: 10px 0;
+    flex-direction: row;
+    align-content: center;
+    justify-content: space-between;
 
     .cartItem {
       grid-row: 3;
-      grid-column: 1;
-      display: grid;
-      grid-template-columns: 1fr 1fr;
-      grid-template-rows: 1fr 1fr;
-      align-items: center;
-      justify-content: space-between;
-      max-width: 250px;
-      height: auto;
       padding: 5px;
+      height: auto;
+      display: grid;
+      grid-column: 1;
+      max-width: 250px;
       background: #fff;
+      align-items: center;
       border-radius: 15px;
       border: 2px solid #f0f0f0;
+      grid-template-rows: 1fr 1fr;
+      grid-template-columns: 1fr 1fr;
+      justify-content: space-between;
       box-shadow: 0 7px 20px rgba(0, 0, 0, 0.25), 0 7px 7px rgba(0, 0, 0, 0.22);
 
       .img {
-        grid-row: 1 / 3;
-        grid-column: 1;
-        align-self: center;
         width: 80px;
         height: 50px;
+        grid-column: 1;
+        grid-row: 1 / 3;
+        align-self: center;
       }
 
       .tittle {
-        grid-row: 1;
-        grid-column: 2;
-        color: black;
-        font-size: 17px;
         margin: 0;
+        grid-row: 1;
+        color: black;
+        grid-column: 2;
+        font-size: 17px;
         font-weight: bold;
       }
 
       .size {
-        grid-row: 2;
-        grid-column: 2;
-        position: relative;
-        color: gray;
-        font-size: 17px;
-        border: 1px solid #f0f0f0;
-        border-radius: 15px;
-        padding: 0 2.5px;
         margin: 0;
+        grid-row: 2;
+        color: gray;
+        grid-column: 2;
+        font-size: 17px;
+        padding: 0 2.5px;
+        position: relative;
+        border-radius: 15px;
+        border: 1px solid #f0f0f0;
       }
     }
 
     .counter {
       display: flex;
-      align-items: center;
       align-self: center;
+      align-items: center;
       justify-content: space-between;
 
       .minus, .plus {
-        display: flex;
-        align-items: center;
-        align-self: center;
-        text-align: center;
         height: 10px;
+        display: flex;
         color: #008E46;
         margin: 0 10px;
+        align-self: center;
+        text-align: center;
+        align-items: center;
         transition: 0.2ms ease;
 
         &:hover {
@@ -146,29 +145,29 @@
       }
 
       .disable {
+        height: 10px;
         display: flex;
-        align-items: center;
+        margin: 0 10px;
+        color: #aaaaaa;
         align-self: center;
         text-align: center;
-        height: 10px;
-        color: #aaaaaa;
-        margin: 0 10px;
-        transition: 0.2ms ease;
+        align-items: center;
         transform: scale(0.8);
+        transition: 0.2ms ease;
       }
 
       .count {
+        color: gray;
+        height: 10px;
+        padding: 15px;
         display: flex;
-        align-items: center;
+        font-size: 17px;
         align-self: center;
         text-align: center;
-        height: 10px;
-        color: gray;
+        align-items: center;
         margin-right: 20px;
-        font-size: 17px;
-        border: 1px solid #f0f0f0;
         border-radius: 15px;
-        padding: 15px;
+        border: 1px solid #f0f0f0;
       }
 
       .plus {
@@ -177,22 +176,22 @@
     }
 
     .sum {
-      display: flex;
-      align-items: center;
-      align-self: center;
-      justify-content: space-between;
       color: black;
+      display: flex;
       margin: 0 10px;
+      align-self: center;
+      align-items: center;
+      justify-content: space-between;
     }
 
     .delete {
       display: flex;
-      align-items: center;
-      align-self: center;
-      justify-content: space-between;
       color: #EE7178;
       margin: 0 10px;
+      align-self: center;
+      align-items: center;
       transition: 0.2ms ease;
+      justify-content: space-between;
 
       &:hover {
         transform: scale(1.1);
@@ -206,64 +205,64 @@
   }
 
   .totalGroup {
-    display: flex;
-    justify-content: space-between;
-    align-content: center;
-    flex-direction: row;
     width: 90%;
+    display: flex;
     margin: 30px 0;
+    flex-direction: row;
+    align-content: center;
+    justify-content: space-between;
 
     .totalProductsCount {
-      display: flex;
-      align-items: center;
-      align-self: center;
-      justify-content: space-between;
-      color: black;
-      font-size: 17px;
-      border: 1px solid #f0f0f0;
-      border-radius: 15px;
-      padding: 0 2.5px;
       margin: 0;
+      color: black;
+      display: flex;
+      font-size: 17px;
+      padding: 0 2.5px;
+      align-self: center;
+      align-items: center;
+      border-radius: 15px;
+      border: 1px solid #f0f0f0;
+      justify-content: space-between;
 
       span {
-        margin-left: 5px;
         color: gray;
+        margin-left: 5px;
       }
     }
 
     .totalSum {
-      display: flex;
-      align-items: center;
-      align-self: center;
-      justify-content: space-between;
-      color: black;
-      font-size: 17px;
-      border: 1px solid #f0f0f0;
-      border-radius: 15px;
-      padding: 0 2.5px;
       margin: 0;
+      color: black;
+      display: flex;
+      font-size: 17px;
+      padding: 0 2.5px;
+      align-self: center;
+      align-items: center;
+      border-radius: 15px;
+      border: 1px solid #f0f0f0;
+      justify-content: space-between;
     }
   }
 
   .btnGroup {
-    display: flex;
-    justify-content: space-between;
-    align-content: center;
-    flex-direction: row;
     width: 90%;
+    display: flex;
     margin-bottom: 15px;
+    flex-direction: row;
+    align-content: center;
+    justify-content: space-between;
 
     .goBack {
       display: flex;
-      align-items: center;
       align-self: center;
+      align-items: center;
       justify-content: space-between;
     }
 
     .order {
       display: flex;
-      align-items: center;
       align-self: center;
+      align-items: center;
       justify-content: space-between;
     }
   }
@@ -271,7 +270,6 @@
 
 @media only screen and (max-width: 1020px) {
   .container {
-
       .closeBtn {
         display: flex;
         justify-self: end;
@@ -283,17 +281,12 @@
   }
 }
 
-
-
 @media only screen and (max-width: 600px) {
-
   .container {
     width: 90%;
 
     .logoContainer {
-
       .logo {
-
         .tittle {
           font-size: 22px;
         }
@@ -305,21 +298,21 @@
     }
 
     .orderItemContainer {
+      width: 90%;
       display: grid;
-      grid-template-rows: 1fr 1fr;
-      grid-template-columns: 2fr 1fr 1fr;
-      justify-content: space-between;
-      align-content: center;
       align-self: center;
       flex-direction: row;
-      width: 90%;
+      align-content: center;
+      grid-template-rows: 1fr 1fr;
+      justify-content: space-between;
+      grid-template-columns: 2fr 1fr 1fr;
 
       .cartItem {
         grid-row: 1;
-        grid-column: 1 / 4;
         display: grid;
-        grid-template-columns: 1fr 1fr;
+        grid-column: 1 / 4;
         grid-template-rows: 1fr 1fr;
+        grid-template-columns: 1fr 1fr;
 
         .size {
           font-size: 15px;
@@ -346,8 +339,8 @@
 
     .totalGroup {
       .totalProductsCount {
-        font-size: 15px;
         margin: 10px;
+        font-size: 15px;
       }
 
       .totalSum {
@@ -356,7 +349,6 @@
     }
 
     .btnGroup {
-
       .goBack {
         margin-right: 10px;
       }
@@ -367,5 +359,3 @@
     }
   }
 }
-
-

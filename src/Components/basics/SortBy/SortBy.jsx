@@ -1,34 +1,32 @@
-import React from 'react';
-import styles from "./SortBy.module.scss";
-import SortPopup from "./SortPopup/SortPopup";
-import PropTypes from "prop-types";
+import React from 'react'
+import PropTypes from 'prop-types'
+import styles from './SortBy.module.scss'
+import SortPopup from './SortPopup/SortPopup'
+//////////////////////////////////////////////////
 
+const SortBy = ({ setFilter, searchQuery, setSearchQuery }) => {
 
-const SortBy = ({setFilter, searchQuery, setSearchQuery}) => {
-
-    return <>
-
-        <div className={styles.container}>
-            <input
-                onChange={e => setSearchQuery(e.target.value)}
-                value={searchQuery}
-                placeholder={'Пошук...'}
-            />
-            <div className={styles.sortPopup}>
-                <SortPopup setFilter={setFilter}/>
-            </div>
-        </div>
-    </>
-};
+  return <>
+    <div className={styles.container}>
+      <input
+        placeholder='Пошук...'
+        value={searchQuery}
+        onChange={e => setSearchQuery(e.target.value)}/>
+      <div className={styles.sortPopup}>
+        <SortPopup setFilter={setFilter}/>
+      </div>
+    </div>
+  </>
+}
 
 SortBy.propTypes = {
-    searchQuery: PropTypes.string,
-    setFilter:PropTypes.func,
-    setSearchQuery: PropTypes.func
-};
+  setFilter: PropTypes.func,
+  searchQuery: PropTypes.string,
+  setSearchQuery: PropTypes.func,
+}
 
 SortBy.defaultProps = {
-    setFilter: 'name'
-};
+  setFilter: 'name',
+}
 
-export default SortBy;
+export default SortBy

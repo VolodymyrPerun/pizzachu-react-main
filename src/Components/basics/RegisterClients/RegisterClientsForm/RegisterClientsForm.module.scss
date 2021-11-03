@@ -1,25 +1,25 @@
 form {
   display: flex;
-  flex-direction: row;
-  justify-content: center;
-  align-items: center;
   flex-wrap: wrap;
-  align-content: center;
   align-self: center;
+  align-items: center;
+  flex-direction: row;
+  align-content: center;
+  justify-content: center;
 
   .select {
-    color: #008E46;
-    background-color: #EBEBEB;
-    border-top: none;
-    border-right: none;
-    border-left: none;
-    border-bottom: 1.2px solid gray;
     width: 150px;
     height: 32px;
-    border-radius: 3px 3px 0 0;
-    margin-bottom: 0;
-    padding-bottom: 0;
+    color: #008E46;
     font-size: 17px;
+    margin-bottom: 0;
+    border-top: none;
+    padding-bottom: 0;
+    border-left: none;
+    border-right: none;
+    background-color: #EBEBEB;
+    border-radius: 3px 3px 0 0;
+    border-bottom: 1.2px solid gray;
 
     &:hover {
       background-color: #E5E5E5;
@@ -31,33 +31,32 @@ form {
   }
 
   .customFileUpload {
-    margin-bottom: 15px;
-    padding: 7px 4px;
-    border: 1px solid #ccc;
-    display: inline-block;
-    font-family: raleway-grid, sans-serif;
-    font-size: 11px;
-    font-weight: 600;
-    text-transform: uppercase;
-    background-color: #F0650D;
-    color: whitesmoke;
-    box-shadow: 0 3px 10px rgba(0, 0, 0, .25);
     cursor: pointer;
+    font-size: 11px;
+    padding: 7px 4px;
+    font-weight: 600;
+    color: whitesmoke;
+    margin-bottom: 15px;
+    display: inline-block;
+    border: 1px solid #ccc;
+    background-color: #F0650D;
+    text-transform: uppercase;
+    font-family: raleway-grid, sans-serif;
+    box-shadow: 0 3px 10px rgba(0, 0, 0, .25);
   }
 
-
   .formsSummaryError {
-    font: 15px raleway-grid, sans-serif;
-    font-weight: bold;
-    margin: 5px auto;
     display: flex;
     color: #c21500;
     max-width: 70%;
-    justify-content: center;
+    margin: 5px auto;
+    font-weight: bold;
     align-self: center;
-    align-content: center;
-    align-items: center;
     text-align: center;
+    align-items: center;
+    align-content: center;
+    justify-content: center;
+    font: 15px raleway-grid, sans-serif;
   }
 
   .errMsg {
@@ -66,23 +65,14 @@ form {
 
   .order {
     display: flex;
-    align-items: center;
     align-self: center;
+    align-items: center;
     justify-content: space-between;
   }
 }
 
-
-@media only screen and (max-width: 1020px) {
-
-}
-
-
 @media only screen and (max-width: 600px) {
-
   .order {
     margin-left: 10px;
   }
 }
-
-

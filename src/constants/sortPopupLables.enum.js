@@ -1,10 +1,10 @@
 module.exports = {
-    PriceLowValue: 'price_low',
-    PriceLowLabel: 'від дешевих до дорогих',
-    PriceHighValue: 'price_high',
-    PriceHighLabel: 'від дорогих до дешевих',
-    WeightLowValue: 'weight_low',
-    WeightLowLabel: 'від найменшої ваги',
-    WeightHighValue: 'weight_high',
-    WeightHighLabel: 'від найбільшої ваги',
+  PriceLowValue: 'price_low',
+  PriceHighValue: 'price_high',
+  WeightLowValue: 'weight_low',
+  WeightHighValue: 'weight_high',
+  WeightLowLabel: 'від найменшої ваги',
+  WeightHighLabel: 'від найбільшої ваги',
+  PriceLowLabel: 'від дешевих до дорогих',
+  PriceHighLabel: 'від дорогих до дешевих'
 };

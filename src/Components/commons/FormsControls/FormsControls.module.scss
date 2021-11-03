@@ -1,66 +1,65 @@
 .formsControls {
-
   .textareaField {
+    width: 35vw;
     height: 75px;
     resize: none;
     padding: 9px;
-    box-sizing: border-box;
+    max-lines: 50;
     outline: hidden;
-    overflow: hidden;
     font-size: 15px;
+    overflow: hidden;
+    word-break: break-word;
+    box-sizing: border-box;
     background-color: #FFEFBA;
     box-shadow: 1px 1px 1px #aaaaaa;
-    word-break: break-word;
-    max-lines: 50;
-    width: 35vw;
   }
 
   .inputField {
+    width: 35vw;
+    max-lines: 50;
+    color: tomato;
     outline: hidden;
     overflow: hidden;
-    box-shadow: 1px 1px 1px #aaaaaa;
-    word-break: break-word;
-    max-lines: 50;
-    width: 35vw;
-    font: 14px "Matura MT Script Capitals", -apple-system, "Segoe UI", "Roboto", "Oxygen", "Ubuntu", "Cantarell", "Fira Sans", "Droid Sans", "Helvetica Neue", sans-serif;
     max-width: 150px;
-    color: tomato;
+    word-break: break-word;
     border: 2px solid gray;
+    box-shadow: 1px 1px 1px #aaaaaa;
+    font: 14px "Matura MT Script Capitals", -apple-system, "Segoe UI", "Roboto", "Oxygen", "Ubuntu", "Cantarell", "Fira Sans", "Droid Sans", "Helvetica Neue", sans-serif;
   }
 
   .errorsContainer {
-    font: 11px raleway-grid, sans-serif;
     font-weight: 400;
-    margin-bottom: 5px;
     max-width: 195px;
+    margin-bottom: 5px;
+    font: 11px raleway-grid, sans-serif;
 
     span {
-      border: none;
-      font-weight: bold;
       color: #fff;
-      background: #c51244 !important;
+      border: none;
+      margin-top: 10px;
+      font-weight: bold;
+      position: relative;
       padding: 5px !important;
       border-radius: 15px !important;
-      position: relative;
-      display: inline-block !important;
       box-shadow: 1px 1px 1px #aaaaaa;
-      margin-top: 10px;
+      display: inline-block !important;
+      background: #c51244 !important;
 
       &:before {
-        content: '';
         width: 0;
         height: 0;
+        top: -5px;
+        content: '';
+        position: absolute;
+        border-bottom: 10px solid #c51244;
         border-left: 10px solid transparent;
         border-right: 10px solid transparent;
-        border-bottom: 10px solid #c51244;
-        position: absolute;
-        top: -5px;
       }
     }
 
     .warning {
-      background-color: #ffc500 !important;
       color: #008E46;
+      background-color: #ffc500 !important;
 
       &:before {
         border-bottom: 10px solid #ffc500 !important;
@@ -73,8 +72,8 @@
   input, textarea,
   input:active, input:focus,
   textarea:active, textarea:focus {
-    background: #fff0f4 !important;
     color: #c51244 !important;
+    background: #fff0f4 !important;
     border: 1px solid #c51244 !important;
 
     &::placeholder {
@@ -82,5 +81,3 @@
     }
   }
 }
-
-

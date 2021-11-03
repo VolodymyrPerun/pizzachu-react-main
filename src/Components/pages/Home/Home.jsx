@@ -1,18 +1,19 @@
-import React from 'react';
-import Products from "../../../containers/Products/Products";
-import styles from "./Home.module.scss"
-import PromoBlock from "../../../containers/PromoBlock/PromoBlock";
-import '../../../App.scss';
+import React from 'react'
+import '../../../App.scss'
+import styles from './Home.module.scss'
+import Products from '../../../containers/Products/Products'
+import PromoBlock from '../../../containers/PromoBlock/PromoBlock'
+//////////////////////////////////////////////////
 
 const Home = () => {
-    return (
-        <div className='app-wrapper-content'>
-            <div className={styles.container}>
-                <PromoBlock/>
-                <Products/>
-            </div>
-        </div>
-    )
-};
+  return (
+    <div className='app-wrapper-content'>
+      <div className={styles.container}>
+        <PromoBlock/>
+        <Products/>
+      </div>
+    </div>
+  )
+}
 
-export default Home;
+export default Home
