@@ -12,7 +12,6 @@ import {
   initializeApp,
   catchGlobalError,
 } from './redux/reducers/appReducer/thunks'
-
 //////////////////////////////////////////////////
 
 class App extends Component {

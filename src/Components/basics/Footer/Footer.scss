@@ -1,6 +1,9 @@
 .footer {
-  z-index: 5;
+  bottom: 0;
+  width: 100%;
+  z-index: 100;
   display: grid;
+  position: fixed;
   grid-area: footer;
   grid-auto-rows: 1fr;
   background-color: #DEE8C1;
