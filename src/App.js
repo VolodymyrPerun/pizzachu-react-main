@@ -45,12 +45,12 @@ class App extends Component {
     return (
       <div className='app-wrapper'>
         <HeaderContainer/>
-        <Footer/>
         <div className='app-wrapper-content'>
           <Routes
             history={this.props.history}
             globalError={this.props.globalError}/>
         </div>
+        <Footer/>
       </div>
     )
   };
