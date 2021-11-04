@@ -60,7 +60,7 @@ const Login = ({
         src={loginPagePhoto}/>
 
       <div className={styles.forms}>
-        <NavLink className={styles.closeBtn} to={'/home'}>
+        <NavLink to='/home' className={styles.closeBtn}>
           <CloseOutlined className={styles.icon}/>
         </NavLink>
         {!isAuth ? <h1 className={styles.title}>

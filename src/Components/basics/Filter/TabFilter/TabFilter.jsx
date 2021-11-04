@@ -11,9 +11,7 @@ const TabFilter = ({ FilterItems, onPageChangeProducts, activeTab }) => {
         key={index}
         label={item.label}
         className={activeTab === index ? item.active : item.cN}
-        handleClick={onPageChangeProducts(item.type, item.section,
-          item.size_id)}
-      />
+        handleClick={onPageChangeProducts(item.type, item.section, item.size_id)}/>
     ))}
   </>
 }

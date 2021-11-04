@@ -39,7 +39,7 @@ const ChangePassword = ({
         alt='img'
         src={loginPagePhoto}/>
       <div className={styles.forms}>
-        <NavLink to={'/home'} className={styles.closeBtn}>
+        <NavLink to='/home' className={styles.closeBtn}>
           <CloseOutlined className={styles.icon}/>
         </NavLink>
         <h1 className={styles.title}>

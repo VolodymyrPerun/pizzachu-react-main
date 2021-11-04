@@ -76,7 +76,7 @@
     "@types/react-router-dom": "^5.1.7",
     "@types/redux": "^3.6.0",
     "@types/redux-thunk": "^2.1.0",
-    "eslint": "^5.16.0",
+    "eslint": "^6.6.0",
     "eslint-plugin-import": "^2.16.0",
     "material-ui-rating": "^4.2.0",
     "prettier": "2.4.1",
