@@ -7,7 +7,7 @@ import { sortItems } from './sortItems/sortItems'
 const SortPopup = memo(({ setFilter }) => {
 
   return (
-    <div  className='sort' style={{ maxWidth: '180px', maxHeight: '20px' }}>
+    <div className='sort' style={{ maxWidth: '180px', maxHeight: '20px' }}>
       <PopupMenu
         setFilter={setFilter}
         sortItems={sortItems}>

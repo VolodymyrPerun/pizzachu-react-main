@@ -68,7 +68,6 @@ const ProductsCard = ({
             : <p className={styles.description}
                  style={{ color: 'transparent', visibility: 'hidden' }}>.</p>}
           <p className={styles.price}>Ціна: <span>{price}</span> грн.</p>
-
         </NavLink>
         <div className={styles.btn}>
           <AddTo

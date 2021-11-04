@@ -23,7 +23,7 @@ const Routes = ({ history, globalError }) => (
   <Switch>
     <Route
       exact={true} path='/'
-      render={() => <Redirect from={'/'} to={'/home'}/>}/>
+      render={() => <Redirect from='/' to='/home'/>}/>
     <Route path='/cart' render={() => <Cart/>}/>
     <Route path='/login' render={() => <Login/>}/>
     <Route path='/orders' render={() => <Orders/>}/>

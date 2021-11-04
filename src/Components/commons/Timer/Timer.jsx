@@ -49,7 +49,8 @@ const Timer = () => {
 
   return (
     <>
-      <span style={{ color: '#EE7178' }}>{timerComponents.length
+      <span style={{ color: '#EE7178' }}>
+        {timerComponents.length
         ? timerComponents
         : <span>Time's up!</span>}</span>
     </>

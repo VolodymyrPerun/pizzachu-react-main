@@ -15,7 +15,7 @@ import {
 } from '@fortawesome/free-solid-svg-icons'
 //////////////////////////////////////////////////
 
-const NavBar = ({ isAuth, me }) => {
+const NavBar = ({ me, isAuth }) => {
 
   const [click, setClick] = useState(false)
   const [dropdown, setDropdown] = useState(false)
@@ -43,9 +43,8 @@ const NavBar = ({ isAuth, me }) => {
     <>
       <nav className={styles.navbar}>
         <Link to='/home' className={styles.logo} onClick={closeMobileMenu}>
-          <p>P<span>i</span>zz<span>ac</span>hu</p> <img src={logo}
-                                                         alt={'logo'}/>
-          <span role="img" aria-label="information" className={styles.label}> i cheese you! 🍕</span>
+          <p>P<span>i</span>zz<span>ac</span>hu</p> <img alt='logo' src={logo}/>
+          <span role='img' aria-label='information' className={styles.label}> i cheese you! 🍕</span>
         </Link>
         <div className={styles.menuIcon} onClick={handleClick}>
           {click
@@ -70,13 +69,11 @@ const NavBar = ({ isAuth, me }) => {
           <li
             onMouseEnter={onMouseEnter}
             onMouseLeave={onMouseLeave}
-            className={`${styles.navItem} ${styles.navBlockItem}`}
-          >
+            className={`${styles.navItem} ${styles.navBlockItem}`}>
             <Link
               to='#'
               className={styles.navLinks}
-              onClick={closeMobileMenu}
-            >
+              onClick={closeMobileMenu}>
               Сервіс <FontAwesomeIcon
               icon={faCaretDown}
               className={styles.faCaretDown}/>
@@ -87,8 +84,7 @@ const NavBar = ({ isAuth, me }) => {
             <Link
               to='/promotions'
               onClick={closeMobileMenu}
-              className={styles.navLinks}
-            >
+              className={styles.navLinks}>
               Акції
             </Link>
           </li>
@@ -96,8 +92,7 @@ const NavBar = ({ isAuth, me }) => {
             <Link
               to='/delivery'
               onClick={closeMobileMenu}
-              className={styles.navLinks}
-            >
+              className={styles.navLinks}>
               Доставка
             </Link>
           </li>
@@ -105,8 +100,7 @@ const NavBar = ({ isAuth, me }) => {
             <Link
               to='/orders'
               onClick={closeMobileMenu}
-              className={styles.navLinks}
-            >
+              className={styles.navLinks}>
               Мої замовлення
             </Link>
           </li>
@@ -114,8 +108,7 @@ const NavBar = ({ isAuth, me }) => {
             <Link
               to='/profile'
               onClick={closeMobileMenu}
-              className={styles.navLinks}
-            >
+              className={styles.navLinks}>
               Мій профіль
             </Link>
           </li>
@@ -132,46 +125,39 @@ const NavBar = ({ isAuth, me }) => {
             <Link
               to='/contact'
               onClick={closeMobileMenu}
-              className={styles.navLinks}
-            >
+              className={styles.navLinks}>
               Контакти
             </Link>
           </li>
           <li>
-            {isAuth ?
-              <Link
-                title={me.surname ? me.name + ' ' + me.surname : me.name}
+            {isAuth
+              ? <Link
                 to='/login'
                 onClick={closeMobileMenu}
                 className={styles.navLinksMobile}
-              >
-                Вихід <FontAwesomeIcon className={styles.faBars}
-                                       icon={faSignOutAlt}/>
+                title={me.surname ? me.name + ' ' + me.surname : me.name}>
+                Вихід <FontAwesomeIcon icon={faSignOutAlt} className={styles.faBars}/>
               </Link>
               : <Link
                 to='/login'
                 onClick={closeMobileMenu}
-                className={styles.navLinksMobile}
-              >
-                Вхід <FontAwesomeIcon className={styles.faBars}
-                                      icon={faSignInAlt}/>
+                className={styles.navLinksMobile}>
+                Вхід <FontAwesomeIcon icon={faSignInAlt} className={styles.faBars}/>
               </Link>}
           </li>
         </ul>
-        {isAuth ?
-          <Button
-            path={'/login'}
-            label={'Вихід'}
-            title={me.surname ? me.name + ' ' + me.surname : me.name}
+        {isAuth
+          ? <Button
+            path='/login'
+            label='Вихід'
             onClick={closeMobileMenu}
-            icon={<FontAwesomeIcon className={styles.faBars}
-                                   icon={faSignOutAlt}/>}
+            title={me.surname ? me.name + ' ' + me.surname : me.name}
+            icon={<FontAwesomeIcon className={styles.faBars} icon={faSignOutAlt}/>}
           />
           : <Button
-            label={'Вхід'}
-            path={'/login'}
-            icon={<FontAwesomeIcon className={styles.faBars}
-                                   icon={faSignInAlt}/>}/>}
+            label='Вхід'
+            path='/login'
+            icon={<FontAwesomeIcon className={styles.faBars} icon={faSignInAlt}/>}/>}
         <CartCounts/>
       </nav>
     </>
