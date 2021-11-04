@@ -45,10 +45,10 @@ const PopupMenu = memo(({ sortItems, setFilter }) => {
   }
 
   useMemo(() => {
-    document.querySelector('body')
-    .addEventListener('click', clickOutsideCallback)
-    return () => document.querySelector('body')
-    .removeEventListener('click', clickOutsideCallback)
+    document.querySelector('body').
+      addEventListener('click', clickOutsideCallback)
+    return () => document.querySelector('body').
+      removeEventListener('click', clickOutsideCallback)
   }, [clickOutsideCallback])
 
   return (
@@ -80,8 +80,7 @@ const PopupMenu = memo(({ sortItems, setFilter }) => {
               </li>
             ))}
           </ul>
-        </div>
-      )}
+        </div>)}
     </>
   )
 })

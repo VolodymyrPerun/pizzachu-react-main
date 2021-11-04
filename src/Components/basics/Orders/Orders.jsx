@@ -46,7 +46,7 @@ const Orders = memo(({
   return (
     <>
       <div className={styles.container}>
-        <NavLink  to='/home' className={styles.closeBtn}>
+        <NavLink to='/home' className={styles.closeBtn}>
           <CloseCircleOutlined className={styles.icon}/>
         </NavLink>
         <div className={styles.logoContainer}>
@@ -89,17 +89,16 @@ const Orders = memo(({
                     </div>
                     <div className={styles.counter}>
                       <div className={styles.count}>
-                        <span>Дата: {(purchaseItem.created_at)
-                        .toLocaleString()
-                        .slice(0, 10)}</span>
+                        <span>Дата: {(purchaseItem.created_at).toLocaleString().
+                          slice(0, 10)}</span>
                       </div>
                     </div>
                     <div className={styles.counter}>
                       <div className={styles.count}>
-                                                <span>Година: {
-                                                  purchaseItem.created_at.toLocaleString(
-                                                    'pl-PL').slice(11, 19)
-                                                }</span>
+                        <span>Година: {
+                          purchaseItem.created_at.toLocaleString(
+                            'pl-PL').slice(11, 19)
+                        }</span>
                       </div>
                     </div>
                     <div className={styles.counter}>
@@ -114,8 +113,7 @@ const Orders = memo(({
                       }
                     </div>
                   </div>
-                  : null,
-              )}
+                  : null)}
           </>
           : <div className={styles.emptyOrder}>
             {errorMessage && '/' + window.location.href.split('/').pop() ===
@@ -140,7 +138,7 @@ const Orders = memo(({
           }}
         /> : null}
         <div className={styles.btn}>
-          <NavLink  to='/home' className={styles.goBack}>
+          <NavLink to='/home' className={styles.goBack}>
             <ApplyBtn
               icon={faArrowLeft}
               label='На головну'/>
