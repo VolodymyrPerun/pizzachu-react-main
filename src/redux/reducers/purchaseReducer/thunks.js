@@ -1,4 +1,4 @@
-import { purchaseAPI } from '../../../api/purchaseAPI/purchaseAPI'
+import { purchaseAPI } from '../../../API/purchaseAPI/purchaseAPI'
 import { checkAccessTokenPresent } from '../../../helpers/checkAccessTokenPresent'
 import {
   setTempId,

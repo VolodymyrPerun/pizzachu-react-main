@@ -1,4 +1,4 @@
-import { cartAPI } from '../../../api/cartAPI/cartAPI'
+import { cartAPI } from '../../../API/cartAPI/cartAPI'
 import {
   setCart,
   setTempId,

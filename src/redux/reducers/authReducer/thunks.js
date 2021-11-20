@@ -1,9 +1,9 @@
 import { v4 as uuidv4 } from 'uuid'
-import { authAPI } from '../../../api/authAPI/authAPI'
-import { usersAPI } from '../../../api/usersAPI/usersAPI'
+import { authAPI } from '../../../API/authAPI/authAPI'
+import { usersAPI } from '../../../API/usersAPI/usersAPI'
 import { refreshUserToken } from '../refreshReducer/thunks'
 import { CUSTOM_ERRORS, TOKEN_ENUM } from '../../../constants'
-import { profileAPI } from '../../../api/profileAPI/profileAPI'
+import { profileAPI } from '../../../API/profileAPI/profileAPI'
 import { checkAccessTokenPresent } from '../../../helpers/checkAccessTokenPresent'
 import {
   setMyID,

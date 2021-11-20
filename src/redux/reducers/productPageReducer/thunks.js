@@ -1,4 +1,4 @@
-import { productsAPI } from '../../../api/productsAPI/productsAPI';
+import { productsAPI } from '../../../API/productsAPI/productsAPI';
 import {
   setProduct,
   setIsFetching

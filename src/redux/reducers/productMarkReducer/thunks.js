@@ -1,6 +1,6 @@
 import { CUSTOM_ERRORS } from '../../../constants'
 import { refreshUserToken } from '../refreshReducer/thunks'
-import { productsAPI } from '../../../api/productsAPI/productsAPI'
+import { productsAPI } from '../../../API/productsAPI/productsAPI'
 import { setIsEvaluated, setIsMarkLoading, setMark } from './actions'
 import { checkAccessTokenPresent } from '../../../helpers/checkAccessTokenPresent'
 //////////////////////////////////////////////////

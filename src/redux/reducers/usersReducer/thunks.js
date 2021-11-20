@@ -1,5 +1,5 @@
 import { setIsFetching, setUser } from './actions'
-import { usersAPI } from '../../../api/usersAPI/usersAPI'
+import { usersAPI } from '../../../API/usersAPI/usersAPI'
 import { checkAccessTokenPresent } from '../../../helpers/checkAccessTokenPresent'
 //////////////////////////////////////////////////
 
