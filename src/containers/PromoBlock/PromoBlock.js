@@ -1,5 +1,5 @@
 import { connect } from 'react-redux'
-import PromoBlock from '../../components/basics/Products/PromoBlock/PromoBlock'
+import PromoBlock from '../../Components/basics/Products/PromoBlock/PromoBlock'
 import { getAllPromoProducts } from '../../redux/reducers/promoBlockReducer/thunks'
 //////////////////////////////////////////////////
 

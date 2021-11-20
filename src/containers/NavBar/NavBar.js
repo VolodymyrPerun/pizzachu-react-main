@@ -1,7 +1,7 @@
 import { connect } from 'react-redux'
 import { withRouter } from 'react-router-dom'
 import { logout } from '../../redux/reducers/authReducer/thunks'
-import NavBar from '../../components/basics/Header/NavBar/NavBar'
+import NavBar from '../../Components/basics/Header/NavBar/NavBar'
 import { setCart } from '../../redux/reducers/cartReducer/actions'
 //////////////////////////////////////////////////
 

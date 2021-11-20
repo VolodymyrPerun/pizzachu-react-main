@@ -1,5 +1,5 @@
 import { connect } from 'react-redux'
-import { OrderMessage } from '../../components/basics/OrderMessage/OrderMessage'
+import { OrderMessage } from '../../Components/basics/OrderMessage/OrderMessage'
 //////////////////////////////////////////////////
 
 const mapStateToProps = ({ auth }) => ({

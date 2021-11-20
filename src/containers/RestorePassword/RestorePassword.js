@@ -1,7 +1,7 @@
 import { connect } from 'react-redux'
 import { withRouter } from 'react-router-dom'
 import { setCart } from '../../redux/reducers/cartReducer/actions'
-import RestorePassword from '../../components/basics/RestorePassword/RestorePassword'
+import RestorePassword from '../../Components/basics/RestorePassword/RestorePassword'
 import { sendEmailForChangeForgotPassword } from '../../redux/reducers/authReducer/thunks'
 //////////////////////////////////////////////////
 

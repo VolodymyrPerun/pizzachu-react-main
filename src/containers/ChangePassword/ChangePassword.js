@@ -3,7 +3,7 @@ import { withRouter } from 'react-router-dom'
 import { setCart } from '../../redux/reducers/cartReducer/actions'
 import { changeUserPassword } from '../../redux/reducers/authReducer/thunks'
 import ChangePassword
-  from '../../components/basics/ChangePassword/ChangePassword'
+  from '../../Components/basics/ChangePassword/ChangePassword'
 //////////////////////////////////////////////////
 
 const mapStateToProps = ({ auth, cart }) => ({

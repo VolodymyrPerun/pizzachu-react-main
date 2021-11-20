@@ -1,6 +1,6 @@
 import { connect } from 'react-redux'
 import { registerClient } from '../../redux/reducers/registerClientsReducer/thunks'
-import RegisterClients from '../../components/basics/RegisterClients/RegisterClients'
+import RegisterClients from '../../Components/basics/RegisterClients/RegisterClients'
 //////////////////////////////////////////////////
 
 const mapStateToProps = ({ auth, registerClients }) => ({
