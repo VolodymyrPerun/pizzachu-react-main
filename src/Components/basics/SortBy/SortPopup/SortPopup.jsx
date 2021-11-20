@@ -1,5 +1,5 @@
-import React, { memo } from 'react'
 import PropTypes from 'prop-types'
+import React, { memo } from 'react'
 import PopupMenu from '../PopupMenu/PopupMenu'
 import { sortItems } from './sortItems/sortItems'
 //////////////////////////////////////////////////
