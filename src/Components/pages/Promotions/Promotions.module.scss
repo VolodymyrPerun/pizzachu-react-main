@@ -1,8 +1,7 @@
 .container {
   width: 80%;
-  height: auto;
   display: grid;
-  min-height: 80vh;
+  min-height: 77vh;
   grid-area: content;
   align-self: center;
   border-radius: 15px;
@@ -10,7 +9,7 @@
   justify-items: center;
   justify-content: center;
   grid-template-rows: 1fr;
-  margin: 0 auto 50px auto;
+  margin: 0 auto 100px auto;
   vertical-align: baseline;
   border: 2px solid #aaaaaa;
   align-content: space-around;
