@@ -12,7 +12,7 @@ const Error = styled.div`
     text-align: center;
     padding-top: 100px;
     border: 2px solid #c21500;
-font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "Roboto", "Oxygen", "Ubuntu", "Cantarell", "Fira Sans", "Droid Sans", "Helvetica Neue", sans-serif;
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "Roboto", "Oxygen", "Ubuntu", "Cantarell", "Fira Sans", "Droid Sans", "Helvetica Neue", sans-serif;
 `
 
 const Container = styled.div`
@@ -56,8 +56,9 @@ function ErrorMessages ({ globalError }) {
   return (
     <Container>
       <Error>Щось пішло не так! {globalError}</Error>
-      <Button type='button' onClick={handleClick}><CaretLeftFilled/> Повернутись
-        на головну</Button>
+      <Button type='button' onClick={handleClick}>
+        <CaretLeftFilled/> Повернутись на головну
+      </Button>
     </Container>
 
   )

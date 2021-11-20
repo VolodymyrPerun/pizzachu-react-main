@@ -1,7 +1,7 @@
 import { reset } from 'redux-form'
 import { CUSTOM_ERRORS } from '../../../constants'
 import { refreshUserToken } from '../refreshReducer/thunks'
-import { commentAPI } from '../../../api/commentAPI/commentAPI'
+import { commentAPI } from '../../../API/commentAPI/commentAPI'
 import {
   setPageSize,
   setIsLoading,

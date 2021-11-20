@@ -1,6 +1,6 @@
 import { connect } from 'react-redux'
 import { withRouter } from 'react-router-dom'
-import Profile from '../../components/pages/Profile/Profile'
+import Profile from '../../Components/pages/Profile/Profile'
 import {
   updateUserDates,
   updateUserProfilePhoto,

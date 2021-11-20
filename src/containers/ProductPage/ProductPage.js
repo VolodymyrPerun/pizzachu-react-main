@@ -1,7 +1,7 @@
 import { compose } from 'redux'
 import { connect } from 'react-redux'
 import { withRouter } from 'react-router-dom'
-import { ProductPage } from '../../components/pages/ProductPage/ProductPage'
+import { ProductPage } from '../../Components/pages/ProductPage/ProductPage'
 import { setCurrentPage } from '../../redux/reducers/commentsReducer/actions'
 import { getProductById } from '../../redux/reducers/productPageReducer/thunks'
 import {

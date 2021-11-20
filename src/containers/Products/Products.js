@@ -1,6 +1,6 @@
 import { orderBy } from 'lodash'
 import { connect } from 'react-redux'
-import Products from '../../components/basics/Products/Products'
+import Products from '../../Components/basics/Products/Products'
 import { getAllProducts } from '../../redux/reducers/productsReducer/thunks'
 import { setCurrentPage } from '../../redux/reducers/productsReducer/actions'
 import {

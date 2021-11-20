@@ -1,5 +1,5 @@
 import { connect } from 'react-redux'
-import Purchase from '../../components/basics/Purchase/Purchase'
+import Purchase from '../../Components/basics/Purchase/Purchase'
 import { addPurchase } from '../../redux/reducers/purchaseReducer/thunks'
 import { deleteCart, getCart } from '../../redux/reducers/cartReducer/thunks'
 //////////////////////////////////////////////////

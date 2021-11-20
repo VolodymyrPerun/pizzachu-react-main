@@ -1,6 +1,6 @@
 import { connect } from 'react-redux'
 import { withRouter } from 'react-router-dom'
-import Login from '../../components/basics/Login/Login'
+import Login from '../../Components/basics/Login/Login'
 import { setCart } from '../../redux/reducers/cartReducer/actions'
 import { login, logout } from '../../redux/reducers/authReducer/thunks'
 //////////////////////////////////////////////////

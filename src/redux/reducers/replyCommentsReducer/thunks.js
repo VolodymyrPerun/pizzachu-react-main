@@ -3,7 +3,7 @@ import { CUSTOM_ERRORS } from '../../../constants'
 import { setIsLoading } from '../commentsReducer/actions'
 import { refreshUserToken } from '../refreshReducer/thunks'
 import { setReplyCommentInfo, setTotalReplyCommentsCount } from './actions'
-import { replyCommentAPI } from '../../../api/replyCommentAPI/replyCommentAPI'
+import { replyCommentAPI } from '../../../API/replyCommentAPI/replyCommentAPI'
 //////////////////////////////////////////////////
 
 export const getReplyCommentsFromDB = (commentId, pageSize, currentPage) => async dispatch => {

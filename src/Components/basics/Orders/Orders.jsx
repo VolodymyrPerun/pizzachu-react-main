@@ -89,8 +89,9 @@ const Orders = memo(({
                     </div>
                     <div className={styles.counter}>
                       <div className={styles.count}>
-                        <span>Дата: {(purchaseItem.created_at).toLocaleString().
-                          slice(0, 10)}</span>
+                        <span>Дата: {
+                          (purchaseItem.created_at).toLocaleString().slice(0, 10)
+                        }</span>
                       </div>
                     </div>
                     <div className={styles.counter}>

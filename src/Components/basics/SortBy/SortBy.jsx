@@ -9,8 +9,8 @@ const SortBy = ({ setFilter, searchQuery, setSearchQuery }) => {
   return <>
     <div className={styles.container}>
       <input
-        placeholder='Пошук...'
         value={searchQuery}
+        placeholder='Пошук...'
         onChange={e => setSearchQuery(e.target.value)}/>
       <div className={styles.sortPopup}>
         <SortPopup setFilter={setFilter}/>

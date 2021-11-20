@@ -5,9 +5,9 @@ import { BrowserRouter, withRouter } from 'react-router-dom'
 import './App.scss'
 import store from './redux/index'
 import Routes from './routes/routes'
-import Footer from './components/basics/Footer/Footer'
-import Preloader from './components/commons/Preloader/Preloader'
-import HeaderContainer from './components/basics/Header/HeaderContainer'
+import Footer from './Components/basics/Footer/Footer'
+import Preloader from './Components/commons/Preloader/Preloader'
+import HeaderContainer from './Components/basics/Header/HeaderContainer'
 import {
   initializeApp,
   catchGlobalError,

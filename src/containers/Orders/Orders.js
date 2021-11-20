@@ -1,7 +1,7 @@
 import { connect } from 'react-redux'
 import { getAllClientPurchases } from '../../redux/reducers/purchaseReducer/thunks'
 import { orderBy } from 'lodash'
-import Orders from '../../components/basics/Orders/Orders'
+import Orders from '../../Components/basics/Orders/Orders'
 import {
   setPageSize,
   setCurrentPage,

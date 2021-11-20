@@ -1,7 +1,7 @@
 import { setRefreshLoading } from './actions'
 import { CUSTOM_ERRORS } from '../../../constants'
 import historyRout from '../../../helpers/history'
-import { authAPI } from '../../../api/authAPI/authAPI'
+import { authAPI } from '../../../API/authAPI/authAPI'
 import { setIsAuth, setMeDates, setMyID } from '../authReducer/actions'
 import { checkAccessTokenPresent } from '../../../helpers/checkAccessTokenPresent'
 import { checkRefreshTokenPresent } from '../../../helpers/checkRefreshTokenPresent'

@@ -1,7 +1,7 @@
 import { stopSubmit } from 'redux-form'
 import { CUSTOM_ERRORS } from '../../../constants'
 import { setIsFetching, setRegisterErrMsg, setRegisterSuccess } from './actions'
-import { registerClientsAPI } from '../../../api/registerClientsAPI/registerClientsAPI'
+import { registerClientsAPI } from '../../../API/registerClientsAPI/registerClientsAPI'
 //////////////////////////////////////////////////
 
 export const registerClient = (

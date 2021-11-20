@@ -1,5 +1,5 @@
 import { setIsFetching, setProducts } from './actions'
-import { productsAPI } from '../../../api/productsAPI/productsAPI'
+import { productsAPI } from '../../../API/productsAPI/productsAPI'
 //////////////////////////////////////////////////
 
 export const getAllPromoProducts = (
