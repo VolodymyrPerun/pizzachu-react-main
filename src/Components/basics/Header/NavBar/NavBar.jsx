@@ -28,18 +28,12 @@ const NavBar = ({ me, isAuth }) => {
   const onMouseEnter = () => {
     if (window.innerWidth < 1020) {
       setDropdown(false)
-    } else {
-      setDropdown(true)
     }
+
+    setDropdown(true)
   }
 
-  const onMouseLeave = () => {
-    if (window.innerWidth < 1020) {
-      setDropdown(false)
-    } else {
-      setDropdown(false)
-    }
-  }
+  const onMouseLeave = () => setDropdown(false)
 
   return (
     <>

@@ -1,18 +1,13 @@
 import { PRODUCT_TYPE } from '../../../../constants'
 import {
-  TypesFilterItems,
   PizzaSectionsFilterItems,
   SushiAndRolesSectionsFilterItems,
   SoupsAndSaladsSectionsFilterItems,
   DessertsAndDrinksSectionsFilterItems,
-} from './FilterItems'
+} from "./FilterItems";
 //////////////////////////////////////////////////
 
 export default [
-  {
-    type: null,
-    filterItem: TypesFilterItems,
-  },
   {
     type: PRODUCT_TYPE.PIZZA,
     filterItem: PizzaSectionsFilterItems,

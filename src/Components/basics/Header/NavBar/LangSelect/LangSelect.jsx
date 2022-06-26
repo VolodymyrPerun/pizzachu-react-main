@@ -3,12 +3,13 @@ import * as React from 'react'
 import Select from '@mui/material/Select'
 import MenuItem from '@mui/material/MenuItem'
 import FormControl from '@mui/material/FormControl'
+//
 import * as LAGS from '../../../../../constants/langs.enum'
 //////////////////////////////////////////////////
 
 export default function SelectVariants () {
   const initLng = localStorage.getItem('language')
-  const [lang, setLang] = React.useState(initLng)
+  const [lang, setLang] = React.useState((initLng || LAGS.UA))
 
   const handleChange = (event) => {
     const lng = event.target.value
