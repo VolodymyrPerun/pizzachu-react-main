@@ -30,10 +30,10 @@ let LoginForm = ({
               ),
             )}
             <SubmitFollowBtn
+              name='Submit'
+              type='submit'
+              label='Увійти'
               onClick={reset}
-              name={'Submit'}
-              type={'submit'}
-              label={'Увійти'}
               icon={faSignInAlt}
               disabled={pristine || submitting}/>
           </>
@@ -43,20 +43,20 @@ let LoginForm = ({
             justifyContent: 'center',
           }}>
             <SubmitFollowBtn
-              label={'Вихід'}
-              name={'logout'}
-              type={'button'}
+              label='Вихід'
+              name='logout'
+              type='button'
               icon={faSignOutAlt}
               handleClick={onClickLogout}/>
 
             <NavLink
-              to={'/change-password'}
+              to='/change-password'
               className={styles.menuItemLink}
             >
               Змінити пароль?
             </NavLink>
             <NavLink
-              to={'/restore-password'}
+              to='/restore-password'
               className={styles.menuItemLink}
             >
               Забули пароль?

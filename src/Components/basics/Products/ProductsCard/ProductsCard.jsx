@@ -48,9 +48,8 @@ const ProductsCard = ({
       {<div className={styles.container}>
         <NavLink className={styles.card} to={'/productPage/' + productId}>
           {product_photo
-            ? //isFetching ? <img className={styles.image} src={noPhoto} alt={'product'}/> :
-            <img
-              alt={'product'}
+            ? <img
+              alt='product'
               className={styles.image}
               src={`http://localhost:5000/${product_photo}`}/>
             : <img src={noPhoto} alt='product' className={styles.image}/>}

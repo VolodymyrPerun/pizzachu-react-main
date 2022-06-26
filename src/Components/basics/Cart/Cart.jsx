@@ -1,5 +1,6 @@
 import styles from './Cart.module.scss'
 import { NavLink } from 'react-router-dom'
+import { useTranslation } from 'react-i18next'
 import React, { memo, useCallback, useEffect } from 'react'
 import ApplyBtn from '../../commons/Buttons/Apply/ApplyBtn'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
@@ -29,6 +30,7 @@ const Cart = memo(({
   deleteProductFromCart,
 }) => {
 
+  const { t } = useTranslation()
   const minus = useCallback((id, count) => {
     if (count > 1) {
       updateProductInCart(id, --count)
@@ -64,17 +66,17 @@ const Cart = memo(({
             <FontAwesomeIcon
               icon={faCartArrowDown}
               style={{ marginRight: '7px', color: '#EE7178' }}/>
-            <span className={styles.tittle}>Корзина</span>
+            <span className={styles.tittle}>{t('Cart')}</span>
           </div>
           <div className={styles.cartClear}>
             <ApplyBtn
               icon={faTrashAlt}
               handleClick={cartClear}
-              label='Очистити корзину'/>
+              label={t('Clear Cart')}/>
           </div>
         </div>
-        {productsLength !== 0 ?
-          cart.map(cartItem =>
+        {productsLength !== 0
+          ? cart.map(cartItem =>
             <div key={cartItem.id} className={styles.itemContainer}>
               <NavLink
                 className={styles.cartItem}
@@ -86,7 +88,9 @@ const Cart = memo(({
                   src={`http://localhost:5000/${cartItem['Product.product_photo']}`}/>
                 <span
                   className={styles.tittle}>{cartItem['Product.name']}</span>
-                <span className={styles.size}>{cartItem.price} грн</span>
+                <span className={styles.size}>{cartItem.price}
+                  {t('UAH')}
+                </span>
               </NavLink>
               <div className={styles.counter}>
                 <div
@@ -119,38 +123,41 @@ const Cart = memo(({
               >
                 <FontAwesomeIcon icon={faTrash}/>
               </div>
-            </div>,
-          ) : <div style={{ height: '50%', width: '50%', margin: '0 auto' }}>
-            <h3>Кошик порожній</h3>
-            <p>Але це ніколи не пізно виправити :)</p>
+            </div>)
+          : <div style={{ height: '50%', width: '50%', margin: '0 auto' }}>
+            <h3>{t('Empty Cart')}</h3>
+            <p>{t('But never too late to fix it')}</p>
             <img
               src={emptyCart}
               alt='emptyCart'
               className={styles.img}/>
           </div>}
         <div className={styles.totalGroup}>
-          <div className={styles.totalProductsCount}>Всього
-            товарів: <span> {productsLength} шт.</span></div>
-          <div className={styles.totalSum}>Сума замовлення:
+          <div className={styles.totalProductsCount}>
+            {t('Total products')}
+            <span> {productsLength} {t('pcs')}</span></div>
+          <div className={styles.totalSum}>
+            {t('Order amount')}
             <span
               style={{ marginLeft: '7px', color: 'grey' }}
-            >{totalProductsSum}</span>
+            >{totalProductsSum}
+            </span>
             <FontAwesomeIcon
               icon={faHryvnia}
               style={{ marginLeft: '7px', color: '#EE7178' }}/>
           </div>
         </div>
         <div className={styles.btnGroup}>
-          <NavLink  to='/home' className={styles.goBack}>
+          <NavLink to='/home' className={styles.goBack}>
             <ApplyBtn
               icon={faArrowLeft}
-              label='Продовжити покупки'/>
+              label={t('Continue shopping')}/>
           </NavLink>
           {productsLength !== 0 ?
             <NavLink to='/purchase' className={styles.order}>
               <ApplyBtn
                 icon={faArrowRight}
-                label='Замовити товари'/>
+                label={t('Order goods')}/>
             </NavLink> : null}
         </div>
       </div>

@@ -1,22 +1,22 @@
 export const MenuItems = [
   {
-    title: 'Акції',
+    title: 'Promotions',
     path: '/promotions',
     cName: 'dropdownLink',
   },
   {
-    title: 'Доставка',
+    title: 'Delivery',
     path: '/delivery',
     cName: 'dropdownLink',
   },
   {
     path: '/orders',
+    title: 'My Orders',
     cName: 'dropdownLink',
-    title: 'Мої замовлення',
   },
   {
     path: '/profile',
-    title: 'Мій профіль',
+    title: 'My Profile',
     cName: 'dropdownLink',
   },
 ]

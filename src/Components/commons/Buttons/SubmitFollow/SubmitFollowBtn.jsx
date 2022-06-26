@@ -3,7 +3,7 @@ import style from './SubmitFollowBtn.module.scss'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 //////////////////////////////////////////////////
 
-const SubmitFollowBtn = React.memo(({ handleClick, label, icon }) => {
+const SubmitFollowBtn = React.memo(({ icon, label, handleClick }) => {
   return (
     <>
       <button className={style.button} onClick={handleClick}>

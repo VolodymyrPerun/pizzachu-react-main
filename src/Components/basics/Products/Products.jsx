@@ -68,7 +68,6 @@ const Products = memo(({
   }
 
   return <>
-    {/*<PromoBlock isFetching={isFetching} products={products} onPageChangeProducts={onPageChangeProducts}/>*/}
     <SortBy
       setFilter={setFilter}
       searchQuery={searchQuery}

@@ -1,10 +1,10 @@
 import React from 'react'
+import { useTranslation } from 'react-i18next'
 import './Footer.scss'
 import Typography from '@material-ui/core/Typography'
 import { faEnvelope } from '@fortawesome/free-solid-svg-icons'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faViber, faWhatsapp } from '@fortawesome/free-brands-svg-icons'
-
 //////////////////////////////////////////////////
 
 function Copyright () {
@@ -15,7 +15,8 @@ function Copyright () {
       <a
         rel='noopener noreferrer'
         href='mailto:volodimirperun007@gmail.com'
-      > volodimirperun007@gmail.com</a>
+      > volodimirperun007@gmail.com
+      </a>
       {' '}
       {new Date().getFullYear()}
       {'.'}
@@ -24,9 +25,11 @@ function Copyright () {
 }
 
 const Footer = () => {
+  const { t } = useTranslation()
+
   return (
     <footer className='footer'>
-      <p className='address'><span>Наші контакти </span>+380985845196,
+      <p className='address'><span> {t('Our contacts')}</span>+380985845196,
         +380977377403
         +380985845196(Viber, WhatsApp) - volodimirperun007@gmail.com</p>
       <div className='social'>

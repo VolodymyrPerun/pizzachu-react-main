@@ -61,10 +61,10 @@ const ChangePassword = ({
         </div>
         <NavLink to='/login' className={styles.inputContainer}>
           <SubmitFollowBtn
-            type={'button'}
-            name={'Submit'}
+            type='button'
+            name='Submit'
             icon={faUserCheck}
-            label={'Перейти до авторизації'}/>
+            label='Перейти до авторизації'/>
         </NavLink>
       </div>
     </div>

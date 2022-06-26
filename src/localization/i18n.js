@@ -1,0 +1,96 @@
+import i18n from 'i18next'
+import { initReactI18next } from 'react-i18next'
+//////////////////////////////////////////////////
+
+const resources = {
+  ua: {
+    translation: {
+      'pcs': 'шт. ',
+      'UAH': ' грн ',
+      'Login': 'Вхід',
+      'Main': 'Головна',
+      'Logout': 'Вихід',
+      'Cart': 'Корзина',
+      'Service': 'Сервіс',
+      'Promotions': 'Акції',
+      'About Us': 'Про нас',
+      'Delivery': 'Доставка',
+      'Contacts': 'Контакти',
+      '29 minutes': '29 хвилин',
+      'My Profile': 'Мій профіль',
+      'My Orders': 'Мої замовлення',
+      'Empty Cart': 'Кошик порожній',
+      'Our contacts': 'Наші контакти ',
+      'Order goods': 'Замовити товари',
+      'Clear Cart': 'Очистити корзину',
+      'Go to cart': 'Перейти в корзину',
+      'Order amount': 'Сума замовлення: ',
+      'Total products': ' Всього товарів: ',
+      'online restaurant': 'онлайн-ресторан',
+      'Continue shopping': 'Продовжити покупки',
+      'Why are we the best?': 'Чому ми найкращі?',
+      'delivery': ' – доставка суші та піци у Львові',
+      'round the clock': 'цілодобово без вихідних 24/7',
+      'Polite qualified staff': '- Ввічливий кваліфікований персонал',
+      'Large Portions': '- Великі порції та широке меню на будь-який смак',
+      'But never too late to fix it': 'Але це ніколи не пізно виправити :)',
+      'Fast timely delivery': '- Швидка вчасна доставка в заявлені райони міста',
+      'Advantages of sushi and pizza delivery': 'Переваги доставки суші та піци ',
+      'Invariably fresh and high quality products': '- Незмінно свіжа та якісна продукція',
+      'We use': ' Ми використовуємо тільки якісні свіжі продукти та зручне упакування для страв. Замовлення приймаються ',
+      'Its means': 'Це означає, що ми не пропонуємо фаст-фуд. Наші страви – ресторанної якості, якими Ви можете насолоджуватись вдома та на роботі! У нас функціонують 5 кухонь у Львові – в якій би частині міста ви не знаходились, ми оперативно приготуємо та привеземо замовлення до ',
+      'Lead of delivery': '– лідер доставки суші та піци в нашому регіоні з 2021 року. Ми активно розширюємо свою мережу, аби якомога більше наших краян могли насолоджуватись смачними стравами від Pizzachu! Ми постійно працюємо над тим, щоб наші суші, роли, піца та інші страви були на найвищому кулінарному рівні! Авторські рецепти від бренд-шефа підкорили безліч животиків!',
+    },
+  },
+  en: {
+    translation: {
+      'UAH': ' UAH ',
+      'pcs': 'pcs. ',
+      'Main': 'Main',
+      'Cart': 'Cart',
+      'Login': 'Login',
+      'Logout': 'Logout',
+      'Service': 'Service',
+      'About Us': 'About Us',
+      'Delivery': 'Delivery',
+      'Contacts': 'Contacts',
+      'My Orders': 'My Orders',
+      'Promotions': 'Promotions',
+      'My Profile': 'My Profile',
+      '29 minutes': '29 minutes',
+      'Go to cart': 'Go to cart',
+      'Clear Cart': 'Clear Cart',
+      'Order goods': 'Order goods',
+      'Empty Cart': 'Cart is Empty',
+      'Our contacts': 'Our contacts ',
+      'Order amount': 'Order amount: ',
+      'Total products': 'Total products: ',
+      'Continue shopping': 'Continue shopping',
+      'online restaurant': 'online restaurant',
+      'Why are we the best?': 'Why are we the best?',
+      'delivery': ' - delivery of sushi and pizza in Lviv',
+      'Polite qualified staff': '- Polite qualified staff',
+      'round the clock': 'round the clock without days off 24/7',
+      'Large Portions': '- Large portions and a wide menu for every taste',
+      'But never too late to fix it': 'But it\'s never too late to fix it :)',
+      'Fast timely delivery': '- Fast timely delivery to the declared areas of the city',
+      'Advantages of sushi and pizza delivery': 'Advantages of sushi and pizza delivery ',
+      'Invariably fresh and high quality products': '- Invariably fresh and high quality products',
+      'We use': ' We use only quality fresh produce and convenient packaging for meals. Orders are accepted ',
+      'Its means': 'This means that we do not offer fast food. Our dishes are of restaurant quality, which you can enjoy at home and at work! We have 5 kitchens in Lviv - no matter what part of the city you are in, we will promptly prepare and bring the order to ',
+      'Lead of delivery': '- a leader in the delivery of sushi and pizza in our region since 2021. We are actively expanding our network so that as many of our regions as possible can enjoy delicious Pizzachu dishes! We are constantly working to ensure that our sushi, rolls, pizza and other dishes are at the highest culinary level! Author\'s recipes from the brand chef conquered many bellies!',
+    },
+  },
+}
+
+i18n
+.use(initReactI18next)
+.init({
+  resources,
+  lng: 'en',
+  interpolation: {
+    escapeValue: false,
+  },
+})
+
+export default i18n

@@ -126,16 +126,16 @@ export const SushiAndRolesSectionsFilterItems = [
     cN: 'tabSection',
     label: LABELS_UA.Cheese,
     active: 'tabActiveSection',
-    type: PRODUCT_TYPE.SUSHI_AND_ROLES,
     section: PRODUCT_SECTION.CHEESE,
+    type: PRODUCT_TYPE.SUSHI_AND_ROLES,
   },
   {
     size_id: L,
     cN: 'tabSection',
     label: LABELS_UA.Half,
     active: 'tabActiveSection',
-    type: PRODUCT_TYPE.SUSHI_AND_ROLES,
     section: PRODUCT_SECTION.HALF,
+    type: PRODUCT_TYPE.SUSHI_AND_ROLES,
   },
   {
     size_id: L,
@@ -204,8 +204,8 @@ export const DessertsAndDrinksSectionsFilterItems = [
     cN: 'tabSection',
     label: LABELS_UA.Desserts,
     active: 'tabActiveSection',
-    type: PRODUCT_TYPE.DESSERTS_AND_DRINKS,
     section: PRODUCT_SECTION.DESSERTS,
+    type: PRODUCT_TYPE.DESSERTS_AND_DRINKS,
   },
   {
     size_id: L,
