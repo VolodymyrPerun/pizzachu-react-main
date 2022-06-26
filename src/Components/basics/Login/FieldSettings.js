@@ -45,8 +45,8 @@ export default [
     type: 'password',
     component: input,
     labelIcon: faKey,
-    className: inputStyles,
     placeholder: 'Пароль',
+    className: inputStyles,
     validate: [isRequired, minLength8, maxLength20],
   },
 ]

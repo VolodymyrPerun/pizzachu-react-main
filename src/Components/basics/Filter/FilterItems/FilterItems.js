@@ -4,7 +4,6 @@ import { LABELS_UA, PRODUCT_SECTION, PRODUCT_TYPE } from '../../../../constants'
 
 export const TypesFilterItems = [
   {
-    size_id: L,
     cN: 'tabType',
     section: null,
     label: LABELS_UA.Pizza,
@@ -47,7 +46,6 @@ export const TypesFilterItems = [
 
 export const PizzaSectionsFilterItems = [
   {
-    size_id: L,
     section: null,
     cN: 'tabSection',
     label: LABELS_UA.ALL,
@@ -55,7 +53,6 @@ export const PizzaSectionsFilterItems = [
     active: 'tabActiveSection',
   },
   {
-    size_id: L,
     cN: 'tabSection',
     type: PRODUCT_TYPE.PIZZA,
     active: 'tabActiveSection',
@@ -63,7 +60,6 @@ export const PizzaSectionsFilterItems = [
     section: PRODUCT_SECTION.VEGETARIAN,
   },
   {
-    size_id: L,
     cN: 'tabSection',
     label: LABELS_UA.Hot,
     type: PRODUCT_TYPE.PIZZA,
@@ -71,7 +67,6 @@ export const PizzaSectionsFilterItems = [
     section: PRODUCT_SECTION.HOT,
   },
   {
-    size_id: XL,
     cN: 'tabPromoSection',
     type: PRODUCT_TYPE.PIZZA,
     active: 'tabActiveSection',
@@ -126,16 +121,16 @@ export const SushiAndRolesSectionsFilterItems = [
     cN: 'tabSection',
     label: LABELS_UA.Cheese,
     active: 'tabActiveSection',
-    type: PRODUCT_TYPE.SUSHI_AND_ROLES,
     section: PRODUCT_SECTION.CHEESE,
+    type: PRODUCT_TYPE.SUSHI_AND_ROLES,
   },
   {
     size_id: L,
     cN: 'tabSection',
     label: LABELS_UA.Half,
     active: 'tabActiveSection',
-    type: PRODUCT_TYPE.SUSHI_AND_ROLES,
     section: PRODUCT_SECTION.HALF,
+    type: PRODUCT_TYPE.SUSHI_AND_ROLES,
   },
   {
     size_id: L,
@@ -204,8 +199,8 @@ export const DessertsAndDrinksSectionsFilterItems = [
     cN: 'tabSection',
     label: LABELS_UA.Desserts,
     active: 'tabActiveSection',
-    type: PRODUCT_TYPE.DESSERTS_AND_DRINKS,
     section: PRODUCT_SECTION.DESSERTS,
+    type: PRODUCT_TYPE.DESSERTS_AND_DRINKS,
   },
   {
     size_id: L,

@@ -1,11 +1,12 @@
+module.exports.LANGS = require('./langs.enum');
+module.exports.LABELS_UA = require('./labelsUA.enum');
 module.exports.PRODUCT_TYPE = require('./productType.enum');
-module.exports.PRODUCT_SECTION = require('./productSection.enum');
 module.exports.PAGE_DEFAULT = require('./pageDefault.enum');
 module.exports.SIZES_DEFAULT = require('./sizesDefault.enum');
-module.exports.LABELS_UA = require('./labelsUA.enum');
-module.exports.SORT_POPUP_LABELS = require('./sortPopupLables.enum');
-module.exports.HEADER_ENUM = require('./authConstants/header.enum');
+module.exports.PRODUCT_SECTION = require('./productSection.enum');
 module.exports.TOKEN_ENUM = require('./authConstants/token.enum');
-module.exports.CUSTOM_ERRORS = require('./customErrors/customErrors');
 module.exports.USER_ROLE = require('./userConstants/userRole.enum');
+module.exports.HEADER_ENUM = require('./authConstants/header.enum');
+module.exports.SORT_POPUP_LABELS = require('./sortPopupLables.enum');
+module.exports.CUSTOM_ERRORS = require('./customErrors/customErrors');
 module.exports.USER_STATUS = require('./userConstants/userStatus.enum');

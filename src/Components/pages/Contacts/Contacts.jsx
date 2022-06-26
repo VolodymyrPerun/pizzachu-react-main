@@ -1,23 +1,27 @@
 import React from 'react'
-import styles from './Contacts.module.scss'
+import { useTranslation } from 'react-i18next'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import contactsPagePhoto from '../../../assets/images/contacts.png'
 import { faViber, faWhatsapp } from '@fortawesome/free-brands-svg-icons'
 import { faAt, faPhone, faPhoneAlt } from '@fortawesome/free-solid-svg-icons'
+//
+import styles from './Contacts.module.scss'
+import contactsPagePhoto from '../../../assets/images/contacts.png'
 //////////////////////////////////////////////////
 
 const Contacts = () => {
+  const { t } = useTranslation()
+
   return (
     <div className={styles.container}>
-      <h2 className={styles.title}>Контакти</h2>
+      <h2 className={styles.title}>{t('Contacts')}</h2>
       <p className={styles.subtitle}>
         <span
-          className={styles.logo}>P<span>i</span>zz<span>ac</span>hu</span> –
-        наші контакти
+          className={styles.logo}>P<span>i</span>zz<span>ac</span>hu </span>
+        – {t('Our contacts').toLowerCase()}
       </p>
       <img alt='img' className={styles.img} src={contactsPagePhoto}/>
       <div className={styles.contacts}>
-        <h3 className={styles.title}>Співпраця та партнерство:</h3>
+        <h3 className={styles.title}>{t('Cooperation and partnership')}:</h3>
         <a href='tel:+380985845196' className={styles.subtitle}
            rel='noopener noreferrer'>
           <FontAwesomeIcon

@@ -1,3 +1,4 @@
+import { CUSTOM_ERRORS } from '../../../constants'
 import { purchaseAPI } from '../../../API/purchaseAPI/purchaseAPI'
 import { checkAccessTokenPresent } from '../../../helpers/checkAccessTokenPresent'
 import {
@@ -9,7 +10,6 @@ import {
   setPurchaseSuccess,
   setTotalPurchasesCount,
 } from './actions'
-import { CUSTOM_ERRORS } from '../../../constants'
 //////////////////////////////////////////////////
 
 export const addPurchase = (

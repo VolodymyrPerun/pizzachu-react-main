@@ -1,19 +1,23 @@
 import PropTypes from 'prop-types'
 import React, { memo, useMemo } from 'react'
-import styles from './PopupMenu.module.scss'
-import { PRODUCT_TYPE } from '../../../../constants'
+import { useTranslation } from 'react-i18next'
 import { faCaretDown } from '@fortawesome/free-solid-svg-icons'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
+//
+import styles from './PopupMenu.module.scss'
+import { PRODUCT_TYPE } from '../../../../constants'
 //////////////////////////////////////////////////
 
 let label = 'оберіть метод сортування'
-const PopupMenu = memo(({ sortItems, setFilter }) => {
 
+const PopupMenu = memo(({ sortItems, setFilter }) => {
+  const { t } = useTranslation()
   const blockRef = React.useRef(0)
   const [activeItem, setActiveItem] = React.useState(0)
   const [visiblePopup, setVisiblePopup] = React.useState(false)
   const clickOutsideCallback = React.useCallback(e => {
     const path = e.path || (e.composedPath && e.composedPath())
+
     if (!path.includes(blockRef.current)) {
       setVisiblePopup(false)
     }
@@ -27,6 +31,7 @@ const PopupMenu = memo(({ sortItems, setFilter }) => {
     if (setFilter) {
       setFilter(item)
     }
+
     setActiveItem(item)
     setVisiblePopup(false)
 
@@ -46,6 +51,7 @@ const PopupMenu = memo(({ sortItems, setFilter }) => {
 
   useMemo(() => {
     document.querySelector('body').addEventListener('click', clickOutsideCallback)
+
     return () =>
       document.querySelector('body').removeEventListener('click', clickOutsideCallback)
   }, [clickOutsideCallback])
@@ -55,14 +61,16 @@ const PopupMenu = memo(({ sortItems, setFilter }) => {
       <div
         ref={blockRef}
         className={styles.container}
-        onClick={toggleVisiblePopup}>
+        onClick={toggleVisiblePopup}
+      >
         <div
           className='sort__label'
           style={{ width: '180px', maxHeight: '50px', fontSize: '17px' }}>
           <FontAwesomeIcon
             icon={faCaretDown}
-            className={visiblePopup ? styles.rotated : ''}/>
-          <b>Сортувати по: </b><br/>
+            className={visiblePopup ? styles.rotated : ''}
+          />
+          <b>{`${t('Sort by')}: `}</b><br/>
           <span className={styles.label}>{label}</span>
         </div>
       </div>
@@ -73,7 +81,8 @@ const PopupMenu = memo(({ sortItems, setFilter }) => {
               <li
                 key={index}
                 onClick={(() => handleClick(item.value))}
-                className={item.value === activeItem ? styles.active : ''}>
+                className={item.value === activeItem ? styles.active : ''}
+              >
                 <FontAwesomeIcon icon={item.icon}/>
                 {item.label}
               </li>

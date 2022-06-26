@@ -1,12 +1,13 @@
 import { Pagination } from 'antd'
 import PropTypes from 'prop-types'
 import React, { memo, useMemo, useState } from 'react'
+import { FastBackwardFilled, FastForwardFilled } from '@ant-design/icons'
+//
 import SortBy from '../SortBy/SortBy'
 import { Filter } from '../Filter/Filter'
 import styles from './Products.module.scss'
 import { PAGE_DEFAULT, PRODUCT_TYPE } from '../../../constants'
 import ProductCard from '../../basics/Products/ProductsCard/ProductsCard'
-import { FastBackwardFilled, FastForwardFilled } from '@ant-design/icons'
 //import Preloader from "../../commons/Preloader/Preloader";
 //////////////////////////////////////////////////
 
@@ -35,6 +36,7 @@ const Products = memo(({
     } catch (e) {
       console.error(e)
     }
+
     return (() => {
         cleanupFunction = true
         getAllProducts(type, section, size_id, pageSize, currentPage)
@@ -58,17 +60,14 @@ const Products = memo(({
   let pagesCount = Math.floor(Math.ceil(total / pageSize) * 10)
 
   function itemRender (current, type, originalElement) {
-    if (type === 'prev') {
-      return <button><FastBackwardFilled/></button>
-    }
-    if (type === 'next') {
-      return <button><FastForwardFilled/></button>
-    }
+    if (type === 'prev') return <button><FastBackwardFilled/></button>
+
+    if (type === 'next') return <button><FastForwardFilled/></button>
+
     return originalElement
   }
 
   return <>
-    {/*<PromoBlock isFetching={isFetching} products={products} onPageChangeProducts={onPageChangeProducts}/>*/}
     <SortBy
       setFilter={setFilter}
       searchQuery={searchQuery}
@@ -83,9 +82,9 @@ const Products = memo(({
         // ? <Preloader/> :
         products.map(product =>
           <ProductCard
-            key={product.productId}
             {...product}
             getCart={getCart}
+            key={product.productId}
             isFetching={isFetching}
             addProductToCart={addProductToCart}/>
         )}

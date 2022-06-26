@@ -1,10 +1,6 @@
 import React, { useState } from 'react'
 import { Link } from 'react-router-dom'
-import styles from './NavBar.module.scss'
-import Dropdown from './Dropdown/Dropdown'
-import { Button } from './Button/ButtonLogin'
-import CartCounts from '../CartCounts/CartCounts'
-import logo from '../../../../assets/images/mail_bg.png'
+import { useTranslation } from 'react-i18next'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import {
   faBars,
@@ -13,10 +9,17 @@ import {
   faSignInAlt,
   faSignOutAlt,
 } from '@fortawesome/free-solid-svg-icons'
+//
+import styles from './NavBar.module.scss'
+import Dropdown from './Dropdown/Dropdown'
+import { Button } from './Button/ButtonLogin'
+import LangSelect from './LangSelect/LangSelect'
+import CartCounts from '../CartCounts/CartCounts'
+import logo from '../../../../assets/images/mail_bg.png'
 //////////////////////////////////////////////////
 
 const NavBar = ({ me, isAuth }) => {
-
+  const { t } = useTranslation()
   const [click, setClick] = useState(false)
   const [dropdown, setDropdown] = useState(false)
 
@@ -26,25 +29,23 @@ const NavBar = ({ me, isAuth }) => {
   const onMouseEnter = () => {
     if (window.innerWidth < 1020) {
       setDropdown(false)
-    } else {
-      setDropdown(true)
     }
+
+    setDropdown(true)
   }
 
-  const onMouseLeave = () => {
-    if (window.innerWidth < 1020) {
-      setDropdown(false)
-    } else {
-      setDropdown(false)
-    }
-  }
+  const onMouseLeave = () => setDropdown(false)
 
   return (
     <>
       <nav className={styles.navbar}>
         <Link to='/home' className={styles.logo} onClick={closeMobileMenu}>
-          <p>P<span>i</span>zz<span>ac</span>hu</p> <img alt='logo' src={logo}/>
-          <span role='img' aria-label='information' className={styles.label}> i cheese you! 🍕</span>
+          <p>P<span>i</span>zz<span>ac</span>hu </p>
+          <img alt='logo' src={logo}/>
+          <span
+            role='img'
+            aria-label='information'
+            className={styles.label}> i cheese you! 🍕</span>
         </Link>
         <div className={styles.menuIcon} onClick={handleClick}>
           {click
@@ -62,8 +63,9 @@ const NavBar = ({ me, isAuth }) => {
             <Link
               to='/home'
               className={styles.navLinks}
-              onClick={closeMobileMenu}>
-              Головна
+              onClick={closeMobileMenu}
+            >
+              {t('Main')}
             </Link>
           </li>
           <li
@@ -72,9 +74,11 @@ const NavBar = ({ me, isAuth }) => {
             className={`${styles.navItem} ${styles.navBlockItem}`}>
             <Link
               to='#'
+              onClick={closeMobileMenu}
               className={styles.navLinks}
-              onClick={closeMobileMenu}>
-              Сервіс <FontAwesomeIcon
+            >
+              {t('Service')}
+              <FontAwesomeIcon
               icon={faCaretDown}
               className={styles.faCaretDown}/>
             </Link>
@@ -84,32 +88,36 @@ const NavBar = ({ me, isAuth }) => {
             <Link
               to='/promotions'
               onClick={closeMobileMenu}
-              className={styles.navLinks}>
-              Акції
+              className={styles.navLinks}
+            >
+              {t('Promotions')}
             </Link>
           </li>
           <li className={`${styles.navItem} ${styles.navMobileItem}`}>
             <Link
               to='/delivery'
               onClick={closeMobileMenu}
-              className={styles.navLinks}>
-              Доставка
+              className={styles.navLinks}
+            >
+              {t('Delivery')}
             </Link>
           </li>
           <li className={`${styles.navItem} ${styles.navMobileItem}`}>
             <Link
               to='/orders'
               onClick={closeMobileMenu}
-              className={styles.navLinks}>
-              Мої замовлення
+              className={styles.navLinks}
+            >
+              {t('My Orders')}
             </Link>
           </li>
           <li className={`${styles.navItem} ${styles.navMobileItem}`}>
             <Link
               to='/profile'
               onClick={closeMobileMenu}
-              className={styles.navLinks}>
-              Мій профіль
+              className={styles.navLinks}
+            >
+              {t('My Profile')}
             </Link>
           </li>
           <li className={styles.navItem}>
@@ -118,45 +126,49 @@ const NavBar = ({ me, isAuth }) => {
               onClick={closeMobileMenu}
               className={styles.navLinks}
             >
-              Про нас
+              {t('About Us')}
             </Link>
           </li>
           <li className={styles.navItem}>
             <Link
               to='/contact'
               onClick={closeMobileMenu}
-              className={styles.navLinks}>
-              Контакти
+              className={styles.navLinks}
+            >
+              {t('Contacts')}
             </Link>
           </li>
+          <LangSelect />
           <li>
             {isAuth
               ? <Link
                 to='/login'
                 onClick={closeMobileMenu}
                 className={styles.navLinksMobile}
-                title={me.surname ? me.name + ' ' + me.surname : me.name}>
-                Вихід <FontAwesomeIcon icon={faSignOutAlt} className={styles.faBars}/>
+                title={me.surname ? me.name + ' ' + me.surname : me.name}
+              >
+                {t('Logout')} <FontAwesomeIcon icon={faSignOutAlt} className={styles.faBars}/>
               </Link>
               : <Link
                 to='/login'
                 onClick={closeMobileMenu}
-                className={styles.navLinksMobile}>
-                Вхід <FontAwesomeIcon icon={faSignInAlt} className={styles.faBars}/>
+                className={styles.navLinksMobile}
+              >
+                {t('Login')} <FontAwesomeIcon icon={faSignInAlt} className={styles.faBars}/>
               </Link>}
           </li>
         </ul>
         {isAuth
           ? <Button
             path='/login'
-            label='Вихід'
+            label={t('Logout')}
             onClick={closeMobileMenu}
             title={me.surname ? me.name + ' ' + me.surname : me.name}
             icon={<FontAwesomeIcon className={styles.faBars} icon={faSignOutAlt}/>}
           />
           : <Button
-            label='Вхід'
             path='/login'
+            label={t('Login')}
             icon={<FontAwesomeIcon className={styles.faBars} icon={faSignInAlt}/>}/>}
         <CartCounts/>
       </nav>

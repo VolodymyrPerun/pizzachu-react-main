@@ -1,8 +1,11 @@
+import i18next from 'i18next'
 import { compose } from 'redux'
 import { connect, Provider } from 'react-redux'
 import React, { Component, StrictMode } from 'react'
-import { BrowserRouter, withRouter } from 'react-router-dom'
+import { withRouter, BrowserRouter } from 'react-router-dom'
+//
 import './App.scss'
+import './localization'
 import store from './redux/index'
 import Routes from './routes/routes'
 import Footer from './Components/basics/Footer/Footer'
@@ -25,6 +28,8 @@ class App extends Component {
 
   componentDidMount () {
     this.props.initializeApp()
+    const lngFromStorage = localStorage.getItem('language')
+    i18next.changeLanguage(lngFromStorage)
     window.addEventListener('unhandledrejection', this.catchAllUnhandledErrors)
   };
 

@@ -1,12 +1,14 @@
 import React from 'react'
 import { useSelector } from 'react-redux'
 import { NavLink } from 'react-router-dom'
+import { useTranslation } from 'react-i18next'
 import styles from './CartCounts.module.scss'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faCartArrowDown, faHryvnia } from '@fortawesome/free-solid-svg-icons'
 //////////////////////////////////////////////////
 
 const CartCounts = () => {
+  const { t } = useTranslation()
   const { productsLength, totalProductsSum } = useSelector(({ cart }) => (
     {
       productsLength: cart.productsLength,
@@ -16,7 +18,7 @@ const CartCounts = () => {
     }))
 
   return (
-    <NavLink to='/cart' title='Перейти в корзину' className={styles.container}>
+    <NavLink to='/cart' title={t('Go to cart')} className={styles.container}>
       <div style={{ fontSize: '14px' }}>
         {totalProductsSum}
         <FontAwesomeIcon

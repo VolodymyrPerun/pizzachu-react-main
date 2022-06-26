@@ -84,4 +84,3 @@ export default connect(({ auth }) => ({
 }))(reduxForm({
   form: 'purchaseForm',
 })(PurchaseForm))
-

@@ -33,7 +33,7 @@ const Orders = memo(({
 
   let pagesCount = Math.floor(Math.ceil(length / pageSize) * 10)
 
-  function itemRender (current, type, originalElement) {
+  function itemRender (type, current, originalElement) {
     if (type === 'prev') {
       return <button><FastBackwardFilled/></button>
     }
@@ -70,8 +70,9 @@ const Orders = memo(({
                   <span>Перейти до покупок?</span>
                 </NavLink>
               </div>
-              : purchases.map((purchaseItem, i) =>
-                purchaseItem.status_id === 1 || purchaseItem.status_id === 2 ||
+              : purchases.map((purchaseItem) =>
+                purchaseItem.status_id === 1 ||
+                purchaseItem.status_id === 2 ||
                 purchaseItem.status_id === 4 ?
                   <div key={purchaseItem.id}
                        className={styles.orderItemContainer}>
@@ -84,28 +85,29 @@ const Orders = memo(({
                         color: '#EE7178',
                         marginLeft: '7px',
                         marginRight: '7px',
-                      }}>Сума замовлення: </span>
+                      }}>
+                        Сума замовлення: </span>
                       {purchaseItem.total} грн
                     </div>
                     <div className={styles.counter}>
                       <div className={styles.count}>
-                        <span>Дата: {
-                          (purchaseItem.created_at).toLocaleString().slice(0, 10)
+                        <span>
+                          Дата: {(purchaseItem.created_at).toLocaleString()
+                        .slice(0, 10)
                         }</span>
                       </div>
                     </div>
                     <div className={styles.counter}>
                       <div className={styles.count}>
-                        <span>Година: {
-                          purchaseItem.created_at.toLocaleString(
-                            'pl-PL').slice(11, 19)
-                        }</span>
+                        <span>
+                          Година: {purchaseItem.created_at.toLocaleString(
+                          'pl-PL').slice(11, 19)}
+                        </span>
                       </div>
                     </div>
                     <div className={styles.counter}>
                       {purchaseItem['PurchaseStatus.status'] === 'in_progress'
-                        ?
-                        <div className={styles.count}>
+                        ? <div className={styles.count}>
                           <span>В процесі</span>
                         </div>
                         : <div className={styles.done}>
@@ -128,16 +130,18 @@ const Orders = memo(({
               <span>Зараєструватись зараз?</span>
             </NavLink>
           </div>}
-        {isAuth && purchases.length > 0 ? <Pagination
-          total={pagesCount}
-          showLessItems={true}
-          showSizeChanger={false}
-          itemRender={itemRender}
-          className={styles.pagination}
-          onChange={(p) => {
-            onPageChange(p)
-          }}
-        /> : null}
+        {isAuth && purchases.length > 0
+          ? <Pagination
+            total={pagesCount}
+            showLessItems={true}
+            showSizeChanger={false}
+            itemRender={itemRender}
+            className={styles.pagination}
+            onChange={(p) => {
+              onPageChange(p)
+            }}
+          />
+          : null}
         <div className={styles.btn}>
           <NavLink to='/home' className={styles.goBack}>
             <ApplyBtn
