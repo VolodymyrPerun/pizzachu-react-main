@@ -1,5 +1,6 @@
-import { SORT_POPUP_LABELS } from '../../../../../constants'
 import { faCaretUp, faCaretDown } from '@fortawesome/free-solid-svg-icons'
+//
+import { SORT_POPUP_LABELS } from '../../../../../constants'
 //////////////////////////////////////////////////
 
 export const sortItems = [

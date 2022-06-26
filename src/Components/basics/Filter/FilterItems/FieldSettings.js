@@ -4,7 +4,7 @@ import {
   SushiAndRolesSectionsFilterItems,
   SoupsAndSaladsSectionsFilterItems,
   DessertsAndDrinksSectionsFilterItems,
-} from "./FilterItems";
+} from './FilterItems'
 //////////////////////////////////////////////////
 
 export default [

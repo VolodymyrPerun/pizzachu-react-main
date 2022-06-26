@@ -1,10 +1,11 @@
 import React from 'react'
 import PropTypes from 'prop-types'
+//
 import styles from './Filter.module.scss'
 import TabFilter from './TabFilter/TabFilter'
 import { PRODUCT_TYPE } from '../../../constants'
 import  FieldSettings from './FilterItems/FieldSettings'
-import { TypesFilterItems } from "./FilterItems/FilterItems";
+import { TypesFilterItems } from './FilterItems/FilterItems'
 //////////////////////////////////////////////////
 
 export const Filter = ({ type, activeTab, onPageChangeProducts }) =>

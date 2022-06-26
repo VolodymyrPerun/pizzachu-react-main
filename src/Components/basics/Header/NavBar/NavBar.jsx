@@ -1,12 +1,6 @@
 import React, { useState } from 'react'
 import { Link } from 'react-router-dom'
 import { useTranslation } from 'react-i18next'
-import styles from './NavBar.module.scss'
-import Dropdown from './Dropdown/Dropdown'
-import { Button } from './Button/ButtonLogin'
-import LangSelect from './LangSelect/LangSelect'
-import CartCounts from '../CartCounts/CartCounts'
-import logo from '../../../../assets/images/mail_bg.png'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import {
   faBars,
@@ -15,6 +9,13 @@ import {
   faSignInAlt,
   faSignOutAlt,
 } from '@fortawesome/free-solid-svg-icons'
+//
+import styles from './NavBar.module.scss'
+import Dropdown from './Dropdown/Dropdown'
+import { Button } from './Button/ButtonLogin'
+import LangSelect from './LangSelect/LangSelect'
+import CartCounts from '../CartCounts/CartCounts'
+import logo from '../../../../assets/images/mail_bg.png'
 //////////////////////////////////////////////////
 
 const NavBar = ({ me, isAuth }) => {

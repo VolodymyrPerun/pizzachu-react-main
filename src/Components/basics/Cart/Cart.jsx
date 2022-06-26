@@ -1,10 +1,7 @@
-import styles from './Cart.module.scss'
 import { NavLink } from 'react-router-dom'
 import { useTranslation } from 'react-i18next'
 import React, { memo, useCallback, useEffect } from 'react'
-import ApplyBtn from '../../commons/Buttons/Apply/ApplyBtn'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import emptyCart from '../../../assets/images/modal-cart-dummy.svg'
 import {
   PlusCircleOutlined,
   CloseCircleOutlined,
@@ -18,6 +15,10 @@ import {
   faArrowRight,
   faCartArrowDown,
 } from '@fortawesome/free-solid-svg-icons'
+//
+import styles from './Cart.module.scss'
+import ApplyBtn from '../../commons/Buttons/Apply/ApplyBtn'
+import emptyCart from '../../../assets/images/modal-cart-dummy.svg'
 //////////////////////////////////////////////////
 
 const Cart = memo(({
@@ -56,26 +57,28 @@ const Cart = memo(({
   }, [getCart, updateProductInCart, plus, minus, deleteProduct, cartClear])
 
   return (
-    <>
-      <div className={styles.container}>
-        <NavLink to='/home' className={styles.closeBtn}>
-          <CloseCircleOutlined className={styles.icon}/>
-        </NavLink>
-        <div className={styles.logoContainer}>
-          <div className={styles.logo}>
-            <FontAwesomeIcon
-              icon={faCartArrowDown}
-              style={{ marginRight: '7px', color: '#EE7178' }}/>
-            <span className={styles.tittle}>{t('Cart')}</span>
-          </div>
-          <div className={styles.cartClear}>
-            <ApplyBtn
-              icon={faTrashAlt}
-              handleClick={cartClear}
-              label={t('Clear Cart')}/>
-          </div>
+    <div className={styles.container}>
+      <NavLink to='/home' className={styles.closeBtn}>
+        <CloseCircleOutlined className={styles.icon}/>
+      </NavLink>
+      <div className={styles.logoContainer}>
+        <div className={styles.logo}>
+          <FontAwesomeIcon
+            icon={faCartArrowDown}
+            style={{ marginRight: '7px', color: '#EE7178' }}
+          />
+          <span className={styles.tittle}>{t('Cart')}</span>
         </div>
-        {productsLength !== 0
+        <div className={styles.cartClear}>
+          <ApplyBtn
+            icon={faTrashAlt}
+            handleClick={cartClear}
+            label={t('Clear Cart')}
+          />
+        </div>
+      </div>
+      {
+        productsLength !== 0
           ? cart.map(cartItem =>
             <div key={cartItem.id} className={styles.itemContainer}>
               <NavLink
@@ -85,9 +88,11 @@ const Cart = memo(({
                 <img
                   alt='productImage'
                   className={styles.img}
-                  src={`http://localhost:5000/${cartItem['Product.product_photo']}`}/>
+                  src={`http://localhost:5000/${cartItem['Product.product_photo']}`}
+                />
                 <span
-                  className={styles.tittle}>{cartItem['Product.name']}</span>
+                  className={styles.tittle}>{cartItem['Product.name']}
+                </span>
                 <span className={styles.size}>{cartItem.price}
                   {t('UAH')}
                 </span>
@@ -97,14 +102,16 @@ const Cart = memo(({
                   onClick={() => minus(cartItem.productId, cartItem.count)}
                   className={cartItem.count > 1 ? styles.minus : styles.disable}
                 >
-                  <MinusCircleOutlined/></div>
+                  <MinusCircleOutlined/>
+                </div>
                 <div className={styles.count}><span>{cartItem.count}</span>
                 </div>
                 <div
                   className={styles.plus}
                   onClick={() => plus(cartItem.productId, cartItem.count)}
                 >
-                  <PlusCircleOutlined/></div>
+                  <PlusCircleOutlined/>
+                </div>
               </div>
               <div className={styles.sum}>
                 <span style={{
@@ -115,7 +122,8 @@ const Cart = memo(({
                 {cartItem.sum}
                 <FontAwesomeIcon
                   icon={faHryvnia}
-                  style={{ marginLeft: '7px', color: '#EE7178' }}/>
+                  style={{ marginLeft: '7px', color: '#EE7178' }}
+                />
               </div>
               <div
                 className={styles.delete}
@@ -130,38 +138,45 @@ const Cart = memo(({
             <img
               src={emptyCart}
               alt='emptyCart'
-              className={styles.img}/>
-          </div>}
-        <div className={styles.totalGroup}>
-          <div className={styles.totalProductsCount}>
-            {t('Total products')}
-            <span> {productsLength} {t('pcs')}</span></div>
-          <div className={styles.totalSum}>
-            {t('Order amount')}
-            <span
-              style={{ marginLeft: '7px', color: 'grey' }}
-            >{totalProductsSum}
-            </span>
-            <FontAwesomeIcon
-              icon={faHryvnia}
-              style={{ marginLeft: '7px', color: '#EE7178' }}/>
+              className={styles.img}
+            />
           </div>
-        </div>
-        <div className={styles.btnGroup}>
-          <NavLink to='/home' className={styles.goBack}>
-            <ApplyBtn
-              icon={faArrowLeft}
-              label={t('Continue shopping')}/>
-          </NavLink>
-          {productsLength !== 0 ?
-            <NavLink to='/purchase' className={styles.order}>
-              <ApplyBtn
-                icon={faArrowRight}
-                label={t('Order goods')}/>
-            </NavLink> : null}
+      }
+      <div className={styles.totalGroup}>
+        <div className={styles.totalProductsCount}>
+          {t('Total products')}
+          <span> {productsLength} {t('pcs')}</span></div>
+        <div className={styles.totalSum}>
+          {t('Order amount')}
+          <span
+            style={{ marginLeft: '7px', color: 'grey' }}
+          >
+            {totalProductsSum}
+          </span>
+          <FontAwesomeIcon
+            icon={faHryvnia}
+            style={{ marginLeft: '7px', color: '#EE7178' }}
+          />
         </div>
       </div>
-    </>
+      <div className={styles.btnGroup}>
+        <NavLink to='/home' className={styles.goBack}>
+          <ApplyBtn
+            icon={faArrowLeft}
+            label={t('Continue shopping')}
+          />
+        </NavLink>
+        {
+          productsLength !== 0 &&
+          <NavLink to='/purchase' className={styles.order}>
+            <ApplyBtn
+              icon={faArrowRight}
+              label={t('Order goods')}
+            />
+          </NavLink>
+        }
+      </div>
+    </div>
   )
 })
 
