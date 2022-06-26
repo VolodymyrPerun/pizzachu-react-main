@@ -62,7 +62,8 @@ const NavBar = ({ me, isAuth }) => {
             <Link
               to='/home'
               className={styles.navLinks}
-              onClick={closeMobileMenu}>
+              onClick={closeMobileMenu}
+            >
               {t('Main')}
             </Link>
           </li>
@@ -73,7 +74,8 @@ const NavBar = ({ me, isAuth }) => {
             <Link
               to='#'
               onClick={closeMobileMenu}
-              className={styles.navLinks}>
+              className={styles.navLinks}
+            >
               {t('Service')}
               <FontAwesomeIcon
               icon={faCaretDown}
@@ -85,7 +87,8 @@ const NavBar = ({ me, isAuth }) => {
             <Link
               to='/promotions'
               onClick={closeMobileMenu}
-              className={styles.navLinks}>
+              className={styles.navLinks}
+            >
               {t('Promotions')}
             </Link>
           </li>
@@ -93,7 +96,8 @@ const NavBar = ({ me, isAuth }) => {
             <Link
               to='/delivery'
               onClick={closeMobileMenu}
-              className={styles.navLinks}>
+              className={styles.navLinks}
+            >
               {t('Delivery')}
             </Link>
           </li>
@@ -101,7 +105,8 @@ const NavBar = ({ me, isAuth }) => {
             <Link
               to='/orders'
               onClick={closeMobileMenu}
-              className={styles.navLinks}>
+              className={styles.navLinks}
+            >
               {t('My Orders')}
             </Link>
           </li>
@@ -109,7 +114,8 @@ const NavBar = ({ me, isAuth }) => {
             <Link
               to='/profile'
               onClick={closeMobileMenu}
-              className={styles.navLinks}>
+              className={styles.navLinks}
+            >
               {t('My Profile')}
             </Link>
           </li>
@@ -117,7 +123,8 @@ const NavBar = ({ me, isAuth }) => {
             <Link
               to='/about'
               onClick={closeMobileMenu}
-              className={styles.navLinks}>
+              className={styles.navLinks}
+            >
               {t('About Us')}
             </Link>
           </li>
@@ -125,7 +132,8 @@ const NavBar = ({ me, isAuth }) => {
             <Link
               to='/contact'
               onClick={closeMobileMenu}
-              className={styles.navLinks}>
+              className={styles.navLinks}
+            >
               {t('Contacts')}
             </Link>
           </li>
@@ -136,13 +144,15 @@ const NavBar = ({ me, isAuth }) => {
                 to='/login'
                 onClick={closeMobileMenu}
                 className={styles.navLinksMobile}
-                title={me.surname ? me.name + ' ' + me.surname : me.name}>
+                title={me.surname ? me.name + ' ' + me.surname : me.name}
+              >
                 {t('Logout')} <FontAwesomeIcon icon={faSignOutAlt} className={styles.faBars}/>
               </Link>
               : <Link
                 to='/login'
                 onClick={closeMobileMenu}
-                className={styles.navLinksMobile}>
+                className={styles.navLinksMobile}
+              >
                 {t('Login')} <FontAwesomeIcon icon={faSignInAlt} className={styles.faBars}/>
               </Link>}
           </li>

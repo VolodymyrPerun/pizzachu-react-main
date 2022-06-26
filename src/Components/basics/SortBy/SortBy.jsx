@@ -1,22 +1,24 @@
 import React from 'react'
 import PropTypes from 'prop-types'
+import { useTranslation } from 'react-i18next'
+//
 import styles from './SortBy.module.scss'
 import SortPopup from './SortPopup/SortPopup'
 //////////////////////////////////////////////////
 
 const SortBy = ({ setFilter, searchQuery, setSearchQuery }) => {
+  const { t } = useTranslation()
 
-  return <>
-    <div className={styles.container}>
-      <input
-        value={searchQuery}
-        placeholder='Пошук...'
-        onChange={e => setSearchQuery(e.target.value)}/>
-      <div className={styles.sortPopup}>
-        <SortPopup setFilter={setFilter}/>
-      </div>
+  return <div className={styles.container}>
+    <input
+      value={searchQuery}
+      placeholder={`${t('Search')}...`}
+      onChange={e => setSearchQuery(e.target.value)}
+    />
+    <div className={styles.sortPopup}>
+      <SortPopup setFilter={setFilter}/>
     </div>
-  </>
+  </div>
 }
 
 SortBy.propTypes = {

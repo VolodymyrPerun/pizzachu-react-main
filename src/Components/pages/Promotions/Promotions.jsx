@@ -1,13 +1,16 @@
 import React from 'react'
 import styles from './Promotions.module.scss'
+import { useTranslation } from 'react-i18next'
 import 'react-lazy-load-image-component/src/effects/blur.css'
 import { LazyLoadImage } from 'react-lazy-load-image-component'
+//
 import promoLatePhoto from '../../../assets/images/prom_late.png'
 import promoBirthPhoto from '../../../assets/images/prom_birth.png'
 import promoBonusPhoto from '../../../assets/images/prom_bonus.png'
 //////////////////////////////////////////////////
 
 const Promotions = () => {
+  const { t } = useTranslation()
 
   return (
     <>
@@ -18,20 +21,15 @@ const Promotions = () => {
         <div className={styles.line}/>
         <div className={styles.description}>
           <div className={styles.descriptionBlock}>
-            <h3 className={styles.title}>Подарунок за спізнення</h3>
+            <h3 className={styles.title}>{t('A gift for being late')}</h3>
+            <p className={styles.subtitle}>{t('We deliver up to 29 minutes')}</p>
             <p className={styles.subtitle}>
-              Доставляємо до 29 хвилин! За спізнення кур’єра даруємо рол або
-              піцу:
+              <span> - {t('Cheese roll')}</span>
             </p>
             <p className={styles.subtitle}>
-              <span> - Рол Сирний</span>
+              <span> - {`${t('Student Pizza')} 22 ${t('cm')}`}</span>
             </p>
-            <p className={styles.subtitle}>
-              <span> - Піца Студентська (22 см)</span>
-            </p>
-            <p className={styles.subtitle}>
-              Отримати подарунок можна при наступному замовленні до 28 днів.
-            </p>
+            <p className={styles.subtitle}>{t('You can receive a gift')}</p>
           </div>
         </div>
       </div>
@@ -42,25 +40,18 @@ const Promotions = () => {
         <div className={styles.line}/>
         <div className={styles.description}>
           <div className={styles.descriptionBlock}>
-            <h3 className={styles.title}>Ваш День Народження</h3>
+            <h3 className={styles.title}>{t('Your Birthday')}</h3>
             <p className={styles.subtitle}>
-              :Обирайте для себе у подарунок піцу або рол
+              :{t('Choose a pizza or roll as a gift')}
             </p>
             <p className={styles.subtitle}>
-              <span>Рол Сирний - </span>
+              <span>{t('Cheese roll')} - </span>
             </p>
             <p className={styles.subtitle}>
-              <span>Піца Студентська (30 см) - </span>
+              <span>{`${t('Student Pizza')} 30 ${t('cm')}`} - </span>
             </p>
-            <p className={styles.subtitle}>
-              Для отримання подарунка потрібно пред’явити кур’єру документ, який
-              засвідчує дату Вашого
-              народження
-            </p>
-            <p className={styles.subtitle}>
-              Термін дії подарунка – День народження плюс один день до та після
-              свята
-            </p>
+            <p className={styles.subtitle}>{t('To receive a gift')}</p>
+            <p className={styles.subtitle}>{t('The term of the gift')}</p>
           </div>
         </div>
       </div>
@@ -71,41 +62,26 @@ const Promotions = () => {
         <div className={styles.line}/>
         <div className={styles.description}>
           <div className={styles.descriptionBlock}>
-            <h3 className={styles.title}>Бонусна Система Лояльності</h3>
+            <h3 className={styles.title}>{t('Loyalty Bonus System')}</h3>
+            <p className={styles.subtitle}>{t('Points of 5%')}</p>
+            <p className={styles.subtitle}>{t('Terms of use')}:</p>
             <p className={styles.subtitle}>
-              На Ваш баланс нараховуються бали в розмірі 5% від суми кожного
-              замовлення. Бонусний рахунок
-              закріплений за номером телефону. Збирайте бали та отримуйте
-              частково оплачене або цілком
-              безкоштовне замовлення протягом 30 днів.
+              <span> - {t('Cheese roll')}</span>
             </p>
             <p className={styles.subtitle}>
-              Умови використання:
+              <span> - 1 {t('bonus')} – 1 {t('UAH')}</span>
             </p>
             <p className={styles.subtitle}>
-              <span> - Рол Сирний</span>
+              <span> - {t('Bonuses are valid for 30 calendar days')}</span>
             </p>
             <p className={styles.subtitle}>
-              <span> - 1 бонус – 1 грн</span>
+              <span>
+                - {t('Bonuses may not be accrued for some specials offers')}
+              </span>
             </p>
-            <p className={styles.subtitle}>
-              <span> - Бонуси дійсні протягом 30 календарних днів</span>
-            </p>
-            <p className={styles.subtitle}>
-              <span> - Бонуси можуть не нараховуватися за деякі спец. пропозиції</span>
-            </p>
-            <p className={styles.subtitle}>
-              Бонуси нараховуються на мобільний номер покупця на загальну суму
-              чека Smaki maki.
-            </p>
-            <p className={styles.subtitle}>
-              Учасник Програми не може передавати накопичені бонуси іншій особі,
-              в тому числі іншому
-              учаснику Програми.
-            </p>
-            <p className={styles.subtitle}>
-              Накопичені бонуси не підлягають грошовому відшкодуванню.
-            </p>
+            <p className={styles.subtitle}>{t('Bonuses are credited')}</p>
+            <p className={styles.subtitle}>{t('The Program Participant')}</p>
+            <p className={styles.subtitle}>{t('Accumulated bonuses')}</p>
           </div>
         </div>
       </div>

@@ -17,19 +17,20 @@ const Dropdown = () => {
         onClick={handleClick}
         className={click ? styles.clicked : styles.dropdownMenu}
       >
-        {MenuItems.map((item, index) => {
-          debugger
-          return (
-            <li key={index}>
-              <Link
-                to={item.path}
-                onClick={() => setClick(false)}
-                className={`${styles.dropdownLink} ${item.cName}`}>
-                {t(item.title)}
-              </Link>
-            </li>
+        {
+          MenuItems.map((item, index) => (
+              <li key={index}>
+                <Link
+                  to={item.path}
+                  onClick={() => setClick(false)}
+                  className={`${styles.dropdownLink} ${item.cName}`}
+                >
+                  {t(item.title)}
+                </Link>
+              </li>
+            )
           )
-        })}
+        }
       </ul>
     </>
   )

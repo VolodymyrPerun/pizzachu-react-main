@@ -1,12 +1,11 @@
 import PropTypes from 'prop-types'
 import React, { memo } from 'react'
+//
 import PopupMenu from '../PopupMenu/PopupMenu'
 import { sortItems } from './sortItems/sortItems'
 //////////////////////////////////////////////////
 
-const SortPopup = memo(({ setFilter }) => {
-
-  return (
+const SortPopup = memo(({ setFilter }) => (
     <div className='sort' style={{ maxWidth: '180px', maxHeight: '20px' }}>
       <PopupMenu
         setFilter={setFilter}
@@ -14,7 +13,7 @@ const SortPopup = memo(({ setFilter }) => {
       </PopupMenu>
     </div>
   )
-})
+)
 
 SortPopup.propTypes = {
   setFilter: PropTypes.func,

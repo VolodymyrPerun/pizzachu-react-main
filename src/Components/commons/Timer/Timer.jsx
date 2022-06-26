@@ -1,16 +1,30 @@
+import { useTranslation } from 'react-i18next'
 import React, { useEffect, useState } from 'react'
+//
+import * as LAGS from '../../../constants/langs.enum'
 //////////////////////////////////////////////////
 
 const Timer = () => {
-
+  const { t } = useTranslation()
+  const initLng = localStorage.getItem('language')
   const timerComponents = []
-  const calculateTimeLeft = () => {
+
+  const calculateTimeLeft = React.useCallback(() => {
 
     let timeLeft = {}
     let year = new Date().getFullYear()
     let difference = +new Date(`10/01/${year}`) - +new Date()
 
-    if (difference > 0) {
+    if (difference > 0 ) {
+      timeLeft = {
+        // days: Math.floor(difference / (1000 * 60 * 60 * 24)),
+        hours: Math.floor((difference / (1000 * 60 * 60)) % 24),
+        minutes: Math.floor((difference / 1000 / 60) % 60),
+        seconds: Math.floor((difference / 1000) % 60),
+      }
+    }
+
+    if (difference > 0 && initLng === LAGS.UA ) {
       timeLeft = {
         // дні: Math.floor(difference / (1000 * 60 * 60 * 24)),
         години: Math.floor((difference / (1000 * 60 * 60)) % 24),
@@ -20,7 +34,7 @@ const Timer = () => {
     }
 
     return timeLeft
-  }
+  }, [initLng])
 
   const [timeLeft, setTimeLeft] = useState(calculateTimeLeft())
 
@@ -28,12 +42,10 @@ const Timer = () => {
     setInterval(() => {
       setTimeLeft(calculateTimeLeft(e))
     }, 1000)
-  }, [setTimeLeft])
+  }, [setTimeLeft, calculateTimeLeft])
 
   Object.keys(timeLeft).forEach((interval, i) => {
-    if (!timeLeft[interval]) {
-      return
-    }
+    if (!timeLeft[interval]) return
 
     timerComponents.push(
       <span key={i}>{timeLeft[interval]} {interval}{' '}</span>,
@@ -42,7 +54,9 @@ const Timer = () => {
 
   useEffect(() => {
     if (!timeLeft) return
+
     clearInterval(set())
+
     return () => clearInterval(set())
 
   }, [set, setTimeLeft, timeLeft])
@@ -50,9 +64,12 @@ const Timer = () => {
   return (
     <>
       <span style={{ color: '#EE7178' }}>
-        {timerComponents.length
-        ? timerComponents
-        : <span>Time's up!</span>}</span>
+        {
+          timerComponents.length
+            ? timerComponents
+            : <span>{t("Time's up")}</span>
+        }
+      </span>
     </>
   )
 }
