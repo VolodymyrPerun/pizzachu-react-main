@@ -2,9 +2,10 @@ import { NavLink } from 'react-router-dom'
 import { useTranslation } from 'react-i18next'
 import { faTruck } from '@fortawesome/free-solid-svg-icons'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import React, { memo, useEffect, useState, useCallback } from 'react'
+import React, { memo, useState, useEffect, useCallback } from 'react'
 //
 import styles from './PromoBlock.module.scss'
+//
 import Timer from '../../../commons/Timer/Timer'
 import noPhoto from '../../../../assets/images/no-aveliable-image.png'
 import {
