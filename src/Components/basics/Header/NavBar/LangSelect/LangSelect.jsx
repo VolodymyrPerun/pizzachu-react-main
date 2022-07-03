@@ -1,15 +1,15 @@
 import i18next from 'i18next'
-import * as React from 'react'
+import React, { useState } from 'react'
 import Select from '@mui/material/Select'
 import MenuItem from '@mui/material/MenuItem'
 import FormControl from '@mui/material/FormControl'
 //
-import * as LAGS from '../../../../../constants/langs.enum'
+import LAGS from '../../../../../constants/langs.enum'
 //////////////////////////////////////////////////
 
 export default function SelectVariants () {
   const initLng = localStorage.getItem('language')
-  const [lang, setLang] = React.useState((initLng || LAGS.UA))
+  const [lang, setLang] = useState((initLng || LAGS.UA))
 
   const handleChange = (event) => {
     const lng = event.target.value
@@ -23,7 +23,8 @@ export default function SelectVariants () {
     <div>
       <FormControl
         variant='standard'
-        sx={{ m: 1, minWidth: 60, marginTop: 2.5 }}>
+        sx={{ m: 1, minWidth: 60, marginTop: 2.5 }}
+      >
         <Select
           value={lang}
           onChange={handleChange}
