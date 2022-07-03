@@ -1,12 +1,13 @@
-module.exports.LANGS = require('./langs.enum');
-module.exports.LABELS_UA = require('./labelsUA.enum');
-module.exports.PRODUCT_TYPE = require('./productType.enum');
-module.exports.PAGE_DEFAULT = require('./pageDefault.enum');
-module.exports.SIZES_DEFAULT = require('./sizesDefault.enum');
-module.exports.PRODUCT_SECTION = require('./productSection.enum');
-module.exports.TOKEN_ENUM = require('./authConstants/token.enum');
-module.exports.USER_ROLE = require('./userConstants/userRole.enum');
-module.exports.HEADER_ENUM = require('./authConstants/header.enum');
-module.exports.SORT_POPUP_LABELS = require('./sortPopupLables.enum');
-module.exports.CUSTOM_ERRORS = require('./customErrors/customErrors');
-module.exports.USER_STATUS = require('./userConstants/userStatus.enum');
+export { default as LANGS } from './langs.enum'
+export { default as LABELS_UA } from './labelsUA.enum'
+export { default as LABELS_EN } from './labelsEN.enum'
+export { default as PRODUCT_TYPE } from './productType.enum'
+export { default as PAGE_DEFAULT } from './pageDefault.enum'
+export { default as SIZES_DEFAULT } from './sizesDefault.enum'
+export { default as PRODUCT_SECTION } from './productSection.enum'
+export { default as TOKEN_ENUM } from './authConstants/token.enum'
+export { default as USER_ROLE } from './userConstants/userRole.enum'
+export { default as HEADER_ENUM } from './authConstants/header.enum'
+export { default as SORT_POPUP_LABELS } from './sortPopupLables.enum'
+export { default as CUSTOM_ERRORS } from './customErrors/customErrors'
+export { default as USER_STATUS } from './userConstants/userStatus.enum'

@@ -8,16 +8,19 @@ import  FieldSettings from './FilterItems/FieldSettings'
 import { TypesFilterItems } from './FilterItems/FilterItems'
 //////////////////////////////////////////////////
 
+let lngFromStorage = localStorage.getItem('language')
+
 export const Filter = ({ type, activeTab, onPageChangeProducts }) =>
   <>
     <div className={styles.container}>
       <TabFilter
         activeTab={activeTab}
-        filterItems={TypesFilterItems}
-        onPageChangeProducts={onPageChangeProducts}/>
+        onPageChangeProducts={onPageChangeProducts}
+        filterItems={TypesFilterItems(lngFromStorage)}
+      />
     </div>
     {
-      FieldSettings.map((item, index) => (
+      FieldSettings(lngFromStorage).map((item, index) => (
           <div key={index}>
             {
               type === item.type &&

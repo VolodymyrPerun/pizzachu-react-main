@@ -14,6 +14,7 @@ export default function SelectVariants () {
   const handleChange = (event) => {
     const lng = event.target.value
     setLang(lng)
+    window.location.reload()
     i18next.changeLanguage(lng)
     localStorage.setItem('language', lng)
   }

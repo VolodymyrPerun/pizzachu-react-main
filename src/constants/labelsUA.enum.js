@@ -18,7 +18,7 @@ module.exports = {
   HotRoles: 'Гарячі роли',
   Philadelphia: 'Філадельфія',
   Vegetarian: 'Вегетаріанські',
-  SushiAndRoles: 'Суші та Роли',
+  SushiAndRoles: 'Суші та роли',
   SoupsAndSalads: 'Супи та салати',
   DessertsAndDrinks: 'Десерти та напої'
 };

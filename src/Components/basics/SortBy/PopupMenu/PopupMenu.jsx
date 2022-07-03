@@ -1,21 +1,28 @@
 import PropTypes from 'prop-types'
-import React, { memo, useMemo } from 'react'
 import { useTranslation } from 'react-i18next'
 import { faCaretDown } from '@fortawesome/free-solid-svg-icons'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
+import React, { memo,  useRef, useMemo, useState, useCallback } from 'react'
 //
 import styles from './PopupMenu.module.scss'
+import LANG from '../../../../constants/langs.enum'
 import { PRODUCT_TYPE } from '../../../../constants'
+import {
+  ChooseSortMethod,
+  ChooseSortMethodEN
+} from '../../../../constants/sortPopupLables.enum'
 //////////////////////////////////////////////////
 
-let label = 'оберіть метод сортування'
+let lngFromStorage = localStorage.getItem('language')
+let label = lngFromStorage === LANG.UA
+  ? ChooseSortMethod : ChooseSortMethodEN
 
 const PopupMenu = memo(({ sortItems, setFilter }) => {
   const { t } = useTranslation()
-  const blockRef = React.useRef(0)
-  const [activeItem, setActiveItem] = React.useState(0)
-  const [visiblePopup, setVisiblePopup] = React.useState(false)
-  const clickOutsideCallback = React.useCallback(e => {
+  const blockRef = useRef(0)
+  const [activeItem, setActiveItem] = useState(0)
+  const [visiblePopup, setVisiblePopup] = useState(false)
+  const clickOutsideCallback = useCallback(e => {
     const path = e.path || (e.composedPath && e.composedPath())
 
     if (!path.includes(blockRef.current)) {
@@ -37,15 +44,15 @@ const PopupMenu = memo(({ sortItems, setFilter }) => {
 
     switch (item) {
       case ('price_low'):
-        return label = sortItems[0].label
+        return label = sortItems(lngFromStorage)[0].label
       case ('price_high'):
-        return label = sortItems[1].label
+        return label = sortItems(lngFromStorage)[1].label
       case ('weight_low'):
-        return label = sortItems[2].label
+        return label = sortItems(lngFromStorage)[2].label
       case ('weight_high'):
-        return label = sortItems[3].label
+        return label = sortItems(lngFromStorage)[3].label
       default:
-        return label = sortItems[0].label
+        return label = sortItems(lngFromStorage)[0].label
     }
   }
 
@@ -74,21 +81,26 @@ const PopupMenu = memo(({ sortItems, setFilter }) => {
           <span className={styles.label}>{label}</span>
         </div>
       </div>
-      {visiblePopup && (
-        <div className={styles.popupMenu}>
-          <ul>
-            {sortItems.map((item, index) => (
-              <li
-                key={index}
-                onClick={(() => handleClick(item.value))}
-                className={item.value === activeItem ? styles.active : ''}
-              >
-                <FontAwesomeIcon icon={item.icon}/>
-                {item.label}
-              </li>
-            ))}
-          </ul>
-        </div>)}
+      {
+        visiblePopup && (
+          <div className={styles.popupMenu}>
+            <ul>
+              {
+                sortItems(lngFromStorage).map((item, index) => (
+                  <li
+                    key={index}
+                    onClick={() => handleClick(item.value)}
+                    className={item.value === activeItem ? styles.active : ''}
+                  >
+                    <FontAwesomeIcon icon={item.icon}/>
+                    {item.label}
+                  </li>
+                ))
+              }
+            </ul>
+          </div>
+        )
+      }
     </>
   )
 })
