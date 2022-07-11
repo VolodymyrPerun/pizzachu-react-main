@@ -1,11 +1,13 @@
 import React from 'react'
-import style from './FormsControls.module.scss'
 import TextField from '@material-ui/core/TextField'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import {
   faExclamationCircle,
   faExclamationTriangle,
 } from '@fortawesome/free-solid-svg-icons'
+//
+import style from './FormsControls.module.scss'
+//
 import {
   INPUT,
   SELECT,
@@ -18,30 +20,34 @@ const FormsControlItem = item =>
   ({
     input, value, label, meta: { touched, error, warning }, child, ...restProps
   }) => {
-
     let isError = touched && ((error || warning))
 
-    const Error = () => {
-      return (
-        <div className={style.errorsContainer}>
-          {touched &&
-          ((error &&
+    const Error = () => (
+      <div className={style.errorsContainer}>
+        {
+          touched &&
+          ((
+            error &&
             <span>
               <FontAwesomeIcon
                 icon={faExclamationCircle}
-                style={{ marginRight: '3px' }}/>
+                style={{ marginRight: '3px' }}
+              />
               {error}
           </span>) ||
-            (warning &&
+            (
+              warning &&
               <span className={style.warning}>
                 <FontAwesomeIcon
                   icon={faExclamationTriangle}
-                  style={{ marginRight: '3px' }}/>
+                  style={{ marginRight: '3px' }}
+                />
                 {warning}
-              </span>))}
-        </div>
-      )
-    }
+              </span>
+            ))
+        }
+      </div>
+    )
 
     switch (item) {
       case TEXTAREA:
@@ -49,15 +55,19 @@ const FormsControlItem = item =>
           <>
             <label>{restProps.label}</label>
             <div
-              className={`${style.formsControls} ${isError
-                ? style.error
-                : ''}`}>
+              className={
+                `${style.formsControls} ${isError
+                  ? style.error
+                  : ''}`
+              }
+            >
                 <textarea
                   {...input}
                   {...restProps}
                   rows={4}
                   cols={50}
-                  className={style.textareaField}/>
+                  className={style.textareaField}
+                />
               <Error/>
             </div>
           </>
@@ -67,13 +77,17 @@ const FormsControlItem = item =>
           <>
             <label>{restProps.label}</label>
             <div
-              className={`${style.formsControls} ${isError
-                ? style.error
-                : ''}`}>
+              className={
+                `${style.formsControls} ${isError
+                  ? style.error
+                  : ''}`
+              }
+            >
               <input
                 {...input}
                 {...restProps}
-                className={style.inputField}/>
+                className={style.inputField}
+              />
               <Error/>
             </div>
           </>
@@ -82,14 +96,18 @@ const FormsControlItem = item =>
         return (
           <>
             <div
-              className={`${style.formsControls} ${isError
-                ? style.error
-                : ''}`}>
+              className={
+                `${style.formsControls} ${isError
+                  ? style.error
+                  : ''}`
+              }
+            >
               <TextField
                 {...input}
                 {...restProps}
                 label={label}
-                value={value}/>
+                value={value}
+              />
               <Error/>
             </div>
           </>
@@ -98,13 +116,17 @@ const FormsControlItem = item =>
         return (
           <>
             <div
-              className={`${style.formsControls} ${isError
-                ? style.error
-                : ''}`}>
+              className={
+                `${style.formsControls} ${isError
+                  ? style.error
+                  : ''}`
+              }
+            >
               <select
                 {...input}
                 {...restProps}
-                value={value}/>
+                value={value}
+              />
               <Error/>
             </div>
           </>

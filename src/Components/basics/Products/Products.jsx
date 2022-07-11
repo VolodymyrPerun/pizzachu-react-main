@@ -3,12 +3,12 @@ import PropTypes from 'prop-types'
 import React, { memo, useMemo, useState } from 'react'
 import { FastBackwardFilled, FastForwardFilled } from '@ant-design/icons'
 //
+import styles from './Products.module.scss'
+//
 import SortBy from '../SortBy/SortBy'
 import { Filter } from '../Filter/Filter'
-import styles from './Products.module.scss'
 import { PAGE_DEFAULT, PRODUCT_TYPE } from '../../../constants'
 import ProductCard from '../../basics/Products/ProductsCard/ProductsCard'
-//import Preloader from "../../commons/Preloader/Preloader";
 //////////////////////////////////////////////////
 
 const Products = memo(({
@@ -75,18 +75,18 @@ const Products = memo(({
     <Filter
       type={type}
       activeTab={activeTab}
-      onPageChangeProducts={onPageChangeProducts}/>
+      onPageChangeProducts={onPageChangeProducts}
+    />
     <div className={styles.cardContainer}>
       {
-        // isFetching
-        // ? <Preloader/> :
         products.map(product =>
           <ProductCard
             {...product}
             getCart={getCart}
             key={product.productId}
             isFetching={isFetching}
-            addProductToCart={addProductToCart}/>
+            addProductToCart={addProductToCart}
+          />
         )}
     </div>
     <Pagination
@@ -118,8 +118,8 @@ Products.defaultProps = {
   products: [],
   size_id: null,
   section: null,
-  setFilter: 'name',
   isFetching: true,
+  setFilter: 'name',
   type: PRODUCT_TYPE.PIZZA,
   pageSize: PAGE_DEFAULT.PAGE_SIZE,
 }

@@ -1,11 +1,17 @@
 import React from 'react'
 import { Field, reduxForm } from 'redux-form'
-import styles from './RestorePassword.module.scss'
-import { INPUT } from '../../../constants/formsControls.enum'
 import { faAt, faKey } from '@fortawesome/free-solid-svg-icons'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
+//
+import styles from './RestorePassword.module.scss'
+//
+import { INPUT } from '../../../constants/formsControls.enum'
 import FormsControlItem from '../../commons/FormsControls/FormsControls'
 import SubmitFollowBtn from '../../commons/Buttons/SubmitFollow/SubmitFollowBtn'
+import {
+  RenderError,
+  CheckErrorMessage
+} from '../ErrorsComponents/ErrorsComponents'
 import {
   email,
   isRequired,
@@ -53,13 +59,8 @@ let RestorePasswordForm = ({
           disabled={pristine || submitting}
           label={'Надіслати SMS для зміни пароля'}/>
       </div>
-      {error &&
-      <div className={styles.formsSummaryError}>
-        <span>ERROR: {error}</span>
-      </div>}
-      {errorMessage && '/' + window.location.href.split('/').pop() ===
-      '/reset-password' &&
-      <div className={styles.errMsg}>{errorMessage}</div>}
+      <RenderError error={error} />
+      <CheckErrorMessage url='/reset-password' errorMessage={errorMessage} />
     </form>
   )
 }

@@ -1,131 +1,142 @@
-import React, {useState} from 'react';
-import styles from './ProfileInfo.module.scss';
-import {CloseCircleOutlined} from '@ant-design/icons';
-import Preloader from "../../../commons/Preloader/Preloader";
-import ProfileInfoData from "../ProfileInfoData/ProfileInfoData";
-import ProfileInfoDataForm from "../ProfileInfoDataForm/ProfileInfoDataForm";
-import {NavLink} from "react-router-dom";
-import ApplyBtn from "../../../commons/Buttons/Apply/ApplyBtn";
-import {faArrowLeft, faUserTie} from "@fortawesome/free-solid-svg-icons";
-import {FontAwesomeIcon} from "@fortawesome/react-fontawesome";
-
+import React, { useState } from 'react'
+import { NavLink } from 'react-router-dom'
+import { CloseCircleOutlined } from '@ant-design/icons'
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
+import { faUserTie, faArrowLeft } from '@fortawesome/free-solid-svg-icons'
+//
+import styles from './ProfileInfo.module.scss'
+//
+import Preloader from '../../../commons/Preloader/Preloader'
+import ApplyBtn from '../../../commons/Buttons/Apply/ApplyBtn'
+import ProfileInfoData from '../ProfileInfoData/ProfileInfoData'
+import ProfileInfoDataForm from '../ProfileInfoDataForm/ProfileInfoDataForm'
+import {
+    RenderError,
+    CheckErrorMessage,
+} from '../../../basics/ErrorsComponents/ErrorsComponents'
+//////////////////////////////////////////////////
 
 const ProfileInfo = ({
-                         me: {
-                             user_photo,
-                             email,
-                             phone,
-                             name,
-                             age,
-                             surname,
-                             gender_id,
-                             city,
-                             street,
-                             house,
-                             apartment,
-                             entrance,
-                             floor
-                         }
-                         , isFetching, isAuth, savePhoto, errorMessage, updateProfileInfo, error
-                     }) => {
+    me: {
+        age,
+        name,
+        city,
+        floor,
+        phone,
+        email,
+        house,
+        street,
+        surname,
+        entrance,
+        gender_id,
+        apartment,
+        user_photo
+    },
+    error,
+    isAuth,
+    savePhoto,
+    isFetching,
+    errorMessage,
+    adminErrorMessage,
+    updateProfileInfo
+}) => {
 
+    const [editMode, setEditMode] = useState(false)
 
-    const [editMode, setEditMode] = useState(false);
+    let goToEditMode = () => setEditMode(true)
 
-    let goToEditMode = () => {
-        setEditMode(true);
-    };
-
-    let onSubmit = formData => {
-        updateProfileInfo(formData).then(
-            () => {
-                setEditMode(false);
-            }
-        );
-    };
+    let onSubmit = formData => updateProfileInfo(formData).then(
+      () => setEditMode(false)
+    )
 
     const onMainPhotoSelected = e => {
         if (e.target.files.length) {
-            savePhoto(e.target.files[0]);
+            savePhoto(e.target.files[0])
         }
-    };
+    }
 
     return (
-        <>
-            <div className={styles.descriptionBlock}>
-                <NavLink className={styles.closeBtn} to={'/home'}>
-                    <CloseCircleOutlined className={styles.icon}/>
-                </NavLink>
-                {isFetching
-                    ? <div>
-                        <Preloader/>
-                    </div>
+      <>
+          <div className={styles.descriptionBlock}>
+              <NavLink to='/home' className={styles.closeBtn}>
+                  <CloseCircleOutlined className={styles.icon} />
+              </NavLink>
+              {
+                  isFetching
+                    ? <div><Preloader /></div>
                     : <div className={styles.content}>
                         <div className={styles.logoContainer}>
                             <div className={styles.logo}>
                                 <FontAwesomeIcon
-                                    style={{marginRight: '7px', color: '#EE7178'}}
-                                    icon={faUserTie}/>
+                                  icon={faUserTie}
+                                  style={{ marginRight: '7px', color: '#EE7178' }}
+                                />
                                 <span className={styles.tittle}>
-                           Мій профіль
-                        </span>
+                                  Мій профіль
+                              </span>
                             </div>
                         </div>
                         <div className={styles.contentInfo}>
-                            {editMode
-                                ?
-                                <ProfileInfoDataForm initialValues={{
-                                    phone,
-                                    name,
-                                    age,
-                                    surname,
-                                    gender_id,
-                                    city,
-                                    street,
-                                    house,
-                                    apartment,
-                                    entrance,
-                                    floor
-                                }} onMainPhotoSelected={onMainPhotoSelected} setEditMode={setEditMode} onSubmit={onSubmit}/>
-                                :
-                                <ProfileInfoData me={{
-                                    user_photo,
-                                    email,
-                                    phone,
-                                    name,
-                                    age,
-                                    surname,
-                                    city,
-                                    street,
-                                    house,
-                                    apartment,
-                                    entrance,
-                                    floor
-                                }} isAuth={isAuth} goToEditMode={goToEditMode}/>}
+                            {
+                                editMode
+                                  ? <ProfileInfoDataForm
+                                    initialValues={{
+                                        age,
+                                        city,
+                                        name,
+                                        house,
+                                        phone,
+                                        floor,
+                                        street,
+                                        surname,
+                                        entrance,
+                                        apartment,
+                                        gender_id
+                                    }}
+                                    onSubmit={onSubmit}
+                                    setEditMode={setEditMode}
+                                    onMainPhotoSelected={onMainPhotoSelected}
+                                  />
+                                  : <ProfileInfoData
+                                    me={{
+                                        age,
+                                        name,
+                                        city,
+                                        phone,
+                                        email,
+                                        floor,
+                                        house,
+                                        street,
+                                        surname,
+                                        entrance,
+                                        apartment,
+                                        user_photo
+                                    }}
+                                    isAuth={isAuth}
+                                    goToEditMode={goToEditMode}
+                                  />
+                            }
                         </div>
-                        {error &&
-                        <div className={styles.formsSummaryError}>
-                            <span>ERROR: {error}</span>
-                        </div>}
-
-                        {errorMessage && '/' + window.location.href.split('/').pop() === '/profile' &&
-                        <div className={styles.errMsg}>{errorMessage}</div>}
-                        {/*{adminErrorMessage && '/' + window.location.href.split('/').pop() === '/auth-admin' &&*/}
-                        {/*<div className={styles.errMsg}>{adminErrorMessage}</div>}*/}
-
+                        <RenderError error={error}/>
+                        <CheckErrorMessage
+                          url='/profile'
+                          adminUrl='/auth-admin'
+                          errorMessage={errorMessage}
+                          adminErrorMessage={adminErrorMessage}
+                        />
                         <div className={styles.btn}>
-                            <NavLink className={styles.goBack} to={'/home'}>
+                            <NavLink to='/home' className={styles.goBack}>
                                 <ApplyBtn
-                                    icon={faArrowLeft}
-                                    label={'На головну'}
+                                  icon={faArrowLeft}
+                                  label='На головну'
                                 />
                             </NavLink>
                         </div>
                     </div>
-                }
-            </div>
-        </>
+              }
+          </div>
+      </>
     )
-};
+}
 
-export default ProfileInfo;
+export default ProfileInfo

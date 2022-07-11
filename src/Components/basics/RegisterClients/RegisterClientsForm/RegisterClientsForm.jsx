@@ -1,12 +1,18 @@
 import React from 'react'
 import { reduxForm } from 'redux-form'
 import { makeStyles } from '@material-ui/core/styles'
-import styles from './RegisterClientsForm.module.scss'
 import { faArrowRight } from '@fortawesome/free-solid-svg-icons'
+//
+import styles from './RegisterClientsForm.module.scss'
+//
 import FieldsetComponent from '../../../commons/Fieldset/Fieldset'
 import fieldSettings from '../../Purchase/PurchaseForm/FieldSettings'
 import SubmitFollowBtn
   from '../../../commons/Buttons/SubmitFollow/SubmitFollowBtn'
+import {
+  RenderError,
+  CheckErrorMessage
+} from '../../ErrorsComponents/ErrorsComponents'
 //////////////////////////////////////////////////
 
 const useStyles = makeStyles((theme) => ({
@@ -29,6 +35,7 @@ const RegisterClientsForm = ({
   submitting,
   errorMessage,
   handleSubmit,
+  adminErrorMessage,
 }) => {
 
   const classes = useStyles()
@@ -38,12 +45,15 @@ const RegisterClientsForm = ({
       <form
         autoComplete='on'
         onSubmit={handleSubmit}
-        className={classes.root}>
+        className={classes.root}
+      >
         <div>
-            {fieldSettings.map((field, index) => (
+          {
+            fieldSettings.map((field, index) => (
                 <FieldsetComponent key={index} field={field}/>
               ),
-            )}
+            )
+          }
         </div>
         <div className={styles.order}>
           <SubmitFollowBtn
@@ -52,17 +62,16 @@ const RegisterClientsForm = ({
             onClick={reset}
             icon={faArrowRight}
             label='Зареєструватись '
-            disabled={pristine || submitting}/>
+            disabled={pristine || submitting}
+          />
         </div>
-        {error &&
-        <div className={styles.formsSummaryError}>
-          <span>ERROR: {error}</span>
-        </div>}
-        {errorMessage && '/' + window.location.href.split('/').pop() ===
-        '/registerClients' &&
-        <div className={styles.errMsg}>{errorMessage}</div>}
-        {/*{adminErrorMessage && '/' + window.location.href.split('/').pop() === '/auth-admin' &&*/}
-        {/*<div className={styles.errMsg}>{adminErrorMessage}</div>}*/}
+        <RenderError error={error} />
+        <CheckErrorMessage
+          url='/registerClients'
+          adminUrl='/auth-admin'
+          errorMessage={errorMessage}
+          adminErrorMessage={adminErrorMessage}
+        />
       </form>
     </>
   )

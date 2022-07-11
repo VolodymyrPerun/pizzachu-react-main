@@ -1,12 +1,15 @@
 import React from 'react'
 import { NavLink } from 'react-router-dom'
-import styles from './ChangePassword.module.scss'
+import { useTranslation } from 'react-i18next'
 import { CloseOutlined } from '@ant-design/icons'
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
+import { faSignInAlt, faUserCheck } from '@fortawesome/free-solid-svg-icons'
+//
+import styles from './ChangePassword.module.scss'
+//
 import RestorePasswordForm from './ChangePasswordForm'
 import Preloader from '../../commons/Preloader/Preloader'
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import loginPagePhoto from '../../../assets/images/login-pizza.gif'
-import { faSignInAlt, faUserCheck } from '@fortawesome/free-solid-svg-icons'
 import SubmitFollowBtn from '../../commons/Buttons/SubmitFollow/SubmitFollowBtn'
 //////////////////////////////////////////////////
 
@@ -17,27 +20,26 @@ const ChangePassword = ({
   errorMessage,
   changeUserPassword,
 }) => {
-
+  const { t } = useTranslation()
   const onSubmit = data => {
-
     if (match.path === '/change-password') {
       localStorage.setItem('cart', JSON.stringify(cart))
-      changeUserPassword(data.email, data.password, data.newPassword,
-        data.repeatNewPassword)
+      changeUserPassword(
+        data.email, data.password, data.newPassword, data.repeatNewPassword
+      )
       cart = JSON.parse(localStorage.getItem('cart'))
       localStorage.setItem('cart', '')
     }
   }
 
-  if (isFetching) {
-    return <div className={styles.preloader}><Preloader/></div>
-  }
+  if (isFetching) return <div className={styles.preloader}><Preloader/></div>
 
   return (
     <div className={styles.login}>
       <img
         alt='img'
-        src={loginPagePhoto}/>
+        src={loginPagePhoto}
+      />
       <div className={styles.forms}>
         <NavLink to='/home' className={styles.closeBtn}>
           <CloseOutlined className={styles.icon}/>
@@ -48,23 +50,24 @@ const ChangePassword = ({
             style={{
               bottom: '-5px',
               marginRight: '13px',
-              position: 'relative'}}/>
-          Змінити пароль
+              position: 'relative'}}
+          />
+          {t('Change Password')}
         </h1>
         <RestorePasswordForm
           onSubmit={onSubmit}
-          errorMessage={errorMessage}/>
+          errorMessage={errorMessage}
+        />
         <div style={{ marginTop: '10px', marginBottom: '10px' }}>
-          <span>Після зміни перевірте свою електронну почту, якщо SMS з паролем не надіслано,
-                        проведіть операцію повторно, якщо все ок, то:
-          </span>
+          <span>{t('After the change')}</span>
         </div>
         <NavLink to='/login' className={styles.inputContainer}>
           <SubmitFollowBtn
             type='button'
             name='Submit'
             icon={faUserCheck}
-            label='Перейти до авторизації'/>
+            label={t('Go to authorization')}
+          />
         </NavLink>
       </div>
     </div>

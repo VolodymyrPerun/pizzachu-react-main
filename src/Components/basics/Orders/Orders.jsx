@@ -1,15 +1,18 @@
 import { Pagination } from 'antd'
 import { NavLink } from 'react-router-dom'
 import React, { memo, useMemo } from 'react'
-import styles from './Orders.module.scss'
-import ApplyBtn from '../../commons/Buttons/Apply/ApplyBtn'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import { faArrowLeft, faAward } from '@fortawesome/free-solid-svg-icons'
+import { faAward, faArrowLeft } from '@fortawesome/free-solid-svg-icons'
 import {
   FastForwardFilled,
   FastBackwardFilled,
   CloseCircleOutlined,
 } from '@ant-design/icons'
+//
+import styles from './Orders.module.scss'
+//
+import ApplyBtn from '../../commons/Buttons/Apply/ApplyBtn'
+import { CheckErrorMessage } from '../ErrorsComponents/ErrorsComponents'
 //////////////////////////////////////////////////
 
 const Orders = memo(({
@@ -61,9 +64,11 @@ const Orders = memo(({
           ? <>
             {!purchases || length === 0
               ? <div className={styles.emptyOrder}>
-                {errorMessage && '/' + window.location.href.split('/').pop() ===
-                '/orders' &&
-                <div style={{ marginBottom: 30 }}>{errorMessage}</div>}
+                <CheckErrorMessage
+                  url='/orders'
+                  errorMessage={errorMessage}
+                  errMsgStyle={{ marginBottom: 30 }}
+                />
                 <NavLink
                   to='/home'
                   className={styles.register}>
@@ -119,9 +124,11 @@ const Orders = memo(({
                   : null)}
           </>
           : <div className={styles.emptyOrder}>
-            {errorMessage && '/' + window.location.href.split('/').pop() ===
-            '/orders' &&
-            <div style={{ marginBottom: 30 }}>{errorMessage}</div>}
+            <CheckErrorMessage
+              url='/orders'
+              errorMessage={errorMessage}
+              errMsgStyle={{ marginBottom: 30 }}
+            />
             <p>Для того, щоб зберігати інформацію про замовлення, необхідно
               зараєструватись</p>
             <NavLink

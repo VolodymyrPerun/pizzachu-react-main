@@ -9,6 +9,10 @@ import styles from './Login.module.scss'
 import fieldSettings from './FieldSettings'
 import FieldsetComponent from '../../commons/Fieldset/Fieldset'
 import SubmitFollowBtn from '../../commons/Buttons/SubmitFollow/SubmitFollowBtn'
+import {
+  RenderError,
+  CheckErrorMessage
+} from '../ErrorsComponents/ErrorsComponents'
 //////////////////////////////////////////////////
 
 let LoginForm = ({
@@ -32,7 +36,7 @@ let LoginForm = ({
             ? <>
               {
                 fieldSettings.map((field, index) => (
-                    <FieldsetComponent key={index} field={field}/>
+                    <FieldsetComponent key={index} field={field} />
                   ),
                 )
               }
@@ -61,7 +65,7 @@ let LoginForm = ({
                 to='/change-password'
                 className={styles.menuItemLink}
               >
-                {t('Change Password')}
+                {t('Change Password')}?
               </NavLink>
               <NavLink
                 to='/restore-password'
@@ -78,16 +82,15 @@ let LoginForm = ({
           <span>{t('ERROR')}: {error}</span>
         </div>
       }
-      {
-        errorMessage && '/' + window.location.href.split('/').pop() ===
-        '/login' &&
-        <div className={styles.errMsg}>{errorMessage}</div>
-      }
-      {
-        adminErrorMessage && '/' + window.location.href.split('/').pop() ===
-        '/auth-admin' &&
-        <div className={styles.errMsg}>{adminErrorMessage}</div>
-      }
+      <RenderError error={error} errClassName={styles.formsSummaryError} />
+      <CheckErrorMessage
+        url='/login'
+        adminUrl='/auth-admin'
+        errorMessage={errorMessage}
+        errMsgClassName={styles.errMsg}
+        adminErrMsgClassName={styles.errMsg}
+        adminErrorMessage={adminErrorMessage}
+      />
     </form>
   )
 }

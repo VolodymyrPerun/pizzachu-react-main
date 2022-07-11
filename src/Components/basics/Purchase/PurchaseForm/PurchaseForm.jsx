@@ -1,13 +1,20 @@
 import React, { memo } from 'react'
 import { connect } from 'react-redux'
 import { reduxForm } from 'redux-form'
-import fieldSettings from './FieldSettings'
-import styles from './PurchaseForm.module.scss'
+import { useTranslation } from 'react-i18next'
 import { makeStyles } from '@material-ui/core/styles'
 import { faArrowRight } from '@fortawesome/free-solid-svg-icons'
+//
+import styles from './PurchaseForm.module.scss'
+//
+import fieldSettings from './FieldSettings'
 import FieldsetComponent from '../../../commons/Fieldset/Fieldset'
 import SubmitFollowBtn
   from '../../../commons/Buttons/SubmitFollow/SubmitFollowBtn'
+import {
+  RenderError,
+  CheckErrorMessage
+} from '../../ErrorsComponents/ErrorsComponents'
 //////////////////////////////////////////////////
 
 const useStyles = makeStyles((theme) => ({
@@ -31,36 +38,34 @@ const PurchaseForm = memo(({
   handleSubmit,
   errorMessage,
 }) => {
-
   const classes = useStyles()
+  const { t } = useTranslation()
 
   return (
     <>
       <form
-        onSubmit={handleSubmit} className={classes.root} autoComplete='on'>
-
-        {fieldSettings.map((field, index) => (
-            <FieldsetComponent key={index} field={field}/>
-          ),
-        )}
+        autoComplete='on'
+        onSubmit={handleSubmit}
+        className={classes.root}
+      >
+        {
+          fieldSettings.map((field, index) => (
+              <FieldsetComponent key={index} field={field} />
+            ),
+          )
+        }
         <div className={styles.order}>
           <SubmitFollowBtn
             name='Submit'
             type='submit'
             onClick={reset}
             icon={faArrowRight}
-            label='Підтвердити замовлення '
-            disabled={pristine || submitting}/>
+            label={`${t('Confirm order')} `}
+            disabled={pristine || submitting}
+          />
         </div>
-
-        {error &&
-        <div className={styles.formsSummaryError}>
-          <span>ERROR: {error}</span>
-        </div>}
-
-        {errorMessage && '/' + window.location.href.split('/').pop() ===
-        '/purchase' &&
-        <div className={styles.errMsg}>{errorMessage}</div>}
+        <RenderError error={error} />
+        <CheckErrorMessage url='/purchase' errorMessage={errorMessage} />
       </form>
     </>
   )

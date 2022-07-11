@@ -1,5 +1,6 @@
 import React from 'react'
 import i18next from 'i18next'
+import { NavLink } from 'react-router-dom'
 import { LazyLoadImage } from 'react-lazy-load-image-component'
 import {
   CloseCircleOutlined,
@@ -12,7 +13,6 @@ import {
   faBalanceScaleLeft,
   faPrescriptionBottle
 } from '@fortawesome/free-solid-svg-icons'
-import { NavLink } from 'react-router-dom'
 //
 import styles from '../ProductPage.module.scss'
 //

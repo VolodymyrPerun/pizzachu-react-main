@@ -5,7 +5,6 @@ import { initReactI18next } from 'react-i18next'
 const resources = {
   ua: {
     translation: {
-     // 'cheapToExpensive': 'від дешевих до дорогих',
       'l': 'л',
       'g': 'гр',
       'cm': 'см',
@@ -16,6 +15,7 @@ const resources = {
       'Price': 'Ціна',
       'bonus': 'бонус',
       'Weight': 'Вага',
+      'Email': 'Емейл',
       'Size': 'Розмір',
       'hours': 'години',
       'Main': 'Головна',
@@ -25,6 +25,7 @@ const resources = {
       'Search': 'Пошук',
       'ERROR': 'ПОМИЛКА',
       'Service': 'Сервіс',
+      'Password': 'Пароль',
       'seconds': 'секунди',
       'minutes': 'хвилини',
       'Promotions': 'Акції',
@@ -49,23 +50,25 @@ const resources = {
       'Student Pizza': 'Піца Студентська',
       'Rate the product': 'Оцініть товар',
       'We also offer': 'Пропонуємо також',
+      'Change Password': 'Змінити пароль',
       'We will deliver to': 'Доставимо до',
       'Forgot Password?': 'Забули пароль?',
       'Terms of use': ' Умови використання',
       'Total products': ' Всього товарів: ',
-      'Change Password?': 'Змінити пароль?',
       'online restaurant': 'онлайн-ресторан',
       'Your Birthday': 'Ваш День Народження',
       'Promotion of the week': 'Акція тижня',
       'Product reviews': 'Відгуки про товар',
       'Continue shopping': 'Продовжити покупки',
       'Minimum quantity': 'Мінімальна кількість',
+      'Confirm order': 'Підтвердити замовлення ',
       'Maximum quantity': 'Максимальна кількість',
       'Why are we the best?': 'Чому ми найкращі?',
       'Delivery and Payment': 'Доставка і оплата',
       'Did we miss': 'Ми не встигли за 29 хвилин?',
       'Go to registration': 'Перейти до реєстрації',
       'delivery': ' – доставка суші та піци у Львові',
+      'Go to authorization': 'Перейти до авторизації',
       'It remains until': 'До кінця акції залишилось',
       'A gift for being late': 'Подарунок за спізнення',
       'round the clock': 'цілодобово без вихідних 24/7',
@@ -99,14 +102,16 @@ const resources = {
       'We use': ' Ми використовуємо тільки якісні свіжі продукти та зручне упакування для страв. Замовлення приймаються ',
       'When ordering': '*При замовлені на суму від 800грн до 999грн час доставки збільшується на 10хв для відповідної зони.',
       'To receive a gift': 'Для отримання подарунка потрібно пред’явити кур’єру документ, який засвідчує дату Вашого народження',
-      'The password must contain':
-        'Пароль повинен містити 8 символів, включаючи одну велику літеру, одну цифру, та один спеціальний символ',
-      'Compensatory pizzas':
-        ' Компенсаційні піца та рол змінюються залежно від дня тижня. Весь список страв представлений внизу сторінки.',
       'Incorrectly entered phone number format':
         'Невірно введений номер телефону, поле повинно містити лише цифри i бути у форматі',
+      'The password must contain':
+        'Пароль повинен містити 8 символів, включаючи одну велику літеру, одну цифру, та один спеціальний символ',
       'The Program Participant':
         'Учасник Програми не може передавати накопичені бонуси іншій особі, в тому числі іншому учаснику Програми.',
+      'Compensatory pizzas':
+        ' Компенсаційні піца та рол змінюються залежно від дня тижня. Весь список страв представлений внизу сторінки.',
+      'After the change':
+        'Після зміни перевірте свою електронну почту, якщо SMS з паролем не надіслано, проведіть операцію повторно, якщо все ок, то:',
       'Points of 5%':
         'На Ваш баланс нараховуються бали в розмірі 5% від суми кожного замовлення. Бонусний рахунок закріплений за номером телефону. Збирайте бали та отримуйте частково оплачене або цілком безкоштовне замовлення протягом 30 днів.',
       'Its means':
@@ -117,7 +122,6 @@ const resources = {
   },
   en: {
     translation: {
-      cheapToExpensive: 'cheap to expensive',
       'g': 'g',
       'l': 'l',
       'cm': 'cm',
@@ -132,6 +136,7 @@ const resources = {
       'Login': 'Login',
       'bonus': 'bonus',
       'ERROR': 'ERROR',
+      'Email': 'Email',
       'Weight': 'Weigh',
       'Volume': 'Volume',
       'Logout': 'Logout',
@@ -144,6 +149,7 @@ const resources = {
       'symbols': 'symbols',
       'About Us': 'About Us',
       'Delivery': 'Delivery',
+      'Password': 'Password',
       'Contacts': 'Contacts',
       'My Orders': 'My Orders',
       "Time's up": "Time's up",
@@ -162,18 +168,20 @@ const resources = {
       'Order amount': 'Order amount: ',
       'Student Pizza': 'Student Pizza',
       'We also offer': 'We also offer',
+      'Confirm order': 'Confirm order',
       'Total products': 'Total products: ',
+      'Change Password': 'Change Password',
       'Rate the product': 'Rate the product',
       'Product reviews': 'Відгуки про товар',
       'Maximum quantity': 'Maximum quantity',
       'Minimum quantity': 'Minimum quantity',
-      'Change Password?': 'Change Password?',
       'Forgot Password?': 'Forgot Password?',
       'Did we miss': 'Did we miss 29 minutes?',
       'Continue shopping': 'Continue shopping',
       'online restaurant': 'online restaurant',
       'Go to registration': 'Go to registration',
       'We will deliver to': 'We will deliver to',
+      'Go to authorization': 'Go to authorization',
       'Why are we the best?': 'Why are we the best?',
       'select a sort method': 'select a sort method',
       'Delivery and Payment': 'Delivery and Payment',
@@ -207,20 +215,22 @@ const resources = {
       'Bonuses may not be accrued for some specials offers': 'Bonuses may not be accrued for some specials offers',
       'For example': 'For example, using the compensation on Tuesday, you will receive a Corleone pizza or a Taka roll.',
       'Delivery time': '*Delivery time depends on the TOTAL amount of the order (EXCLUDING discounts, promotions, etc.).',
+      'Bonuses are credited': "Bonuses are credited to the buyer's mobile number for the total amount of the Pizzachu check.",
       'When ordering': '*When ordering from UAH 800 to UAH 999, the delivery time increases by 10 minutes for the corresponding zone.',
       'We deliver up to 29 minutes':
         'We deliver up to 29 minutes! If the courier is late, we give you a roll or pizza:',
+      'Incorrectly entered phone number format':
+        'Incorrectly entered phone number, the field should contain only numbers and be in the format',
       'To receive a gift':
         'To receive a gift, you must present the courier with a document certifying the date of your birth',
       'The password must contain':
         'The password must contain 8 characters, including one capital letter, one number, and one special character',
-      'Incorrectly entered phone number format':
-        'Incorrectly entered phone number, the field should contain only numbers and be in the format',
-      'Bonuses are credited': "Bonuses are credited to the buyer's mobile number for the total amount of the Pizzachu check.",
       'The Program Participant':
         'The Program Participant may not transfer the accumulated bonuses to another person, including another participant Programs.',
       'Compensatory pizzas':
         'Compensatory pizzas and rolls vary depending on the day of the week. The entire list of dishes is presented at the bottom of the page.',
+      'After the change':
+        'After the change, check your e-mail, if the SMS with the password has not been sent, perform the operation again, if everything is OK, then:',
       'Points of 5%':
         'Points of 5% of the amount of each order are credited to your balance. The bonus account is assigned to the phone number. Collect points and receive a partially paid or completely free order within 30 days.',
       'Its means':

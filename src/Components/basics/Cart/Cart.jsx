@@ -69,13 +69,16 @@ const Cart = memo(({
           />
           <span className={styles.tittle}>{t('Cart')}</span>
         </div>
-        <div className={styles.cartClear}>
-          <ApplyBtn
-            icon={faTrashAlt}
-            handleClick={cartClear}
-            label={t('Clear Cart')}
-          />
-        </div>
+        {
+          productsLength !== 0 &&
+          <div className={styles.cartClear}>
+            <ApplyBtn
+              icon={faTrashAlt}
+              handleClick={cartClear}
+              label={t('Clear Cart')}
+            />
+          </div>
+        }
       </div>
       {
         productsLength !== 0

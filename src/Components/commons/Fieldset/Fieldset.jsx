@@ -5,9 +5,9 @@ import FormHelperText from '@material-ui/core/FormHelperText'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 //////////////////////////////////////////////////
 
-const FieldsetComponent = ({ field }) => {
-  if (field.isSelect === true) {
-    return (
+const FieldsetComponent = ({ field }) =>
+  !!field.isSelect
+    ?  (
       <FormControl
         variant={field.variant}
         className={field.formControlClassName}>
@@ -18,44 +18,49 @@ const FieldsetComponent = ({ field }) => {
           component={field.component}
           className={field.className}
         >
-          {field.optionsSelect.map(
-            (option, index) => (
-              <option
-                key={index}
-                style={option.style}
-                value={option.value}>
-                {option.value || option.title}
-              </option>
-            ),
-          )}
+          {
+            field.optionsSelect.map(
+              (option, index) => (
+                <option
+                  key={index}
+                  style={option.style}
+                  value={option.value}
+                >
+                  {option.value || option.title}
+                </option>
+              ),
+            )
+          }
         </Field>
         <FormHelperText>{field.labelText}</FormHelperText>
       </FormControl>
     )
-  } else {
-    return (
+    : (
       <Field
-        id={field.id}
+        // id={field.id}
         name={field.name}
         type={field.type}
         warn={field.warn}
         style={field.style}
-        variant={field.variant}
-        required={field.required}
+       // variant={field.variant}
+       // required={field.required}
         validate={field.validate}
         className={field.className}
         component={field.component}
         placeholder={field.placeholder}
         label={
           <>
-            {field.labelIcon && <FontAwesomeIcon
-              icon={field.labelIcon || null}
-              style={field.labelStyle}/>}
+            {
+              field.labelIcon &&
+              <FontAwesomeIcon
+                style={field.labelStyle}
+                icon={field.labelIcon || null}
+              />
+            }
             {field.labelText || null}
           </>
-        }/>
+        }
+      />
     )
-  }
-}
 
 export default FieldsetComponent

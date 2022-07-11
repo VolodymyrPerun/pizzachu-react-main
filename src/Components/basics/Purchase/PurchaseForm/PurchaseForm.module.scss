@@ -7,20 +7,6 @@ form {
   align-content: center;
   justify-content: center;
 
-  .formsSummaryError {
-    display: flex;
-    color: #c21500;
-    max-width: 70%;
-    margin: 5px auto;
-    font-weight: bold;
-    text-align: center;
-    align-self: center;
-    align-items: center;
-    align-content: center;
-    justify-content: center;
-    font: 15px raleway-grid, sans-serif;
-  }
-
   .select {
     width: 150px;
     height: 32px;
@@ -38,10 +24,6 @@ form {
     &:hover {
       background-color: #E5E5E5;
     }
-  }
-
-  .errMsg {
-    color: darkred;
   }
 
   .order {

@@ -1,10 +1,17 @@
 import React from 'react'
+import i18next from 'i18next'
 import { reduxForm } from 'redux-form'
-import fieldSettings from './FieldSettings'
-import styles from './ChangePassword.module.scss'
 import { faKey } from '@fortawesome/free-solid-svg-icons'
+//
+import styles from './ChangePassword.module.scss'
+//
+import fieldSettings from './FieldSettings'
 import FieldsetComponent from '../../commons/Fieldset/Fieldset'
 import SubmitFollowBtn from '../../commons/Buttons/SubmitFollow/SubmitFollowBtn'
+import {
+  RenderError,
+  CheckErrorMessage,
+} from '../ErrorsComponents/ErrorsComponents'
 //////////////////////////////////////////////////
 
 let ChangePasswordForm = ({
@@ -17,25 +24,28 @@ let ChangePasswordForm = ({
 }) => (
   <form onSubmit={handleSubmit}>
     <div className={styles.inputContainer}>
-      {fieldSettings.map((field, index) => (
-          <FieldsetComponent key={index} field={field}/>
-        ),
-      )}
+      {
+        fieldSettings.map(
+          (field, index) => (
+            <FieldsetComponent key={index} field={field}/>
+          ),
+        )
+      }
       <SubmitFollowBtn
         icon={faKey}
         type='submit'
         name='Submit'
         onClick={reset}
-        label='Змінити пароль'
-        disabled={pristine || submitting}/>
+        disabled={pristine || submitting}
+        label={i18next.t('Change Password')}
+      />
     </div>
-    {error &&
-    <div className={styles.formsSummaryError}>
-      <span>ERROR: {error}</span>
-    </div>}
-    {errorMessage && '/' + window.location.href.split('/').pop() ===
-    '/change-password' &&
-    <div className={styles.errMsg}>{errorMessage}</div>}
+    <RenderError error={error} errClassName={styles.formsSummaryError} />
+    <CheckErrorMessage
+      url='/change-password'
+      errorMessage={errorMessage}
+      errMsgClassName={styles.errMsg}
+    />
   </form>
 )
 

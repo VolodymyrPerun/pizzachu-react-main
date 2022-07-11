@@ -1,9 +1,12 @@
 import PropTypes from 'prop-types'
 import React, { useEffect } from 'react'
 import { NavLink } from 'react-router-dom'
+import { useTranslation } from 'react-i18next'
 import { faCartPlus } from '@fortawesome/free-solid-svg-icons'
+import { LazyLoadImage } from 'react-lazy-load-image-component'
 //
 import styles from './ProductsCard.module.scss'
+//
 import AddTo from '../../../commons/Buttons/AddTo/AddTo'
 import { PRODUCT_TYPE, PRODUCT_SECTION } from '../../../../constants'
 import noPhoto from '../../../../assets/images/no-aveliable-image.png'
@@ -24,6 +27,7 @@ const ProductsCard = ({
   addProductToCart,
   ...rest
 }) => {
+  const { t } = useTranslation()
 
   useEffect(() => {
     let cleanupFunction = false
@@ -57,35 +61,45 @@ const ProductsCard = ({
                   className={styles.image}
                   src={`http://localhost:5000/${product_photo}`}
                 />
-                : <img src={noPhoto} alt='product' className={styles.image}/>
+                : <span className={styles.image}>
+                  <LazyLoadImage
+                    alt='product'
+                    effect='blur'
+                    src={noPhoto}
+                  />
+                </span>
             }
             <div className={styles.weight}>
               {
                 section_id !== PRODUCT_SECTION.DRINKS
-                  ? <p>Вага: <span>{weight}</span> гр</p>
-                  : <p>Об'єм: <span>{weight}</span> л</p>
+                  ? <p className={styles.weight}>
+                    {`${t('Weight')}: `}<span>{weight}{` ${t('g')}`}</span>
+                  </p>
+                  : <p className={styles.weight}>
+                    {`${t('Volume')}: `}<span>{weight}{` ${t('l')}`}</span>
+                  </p>
               }
               {
-                type_id === PRODUCT_TYPE.PIZZA
-                  ? <p>Розмір: <span>{rest['ProductSize.size']}</span> см</p>
-                  : <p style={{ color: 'transparent', visibility: 'hidden' }}>.</p>
+                type_id === PRODUCT_TYPE.PIZZA && !!rest['ProductSize.size'] &&
+                <p>
+                  {`${t('Size')}: `}
+                  <span>{rest['ProductSize.size']}</span>
+                  {` ${t('cm')}`}
+                </p>
               }
             </div>
             <p className={styles.title}>{name}</p>
             {
-              description
-                ? <p className={styles.description}>{description}</p>
-                : <p
-                  className={styles.description}
-                  style={{ color: 'transparent', visibility: 'hidden' }}
-                  >.</p>
+              !!description && <p className={styles.description}>{description}</p>
             }
-            <p className={styles.price}>Ціна: <span>{price}</span> грн.</p>
+            <p className={styles.price}>
+              {`${t('Price')}: `}<span>{price}</span>{` ${t('UAH')}`}
+            </p>
           </NavLink>
           <div className={styles.btn}>
             <AddTo
               to='/cart'
-              label='Купити'
+              label={t('Buy')}
               icon={faCartPlus}
               handleClick={() => handleClick(productId, 1)}
             />

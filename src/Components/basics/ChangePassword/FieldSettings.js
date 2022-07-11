@@ -1,6 +1,10 @@
-import styles from './ChangePassword.module.scss'
-import { INPUT } from '../../../constants/formsControls.enum'
 import { faAt, faKey } from '@fortawesome/free-solid-svg-icons'
+//
+import styles from './ChangePassword.module.scss'
+//
+import LANG from '../../../constants/langs.enum'
+import { PLACEHOLDERS } from '../../../constants'
+import { INPUT } from '../../../constants/formsControls.enum'
 import FormsControlItem from '../../commons/FormsControls/FormsControls'
 import {
   email,
@@ -10,6 +14,8 @@ import {
   minLengthCreator,
 } from '../../../validators/validators'
 //////////////////////////////////////////////////
+
+let lngFromStorage = localStorage.getItem('language')
 
 const inputStyles = styles.input
 const input = FormsControlItem(INPUT)
@@ -34,9 +40,10 @@ export default [
     type: 'email',
     labelIcon: faAt,
     component: input,
-    placeholder: 'Емейл',
     className: inputStyles,
     validate: [isRequired, minLength2, maxLength45],
+    placeholder: lngFromStorage === LANG.UA
+      ? PLACEHOLDERS.ua.Email: PLACEHOLDERS.en.Email,
   },
   {
     labelStyle,
@@ -46,8 +53,10 @@ export default [
     component: input,
     labelIcon: faKey,
     className: inputStyles,
-    placeholder: 'Введіть поточний пароль',
     validate: [isRequired, minLength8, maxLength20],
+    placeholder: lngFromStorage === LANG.UA
+      ? PLACEHOLDERS.ua.Enter_Your_Current_Password
+      : PLACEHOLDERS.en.Enter_Your_Current_Password,
   },
   {
     labelStyle,
@@ -57,8 +66,10 @@ export default [
     labelIcon: faKey,
     name: 'newPassword',
     className: inputStyles,
-    placeholder: 'Введіть новий пароль',
     validate: [isRequired, minLength8, maxLength20],
+    placeholder: lngFromStorage === LANG.UA
+      ? PLACEHOLDERS.ua.Enter_Your_New_Password
+      : PLACEHOLDERS.en.Enter_Your_New_Password,
   },
   {
     labelStyle,
@@ -68,7 +79,9 @@ export default [
     labelIcon: faKey,
     className: inputStyles,
     name: 'repeatNewPassword',
-    placeholder: 'Повторіть новий пароль',
     validate: [isRequired, minLength8, maxLength20],
+    placeholder: lngFromStorage === LANG.UA
+      ? PLACEHOLDERS.ua.Repeat_Your_New_Password
+      : PLACEHOLDERS.en.Repeat_Your_New_Password,
   },
 ]

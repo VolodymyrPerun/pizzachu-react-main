@@ -9,7 +9,6 @@ import { faBell, faArrowLeft } from '@fortawesome/free-solid-svg-icons'
 import {
   FastForwardFilled,
   FastBackwardFilled,
-  CloseCircleOutlined,
 } from '@ant-design/icons'
 //
 import styles from './ProductPage.module.scss'
